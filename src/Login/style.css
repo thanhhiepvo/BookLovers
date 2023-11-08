@@ -1,0 +1,431 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "sans-serif";
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('img3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Login page */
+
+.projName
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+    padding: 300px 50px 300px 0px;
+}
+
+.projName h1
+{
+    font-size: 70px;
+    text-align: center;
+    color: #141A46;
+}
+
+.projName h2
+{
+    font-size: 30px;
+    text-align: center;
+    color: #141A46;
+}
+
+.loginSite
+{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+    padding: 45px 10px 45px 300px;
+}
+
+.loginSite .wrapper
+{
+    width: 420px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.wrapper h1
+{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .inputBox
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.inputBox input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.inputBox input::placeholder
+{
+    color: #141A46;
+}
+
+.wrapper .remember
+{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin: -20 0 20;
+    padding-bottom: 20px;
+}
+
+.remember a
+{
+    color: #141A46;
+    text-decoration: none;
+}
+
+.remember a:hover
+{
+    background-color: #141A46;
+    color: white;
+    border-radius: 10px;
+}
+
+.loginSite .wrapper .loginBut
+{
+    width: 100%;
+    height: 45px;
+    background: #141A46;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 5px black;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.wrapper .register
+{
+    font-size: 18px;
+    text-align: center;
+    margin: 15px 0 15px;
+}
+
+.register p a 
+{
+    color: #141A46;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register p a:hover
+{
+    background-color: #141A46;
+    color: white;
+    border-radius: 10px;
+}
+
+
+/* forgot pass page */
+
+.forgot
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.forgot .wrapper
+{
+    width: 420px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.forgot .wrapper h1
+{
+    font-size: 30px;
+    text-align: center;
+}
+
+.wrapper .email
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.email input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.email input::placeholder
+{
+    color: #141A46;
+}
+
+.wrapper .pass
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.pass input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.pass input::placeholder
+{
+    color: #141A46;
+}
+
+.wrapper .resetBut
+{
+    width: 100%;
+    height: 45px;
+    background: #141A46;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 5px black;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+/* sign up page */
+
+.reg
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.reg .wrapper
+{
+    width: 420px;
+    height: 550px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.reg .wrapper h1
+{
+    font-size: 30px;
+    text-align: center;
+}
+
+.wrapper .signUp
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.signUp input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.signUp input::placeholder
+{
+    color: #141A46;
+}
+
+.wrapper .signUpBut
+{
+    width: 100%;
+    height: 45px;
+    background: #141A46;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 5px black;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.wrapper .login
+{
+    color: #141A46;
+    padding-top: 20px;
+}
+
+.wrapper .login a
+{
+    color: #141A46;
+    text-decoration: none;
+}
+
+.wrapper .login a:hover
+{
+    background-color: #141A46;
+    color: white;
+    border-radius: 10px;
+}
+
+/* OTP page */
+
+.otp
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.otp .wrapper
+{
+    width: 420px;
+    height: 250px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.otp .wrapper h1
+{
+    font-size: 30px;
+    text-align: center;
+}
+
+.otp .wrapper h3
+{
+    font-size: 20px;
+    text-align: center;
+}
+
+form .inputOTP
+{
+    flex-direction: row;
+    column-gap: 10px;
+    text-align: center;
+}
+
+.inputOTP input
+{
+    height: 45px;
+    width: 42px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.inputOTP input [disabled = true]
+{
+    background-color: lightblue;
+}
+
+.inputOTP input:focus
+{
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.inputOTP input::-webkit-inner-spin-button, .inputOTP input::-webkit-outer-spin-button
+{
+    display: none;
+}
+
+.otp .wrapper form button
+{
+    margin-top: 25px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    padding: 9px 0;
+    cursor: pointer;
+    border-radius: 6px;
+    pointer-events: none;
+    background: #6e93f7;
+    transition: all 0.2s ease;
+}
+
+.otp .wrapper form button.getOTP
+{
+    background: #4070f4;
+    pointer-events: auto;
+}
+
+.otp .wrapper form button:hover
+{
+    background: #0e4bf1;
+}
