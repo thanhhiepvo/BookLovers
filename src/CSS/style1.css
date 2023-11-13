@@ -108,3 +108,64 @@ header
     padding-bottom: 20px;
 }
 
+#product
+{
+    text-align: center;
+}
+
+#product .pro
+{
+    width: 23%;
+    min-width: 250px;
+    padding: 10px 12px;
+    border: 1px solid grey;
+    border-radius: 7%;
+    cursor: pointer;
+    box-shadow: 20px 20px 30px darkgray;
+    margin: 15px 0;
+    transition: 0.2s ease;
+}
+
+#product h2
+{
+    color: #1a1a1a;
+    font-size: 50px;
+    padding-top: 30px;
+}
+
+#product p
+{
+    color: #1a1a1a;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+#product .pro:hover
+{
+    box-shadow: 20px 20px 30px rgb(169, 169, 140);
+}
+
+#product .pro .description
+{
+    text-align: start;
+    padding: 10px 0;
+}
+
+#product .pro .description span
+{
+    color: #606063;
+    font-size: 12px;
+}
+
+#product .pro .description h5
+{
+    padding-top: 7px;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+#product .pro img
+{
+    width: 100%;
+    border-radius: 5%;
+}
