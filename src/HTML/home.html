@@ -36,17 +36,118 @@
             <h2>Find your favourite books here</h2>
             <p>All your favorite books are in one place</p>
 
-            <div class="product_cont">
-                <div class="pro">
-                    <img src="../Picture/c++.jpg" alt="">
-                    <div class="description">
-                        <span>Ten cuon sach</span>
-                        <h5>Tac gia</h5>
+            <!-- ------------------------------------- -->
+            <div id="productContainer">
+                <div class="product_cont">
+                    <div class="pro">
+                        <img src="../Picture/c++.jpg" alt="">
+                        <div class="description">
+                            <span>C++</span>
+                            <h5>Tony Gaddis</h5>
+                        </div>
+                        <h4>200.000 VND</h4>
+                        <a href="#"><i class='bx bx-cart-add cart'></i></a>
                     </div>
-                    <h4>Gia tien</h4>
-                    <a href="#"><i class='bx bx-cart-add'></i></a>
                 </div>
             </div>
+            <!-- ------------------------------------- -->
+
+            <script>
+                var imagePaths = [
+                    "../Picture/p1.jpg",
+                    "../Picture/p2.jpg",
+                    "../Picture/p3.jpg",
+                    // Add more image paths as needed
+                ];
+
+                var bookNames = [
+                    "Python crash course",
+                    "Python for Data Analysis",
+                    "JavaScript for Beginners"
+                ]
+
+                var authors = [
+                    "Erric Matthes",
+                    "Wes McKinney",
+                    "Terry McNavage"
+                ]
+
+                var price = [
+                    "300.000",
+                    "270.000",
+                    "320.000"
+                ]
+
+                // Reference to the productContainer div
+                var productContainer = document.getElementById("productContainer");
+
+                // Loop through the image paths and create product_cont divs
+                for (var i = 0; i < imagePaths.length; i++) {
+                    // Create product_cont div
+                    var productContDiv = document.createElement("div");
+                    productContDiv.className = "product_cont";
+
+                    // Create pro div
+                    var proDiv = document.createElement("div");
+                    proDiv.className = "pro";
+
+                    // Create img element
+                    var imgElement = document.createElement("img");
+                    imgElement.src = imagePaths[i];
+                    imgElement.alt = "";
+
+                    // Create description div
+                    var descriptionDiv = document.createElement("div");
+                    descriptionDiv.className = "description";
+
+                    // Create span element
+                    var spanElement = document.createElement("span");
+                    spanElement.textContent = bookNames[i];
+
+                    // Create h5 element
+                    var h5Element = document.createElement("h5");
+                    h5Element.textContent = authors[i];
+
+                    
+                    
+                    // Create h4 element
+                    var h4Element = document.createElement("h4");
+                    h4Element.textContent = price[i] + " VND";
+                    
+                    // Append span and h5 elements to descriptionDiv
+                    descriptionDiv.appendChild(spanElement);
+                    descriptionDiv.appendChild(h5Element);
+
+                    // Append imgElement and descriptionDiv to proDiv
+                    proDiv.appendChild(imgElement);
+                    proDiv.appendChild(descriptionDiv);
+                    proDiv.appendChild(h4Element);
+                    
+                    // Create a element
+                    var aElement = document.createElement("a");
+                    aElement.href = "#";
+
+                    // Create i element for cart icon
+                    var iElement = document.createElement("i");
+                    iElement.className = "bx bx-cart-add cart";
+
+                    // Append i element to aElement
+                    aElement.appendChild(iElement);
+
+                    // Append a to proDiv
+                    proDiv.appendChild(aElement);
+
+                    // Append proDiv, h4Element, and aElement to productContDiv
+                    productContDiv.appendChild(proDiv);
+                    // productContDiv.appendChild(h4Element);
+                    // productContDiv.appendChild(aElement);
+
+                    // Append productContDiv to productContainer
+                    productContainer.appendChild(productContDiv);
+                }
+            </script>
+
+
         </section>
     
     </body>
