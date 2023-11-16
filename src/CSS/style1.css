@@ -58,6 +58,40 @@ header
     font-weight: 500;
 }
 
+/* ----------------- */
+.profile .bx-caret-down
+{
+    cursor: pointer;
+}
+
+#profileSpan
+{
+    width: 250px;
+    height: 70px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    border-radius: 10px;
+    border-color: black;
+    right: 5%;
+    top: 70%;
+    text-align: center;
+    background-color: #3A393A;
+    color: white;
+    font-size: 22px;
+    font-weight: lighter;
+    /* min-width: 160px; */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#profileSpan.active
+{
+    display: block;
+}
+
+/* ------------------ */
+
 .navbar
 {
     display: flex;
@@ -77,7 +111,7 @@ header
 
 .navbar a:hover, .navbar .home-active
 {
-    background: lightskyblue;
+    background: #0080ff;
     color: white;
     border-radius: 20px;
     transition: background 0.5s;
@@ -127,7 +161,7 @@ header
     position: relative;
 }
 
-#product #productContainer 
+#product .productContainer 
 {
     display: flex;
     justify-content: space-between;

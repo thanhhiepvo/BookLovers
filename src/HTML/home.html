@@ -20,12 +20,40 @@
         
         <div class="profile">
             <i class='bx bx-user' ></i>
-            <span>You</span>
+            <span>Profile</span>
             <i class='bx bx-caret-down' ></i>
         </div>
+
+        <div id="profileSpan">
+            <h5 id="name"></h5>
+            <h5 id="mail"></h5>
+            <h5 id="balance"></h5>
+        </div>
+
+        <!-- Script for Profile -->
+        <Script>
+            var profileSpan = document.getElementById("profileSpan");
+
+            var name = "Tiem Ban Nuoc";
+            var mail = "abc@gmail.com";
+            var balance = "1.500.000";
+
+            document.getElementById("name").textContent = "UserName: " + name;
+            document.getElementById("mail").textContent = "Email: " + mail;
+            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+            caretDownIcon.addEventListener('click', () => 
+            {
+                profileSpan.classList.toggle('active');
+            });
+        </Script>
+
     </header>
     
     <body>
+
+
         <section id="intro">
             <h4>Ghi cái gì ở đây</h4>
             <h3>Tui cũng không biết nữa</h3>
@@ -37,7 +65,7 @@
             <p>All your favorite books are in one place</p>
 
             <!-- ------------------------------------- -->
-            <div id="productContainer">
+            <!-- <div id="productContainer">
                 <div class="product_cont">
                     <div class="pro">
                         <img src="../Picture/c++.jpg" alt="">
@@ -49,11 +77,13 @@
                         <a href="#"><i class='bx bx-cart-add cart'></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- ------------------------------------- -->
 
+            <!-- Script for product -->
             <script>
                 var imagePaths = [
+                    "../Picture/c++.jpg",
                     "../Picture/p1.jpg",
                     "../Picture/p2.jpg",
                     "../Picture/p3.jpg",
@@ -61,25 +91,32 @@
                 ];
 
                 var bookNames = [
+                    "C++ for beginer",
                     "Python crash course",
                     "Python for Data Analysis",
                     "JavaScript for Beginners"
                 ]
 
                 var authors = [
+                    "Tony Gaddis",
                     "Erric Matthes",
                     "Wes McKinney",
                     "Terry McNavage"
                 ]
 
                 var price = [
+                    "240.000",
                     "300.000",
                     "270.000",
                     "320.000"
                 ]
 
-                // Reference to the productContainer div
-                var productContainer = document.getElementById("productContainer");
+                // Reference to the product div
+                var product = document.getElementById("product");
+                // Create productContainer div
+                var productContainer = document.createElement("div");
+                productContainer.className = "productContainer";
+
 
                 // Loop through the image paths and create product_cont divs
                 for (var i = 0; i < imagePaths.length; i++) {
@@ -144,7 +181,9 @@
 
                     // Append productContDiv to productContainer
                     productContainer.appendChild(productContDiv);
+                    product.appendChild(productContainer);
                 }
+                document.body.appendChild(product);
             </script>
 
 
