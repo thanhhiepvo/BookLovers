@@ -5,6 +5,8 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
         <title>Forgot Password</title> 
         <link rel="stylesheet" href="../CSS/style.css">
+        <script src="../Script/script.js" defer></script>
+
     </head>
 
     <div class="forgot">
@@ -13,22 +15,23 @@
                 <h1>Your email</h1>
 
                 <div class="email">
-                    <input type="email" placeholder="Enter your registered email" required>
+                    <input type="email" placeholder="Enter your registered email" id="email_Forgot" required>
                 </div>
 
                 <h1>Recover your password</h1>
 
                 <div class="pass">
-                    <input type="password" placeholder="New password" required>
+                    <input type="password" placeholder="New password" id="pass1_Forgot" required>
                 </div>
     
                 <div class="pass">
-                    <input type="password" placeholder="Confirm password" required>
+                    <input type="password" placeholder="Confirm password" id="pass2_Forgot" required>
                 </div>
 
-                <button type="button" class="resetBut">
+                <button type="button" class="resetBut" onclick="checkForgot()">
                     Reset password
                 </button>
+
 
             </form>
 

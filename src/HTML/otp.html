@@ -14,13 +14,13 @@
                 <i class="bx bxs-check-shield"></i>
                 <h1>Enter OTP code</h1>
                 <h3>An OTP code will be sent to your registered email</h3>
-                <div class="inputOTP">
-                    <input type="number">
-                    <input type="number" disabled>
-                    <input type="number" disabled>
-                    <input type="number" disabled>
+                <div class="inputOTP" oninput="inputOTP()">
+                    <input type="number" id="num1">
+                    <input type="number" id="num2" disabled>
+                    <input type="number" id="num3" disabled>
+                    <input type="number" id="num4" disabled>
                 </div>
-                <button class="getOTP">Verify my account</button>
+                <button class="getOTP" onclick="checkOTP()">Verify my account</button>
             </form>
         </div>
     </div>
