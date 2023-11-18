@@ -1,0 +1,15 @@
+npm init -y 
+
+npm i pg
+
+npm i dotenv
+
+git checkout -f general
+Chuyển 1 file từ branch sang main branch
+git checkout Kien_test -- .gitignore
+
+npm i express
+
+npm i ejs // template engine
+
+npm i nodemon // giup tu dong restart moi lan cai file thay doi duoc phat hien

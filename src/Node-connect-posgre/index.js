@@ -3,7 +3,7 @@ const path = require('path');
 // config function from env package to load the environment variable from the .env file
 require('dotenv').config({
     override: true,
-    path: path.join(__dirname, 'development.env')
+    path: path.join(__dirname, '.env')
 });
 const {Pool,Client} = require('pg'); // import the pool and client from the pg.js file to do the connection
 // a client static connection to the postgresql server while the pool is a dynamic connection that automatic reconnect functionality
@@ -15,11 +15,11 @@ const {Pool,Client} = require('pg'); // import the pool and client from the pg.j
 // to connect postgre with a connection pool we need to create a pool object 
 // supply environment variable to the pool object that we created ín the env file
 const pool = new Pool({
-    user: process.env.USER,
+    user: process.env.POS_USER,
     host: process.env.HOST,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: process.env.PORT
+    database: process.env.POS_DATABASE,
+    password: process.env.POS_PASSWORD,
+    port: process.env.POS_PORT
 });
 //this pool initailly empty and client are created when they need to be used
 
