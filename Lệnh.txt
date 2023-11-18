@@ -1,0 +1,5 @@
+npm init -y 
+
+npm i pg
+
+npm i dotenv
