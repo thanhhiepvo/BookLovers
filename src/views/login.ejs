@@ -19,11 +19,11 @@
                 <h1>Login</h1> 
     
                 <div class="inputBox">
-                    <input type="text" placeholder="Email" required>
+                    <input type="email" placeholder="Email" id="mail_Login" required>
                 </div> 
     
                 <div class="inputBox">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" id="pass_Login" required>
                 </div>
     
                 <div class="remember">
@@ -31,7 +31,7 @@
                     <a href="/forgotPass"> Forgot your password?</a>
                 </div>
     
-                <button type="button" class="loginBut">
+                <button type="button" class="loginBut" onclick="checkLogin()">
                     Login
                 </button>
     
@@ -39,6 +39,8 @@
                     <p>Create an account? <a href="/signUp">Sign up</a> </p>
                     
                 </div>
+
+                
             </form>
         </div>
 
