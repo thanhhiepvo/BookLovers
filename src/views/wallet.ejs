@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>Wallet</title> 
+        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    </head>
+
+    <header>
+        <a href="#" class="logo"><img src="/Picture/book1.png"></a>
+        
+        <ul class="navbar">
+            <li><a href="#home" class="home-active">Home</a></li>
+            <li><a href="myBook.ejs">My books</a></li>
+            <li><a href="selling.ejs">Selling</a></li>
+            <li><a href="wallet.ejs">Wallet</a></li>
+            <li><a href="about.ejs">About</a></li>
+        </ul>
+        
+        <div class="profile">
+            <i class='bx bx-user' ></i>
+            <span>Profile</span>
+            <i class='bx bx-caret-down' ></i>
+        </div>
+
+        <div id="profileSpan">
+            <h5 id="name"></h5>
+            <h5 id="mail"></h5>
+            <h5 id="balance"></h5>
+        </div>
+
+        <!-- Script for Profile -->
+        <Script>
+            var profileSpan = document.getElementById("profileSpan");
+
+            var name = "Tiem Ban Nuoc";
+            var mail = "abc@gmail.com";
+            var balance = "1.500.000";
+
+            document.getElementById("name").textContent = "UserName: " + name;
+            document.getElementById("mail").textContent = "Email: " + mail;
+            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+            caretDownIcon.addEventListener('click', () => 
+            {
+                profileSpan.classList.toggle('active');
+            });
+        </Script>
+
+    </header>
+
+    <body>
+        <nav class="miniNavbar">
+            <li><a href="#deposite">Deposite</a></li>
+            <li><a href="#widthdraw">Widthdraw</a></li>
+            <li><a href="#history">History</a></li>
+        </nav>
+        
+    </body>
+    
+    <body>
+
+
+        
+    
+    </body>
+
+</html>

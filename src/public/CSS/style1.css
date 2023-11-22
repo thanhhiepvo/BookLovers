@@ -35,6 +35,11 @@ header
     box-shadow: 0px 8px 11px rgb(14 55 54 / 15%);
 }
 
+body
+{
+    background-color: #efefef;
+}
+
 .profile 
 {
     display: flex;
@@ -59,8 +64,8 @@ header
     font-weight: 500;
 }
 
-/* ----------------- */
 .profile .bx-caret-down
+/* ----------------- */
 {
     cursor: pointer;
 }
@@ -118,6 +123,8 @@ header
     transition: background 0.5s;
 }
 
+
+/* Home page  */
 #intro
 {
     background-image: url("../Picture/img3.jpg");
@@ -242,4 +249,37 @@ header
     position: absolute;
     bottom: 20px;
     right: 10px;
+}
+
+/* Wallet page  */
+
+.miniNavbar
+{
+    position:absolute;
+    /* width: 100%; */
+    /* top: 0;
+    right: 0; */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    margin-top: 20px;
+    transition: 0.5s;
+    box-shadow: 0px 8px 11px rgb(14 55 54 / 15%);
+    border: 2px solid #141A46;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.miniNavbar a
+{
+    text-align: center;
+    display: flex;
+    column-gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
 }
