@@ -47,15 +47,13 @@ function checkSignIn()
 
     // if (uname tồn tại)
     // if (email tồn tại)
-
-    if (pass1 != pass2)
-    {
+    if (pass1 != pass2) {
         alert("Confirm your password again");
-    }
-    else if (pass1 == pass2)
-    {
+        return false;  // prevent form submission
+    } else if (pass1 == pass2) {
         // alert("Create account successfully");
         window.location.href = "otp.html";
+        return true;  // allow form submission
     }
 }
 

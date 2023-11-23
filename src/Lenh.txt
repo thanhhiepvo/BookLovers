@@ -13,3 +13,5 @@ npm i express
 npm i ejs // template engine
 
 npm i nodemon // giup tu dong restart moi lan cai file thay doi duoc phat hien
+
+npm i body-parser

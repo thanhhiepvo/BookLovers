@@ -7,7 +7,7 @@ variable is assigned the value of the imported Express module, which can then be
 instance of the Express application and define routes. */
 import express from 'express' // es module
 // .. is the parent directory of the current directory
-import { getHomePage } from '../controllers/homeController.js';
+import { getHomePage, postCreateUser} from '../controllers/homeController.js';
 /* `const router = express.Router()` is creating a new router object using the Express framework. This
 router object can be used to define routes for specific URL paths and HTTP methods. It allows you to
 modularize your routes and separate them into different files or modules. */
@@ -31,9 +31,15 @@ router.get('/otp', (req, res) => {
     res.render('otp.ejs')
 })
   
+router.get('/about', (req, res) => {
+    res.render('about.ejs')
+})
+
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs')
 })
+
+router.post('/create-user', postCreateUser);
   
 router.get('/homepage', (req, res) => {
       //res.send('Check out our homepage') // send text
