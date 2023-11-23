@@ -39,6 +39,10 @@ body
 {
     background-color: #efefef;
 }
+.logo img {
+    width: 100px;
+    height: auto;
+}
 
 .profile 
 {
@@ -123,6 +127,13 @@ body
     transition: background 0.5s;
 }
 
+.navbar a:hover, .navbar .about-active
+{
+    background: white;
+    color: #141A46;
+    border-radius: 20px;
+    transition: background 0.5s;
+}
 
 /* Home page  */
 #intro
