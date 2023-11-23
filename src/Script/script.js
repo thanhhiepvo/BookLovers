@@ -136,3 +136,19 @@ function checkOTP()
     }
     // event.currentTarget.submit();
 }
+
+// Wallet page
+function mainWallet()
+{
+    var money = "2.000.000";
+    var uname = "Tiem Ban Nuoc";
+    var phone = "0123456789";
+    var mail = "tiembannuoc@gmail.com";
+
+    document.getElementById("money_wallet").textContent = money + " VND";
+    document.getElementById("uname_wallet").textContent = uname;
+    document.getElementById("phone_wallet").textContent = phone;
+    document.getElementById("mail_wallet").textContent = mail;
+}
+
+mainWallet();

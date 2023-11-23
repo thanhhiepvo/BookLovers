@@ -267,7 +267,8 @@ body
     margin-top: 20px;
     transition: 0.5s;
     box-shadow: 0px 8px 11px rgb(14 55 54 / 15%);
-    border: 2px solid #141A46;
+    border: 1px solid #141A46;
+    border-radius: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -282,4 +283,48 @@ body
     color: black;
     padding: 0.5rem 1rem;
     text-decoration: none;
+}
+
+.mainWallet
+{
+    background: url('../Picture/card.jpg');
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    top: 180px;
+    margin-top: 20px;
+    /* margin-left: 50px;
+    margin-right: 50px; */
+    padding: 20px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #141A46;
+    border-radius: 20px;
+    height: 330px;
+    width: 510px;
+}
+
+.mainWallet .balance
+{
+    text-align: left;
+    /* margin-right: 20px; */
+    /* padding: 10px; */
+    margin-left: 10px;
+    width: 100%;
+    color: white;
+}
+
+.mainWallet .balance h2
+{
+    font-size: 50px;
+}
+
+.mainWallet .balance h1
+{
+    font-size: 60px;
+}
+
+.mainWallet .balance h4
+{
+    font-size: 30px;
 }
