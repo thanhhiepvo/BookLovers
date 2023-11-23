@@ -1,9 +1,0 @@
-npm init -y 
-
-npm i pg
-
-npm i dotenv
-
-git checkout -f general
-Chuyển 1 file từ branch sang main branch
-git checkout Kien_test -- .gitignore
