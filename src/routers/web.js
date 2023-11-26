@@ -35,6 +35,10 @@ router.get('/about', (req, res) => {
     res.render('about.ejs')
 })
 
+router.get('/myBook', (req, res) => {
+    res.render('myBook.ejs')
+})
+
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs')
 })
