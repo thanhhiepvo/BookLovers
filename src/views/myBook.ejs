@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Books</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/nostest.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="icon" href="/Picture/favicon.jpg" type="image/jpg" />
+
+    <style>
+      /* CSS styles here */
+      /* ... */
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!-- Header content here -->
+      <a href="#" class="logo"><img src="/Picture/logo.png" /></a>
+
+      <ul class="navbar">
+        <li><a href="homepage">Home</a></li>
+        <li><a href="myBook" class="about-active">My books</a></li>
+        <li><a href="selling">Selling</a></li>
+        <li><a href="wallet">Wallet</a></li>
+        <li><a href="about">About</a></li>
+      </ul>
+
+      <div class="profile">
+        <i class="bx bx-user"></i>
+        <span>Profile</span>
+        <i class="bx bx-caret-down"></i>
+      </div>
+
+      <div id="profileSpan">
+        <h5 id="name"></h5>
+        <h5 id="mail"></h5>
+        <h5 id="balance"></h5>
+      </div>
+
+      <!-- Script for Profile -->
+      <script>
+        var profileSpan = document.getElementById("profileSpan");
+
+        var name = "Tiem Ban Nuoc";
+        var mail = "abc@gmail.com";
+        var balance = "1.500.000";
+
+        document.getElementById("name").textContent = "UserName: " + name;
+        document.getElementById("mail").textContent = "Email: " + mail;
+        document.getElementById("balance").textContent =
+          "Wallet: " + balance + " VND";
+
+        var caretDownIcon = document.querySelector(".profile .bx-caret-down");
+        caretDownIcon.addEventListener("click", () => {
+          profileSpan.classList.toggle("active");
+        });
+      </script>
+    </header>
+    <div>
+        <h1>My Books</h1>
+    </div>
+    <section id="booksContainer" class="section_home">
+      <!-- Container for books -->
+    </section>
+
+    <script>
+      var imagePaths = [
+        "/Picture/c++.jpg",
+        "/Picture/p1.jpg",
+        "/Picture/p2.jpg",
+        "/Picture/p3.jpg",
+        // Add more image paths as needed
+      ];
+
+      var bookNames = [
+        "C++ for beginer",
+        "Python crash course",
+        "Python for Data Analysis",
+        "JavaScript for Beginners",
+      ];
+
+      var authors = [
+        "Tony Gaddis",
+        "Erric Matthes",
+        "Wes McKinney",
+        "Terry McNavage",
+      ];
+
+      var price = ["240.000", "300.000", "270.000", "320.000"];
+
+      var booksContainer = document.getElementById("booksContainer");
+
+      for (var i = 0; i < imagePaths.length; i++) {
+        var bookContainer = document.createElement("div");
+        bookContainer.className = "bookContainer";
+
+        var bookDiv = document.createElement("div");
+        bookDiv.className = "book";
+
+        var imgElement = document.createElement("img");
+        imgElement.src = imagePaths[i];
+        imgElement.alt = "";
+
+        var descriptionDiv = document.createElement("div");
+        descriptionDiv.className = "description";
+
+        var spanElement = document.createElement("span");
+        spanElement.textContent = bookNames[i];
+
+        var h5Element = document.createElement("h5");
+        h5Element.textContent = authors[i];
+
+        var h4Element = document.createElement("h4");
+        h4Element.textContent = price[i] + " VND";
+
+        descriptionDiv.appendChild(spanElement);
+        descriptionDiv.appendChild(h5Element);
+
+        bookDiv.appendChild(imgElement);
+        bookDiv.appendChild(descriptionDiv);
+        bookDiv.appendChild(h4Element);
+
+        bookContainer.appendChild(bookDiv);
+
+        booksContainer.appendChild(bookContainer);
+      }
+    </script>
+    <button id="uploadBtn">Upload Your Book</button>
+
+    <!-- Mục sách và pop-up -->
+    <section id="product" class="section_home">
+      <!-- Các phần khác ở đây -->
+
+      <!-- Nút Upload Popup -->
+      <div id="uploadPopup" class="popup">
+        <div class="popup-content">
+          <span class="close" onclick="closePopup()">&times;</span>
+          <input type="file" id="fileInput" />
+          <button onclick="uploadFile()">Submit</button>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Thêm JavaScript để hiển thị và ẩn popup
+      var uploadPopup = document.getElementById("uploadPopup");
+      var uploadBtn = document.getElementById("uploadBtn");
+
+      uploadBtn.onclick = function () {
+        uploadPopup.style.display = "block";
+      };
+
+      function closePopup() {
+        uploadPopup.style.display = "none";
+      }
+
+      // Thêm JavaScript để xử lý upload file
+      function uploadFile() {
+        var fileInput = document.getElementById("fileInput");
+        var selectedFile = fileInput.files[0];
+
+        // Xử lý tải lên file ở đây (có thể sử dụng XMLHttpRequest hoặc các thư viện như Axios)
+
+        // Sau khi xử lý, đóng popup
+        closePopup();
+      }
+    </script>
+  </body>
+</html>

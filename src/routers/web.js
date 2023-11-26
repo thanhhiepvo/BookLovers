@@ -50,10 +50,6 @@ router.get('/wallet', (req, res) => {
     //res.send('Check out our homepage') // send text
     res.render('wallet.ejs') // res.render() to render a template file : tạo view dynamic 
 })
-
-router.get('/Script/script.js', (req, res) => {
-    res.render('../Script/script.js')
-})
 export default router;
 
   
