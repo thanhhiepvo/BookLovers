@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Books</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/nostest.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/myBook.css" />
+    <link rel="stylesheet" type="text/css" href="/CSS/navbar.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <link rel="icon" href="/Picture/favicon.jpg" type="image/jpg" />
-
-    <style>
-      /* CSS styles here */
-      /* ... */
-    </style>
   </head>
 
   <body>
@@ -62,7 +58,7 @@
       </script>
     </header>
     <div>
-        <h1>My Books</h1>
+      <h1>My Books</h1>
     </div>
     <section id="booksContainer" class="section_home">
       <!-- Container for books -->
@@ -120,10 +116,11 @@
 
         descriptionDiv.appendChild(spanElement);
         descriptionDiv.appendChild(h5Element);
+        
+        descriptionDiv.appendChild(h4Element);
 
         bookDiv.appendChild(imgElement);
         bookDiv.appendChild(descriptionDiv);
-        bookDiv.appendChild(h4Element);
 
         bookContainer.appendChild(bookDiv);
 
