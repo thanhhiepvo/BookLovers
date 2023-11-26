@@ -35,6 +35,10 @@ router.get('/about', (req, res) => {
     res.render('about.ejs')
 })
 
+router.get('/myBook', (req, res) => {
+    res.render('myBook.ejs')
+})
+
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs')
 })
@@ -49,10 +53,6 @@ router.get('/homepage', (req, res) => {
 router.get('/wallet', (req, res) => {
     //res.send('Check out our homepage') // send text
     res.render('wallet.ejs') // res.render() to render a template file : tạo view dynamic 
-})
-
-router.get('/Script/script.js', (req, res) => {
-    res.render('../Script/script.js')
 })
 export default router;
 
