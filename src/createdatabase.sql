@@ -1,3 +1,5 @@
+drop table if exists book, bookcategory, category, invoice, ownedbook, report, sellingbook, transac, useraccount cascade;
+
 create table USERACCOUNT (
 	Username varchar(50),
 	Email varchar(50),
@@ -34,12 +36,6 @@ create table TRANSAC (
 	ID_Sender varchar(50),
 	TBook int,
 	constraint PK_TRANSAC primary key (ID_Transac)
-);
-
-create table DEPOSITE_WITHDRAW (
-	ID_DW int,
-	DWUsername varchar(50),
-	constraint PK_DEPOSITE_WITHDRAW primary key (ID_DW)
 );
 
 create table OWNEDBOOK (
@@ -93,5 +89,3 @@ alter table INVOICE add constraint FK_INVOICE_USERACCOUNT foreign key (IUsername
 
 alter table TRANSAC add constraint FK_TRANSAC_INVOICE foreign key (ID_Transac) references INVOICE(ID_Invoice);
 alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook);
-
-alter table DEPOSITE_WITHDRAW add constraint FK_DEPOSITE_WITHDRAW_INVOICE foreign key (ID_DW) references INVOICE(ID_Invoice);
