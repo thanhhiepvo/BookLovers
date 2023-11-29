@@ -5,7 +5,6 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
         <title>Book Lovers</title> 
         <link rel="stylesheet" type="text/css" href="/CSS/style.css">
-        <script src="../Script/script.js" defer></script>
     </head>
 
     <div class="projName">
@@ -14,16 +13,17 @@
     </div>
 
     <div class="loginSite">
-        <div class="wrapper"> 
-            <form action="">
+        <div class="wrapper">
+
+            <form action="/login-user" method = "post">
                 <h1>Login</h1> 
     
                 <div class="inputBox">
-                    <input type="email" placeholder="Email" id="mail_Login" required>
+                    <input type="username" placeholder="Username" id="username_Login" name="username" required>
                 </div> 
     
                 <div class="inputBox">
-                    <input type="password" placeholder="Password" id="pass_Login" required>
+                    <input type="password" placeholder="Password" id="pass_Login" name="password" required>
                 </div>
     
                 <div class="remember">
@@ -31,7 +31,7 @@
                     <a href="/forgotPass"> Forgot your password?</a>
                 </div>
     
-                <button type="button" class="loginBut" onclick="checkLogin()">
+                <button type="submit" class="loginBut">
                     Login
                 </button>
     
@@ -42,7 +42,17 @@
 
                 
             </form>
+            <% if(message.length > 0) { %>  
+                <div class="alert alert-success" role="alert">
+                    <p id="mess"> </p>
+                    <script>
+                        var mess = document.getElementById("mess");
+                        mess.textContent = "<%= message %>";
+                    </script>
+                </div>    
+            <% } %>
         </div>
+        
 
     </div>
 
