@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", "sans-serif";
+    font-family: "Poppins", "sans-serif"; 
     list-style: none;
     scroll-padding-top: 2rem;
     scroll-behavior: smooth;
@@ -69,7 +69,6 @@ body
 }
 
 .profile .bx-caret-down
-/* ----------------- */
 {
     cursor: pointer;
 }
@@ -154,11 +153,19 @@ body
 #intro h4 
 {
     padding-bottom: 15px;
+    font-size: 50px;
 }
 
 #intro h3
 {
     padding-bottom: 20px;
+    font-size: 70px;
+}
+
+#intro h5
+{
+    padding-bottom: 20px;
+    font-size: 20px;
 }
 
 #product
@@ -174,7 +181,7 @@ body
     border: 1px solid grey;
     border-radius: 7%;
     cursor: pointer;
-    box-shadow: 20px 20px 30px darkgray;
+    /* box-shadow: 20px 20px 30px darkgray; */
     margin: 20px 50px 0 50px;
     transition: 0.2s ease;
     position: relative;
@@ -204,7 +211,7 @@ body
 
 #product .pro:hover
 {
-    box-shadow: 10px 10px 20px #ccffff;
+    box-shadow: 10px 10px 20px darkgray;
 }
 
 #product .pro .description
@@ -253,7 +260,7 @@ body
     height: 50px;
     line-height: 50px;
     border-radius: 50px;
-    background-color: #e8f6ea;
+    background-color: white;
     font-weight: 500;
     color: #00cccc;
     border: 1px solid #cce7d0;
@@ -303,12 +310,11 @@ body
     justify-content: center;
     display: flex;
     top: 180px;
-    margin-top: 20px;
-    /* margin-left: 50px;
-    margin-right: 50px; */
+    margin-top: 50px;
     padding: 20px 20px;
     left: 50%;
     transform: translateX(-50%);
+    /* transform: translateY(150px); */
     border: 1px solid #141A46;
     border-radius: 20px;
     height: 330px;
@@ -322,20 +328,193 @@ body
     /* padding: 10px; */
     margin-left: 10px;
     width: 100%;
-    color: white;
+    color: #F2F0F1;
+}
+
+.mainWallet .balance .infoWallet
+{
+    transform: translateY(30%);
 }
 
 .mainWallet .balance h2
 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .mainWallet .balance h1
 {
-    font-size: 60px;
+    font-size: 70px;
 }
 
-.mainWallet .balance h4
+.mainWallet .balance h3
+{
+    font-size: 25px;
+}
+
+.deposit
+{
+    background: url('../Picture/withdraw.jpg');
+    position: absolute;
+    justify-content: center;
+    /* display: flex; */
+    top: 180px;
+    margin-top: 400px;
+    padding: 20px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* transform: translateY(150px); */
+    border: 1px solid #141A46;
+    border-radius: 20px;
+    height: 330px;
+    width: 510px;
+}
+
+.deposit .infoDepo
+{
+    text-align: left;
+    /* margin-right: 20px; */
+    /* padding: 10px; */
+    margin-left: 10px;
+    width: 100%;
+    color: #080a52;
+}
+
+.deposit .infoDepo h2
+{
+    font-size: 40px;
+}
+
+.deposit img
+{
+    width: 200px;
+    height: auto;
+    /* align-items: center; */
+    /* padding-left: 50px; */
+    /* margin-left: px; */
+    margin-top: 10px;
+    left: 50%;
+    transform: translateX(70%);
+}
+
+.deposit .subInfoDepo
+{
+    text-align: center;
+    /* margin-right: 20px; */
+    /* padding: 10px; */
+    margin-top: 10px;
+    width: 100%;
+    color: #080a52;
+}
+
+
+.deposit .subInfoDepo h4
+{
+    font-size: 20px;
+}
+
+.withdraw
+{
+    background: url('../Picture/depo.jpg');
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    top: 180px;
+    margin-top: 750px;
+    padding: 20px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* transform: translateY(150px); */
+    border: 1px solid #141A46;
+    border-radius: 20px;
+    height: 330px;
+    width: 510px;
+}
+
+.withdraw .withd
+{
+    text-align: left;
+    /* margin-right: 20px; */
+    /* padding: 10px; */
+    margin-left: 10px;
+    width: 100%;
+    color: #080a52;
+}
+
+.withdraw .withd .infoWi
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.withdraw .withd h2
+{
+    font-size: 40px;
+}
+
+.withdraw .infoWi h3
 {
     font-size: 30px;
+}
+
+.withdraw .infoWi h4
+{
+    font-size: 20px;
+}
+
+.withdraw .infoWi input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #080a52;
+    border-radius: 20px;
+    font-size: 30px;
+    color: #080a52;
+    padding: 20px 45px 20px 10px;
+}
+
+.withdraw .infoWi .info
+{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.withdraw .infoWi input::placeholder
+{
+    font-size: 30px;
+    /* text-align: center; */
+    color: #080a52;
+}
+
+.history
+{
+    background: url('../Picture/history.jpg');
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    top: 180px;
+    margin-top: 1100px;
+    padding: 20px 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* transform: translateY(150px); */
+    border: 1px solid #141A46;
+    border-radius: 20px;
+    height: 330px;
+    width: 510px;
+}
+
+.history .infoHis
+{
+    text-align: left;
+    margin-left: 10px;
+    width: 100%;
+    color: #ACA53D;
+}
+
+.history h2
+{
+    font-size: 40px;
 }

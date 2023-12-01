@@ -12,7 +12,7 @@ body
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../Picture/back.jpg') no-repeat;
+    background: url('../Picture/bg4.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -28,7 +28,13 @@ body
     background: transparent;
     padding: 300px 50px 300px 0px;
     
-    color: white;
+    color: #141A46;
+}
+
+.projName .word
+{
+    transform: translateY(-50%);
+    /* transform: translateX(-25%); */
 }
 
 .projName h1
@@ -36,8 +42,7 @@ body
     font-size: 70px;
     text-align: center;
     /* color: #141A46; */
-    transform: translateY(-80%);
-    transform: translateX(-25%);
+    
 }
 
 .projName h2
