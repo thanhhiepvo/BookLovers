@@ -13,11 +13,11 @@
         <a href="#" class="logo"><img src="/Picture/book1.png"></a>
         
         <ul class="navbar">
-            <li><a href="home.ejs">Home</a></li>
-            <li><a href="myBook.ejs">My books</a></li>
-            <li><a href="selling.ejs">Selling</a></li>
+            <li><a href="home">Home</a></li>
+            <li><a href="myBook">My books</a></li>
+            <li><a href="selling">Selling</a></li>
             <li><a href="wallet" class="home-active">Wallet</a></li>
-            <li><a href="about.ejs">About</a></li>
+            <li><a href="about">About</a></li>
         </ul>
         
         <div class="profile">
@@ -53,21 +53,66 @@
 
     </header>
 
-    <body oninput="mainWallet()">
+    <body>
         
         <nav class="miniNavbar">
-            <li><a href="#deposite">Deposite</a></li>
-            <li><a href="#widthdraw">Widthdraw</a></li>
+            <li><a href="#deposit">Deposite</a></li>
+            <li><a href="#withdraw">Withdraw</a></li>
             <li><a href="#history">History</a></li>
         </nav>
         
         <div class="mainWallet">
             <div class="balance">
                 <h2>Balance</h2>
-                <h1 id="money_wallet"></h1>
-                <h4 id="uname_wallet"></h4>
-                <h4 id="phone_wallet"></h4>
-                <h4 id="mail_wallet"></h4>
+                <div class="infoWallet">
+                    <h1 id="money_wallet"></h1>
+                    <h3 id="uname_wallet"></h3>
+                    <h3 id="phone_wallet"></h3>
+                    <h3 id="mail_wallet"></h3>
+                </div>
+                <script>
+                    var money = "2.000.000";
+                    var uname = "Tiem Ban Nuoc";
+                    var phone = "0123456789";
+                    var mail = "tiembannuoc@gmail.com";
+
+                    document.getElementById("money_wallet").textContent = money + " VND";
+                    document.getElementById("uname_wallet").textContent = uname;
+                    document.getElementById("phone_wallet").textContent = phone;
+                    document.getElementById("mail_wallet").textContent = mail;
+                </script>
+            </div>
+
+        </div>
+
+        <div class="deposit" id="deposit">
+            <div class="infoDepo">
+                <h2>Deposit</h2>
+            </div>
+            <img src="/Picture/momo.jpg">
+            <div class="subInfoDepo">
+                <h4>Accept all e-Wallet and Mobile banking</h4>
+            </div>
+        </div>
+
+        <div class="withdraw" id="withdraw">
+            <div class="withd">
+                <h2>Withdraw</h2>
+                <div class="infoWi">
+                    <h4 class="info">Withdraw amount (VNĐ)</h4>
+                    <input type="text" placeholder="0 VND" required>
+                    <h3 class="info">From:</h3>
+                    <h4 id="fromWi">Tiem Ban Nuoc</h4>
+                    <h3 class="info">To:</h3>
+                    <h4 id="toWi">0123456789</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="history" id="history">
+            <div class="infoHis">
+                <h2>History</h2>
+
             </div>
         </div>
 
