@@ -7,6 +7,7 @@ import { dirname } from 'path';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import flash from 'express-flash';
+
 import webRouter from './routers/web.js' // import router from routers/web.js
 
 //const webRouter = require('./routers/web.js'); // import router from routers/web.js
@@ -23,11 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', './views/');
 //app.set('views', path.join(__dirname, 'views')); // __dirname is the current directory
 app.set('view engine', 'ejs');
-//khai báo router
-/* `app.use('/', webRouter)` is setting up a middleware function for the Express application. It
-specifies that any incoming request with a URL path starting with '/' should be handled by the
-`webRouter` router. The `webRouter` router is responsible for handling the routes and logic for the
-web application. */
+
 app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: false,

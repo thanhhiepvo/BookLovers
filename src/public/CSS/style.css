@@ -366,6 +366,25 @@ body
     border-radius: 10px;
 }
 
+.signUp .wrapper .alert-success
+{
+    
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #ff1515;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+.signUp .wrapper .alert-success p
+{
+    font-style: italic;
+    font-weight:900;
+    text-align: center;
+    /* color:#0e4bf1; */
+}
 /* OTP page */
 
 .otp

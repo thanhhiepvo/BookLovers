@@ -9,7 +9,12 @@ export const postCreateUser = async (req, res) => {
     console.log(">>> username = ", username, 'email = ', email, 'password = ', password , 'repassword = ', repassword);
     try {
         if (await getUsername(username) != null) {
-            res.send('Username already exists')
+            req.flash('msg', 'Username already exists');
+            res.redirect('/signUp');  
+        }
+        else if (password != repassword) {
+            req.flash('msg', 'Password does not match');
+            res.redirect('/signUp');  
         }
         else {
             await insertUserAccount(username, email, password);

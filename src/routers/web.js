@@ -28,7 +28,7 @@ router.get('/myBook', (req, res) => {
 })
 
 router.get('/signUp', (req, res) => {
-    res.render('signUp.ejs')
+    res.render('signUp.ejs', { message: req.flash('msg') })
 })
 router.post('/create-user', postCreateUser);
   
