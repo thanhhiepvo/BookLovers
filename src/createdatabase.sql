@@ -2,7 +2,7 @@ drop table if exists book, bookcategory, category, invoice, ownedbook, report, s
 
 create table USERACCOUNT (
 	Username varchar(50),
-	Email varchar(50),
+	Email varchar(50) unique,
 	Pass varchar(50),
 	States boolean,
 	Balance float,
