@@ -4,7 +4,7 @@ create table USERACCOUNT (
 	Username varchar(50),
 	Email varchar(50),
 	Pass varchar(50),
-	States bit,
+	States boolean,
 	Balance float,
 	Fullname varchar(100),
 	PhoneNumber char(10),
@@ -27,7 +27,7 @@ create table INVOICE (
 	IUsername varchar(50),
 	DateInvoice timestamp (0) with time zone,
 	Total float,
-	IType bit,
+	IType boolean,
 	constraint PK_INVOICE primary key (ID_Invoice)
 );
 
