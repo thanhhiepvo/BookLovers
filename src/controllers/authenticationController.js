@@ -3,7 +3,8 @@ import { insertUserAccount, getUsername } from "../models/users.js"
 
 const authenController = {};
 authenController.postCreateUser = async (req, res) => {
-    let { username, email, password ,repassword } = req.body;   
+    console.log(">>> req.body = ", req.body);
+    let { username, email, password, repassword } = req.body;  
     console.log(">>> username = ", username, 'email = ', email, 'password = ', password , 'repassword = ', repassword);
     try {
         if (await getUsername(username) != null) {

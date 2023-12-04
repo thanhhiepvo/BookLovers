@@ -18,8 +18,8 @@ export async function getUsername(username) {
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
-        const text = 'INSERT INTO useraccount(username, email, pass) VALUES($1, $2, $3)';
-        const values = [username, email, password];
+        const text = 'INSERT INTO useraccount(username, email, pass, balance) VALUES($1, $2, $3, $4)';
+        const values = [username, email, password,0];
         await pool.query(text, values);
         console.log('Data inserted successfully');
     } catch (error) {
