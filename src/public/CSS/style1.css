@@ -453,12 +453,12 @@ body
 
 .withdraw .infoWi h3
 {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .withdraw .infoWi h4
 {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .withdraw .infoWi input
@@ -486,6 +486,7 @@ body
     font-size: 30px;
     /* text-align: center; */
     color: #080a52;
+    
 }
 
 .history

@@ -35,6 +35,15 @@
                     <p>Already have an account? <a href="/login">Login</a></p>
                 </div>
             </form>
+            <% if(message.length > 0) { %>  
+                <div class="alert alert-success" role="alert">
+                    <p id="mess"> </p>
+                    <script>
+                        var mess = document.getElementById("mess");
+                        mess.textContent = "<%= message %>";
+                    </script>
+                </div>    
+            <% } %>
         </div>
     </div>
 </html>
