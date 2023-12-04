@@ -35,10 +35,9 @@
         <!-- Script for Profile -->
         <Script>
             var profileSpan = document.getElementById("profileSpan");
-
-            var name = "Tiem Ban Nuoc";
-            var mail = "abc@gmail.com";
-            var balance = "1.500.000";
+            var name = "<%= user.username %>";
+            var mail = "<%= user.email %>";
+            var balance = "<%= user.balance %>";
 
             document.getElementById("name").textContent = "UserName: " + name;
             document.getElementById("mail").textContent = "Email: " + mail;
@@ -71,16 +70,16 @@
                     <h3 id="mail_wallet"></h3>
                 </div>
                 <script>
-                    var money = "2.000.000";
-                    var uname = "Tiem Ban Nuoc";
-                    var phone = "0123456789";
-                    var mail = "tiembannuoc@gmail.com";
+                    var money = "<%= user.balance.toLocaleString('de-DE') %>";
+                    var uname = "<%= user.username %>";
+                    var phone = "<%= user.phonenumber %>";
+                    var mail = "<%= user.email %>";
 
                     document.getElementById("money_wallet").textContent = money + " VND";
                     document.getElementById("uname_wallet").textContent = uname;
                     document.getElementById("phone_wallet").textContent = phone;
                     document.getElementById("mail_wallet").textContent = mail;
-                </script>
+                </script>  
             </div>
 
         </div>

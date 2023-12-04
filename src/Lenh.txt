@@ -21,3 +21,5 @@ npm i express-flash
 npm i express-session connect-flash
 
 npm i nodemailer // gui mail
+
+npm i cookie-parser // cookie

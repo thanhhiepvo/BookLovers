@@ -35,9 +35,10 @@
         <Script>
             var profileSpan = document.getElementById("profileSpan");
 
-            var name = "Tiem Ban Nuoc";
-            var mail = "abc@gmail.com";
-            var balance = "1.500.000";
+            var name = "<%=username%>";
+            var mail = "<%=email%>";
+            var balance = "<%=ballance.toLocaleString('de-DE')%>";
+
 
             document.getElementById("name").textContent = "UserName: " + name;
             document.getElementById("mail").textContent = "Email: " + mail;

@@ -1,10 +1,8 @@
-import { insertUserAccount,getUsername } from "../models/users.js"
+import { insertUserAccount, getUsername } from "../models/users.js"
+//import session from 'express-session';
 
-export const getHomePage = (req, res) => {
-    res.send('Check out our homepage') // send text
-}
-
-export const postCreateUser = async (req, res) => {
+const authenController = {};
+authenController.postCreateUser = async (req, res) => {
     let { username, email, password ,repassword } = req.body;   
     console.log(">>> username = ", username, 'email = ', email, 'password = ', password , 'repassword = ', repassword);
     try {
@@ -27,17 +25,24 @@ export const postCreateUser = async (req, res) => {
     }
 }
 
-export const loginUser = async (req, res) => { 
+authenController.loginUser = async (req, res) => { 
     let { username, password } = req.body;
     console.log(">>> username = ", username, 'password = ', password);
+
     const user = await getUsername(username);
     try {
         if (await user == null) {
-            res.send('Username does not exist')
+            //res.send('Username does not exist')
+            req.flash('msg','Username does not exist');
+            res.redirect('/login');  
         }
         else {
             if (user.pass == password) {
-                req.flash('msg', 'You are now logged in');
+                //req.session.loggedIn = true;
+                req.session.username = username;
+                req.session.password = password;
+                req.session.email = user.email;
+                req.session.ballance =user.balance;
                 res.redirect('/homepage');
             }
             else {
@@ -51,3 +56,5 @@ export const loginUser = async (req, res) => {
         res.status(500).send("Error login");
     }
 }
+
+export default authenController;
