@@ -7,7 +7,7 @@ create table USERACCOUNT (
 	States boolean,
 	Balance float,
 	Fullname varchar(100),
-	PhoneNumber char(10),
+	PhoneNumber char(30),
 	Birth timestamp (0) with time zone,
 	constraint PK_USERACCOUNT primary key (Username)
 );
