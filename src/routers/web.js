@@ -15,8 +15,9 @@ router.get('/login', (req, res) => {
 router.post('/login-user', authenController.loginUser);
 
 router.get('/forgotPass', (req, res) => {
-    res.render('forgotPass.ejs')
+    res.render('forgotPass.ejs', { message: req.flash('msg') });
 })
+router.post('/forgot-pass', authenController.forgotPassword);
   
 router.get('/otp', (req, res) => {
     res.render('otp.ejs')

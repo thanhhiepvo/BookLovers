@@ -10,29 +10,38 @@
 
     <div class="forgot">
         <div class="wrapper">
-            <form action="">
+            <form action="/forgot-pass" method="post">
                 <h1>Your email</h1>
 
                 <div class="email">
-                    <input type="email" placeholder="Enter your registered email" id="email_Forgot" required>
+                    <input type="username" placeholder="Enter your registered username" id="username_Forgot" name="username" required>
                 </div>
 
                 <h1>Recover your password</h1>
 
                 <div class="pass">
-                    <input type="password" placeholder="New password" id="pass1_Forgot" required>
+                    <input type="password" placeholder="New password" id="new_password" name="new_password" required>
                 </div>
     
                 <div class="pass">
-                    <input type="password" placeholder="Confirm password" id="pass2_Forgot" required>
+                    <input type="password" placeholder="Confirm password" id="confirm_password" name="confirm_password" required>
                 </div>
 
-                <button type="button" class="resetBut" onclick="checkForgot()">
+                <button type="submit" class="resetBut">
                     Reset password
                 </button>
 
 
             </form>
+            <% if(message.length > 0) { %>  
+                <div class="alert alert-success" role="alert">
+                    <p id="mess"> </p>
+                    <script>
+                        var mess = document.getElementById("mess");
+                        mess.textContent = "<%= message %>";
+                    </script>
+                </div>    
+            <% } %>
 
         </div>
     </div>
