@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>Home page</title> 
+        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link rel="icon" href="/Picture/favicon.png" type="image/png">
+    </head>
+    <header>
+        <a href="#" class="logo"><img src="/Picture/logo.png"></a>
+        
+        <ul class="navbar">
+            <li><a href="homepage" class="home-active">Home</a></li>
+            <li><a href="myBook">My books</a></li>
+            <li><a href="selling">Selling</a></li>
+            <li><a href="wallet">Wallet</a></li>
+            <li><a href="about">About</a></li>
+        </ul>
+        
+        <div class="profile">
+            <i class='bx bx-user' ></i>
+            <span>Profile</span>
+            <i class='bx bx-caret-down' ></i>
+        </div>
+
+        <div id="profileSpan">
+            <h5 id="name"></h5>
+            <h5 id="mail"></h5>
+            <h5 id="balance"></h5>
+            <li><a href="editProfile">Edit my profile</a></li>
+            <li><a href="logOut">Log out</a></li>
+        </div>
+
+        <!-- Script for Profile -->
+        <Script>
+            var profileSpan = document.getElementById("profileSpan");
+            var name = "<%= user.username %>";
+            var mail = "<%= user.email %>";
+            var balance = "<%= user.balance %>";
+
+            document.getElementById("name").textContent = "UserName: " + name;
+            document.getElementById("mail").textContent = "Email: " + mail;
+            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+            caretDownIcon.addEventListener('click', () => 
+            {
+                profileSpan.classList.toggle('active');
+            });
+        </Script>
+
+    </header>
+
+    <div class="edit" id="edit">
+        <div class="wrapper">
+            <form action="" method="">
+                <h1>Edit profile</h1>
+
+                <div class="infoEdit">
+                    <h3 id="email_edit"></h3>
+                </div>
+
+                <div class="infoEdit">
+                    <input type="text" id="uname_edit">
+                </div>
+
+                <div class="infoEdit">
+                    <input type="text" id="fullname_edit">
+                </div>
+
+                <div class="infoEdit">
+                    <input type="text" id="phone_edit">
+                </div>
+
+                <div class="infoEdit">
+                    <input type="date" id="birth_edit">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // var edit = document.getElementById("edit");
+            var name = "<%= user.username %>";
+            var mail = "<%= user.email %>";
+            var fullname = "<%= user.fullname %>";
+            var phone = "<%= user.phonenumber %>";
+            var birth = "<%= user.birth %>";
+
+            document.getElementById("email_edit").textContent = "Email: " + mail;
+            document.getElementById("uname_edit").placeholder = name;
+            document.getElementById("fullname_edit").placeholder = fullname;
+            document.getElementById("phone_edit").placeholder = phone;
+            document.getElementById("birth_edit").placeholder = birth;
+        </script>
+    </div>
+</html>

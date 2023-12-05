@@ -2,6 +2,7 @@
 import express from 'express' // es module
 import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
+import profileController from '../controllers/editprofileController.js';
 const router = express.Router()
 
 //router.Method('/routers', handler function)
@@ -30,6 +31,10 @@ router.get('/myBook', (req, res) => {
     res.render('myBook.ejs')
 })
 
+// router.get('/editProfile', (req, res) => {
+//     res.render('editProfile.ejs')
+// })
+
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
@@ -47,6 +52,7 @@ router.get('/homepage', (req, res) => {
 });
 
 router.get('/wallet', walletController.getWalletInfo);
+router.get('/editProfile', profileController.getInfo);
 export default router;
 
   
