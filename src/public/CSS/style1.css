@@ -75,16 +75,16 @@ body
 
 #profileSpan
 {
-    width: 250px;
-    height: 70px;
+    width: 350px;
+    height: fit-content;
     display: none;
     position: absolute;
     top: 100%;
     border-radius: 10px;
     border-color: black;
-    right: 5%;
+    right: 7%;
     top: 70%;
-    text-align: center;
+    text-align: left;
     background-color: white;
     color: #001933;
     font-size: 22px;
@@ -97,6 +97,29 @@ body
 #profileSpan.active
 {
     display: block;
+}
+
+#profileSpan h5
+{
+    margin-left: 3%;
+}
+
+#profileSpan a
+{
+    text-decoration: none;
+    color: #001933;
+    font-size: 18px;
+    /* font-weight: lighter; */
+    margin-left: 3%;
+}
+
+#profileSpan a:hover
+{
+    background-color: #001933;
+    color: white;
+    /* border-radius: 10px; */
+    /* width: fit-content; */
+    /* height: auto; */
 }
 
 /* ------------------ */
@@ -134,7 +157,7 @@ body
     transition: background 0.5s;
 }
 
-/* Home page  */
+/* --- Home page ---  */
 #intro
 {
     background-image: url("../Picture/homepage.jpg");
@@ -269,7 +292,7 @@ body
     right: 10px;
 }
 
-/* Wallet page  */
+/* --- Wallet page ---  */
 
 .miniNavbar
 {
@@ -538,4 +561,59 @@ body
 .history h2
 {
     font-size: 40px;
+}
+
+/* --- editFile page --- */
+.edit 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.edit .wrapper
+{
+    width: 420px;
+    height: 550px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.edit .wrapper h1
+{
+    font-size: 30px;
+    text-align: center;
+}
+
+.edit .wrapper .infoEdit
+{
+    width: 100%;
+    /* height: 50px; */
+    background: transparent;
+    margin: 30px 0;
+}
+
+.edit .wrapper input
+{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.edit .wrapper input::placeholder
+{
+    color: #141A46;
+    font-size: 20px;
 }
