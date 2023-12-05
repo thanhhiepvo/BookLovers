@@ -27,3 +27,14 @@ export const insertUserAccount = async (username, email, password) => {
         res.status(500).send("Error creating user");
     } 
 }
+
+export const updateNewPassword = async (username, new_password) => {
+    try {
+        const text = 'UPDATE useraccount SET Pass = $1 WHERE username = $2';
+        const values = [new_password, username]
+        await pool.query(text, values);
+        console.log('New password was changed in database');
+    } catch (error) {
+        
+    }
+}
