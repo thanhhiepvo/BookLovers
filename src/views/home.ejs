@@ -92,13 +92,10 @@
                     txt.innerHTML = html;
                     return txt.value;
                 }
-                var imagePaths = [
-                    "/Picture/c++.jpg",
-                    "/Picture/p1.jpg",
-                    "/Picture/p2.jpg",
-                    "/Picture/p3.jpg",
-                    // Add more image paths as needed
-                ];
+                var imagePaths = [];
+                var authors = [];
+                var price = [];
+                var bookNames = [];
 
                 //var b = "<%=Object.keys(books).length%>";
                 var b = "<%=books.length%>"
@@ -112,18 +109,11 @@
                 // var imagePaths = [];
                 for (var i = 0; i < b; i++) {
                     imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                    authors.push(books[i].author);
+                    price.push(books[i].price.toLocaleString('de-DE'));
+                    bookNames.push(books[i].namebook);  
                     //console.log(imagePaths[i]);
                 }
-                for (var i = 0; i < b; i++) {
-                    console.log(imagePaths[i]);
-                }
-                var bookNames = [
-                    "C++ for beginer",
-                    "Python crash course",
-                    "Python for Data Analysis",
-                    "JavaScript for Beginners"
-                ]
-
 
 
                 // Reference to the product div
