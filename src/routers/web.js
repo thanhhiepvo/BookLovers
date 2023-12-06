@@ -3,6 +3,7 @@ import express from 'express' // es module
 import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editprofileController.js';
+import bookController from '../controllers/bookController.js';
 const router = express.Router()
 
 //router.Method('/routers', handler function)
@@ -43,14 +44,15 @@ router.post('/create-user', authenController.postCreateUser);
 router.get('/homepage', (req, res) => {
       //res.send('Check out our homepage') // send text
     if (req.session.username) {
-        res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance }); 
+        res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance}); 
         // res.render() to render a template file : tạo view dynamic
     } else {
       res.redirect('/login');
     }
     console.log(">>> req.session.username = ", req.session.username);
+    //console.log("REQ.BOOK = ", req.book);
 });
-
+router.get('/homepage', bookController.getInfoBook);
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);
 export default router;
