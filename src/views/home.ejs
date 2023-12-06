@@ -87,6 +87,11 @@
 
             <!-- Script for product -->
             <script>
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
                 var imagePaths = [
                     "/Picture/c++.jpg",
                     "/Picture/p1.jpg",
@@ -94,8 +99,24 @@
                     "/Picture/p3.jpg",
                     // Add more image paths as needed
                 ];
-                var tmp = "<%=books[0].namebook%>";
-                console.log(tmp);
+
+                //var b = "<%=Object.keys(books).length%>";
+                var b = "<%=books.length%>"
+                // var tmp = "<%=books[0].namebook%>";
+                // console.log(tmp);
+                var books = "<%= JSON.stringify(books) %>";
+                books = decodeHtml(books);
+                books = JSON.parse(books);
+                //console.log(books);
+                //console.log(books)
+                // var imagePaths = [];
+                for (var i = 0; i < b; i++) {
+                    imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                    //console.log(imagePaths[i]);
+                }
+                for (var i = 0; i < b; i++) {
+                    console.log(imagePaths[i]);
+                }
                 var bookNames = [
                     "C++ for beginer",
                     "Python crash course",
