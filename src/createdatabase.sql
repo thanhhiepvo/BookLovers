@@ -18,7 +18,7 @@ create table BOOK (
 	Author varchar(100),
 	Price float,
 	Description varchar(2000),
-	PublisedYear timestamp (0) with time zone,
+	PublishedYear timestamp (0) with time zone,
 	constraint PK_BOOK primary key (ID_Book)
 );
 
