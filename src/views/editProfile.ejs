@@ -59,11 +59,11 @@
                 <h1>Edit profile</h1>
 
                 <div class="infoEdit">
-                    <h3 id="email_edit"></h3>
+                    <h3 id="uname_edit"></h3>
                 </div>
 
                 <div class="infoEdit">
-                    <input type="text" id="uname_edit">
+                    <input type="email" id="email_edit">
                 </div>
 
                 <div class="infoEdit">
@@ -88,11 +88,11 @@
             var phone = "<%= user.phonenumber %>";
             var birth = "<%= user.birth %>";
 
-            document.getElementById("email_edit").textContent = "Email: " + mail;
-            document.getElementById("uname_edit").placeholder = name;
-            document.getElementById("fullname_edit").placeholder = fullname;
-            document.getElementById("phone_edit").placeholder = phone;
-            document.getElementById("birth_edit").placeholder = birth;
+            document.getElementById("uname_edit").textContent = "User: " + name;
+            document.getElementById("email_edit").placeholder = "Email: " + mail;
+            document.getElementById("fullname_edit").placeholder = "Fullname: " + fullname;
+            document.getElementById("phone_edit").placeholder = "Phone number: " + phone;
+            document.getElementById("birth_edit").placeholder = "Birthday: " + birth;
         </script>
     </div>
 </html>
