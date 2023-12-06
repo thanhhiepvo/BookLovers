@@ -51,6 +51,8 @@ router.get('/homepage', (req, res) => {
     console.log(">>> req.session.username = ", req.session.username);
 });
 
+
+
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);
 export default router;
