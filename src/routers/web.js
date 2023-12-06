@@ -41,13 +41,31 @@ router.get('/signUp', (req, res) => {
 })
 router.post('/create-user', authenController.postCreateUser);
   
-router.get('/homepage', (req, res) => {
+router.get('/homepage', async(req, res) => {
       //res.send('Check out our homepage') // send text
+      var books;
     if (req.session.username) {
-        bookController.getInfoBook(req, res);
-        // console.log("print: ", book);
-        // res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance, books: book}); 
+        // bookController.getInfoBook(req, res).then(book => {
+        //     //console.log(book)
+        //     books = book;
+        //     res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance , books: book}); 
+        //     //console.log(">>> req.session.username = ", books);
+        // }).catch(error => {
+        //     console.error(error);
+        // });
         // res.render() to render a template file : tạo view dynamic
+        try {
+            const book = await bookController.getInfoBook(req, res);
+            books = book;
+            res.render('home', { 
+                username: req.session.username, 
+                email: req.session.email, 
+                ballance: req.session.ballance, 
+                books: book
+            }); 
+        } catch (error) {
+            console.error(error);
+        }
     } else {
       res.redirect('/login');
     }

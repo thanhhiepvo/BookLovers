@@ -87,34 +87,15 @@
 
             <!-- Script for product -->
             <script>
-                var imagePaths = [
-                    "/Picture/c++.jpg",
-                    "/Picture/python.jpg",
-                    "/Picture/python2.jpg",
-                    "/Picture/js.jpg"
-                ]
-                var tmp = "<%=books[0].namebook%>";
-                console.log(tmp);
-                var bookNames = [
-                    "C++ for beginer",
-                    "Python crash course",
-                    "Python for Data Analysis",
-                    "JavaScript for Beginners"
-                ]
+                var imagePaths = [];
+                var bookNames = [];
+                var authors = [];
+                var price = [];
 
-                var authors = [
-                    "Tony Gaddis",
-                    "Erric Matthes",
-                    "Wes McKinney",
-                    "Terry McNavage"
-                ]
+                
 
-                var price = [
-                    "240.000",
-                    "300.000",
-                    "270.000",
-                    "320.000"
-                ]
+
+
 
                 // Reference to the product div
                 var product = document.getElementById("product");
