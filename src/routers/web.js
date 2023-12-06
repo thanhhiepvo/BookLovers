@@ -70,7 +70,9 @@ router.get('/homepage', async(req, res) => {
       res.redirect('/login');
     }
     console.log(">>> req.session.username = ", req.session.username);
+    //console.log("REQ.BOOK = ", req.book);
 });
+// router.get('/homepage', bookController.getInfoBook);
 
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);
