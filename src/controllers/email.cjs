@@ -17,8 +17,8 @@ let transporter = nodemailer.createTransport({
 
 // Thiết lập nội dung email
 let mailOptions = {
-  from: "tangphong333@gmail.com",
-  to: "thanhhiepvos@gmail.com",
+  from: process.env.MAIL_USERNAME,
+  to: "thanhhiepvos@gmail.com", //tự nhập email đi bạn
   subject: 'Nodemailer Project',
   text: 'Hi from your nodemailer project'
 };
