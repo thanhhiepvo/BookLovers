@@ -1,27 +1,35 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Verify account</title> 
-        <link rel="stylesheet" type="text/css" href="/CSS/style.css">
-        <script src="../Script/script.js" defer></script>
-    </head>
+<html lang="en">
 
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Verify account</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <script src="../Script/script.js" defer></script>
+</head>
+
+<body onload="startTimer();sendOTP();">
     <div class="otp">
         <div class="wrapper">
-            <form action="">
+            <form action="/otp-check" method="post">
                 <i class="bx bxs-check-shield"></i>
                 <h1>Enter OTP code</h1>
                 <h3>An OTP code will be sent to your registered email</h3>
+                <div class="timer">
+                    <span id="timerText"></span>
+                    <button id="resendButton" onclick="resendOTP()" disabled>Resend OTP</button>
+                </div>
                 <div class="inputOTP" oninput="inputOTP()">
                     <input type="number" id="num1">
                     <input type="number" id="num2" disabled>
                     <input type="number" id="num3" disabled>
                     <input type="number" id="num4" disabled>
                 </div>
-                <button class="getOTP" onclick="checkOTP()">Verify my account</button>
+                <button type="submit" class="getOTP">Verify my account</button>
             </form>
         </div>
     </div>
+</body>
+
 </html>

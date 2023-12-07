@@ -20,7 +20,7 @@ const app = express() // create an instance of the Express application
 
 const oneHour = 1000 * 60 * 60;
 //const port = 8080 // port => hard code
-const port = process.env.PORT || 8888 // port => dynamic , nếu bị lôi thìn sẽ dùng port 8888
+const port = process.env.PORT || 8888 // port => dynamic , nếu bị lỗi thì sẽ dùng port 8888
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // config template engine

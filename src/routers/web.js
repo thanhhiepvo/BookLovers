@@ -1,9 +1,9 @@
-
 import express from 'express' // es module
 import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editprofileController.js';
 import bookController from '../controllers/bookController.js';
+import emailmodule from '../controllers/emailController.cjs';
 const router = express.Router()
 
 //router.Method('/routers', handler function)
@@ -21,11 +21,13 @@ router.get('/forgotPass', (req, res) => {
 router.post('/forgot-pass', authenController.forgotPassword);
   
 router.get('/otp', (req, res) => {
-    res.render('otp.ejs')
+    res.render('otp.ejs', {message: req.flash('msg') });
 })
   
+router.post('/otp-check', emailmodule.checkOTP)
+
 router.get('/about', (req, res) => {
-    res.render('about.ejs')
+    res.render('about.ejs', )
 })
 
 router.get('/myBook', (req, res) => {
