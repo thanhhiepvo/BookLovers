@@ -2,8 +2,10 @@
 import express from 'express' // es module
 import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
-import profileController from '../controllers/editprofileController.js';
+import profileController from '../controllers/editProfileController.js';
+import myBooksController from '../controllers/myBooksController.js'
 import bookController from '../controllers/bookController.js';
+
 const router = express.Router()
 
 //router.Method('/routers', handler function)
@@ -28,8 +30,12 @@ router.get('/about', (req, res) => {
     res.render('about.ejs')
 })
 
-router.get('/myBook', (req, res) => {
-    res.render('myBook.ejs')
+router.get('/editProfile', (req, res) => {
+     res.render('editProfile.ejs')
+})
+
+router.get('/book', (req, res) => {
+    res.render('book.ejs')
 })
 
 // router.get('/editProfile', (req, res) => {
@@ -73,6 +79,17 @@ router.get('/homepage', async(req, res) => {
     //console.log("REQ.BOOK = ", req.book);
 });
 // router.get('/homepage', bookController.getInfoBook);
+
+router.get('/myBook', myBooksController.getMyBooksInfo);
+/*
+router.get('/myBook', (req, res) => {
+    if (req.session.username) {
+        res.render('myBook', { username: req.session.username, email: req.session.email, ballance: req.session.ballance });
+    } else {
+        res.redirect('/login');
+    }
+})
+*/
 
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);

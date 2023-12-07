@@ -200,7 +200,7 @@ body
 {
     width: 23%;
     min-width: 250px;
-    padding: 10px 12px;
+    padding: 10px 12px 0 12px;
     border: 1px solid grey;
     border-radius: 7%;
     cursor: pointer;
@@ -213,8 +213,19 @@ body
 #product .productContainer 
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 20px;
+    flex-wrap: wrap;
+    /* align-items: flex-start; */
+}
+
+.productContainer .product_cont
+{
+    padding: 12px 14px;
+    margin: 20px 10px 20px 10px;
+    width: 23%;
+    min-width: 250px;
+    position: relative;
     flex-wrap: wrap;
 }
 
@@ -237,7 +248,7 @@ body
     box-shadow: 10px 10px 20px darkgray;
 }
 
-#product .pro .description
+#product #pro .description
 {
     text-align: start;
     padding: 10px 0;
@@ -258,6 +269,7 @@ body
     padding-top: 7px;
     color: grey;
     font-size: 14px;
+    text-align: left;
 }
 
 #product .pro h4
@@ -283,12 +295,12 @@ body
     height: 50px;
     line-height: 50px;
     border-radius: 50px;
-    background-color: white;
-    font-weight: 500;
-    color: #00cccc;
-    border: 1px solid #cce7d0;
+    background-color: #0b0b80;
+    font-weight: 750;
+    color: white;
+    border: 1px solid black;
     position: absolute;
-    bottom: 20px;
+    bottom: 8px;
     right: 10px;
 }
 

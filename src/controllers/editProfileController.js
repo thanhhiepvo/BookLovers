@@ -2,6 +2,7 @@ import { getUsername, updateProfile } from "../models/users.js"
 
 const profileController = {};
 
+// get information to print on the site editProfile
 profileController.getInfo = async (req, res) => {
     if (req.session.username) {
         try {
