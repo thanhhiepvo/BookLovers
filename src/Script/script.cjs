@@ -96,8 +96,7 @@ function inputOTP() {
 }
 
 
-import "dotenv/config"
-import { emailController, curOTP } from '../controllers/emailController.cjs';
+const emailModule = require('../controllers/emailController.cjs');
 
 function sendOTP(userEmail) {
     //chỉnh sửa thông tin mail
@@ -105,11 +104,11 @@ function sendOTP(userEmail) {
         from: process.env.MAIL_USERNAME,
         to: userEmail, //tự nhập email đi bạn
         subject: '[BookLovers] OTP',
-        text: `Your OTP is ${curOTP}. Use this OTP to ...`
+        text: `Your OTP is ${emailModule.curOTP}. Use this OTP to ...`
     };
 
     // Gửi email
-    emailController.sendMail(mailOptions, function (err, data) {
+    emailModule.emailController.sendMail(mailOptions, function (err, data) {
         if (err) {
             console.log("Error " + err);
         } else {

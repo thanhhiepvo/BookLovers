@@ -1,4 +1,3 @@
-import getUsername from "../models/users.js"
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 
@@ -26,8 +25,8 @@ function generateOTP() {
 }
 
 let curOTP = generateOTP();
-const emailmodule = {};
-emailmodule.checkOTP = async (req, res) => {
+const emailMethod = {};
+emailMethod.checkOTP = async (req, res) => {
 	console.log(">>> req.body = ", req.body);
 	let { num1, num2, num3, num4 } = req.body;
 	let stringotp = num1 + num2 + num3 + num4;
@@ -49,5 +48,5 @@ emailmodule.checkOTP = async (req, res) => {
 module.exports = {
 	emailController: emailController,
 	curOTP: curOTP,
-	emailmodule: emailmodule,
+	emailMethod: emailMethod,
 };
