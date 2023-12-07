@@ -87,34 +87,34 @@
 
             <!-- Script for product -->
             <script>
-                var imagePaths = [
-                    "/Picture/c++.jpg",
-                    "/Picture/p1.jpg",
-                    "/Picture/p2.jpg",
-                    "/Picture/p3.jpg",
-                    // Add more image paths as needed
-                ];
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
+                var imagePaths = [];
+                var authors = [];
+                var price = [];
+                var bookNames = [];
 
-                var bookNames = [
-                    "C++ for beginer",
-                    "Python crash course",
-                    "Python for Data Analysis",
-                    "JavaScript for Beginners"
-                ]
+                //var b = "<%=Object.keys(books).length%>";
+                var b = "<%=books.length%>"
+                // var tmp = "<%=books[0].namebook%>";
+                // console.log(tmp);
+                var books = "<%= JSON.stringify(books) %>";
+                books = decodeHtml(books);
+                books = JSON.parse(books);
+                //console.log(books);
+                //console.log(books)
+                // var imagePaths = [];
+                for (var i = 0; i < b; i++) {
+                    imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                    authors.push(books[i].author);
+                    price.push(books[i].price.toLocaleString('de-DE'));
+                    bookNames.push(books[i].namebook);  
+                    //console.log(imagePaths[i]);
+                }
 
-                var authors = [
-                    "Tony Gaddis",
-                    "Erric Matthes",
-                    "Wes McKinney",
-                    "Terry McNavage"
-                ]
-
-                var price = [
-                    "240.000",
-                    "300.000",
-                    "270.000",
-                    "320.000"
-                ]
 
                 // Reference to the product div
                 var product = document.getElementById("product");
@@ -167,7 +167,7 @@
                     
                     // Create a element
                     var aElement = document.createElement("a");
-                    aElement.href = "#";
+                    aElement.href = "book";
 
                     // Create i element for cart icon
                     var iElement = document.createElement("i");

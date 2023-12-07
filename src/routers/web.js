@@ -4,6 +4,8 @@ import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editProfileController.js';
 import myBooksController from '../controllers/myBooksController.js'
+import bookController from '../controllers/bookController.js';
+
 const router = express.Router()
 
 //router.Method('/routers', handler function)
@@ -31,23 +33,52 @@ router.get('/about', (req, res) => {
 router.get('/editProfile', (req, res) => {
      res.render('editProfile.ejs')
 })
-// router.post();
+
+router.get('/book', (req, res) => {
+    res.render('book.ejs')
+})
+
+// router.get('/editProfile', (req, res) => {
+//     res.render('editProfile.ejs')
+// })
 
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
 router.post('/create-user', authenController.postCreateUser);
   
-router.get('/homepage', (req, res) => {
+router.get('/homepage', async(req, res) => {
       //res.send('Check out our homepage') // send text
+      var books;
     if (req.session.username) {
-        res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance }); 
+        // bookController.getInfoBook(req, res).then(book => {
+        //     //console.log(book)
+        //     books = book;
+        //     res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance , books: book}); 
+        //     //console.log(">>> req.session.username = ", books);
+        // }).catch(error => {
+        //     console.error(error);
+        // });
         // res.render() to render a template file : tạo view dynamic
+        try {
+            const book = await bookController.getInfoBook(req, res);
+            books = book;
+            res.render('home', { 
+                username: req.session.username, 
+                email: req.session.email, 
+                ballance: req.session.ballance, 
+                books: book
+            }); 
+        } catch (error) {
+            console.error(error);
+        }
     } else {
       res.redirect('/login');
     }
     console.log(">>> req.session.username = ", req.session.username);
+    //console.log("REQ.BOOK = ", req.book);
 });
+// router.get('/homepage', bookController.getInfoBook);
 
 router.get('/myBook', myBooksController.getMyBooksInfo);
 /*
