@@ -42,9 +42,9 @@
       <script>
         var profileSpan = document.getElementById("profileSpan");
 
-        var name = "Tiem Ban Nuoc";
-        var mail = "abc@gmail.com";
-        var balance = "1.500.000";
+        var name = "<%= user.username %>";
+        var mail = "<%= user.email %>";
+        var balance = "<%= user.balance %>";
 
         document.getElementById("name").textContent = "UserName: " + name;
         document.getElementById("mail").textContent = "Email: " + mail;
@@ -153,39 +153,6 @@
 
       function closePopup() {
         uploadPopup.style.display = "none";
-      }
-
-      // Thêm JavaScript để xử lý upload file
-      function uploadFile() {
-        var fileInput = document.getElementById("fileInput");
-        var selectedFile = fileInput.files[0];
-
-        // Xử lý tải lên file ở đây (có thể sử dụng XMLHttpRequest hoặc các thư viện như Axios)
-        if (selectedFile) {
-          var xhr = new XMLHttpRequest();
-          var formData = new FormData();
-
-          formData.append('file', selectedFile);
-
-          console.log("before up");
-          xhr.open('POST', 'http://localhost:8080/myBook', true);
-          console.log("after up");
-
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              console.log('Tải file thành công!');
-            } else {
-              console.error('Tải file thất bại!');
-            }
-          };
-
-          xhr.send(formData);
-        
-          // Sau khi xử lý, đóng popup
-          closePopup();
-        } else {
-          console.error('Không có file nào được tải lên');
-        }
       }
     </script>
   </body>
