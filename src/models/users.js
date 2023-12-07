@@ -28,6 +28,26 @@ export const insertUserAccount = async (username, email, password) => {
     } 
 }
 
+export const updateProfile = async (username, email, fullname, phone, birth) => {
+    try {
+        const { rows } = await pool.query('SELECT * FROM useraccount WHERE username = $1', [username]);
+        if (email == '')
+            email = rows[0].email;
+        if (fullname == '')
+            fullname = rows[0].fullname;
+        if (phone == '')
+            phone = rows[0].phonenumber;
+        if (birth == '')
+            birth = rows[0].birth;
+        const text = 'UPDATE useraccount SET email = $2, fullname = $3, phonenumber = $4, birth = $5 WHERE username = $1';
+        const values = [username, email, fullname, phone, birth];
+        await pool.query(text, values);
+        console.log('Data updated successfully');
+    } catch (error) {
+        console.error('Error executing query', error);
+    }
+}
+
 export const updateNewPassword = async (username, new_password) => {
     try {
         const text = 'UPDATE useraccount SET Pass = $1 WHERE username = $2';
