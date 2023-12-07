@@ -31,7 +31,7 @@
             <h5 id="mail"></h5>
             <h5 id="balance"></h5>
             <li><a href="editProfile">Edit my profile</a></li>
-            <li><a href="login">Log out</a></li>
+            <li><a href="logOut">Log out</a></li>
         </div>
 
         <!-- Script for Profile -->
@@ -110,7 +110,7 @@
                 for (var i = 0; i < b; i++) {
                     imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                     authors.push(books[i].author);
-                    price.push(books[i].price.toLocaleString('de-DE'));
+                    price.push(books[i].price.toLocaleString('de-DE')   );
                     bookNames.push(books[i].namebook);  
                     //console.log(imagePaths[i]);
                 }

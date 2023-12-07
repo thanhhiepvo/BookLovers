@@ -76,6 +76,15 @@ router.get('/homepage', async(req, res) => {
 
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);
-export default router;
+router.post('/edit-profile', profileController.updateInfo)
 
-  
+router.get('/logOut', function(req, res){
+    req.session.destroy(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.redirect('/login');
+      }
+    });
+  });
+export default router;

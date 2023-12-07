@@ -12,20 +12,19 @@ import cookieParser from 'cookie-parser';
 
 import webRouter from './routers/web.js' // import router from routers/web.js
 
-//const webRouter = require('./routers/web.js'); // import router from routers/web.js
 ///Render file .ejs with css applied
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express() // create an instance of the Express application
 
 const oneHour = 1000 * 60 * 60;
-//const port = 8080 // port => hard code
 const port = process.env.PORT || 8888 // port => dynamic , nếu bị lôi thìn sẽ dùng port 8888
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // config template engine
 app.set('views', './views/');
-//app.set('views', path.join(__dirname, 'views')); // __dirname is the current directory
 app.set('view engine', 'ejs');
 
 app.use(session({
@@ -37,9 +36,11 @@ app.use(session({
 
 app.use (bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cookieParser());
 app.use(flash());
 app.use('/', webRouter); // use router
+
 //config static file
 app.use(express.static(path.join(__dirname, 'public')));
 
