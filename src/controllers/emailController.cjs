@@ -26,6 +26,7 @@ function generateOTP() {
 
 let curOTP = generateOTP();
 const emailMethod = {};
+
 emailMethod.checkOTP = async (req, res) => {
 	console.log(">>> req.body = ", req.body);
 	let { num1, num2, num3, num4 } = req.body;

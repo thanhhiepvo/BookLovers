@@ -26,7 +26,7 @@ router.get('/otp', (req, res) => {
     res.render('otp.ejs', {message: req.flash('msg') });
 })
   
-router.post('/otp-check', emailmodule.checkOTP)
+router.post('/otp-check', emailmodule.emailMethod.checkOTP);
 
 router.get('/about', (req, res) => {
     res.render('about.ejs', )
