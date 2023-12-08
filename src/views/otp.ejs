@@ -28,8 +28,18 @@
                 </div>
                 <button type="submit" class="getOTP">Verify my account</button>
                 <script>
-                    // event.preventDefault(); 
-                    // event.preventDefault(); 
+                    let timeLeft = 60;
+                    let timer = setInterval(function () {
+                        if (timeLeft <= 0) {
+                            clearInterval(timer);
+                            document.getElementById("timerText").innerHTML = "0 seconds remaining";
+                            document.getElementById("resendButton").disabled = false;
+                        } else {
+                            document.getElementById("timerText").innerHTML = timeLeft + " seconds remaining";
+                            timeLeft--;
+                        }
+                    }, 1000);
+
                     const inputs = document.querySelectorAll(".otp .wrapper .inputOTP input"),
                         button = document.querySelector(".otp .wrapper button");
 
