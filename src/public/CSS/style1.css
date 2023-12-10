@@ -149,7 +149,7 @@ body
     transition: background 0.5s;
 }
 
-.navbar a:hover, .navbar .about-active
+.navbar a:hover, .navbar .active
 {
     background: white;
     color: #141A46;
@@ -628,4 +628,76 @@ body
 {
     color: #141A46;
     font-size: 18px;
+}
+
+/* uploadBook page */
+.uploadBook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.uploadBook .wrapper {
+    width: 420px;
+    background: transparent;
+    color: #141A46;
+    border-radius: 10px;
+    padding: 30px 30px;
+    border: 2px solid #141A46;
+}
+
+.uploadBook .wrapper h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.uploadBook .wrapper .infoUpload {
+    width: 100%;
+    background: transparent;
+    margin: 30px 0;
+}
+
+.uploadBook .wrapper input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+.uploadBook .wrapper input::placeholder {
+    color: #141A46;
+    font-size: 18px;
+}
+
+.uploadBook .wrapper textarea {
+    width: 100%;
+    height: 100px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #141A46;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #141A46;
+    padding: 20px 45px 20px 10px;
+}
+
+/* upload button */
+#uploadBtn{
+    
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    position: relative;
+    top: 500px;
+    left : 650px;
 }

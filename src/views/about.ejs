@@ -5,10 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/nostest.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/style1.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="icon" href="/Picture/favicon.png" type="image/png">
 
+    
+    <style>
+        section {
+            /* max-width: 800px; */
+            width: 100%;
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
     <header>
         <a href="#" class="logo"><img src="/Picture/logo.png"></a>
         
@@ -17,7 +35,7 @@
             <li><a href="myBook">My books</a></li>
             <li><a href="selling">Selling</a></li>
             <li><a href="wallet">Wallet</a></li>
-            <li><a href="about" class="about-active">About</a></li>
+            <li><a href="about" class="active">About</a></li>
         </ul>
         
         <div class="profile">
@@ -54,38 +72,6 @@
         </Script>
 
     </header>
-    <style>
-        /* body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        } */
-
-        section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-
-        footer {
-            background-color: #191069;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-
-<body>
-
     <section>
         <h2>We are Tiem Ban Nuoc | Group 11</h2>
         <p> 21127275 - Vo Thanh Hiep </br>
@@ -97,10 +83,7 @@
         <h2>Our Mission</h2>
         <p>Developers of Book Lover app.</p>
     </section>
-
-    <footer>
-        <p>&copy; 2023 Tiem Ban Nuoc. All rights reserved.</p>
-    </footer>
+    
 </body>
-
+<%- include('footer.ejs') %>
 </html>
