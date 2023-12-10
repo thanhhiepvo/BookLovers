@@ -84,35 +84,37 @@
             </div> -->
         <!-- ------------------------------------- -->
 
-            <!-- Script for product -->
-            <script>
-                function decodeHtml(html) {
-                    var txt = document.createElement("textarea");
-                    txt.innerHTML = html;
-                    return txt.value;
-                }
-                var imagePaths = [];
-                var authors = [];
-                var price = [];
-                var bookNames = [];
+        <!-- Script for product -->
+        <script>
+            function decodeHtml(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
+            var idBook = [];
+            var imagePaths = [];
+            var authors = [];
+            var price = [];
+            var bookNames = [];
 
-                //var b = "<%=Object.keys(books).length%>";
-                var b = "<%=books.length%>"
-                // var tmp = "<%=books[0].namebook%>";
-                // console.log(tmp);
-                var books = "<%= JSON.stringify(books) %>";
-                books = decodeHtml(books);
-                books = JSON.parse(books);
-                //console.log(books);
-                //console.log(books)
-                // var imagePaths = [];
-                for (var i = 0; i < b; i++) {
-                    imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
-                    authors.push(books[i].author);
-                    price.push(books[i].price.toLocaleString('de-DE')   );
-                    bookNames.push(books[i].namebook);  
-                    //console.log(imagePaths[i]);
-                }
+            //var b = "<%=Object.keys(books).length%>";
+            var b = "<%=books.length%>"
+            // var tmp = "<%=books[0].namebook%>";
+            // console.log(tmp);
+            var books = "<%= JSON.stringify(books) %>";
+            books = decodeHtml(books);
+            books = JSON.parse(books);
+            //console.log(books);
+            //console.log(books)
+            // var imagePaths = [];
+            for (var i = 0; i < b; i++) {
+                idBook.push(books[i].id_book);
+                imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                authors.push(books[i].author);
+                price.push(books[i].price.toLocaleString('de-DE'));
+                bookNames.push(books[i].namebook);
+                //console.log(imagePaths[i]);
+            }
 
 
             // Reference to the product div
@@ -159,14 +161,14 @@
                 descriptionDiv.appendChild(spanElement);
                 descriptionDiv.appendChild(h5Element);
 
-                    // Append imgElement and descriptionDiv to proDiv
-                    proDiv.appendChild(imgElement);
-                    proDiv.appendChild(descriptionDiv);
-                    proDiv.appendChild(h4Element);
-                    
-                    // Create a element
-                    var aElement = document.createElement("a");
-                    aElement.href = "book";
+                // Append imgElement and descriptionDiv to proDiv
+                proDiv.appendChild(imgElement);
+                proDiv.appendChild(descriptionDiv);
+                proDiv.appendChild(h4Element);
+
+                // Create a element
+                var aElement = document.createElement("a");
+                aElement.href = "book?" + idBook[i];
 
                 // Create i element for cart icon
                 var iElement = document.createElement("i");
