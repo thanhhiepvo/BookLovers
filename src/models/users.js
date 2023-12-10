@@ -11,26 +11,34 @@ export async function getUsername(username) {
 
 //get user email
 export async function getUserEmail(email) {
-    const { user } = await pool.query('SELECT * FROM useraccount WHERE email = :email', {email});
+    const { user } = await pool.query('SELECT * FROM useraccount WHERE email = :email', { email });
+    if (user.length == 0)
+        return null;
     console.log(user);
     return user[0].email;
 }
 
 //get user ownedbookID
 export async function getUserOwnedBook(username) {
-    const { ownedbookID } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = :username', {username});
+    const { ownedbookID } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = :username', { username });
+    if (ownedbookID.length == 0)
+        return null;
     return ownedbookID;
 }
 
 //get user sellingbookID
 export async function getUserSellingBook(username) {
-    const { sellingbookID } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = :username', {username});
+    const { sellingbookID } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = :username', { username });
+    if (sellingbookID.length == 0)
+        return null;
     return sellingbookID;
 }
 
 //get user invoiceID
 export async function getUserInvoice(username) {
-    const { invoiceID } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = :username', {username});
+    const { invoiceID } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = :username', { username });
+    if (invoiceID.length == 0)
+        return null;
     return invoiceID;
 }
 

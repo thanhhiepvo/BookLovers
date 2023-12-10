@@ -1,5 +1,6 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
+//const getUserEmail = require('../models/users.js').getUserEmail;
 
 const emailController = nodemailer.createTransport({
 	service: 'gmail',
@@ -41,10 +42,43 @@ emailMethod.checkOTP = async (req, res) => {
 		}
 	}
 	catch (error) {
-		console.error('Wrong OTP entered', error);
-		res.status(500).send("Error wrong OTP");
+		console.error('Error while checking OTP', error);
+		res.status(500).send("OTP check error");
 	}
 }
+
+// emailMethod.sendOTP = async (req, res) => {
+// 	console.log(">>> req.body = ", req.body);
+// 	let { useremail } = req.body;
+// 	try {
+// 		if (getUserEmail(useremail) == null) {
+// 			req.flash('msg', 'Email is invalid');
+// 			//res.redirect('/trangnhapemail');
+// 		}
+// 		else {
+// 			const mailOptions = {
+// 				from: process.env.MAIL_USERNAME,
+// 				to: `${useremail}`, //tự nhập email đi bạn
+// 				subject: '[BookLovers] OTP',
+// 				text: `Your OTP is ${curOTP}. Use this OTP to reset your password`
+// 			};
+
+// 			emailController.sendMail(mailOptions, function (err, data) {
+// 				if (err) {
+// 					console.log("Error " + err);
+// 				} else {
+// 					console.log("Email sent successfully");
+// 				}
+// 			});
+
+// 			//res.redirect('/trangnhapotp');
+// 		}
+// 	}
+// 	catch (error) {
+// 		console.error('Error while sending OTP to email', error);
+// 		res.status(500).send("OTP email sending error");
+// 	}
+// }
 
 module.exports = {
 	emailController: emailController,
