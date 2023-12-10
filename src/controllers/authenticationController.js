@@ -6,21 +6,21 @@ const authenController = {};
 // Sign Up
 authenController.postCreateUser = async (req, res) => {
     console.log(">>> req.body = ", req.body);
-    let { username, email, password, repassword } = req.body;  
-    console.log(">>> username = ", username, 'email = ', email, 'password = ', password , 'repassword = ', repassword);
+    let { username, email, password, repassword } = req.body;
+    console.log(">>> username = ", username, 'email = ', email, 'password = ', password, 'repassword = ', repassword);
     try {
         if (await getUsername(username) != null) {
             req.flash('msg', 'Username already exists');
-            res.redirect('/signUp');  
+            res.redirect('/signUp');
         }
         else if (password != repassword) {
             req.flash('msg', 'Password does not match');
-            res.redirect('/signUp');  
+            res.redirect('/signUp');
         }
         else {
             await insertUserAccount(username, email, password);
             req.flash('msg', 'You are now registered. Please log in');
-            res.redirect('/login');  
+            res.redirect('/login');
         }
     } catch (error) {
         console.error('Error creating user', error);
@@ -29,7 +29,7 @@ authenController.postCreateUser = async (req, res) => {
 }
 
 // Login
-authenController.loginUser = async (req, res) => { 
+authenController.loginUser = async (req, res) => {
     let { username, password } = req.body;
     console.log(">>> username = ", username, 'password = ', password);
 
@@ -37,8 +37,8 @@ authenController.loginUser = async (req, res) => {
     try {
         if (await user == null) {
             //res.send('Username does not exist')
-            req.flash('msg','Username does not exist');
-            res.redirect('/login');  
+            req.flash('msg', 'Username does not exist');
+            res.redirect('/login');
         }
         else {
             if (user.pass == password) {
@@ -46,12 +46,12 @@ authenController.loginUser = async (req, res) => {
                 req.session.username = username;
                 req.session.password = password;
                 req.session.email = user.email;
-                req.session.ballance =user.balance;
+                req.session.ballance = user.balance;
                 res.redirect('/homepage');
             }
             else {
                 req.flash('msg', 'Password incorrect');
-                res.redirect('/login');    
+                res.redirect('/login');
             }
             // document.getElementById("mess").textContent = msg;
         }
@@ -63,21 +63,21 @@ authenController.loginUser = async (req, res) => {
 
 // Forgot Password
 authenController.forgotPassword = async (req, res) => {
-    let { username, new_password, confirm_password} = req.body;
+    let { username, new_password, confirm_password } = req.body;
     console.log(">>> username = ", username, 'new password = ', new_password, 'confirm password = ', confirm_password);
 
     const user = await getUsername(username);
     try {
-        if (await user == null){
-            req.flash('msg','Username does not exist');
-            res.redirect('/forgotPass'); 
+        if (await user == null) {
+            req.flash('msg', 'Username does not exist');
+            res.redirect('/forgotPass');
             //res.send('username is not exist'); 
-        } else if (new_password != confirm_password){
-            req.flash('msg','New Password and Confirm Password are not the same');
-            res.redirect('/forgotPass');  
+        } else if (new_password != confirm_password) {
+            req.flash('msg', 'New Password and Confirm Password are not the same');
+            res.redirect('/forgotPass');
         } else {
             await updateNewPassword(username, new_password);
-            req.flash('msg','Your password was changed!');
+            req.flash('msg', 'Your password was changed!');
             res.redirect('/login')
         }
     } catch (error) {
@@ -86,4 +86,21 @@ authenController.forgotPassword = async (req, res) => {
     }
 }
 
+authenController.logout = (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
+}
+
+authenController.getProfileUser = (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const user = await getUsername(req.session.username);
+            req.user = user;
+            resolve(user);
+        } catch (error) {
+            console.error('Error getProfileUser', error);
+            reject(error);
+        }
+    });
+}
 export default authenController;
