@@ -3,29 +3,48 @@ import pool from '../database.js'
 
 export async function getUsername(username) {
     const { rows } = await pool.query('SELECT * FROM useraccount WHERE username = $1', [username]);
-    console.log(rows)
-    if(rows[0] == null)
+    console.log(rows);
+    if (rows[0] == null)
         return null;
     return rows[0];
 }
-// export async function getUsername(username) {
-//     const { rows } = await pool.query('SELECT * FROM useraccount WHERE username = $1', [username]);
-//     if(rows[0] == null)
-//         return null;
-//     return rows[0];
-// }
+
+//get user email
+export async function getUserEmail(email) {
+    const { user } = await pool.query('SELECT * FROM useraccount WHERE email = :email', {email});
+    console.log(user);
+    return user[0].email;
+}
+
+//get user ownedbookID
+export async function getUserOwnedBook(username) {
+    const { ownedbookID } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = :username', {username});
+    return ownedbookID;
+}
+
+//get user sellingbookID
+export async function getUserSellingBook(username) {
+    const { sellingbookID } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = :username', {username});
+    return sellingbookID;
+}
+
+//get user invoiceID
+export async function getUserInvoice(username) {
+    const { invoiceID } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = :username', {username});
+    return invoiceID;
+}
 
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
         const text = 'INSERT INTO useraccount(username, email, pass, balance) VALUES($1, $2, $3, $4)';
-        const values = [username, email, password,0];
+        const values = [username, email, password, 0];
         await pool.query(text, values);
         console.log('Data inserted successfully');
     } catch (error) {
         console.error('Error executing query', error);
         res.status(500).send("Error creating user");
-    } 
+    }
 }
 
 export const updateProfile = async (username, email, fullname, phone, birth) => {
@@ -55,6 +74,6 @@ export const updateNewPassword = async (username, new_password) => {
         await pool.query(text, values);
         console.log('New password was changed in database');
     } catch (error) {
-        
+
     }
 }

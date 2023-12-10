@@ -104,7 +104,7 @@ function sendOTP(userEmail) {
         from: process.env.MAIL_USERNAME,
         to: userEmail, //tự nhập email đi bạn
         subject: '[BookLovers] OTP',
-        text: `Your OTP is ${emailModule.curOTP}. Use this OTP to ...`
+        text: `Your OTP is ${emailModule.curOTP}. Use this OTP to reset your password`
     };
 
     // Gửi email
