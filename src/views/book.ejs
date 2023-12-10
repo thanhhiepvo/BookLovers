@@ -38,9 +38,9 @@
         <Script>
             var profileSpan = document.getElementById("profileSpan");
 
-            var name = "<%=username%>";
-            var mail = "<%=email%>";
-            var balance = "<%=ballance.toLocaleString('de-DE')%>";
+            var name = "<%=user.username%>";
+            var mail = "<%=user.email%>";
+            var balance = "<%=user.ballance.toLocaleString('de-DE')%>";
 
 
             document.getElementById("name").textContent = "UserName: " + name;
