@@ -96,6 +96,7 @@ router.get('/myBook', (req, res) => {
 router.get('/wallet', walletController.getWalletInfo);
 router.get('/editProfile', profileController.getInfo);
 router.post('/edit-profile', profileController.updateInfo)
+// router.get('/book', profileController.getInfo);
 
 router.get('/logOut', function(req, res){
     req.session.destroy(function(err) {
