@@ -16,6 +16,7 @@ profileController.getInfo = async (req, res) => {
     else
         res.redirect('/login');
 }
+
 profileController.updateInfo = async (req, res) => {
     if (req.session.username == '') {
         res.redirect('/login');
