@@ -1,6 +1,6 @@
 import "dotenv/config"
 import nodemailer from 'nodemailer';
-import { getUserEmail, getUserInvoice, getUserOwnedBook, getUserSellingBook } from '../models/users.js';
+import { getUserEmail } from '../models/users.js';
 
 const emailController = nodemailer.createTransport({
     service: 'gmail',
@@ -79,11 +79,5 @@ emailMethod.checkOTP = async (req, res) => {
 // 		res.status(500).send("OTP email sending error");
 // 	}
 // }
-
-console.log(await getUserEmail("tangphong333@gmail.com"));
-console.log(await getUserInvoice("blanker321"));
-console.log(await getUserOwnedBook("blanker321"));
-console.log(await getUserSellingBook("blanker321"));
-
 
 export default emailMethod
