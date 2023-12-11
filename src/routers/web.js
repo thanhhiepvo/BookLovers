@@ -4,7 +4,7 @@ import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editProfileController.js';
 import myBooksController from '../controllers/myBooksController.js'
 import bookController from '../controllers/bookController.js';
-import emailmodule from '../controllers/emailController.cjs';
+import emailmodule from '../controllers/emailController.js';
 
 const router = express.Router()
 
@@ -26,7 +26,7 @@ router.get('/otp', (req, res) => {
     res.render('otp.ejs', { message: req.flash('msg') });
 })
 
-router.post('/otp-check', emailmodule.emailMethod.checkOTP);
+//router.post('/otp-check', emailmodule.emailMethod.checkOTP);
 
 router.get('/about', async (req, res) => {
     if (req.session.username) {
@@ -72,17 +72,49 @@ router.get('/homepage', async (req, res) => {
     }
     console.log(">>> req.session.username = ", req.session.username);
 });
-
-router.get('/myBook', myBooksController.getMyBooksInfo);
-/*
-router.get('/myBook', (req, res) => {
+router.get('/myBook', async (req, res) => {
     if (req.session.username) {
-        res.render('myBook', { username: req.session.username, email: req.session.email, ballance: req.session.ballance });
+        try {
+            const user = await authenController.getProfileUser(req, res);
+            const listOwnedBook = await bookController.getInfoBook(req, res);
+            res.render('myBook', {
+                user: user,
+                books: listOwnedBook
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        res.redirect('/login');
+    }
+    console.log(">>> req.session.username = ", req.session.username);
+})
+
+router.get('/selling', async (req, res) => {
+    if (req.session.username) {
+        try {
+            const user = await authenController.getProfileUser(req, res);
+            const listOwnedBook = await bookController.getInfoBook(req, res);
+            res.render('selling', {
+                user: user,
+                books: listOwnedBook
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        res.redirect('/login');
+    }
+    console.log(">>> req.session.username = ", req.session.username);
+})
+router.get('/upload', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('upload.ejs', { user: user }); // Render the view with user data
     } else {
         res.redirect('/login');
     }
 })
-*/
 
 router.get('/wallet', async (req, res) => {
     if (req.session.username) {

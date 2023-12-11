@@ -7,7 +7,7 @@ const myBooksController = {};
 myBooksController.getMyBooksInfo = async (req, res) => {
     try {
         const user = await getUsername(req.session.username);
-        console.log(">>> user = ", user);
+        //console.log(">>> user = ", user);
         res.render('myBook', { user: user }); // Render the view with user data
     } catch (error) {
         console.error('Error getMyBooksInfo', error);

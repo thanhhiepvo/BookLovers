@@ -1,69 +1,69 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Selling book</title> 
-        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
-        <link rel="stylesheet" href="/CSS/footer.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-        <link rel="icon" href="/Picture/favicon.png" type="image/png">
-    </head>
-    <header>
-        <a href="#" class="logo"><img src="/Picture/logo.png"></a>
-        
-        <ul class="navbar">
-            <li><a href="homepage">Home</a></li>
-            <li><a href="myBook">My books</a></li>
-            <li><a href="selling" class="active">Selling</a></li>
-            <li><a href="wallet">Wallet</a></li>
-            <li><a href="about">About</a></li>
-        </ul>
-        
-        <div class="profile">
-            <i class='bx bx-user' ></i>
-            <span>Profile</span>
-            <i class='bx bx-caret-down' ></i>
-            
-        </div>
+<html lang="en">
 
-        <div id="profileSpan">
-            <h5 id="name"></h5>
-            <h5 id="mail"></h5>
-            <h5 id="balance"></h5>
-            <li><a href="editProfile">Edit my profile</a></li>
-            <li><a href="logOut">Log out</a></li>
-        </div>
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Selling book</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
 
-        <!-- Script for Profile -->
-        <Script>
-            var profileSpan = document.getElementById("profileSpan");
+    <ul class="navbar">
+        <li><a href="homepage">Home</a></li>
+        <li><a href="myBook">My books</a></li>
+        <li><a href="selling" class="active">Selling</a></li>
+        <li><a href="wallet">Wallet</a></li>
+        <li><a href="about">About</a></li>
+    </ul>
 
-            var name = "<%=username%>";
-            var mail = "<%=email%>";
-            var balance = "<%=ballance.toLocaleString('de-DE')%>";
+    <div class="profile">
+        <i class='bx bx-user'></i>
+        <span>Profile</span>
+        <i class='bx bx-caret-down'></i>
+
+    </div>
+
+    <div id="profileSpan">
+        <h5 id="name"></h5>
+        <h5 id="mail"></h5>
+        <h5 id="balance"></h5>
+        <li><a href="editProfile">Edit my profile</a></li>
+        <li><a href="logOut">Log out</a></li>
+    </div>
+
+    <!-- Script for Profile -->
+    <Script>
+        var profileSpan = document.getElementById("profileSpan");
+
+        var name = "<%=user.username%>";
+        var mail = "<%=user.email%>";
+        var balance = "<%=user.balance.toLocaleString('de-DE')%>";
 
 
-            document.getElementById("name").textContent = "UserName: " + name;
-            document.getElementById("mail").textContent = "Email: " + mail;
-            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+        document.getElementById("name").textContent = "UserName: " + name;
+        document.getElementById("mail").textContent = "Email: " + mail;
+        document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
 
-            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-            caretDownIcon.addEventListener('click', () => 
-            {
-                profileSpan.classList.toggle('active');
-            });
-        </Script>
+        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+        caretDownIcon.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
+        });
+    </Script>
 
-    </header>
-    
-    <body>
-        <section id="product" class="section_home">
-            <h2>Your selling books here</h2>
-            <p></p>
+</header>
 
-            <!-- ------------------------------------- -->
-            <!-- <div id="productContainer">
+<body>
+    <section id="product" class="section_home">
+        <h2>Your selling books here</h2>
+        <p></p>
+
+        <!-- ------------------------------------- -->
+        <!-- <div id="productContainer">
                 <div class="product_cont">
                     <div class="pro">
                         <img src="../Picture/c++.jpg" alt="">
@@ -76,127 +76,123 @@
                     </div>
                 </div>
             </div> -->
-            <!-- ------------------------------------- -->
+        <!-- ------------------------------------- -->
 
-            <!-- Script for product -->
-            <script>
-                function decodeHtml(html) {
-                    var txt = document.createElement("textarea");
-                    txt.innerHTML = html;
-                    return txt.value;
-                }
-                var imagePaths = [];
-                var authors = [];
-                var price = [];
-                var bookNames = [];
-                imagePaths.push("/Picture/book/1.jpg", "/Picture/book/2.jpg");
-                authors.push("ERIC MATTHES","author");
-                price.push("250000","350000")
-                bookNames.push("Python Crash Course","Python for Data Analysis")
-                //var b = "<%=Object.keys(books).length%>";
-                // var b = "<%=books.length%>"
-                // var tmp = "<%=books[0].namebook%>";
-                // console.log(tmp);
-                // var books = "<%= JSON.stringify(books) %>";
-                // books = decodeHtml(books);
-                // books = JSON.parse(books);
-                //console.log(books);
-                //console.log(books)
-                // var imagePaths = [];
-                // for (var i = 0; i < b; i++) {
-                //     imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
-                //     authors.push(books[i].author);
-                //     price.push(books[i].price.toLocaleString('de-DE')   );
-                //     bookNames.push(books[i].namebook);  
-                //     //console.log(imagePaths[i]);
-                // }
+        <!-- Script for product -->
+        <script>
 
+            function decodeHtml(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
+            var idBook = [];
+            var imagePaths = [];
+            var authors = [];
+            var price = [];
+            var bookNames = [];
 
-                // Reference to the product div
-                var product = document.getElementById("product");
-                // Create productContainer div
-                var productContainer = document.createElement("div");
-                productContainer.className = "productContainer";
+            //var b = "<%=Object.keys(books).length%>";
+            var b = "<%=books.length%>"
+            // var tmp = "<%=books[0].namebook%>";
+            // console.log(tmp);
+            var books = "<%= JSON.stringify(books) %>";
+            books = decodeHtml(books);
+            books = JSON.parse(books);
+            //console.log(books);
+            //console.log(books)
+            // var imagePaths = [];
+            for (var i = 0; i < b; i++) {
+                idBook.push(books[i].id_book);
+                imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                authors.push(books[i].author);
+                price.push(books[i].price.toLocaleString('de-DE'));
+                bookNames.push(books[i].namebook);
+                //console.log(imagePaths[i]);
+            }
 
 
-                // Loop through the image paths and create product_cont divs
-                for (var i = 0; i < imagePaths.length; i++) {
-                    // Create product_cont div
-                    var productContDiv = document.createElement("div");
-                    productContDiv.className = "product_cont";
-
-                    // Create pro div
-                    var proDiv = document.createElement("div");
-                    proDiv.className = "pro";
-
-                    // Create img element
-                    var imgElement = document.createElement("img");
-                    imgElement.src = imagePaths[i];
-                    imgElement.alt = "";
-
-                    // Create description div
-                    var descriptionDiv = document.createElement("div");
-                    descriptionDiv.className = "description";
-
-                    // Create span element
-                    var spanElement = document.createElement("span");
-                    spanElement.textContent = bookNames[i];
-
-                    // Create h5 element
-                    var h5Element = document.createElement("h5");
-                    h5Element.textContent = authors[i];
-
-                    
-                    
-                    // Create h4 element
-                    var h4Element = document.createElement("h4");
-                    h4Element.textContent = price[i] + " VND";
-                    
-                    // Append span and h5 elements to descriptionDiv
-                    descriptionDiv.appendChild(spanElement);
-                    descriptionDiv.appendChild(h5Element);
-
-                    // Append imgElement and descriptionDiv to proDiv
-                    proDiv.appendChild(imgElement);
-                    proDiv.appendChild(descriptionDiv);
-                    proDiv.appendChild(h4Element);
-                    
-                    // Create a element
-                    var aElement = document.createElement("a");
-                    aElement.href = "book";
-
-                    // Create i element for cart icon
-                    var iElement = document.createElement("i");
-                    iElement.className = "bx bx-cart-add cart";
-
-                    // Append i element to aElement
-                    aElement.appendChild(iElement);
-
-                    // Append a to proDiv
-                    proDiv.appendChild(aElement);
-
-                    // Append proDiv, h4Element, and aElement to productContDiv
-                    productContDiv.appendChild(proDiv);
-                    // productContDiv.appendChild(h4Element);
-                    // productContDiv.appendChild(aElement);
-
-                    // Append productContDiv to productContainer
-                    productContainer.appendChild(productContDiv);
-                    product.appendChild(productContainer);
-                }
-                document.body.appendChild(product);
-            </script>
+            // Reference to the product div
+            var product = document.getElementById("product");
+            // Create productContainer div
+            var productContainer = document.createElement("div");
+            productContainer.className = "productContainer";
 
 
-        </section>
-    <button id="uploadBtn">Upload Your Book</button>
-    <script>
-        document.getElementById('uploadBtn').addEventListener('click', function() {
-            // Chuyển hướng đến trang upload
-            window.location.href = 'upload.ejs'; // Thay '/upload' bằng đường dẫn đến trang upload của bạn
-        });
-    </script>
-    
-    </body>
-    <%- include('footer.ejs') %>
+            // Loop through the image paths and create product_cont divs
+            for (var i = 0; i < imagePaths.length; i++) {
+                // Create product_cont div
+                var productContDiv = document.createElement("div");
+                productContDiv.className = "product_cont";
+
+                // Create pro div
+                var proDiv = document.createElement("div");
+                proDiv.className = "pro";
+
+                // Create img element
+                var imgElement = document.createElement("img");
+                imgElement.src = imagePaths[i];
+                imgElement.alt = "";
+
+                // Create description div
+                var descriptionDiv = document.createElement("div");
+                descriptionDiv.className = "description";
+
+                // Create span element
+                var spanElement = document.createElement("span");
+                spanElement.textContent = bookNames[i];
+
+                // Create h5 element
+                var h5Element = document.createElement("h5");
+                h5Element.textContent = authors[i];
+
+
+
+                // Create h4 element
+                var h4Element = document.createElement("h4");
+                h4Element.textContent = price[i] + " VND";
+
+                // Append span and h5 elements to descriptionDiv
+                descriptionDiv.appendChild(spanElement);
+                descriptionDiv.appendChild(h5Element);
+
+                // Append imgElement and descriptionDiv to proDiv
+                proDiv.appendChild(imgElement);
+                proDiv.appendChild(descriptionDiv);
+                proDiv.appendChild(h4Element);
+
+                // Create a element
+                var aElement = document.createElement("a");
+                aElement.href = "book?" + idBook[i];
+
+                // Create i element for cart icon
+                var iElement = document.createElement("i");
+                iElement.className = "bx bx-cart-add cart";
+
+                // Append i element to aElement
+                aElement.appendChild(iElement);
+
+                // Append a to proDiv
+                proDiv.appendChild(aElement);
+
+                // Append proDiv, h4Element, and aElement to productContDiv
+                productContDiv.appendChild(proDiv);
+                // productContDiv.appendChild(h4Element);
+                // productContDiv.appendChild(aElement);
+
+                // Append productContDiv to productContainer
+                productContainer.appendChild(productContDiv);
+                product.appendChild(productContainer);
+            }
+            document.body.appendChild(product);
+        </script>
+
+
+    </section>
+
+    <button id="uploadBtn" onclick="window.location.href = '/upload'">Upload Your Book</button>
+
+</body>
+<%- include('footer.ejs') %>
+
 </html>
