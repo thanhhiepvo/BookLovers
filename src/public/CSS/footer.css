@@ -1,5 +1,5 @@
 
-  body {
+  .body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -14,25 +14,6 @@
   li {
     list-style: none;
   }
-  
-  input {
-    position: relative;
-    height: 100%;
-  }
-  
-  input[type="email"] {
-    padding: 7px 8px;
-    border: 1px solid rgb(206, 206, 206);
-  }
-  input[type="button"] {
-    border: none;
-    padding: 7px 12px;
-    background: rgb(127, 79, 223);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(126, 112, 232);
-    cursor: pointer;
-  }
-  
   main {
     flex: 1;
   }

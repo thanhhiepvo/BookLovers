@@ -89,24 +89,27 @@
                 var authors = [];
                 var price = [];
                 var bookNames = [];
-
+                imagePaths.push("/Picture/book/1.jpg", "/Picture/book/2.jpg");
+                authors.push("ERIC MATTHES","author");
+                price.push("250000","350000")
+                bookNames.push("Python Crash Course","Python for Data Analysis")
                 //var b = "<%=Object.keys(books).length%>";
-                var b = "<%=books.length%>"
+                // var b = "<%=books.length%>"
                 // var tmp = "<%=books[0].namebook%>";
                 // console.log(tmp);
-                var books = "<%= JSON.stringify(books) %>";
-                books = decodeHtml(books);
-                books = JSON.parse(books);
+                // var books = "<%= JSON.stringify(books) %>";
+                // books = decodeHtml(books);
+                // books = JSON.parse(books);
                 //console.log(books);
                 //console.log(books)
                 // var imagePaths = [];
-                for (var i = 0; i < b; i++) {
-                    imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
-                    authors.push(books[i].author);
-                    price.push(books[i].price.toLocaleString('de-DE')   );
-                    bookNames.push(books[i].namebook);  
-                    //console.log(imagePaths[i]);
-                }
+                // for (var i = 0; i < b; i++) {
+                //     imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                //     authors.push(books[i].author);
+                //     price.push(books[i].price.toLocaleString('de-DE')   );
+                //     bookNames.push(books[i].namebook);  
+                //     //console.log(imagePaths[i]);
+                // }
 
 
                 // Reference to the product div

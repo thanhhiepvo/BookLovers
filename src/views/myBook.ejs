@@ -14,8 +14,8 @@
         
         <ul class="navbar">
             <li><a href="homepage">Home</a></li>
-            <li><a href="myBook">My books</a></li>
-            <li><a href="selling"class="home-active">Selling</a></li>
+            <li><a href="myBook"class="active">My books</a></li>
+            <li><a href="selling">Selling</a></li>
             <li><a href="wallet">Wallet</a></li>
             <li><a href="about">About</a></li>
         </ul>
@@ -63,22 +63,6 @@
             <h2>This is your bookshell</h2>
             <p></p>
 
-            <!-- ------------------------------------- -->
-            <!-- <div id="productContainer">
-                <div class="product_cont">
-                    <div class="pro">
-                        <img src="../Picture/c++.jpg" alt="">
-                        <div class="description">
-                            <span>C++</span>
-                            <h5>Tony Gaddis</h5>
-                        </div>
-                        <h4>200.000 VND</h4>
-                        <a href="#"><i class='bx bx-cart-add cart'></i></a>
-                    </div>
-                </div>
-            </div> -->
-            <!-- ------------------------------------- -->
-
             <!-- Script for product -->
             <script>
                 function decodeHtml(html) {
@@ -91,8 +75,14 @@
                 var price = [];
                 var bookNames = [];
 
+                // hardcode for freview
+                imagePaths.push("/Picture/book/1.jpg", "/Picture/book/2.jpg");
+                authors.push("ERIC MATTHES","author");
+                price.push("250000","350000")
+                bookNames.push("Python Crash Course","Python for Data Analysis")
+
                 //var b = "<%=Object.keys(books).length%>";
-                var b = "<%=books.length%>"
+                
                 // var tmp = "<%=books[0].namebook%>";
                 // console.log(tmp);
                 var books = "<%= JSON.stringify(books) %>";
@@ -101,13 +91,13 @@
                 //console.log(books);
                 //console.log(books)
                 // var imagePaths = [];
-                for (var i = 0; i < b; i++) {
-                    imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
-                    authors.push(books[i].author);
-                    price.push(books[i].price.toLocaleString('de-DE')   );
-                    bookNames.push(books[i].namebook);  
-                    //console.log(imagePaths[i]);
-                }
+                // for (var i = 0; i < b; i++) {
+                //     imagePaths.push("/Picture/book/" + i + ".jpg");
+                //     authors.push(books[i].author);
+                //     price.push(books[i].price.toLocaleString('de-DE')   );
+                //     bookNames.push(books[i].namebook);  
+                //     //console.log(imagePaths[i]);
+                // }
 
 
                 // Reference to the product div
@@ -164,8 +154,8 @@
                     aElement.href = "book";
 
                     // Create i element for cart icon
-                    var iElement = document.createElement("i");
-                    iElement.className = "bx bx-cart-add cart";
+                    // var iElement = document.createElement("i");
+                    // iElement.className = "bx bx-cart-add cart";
 
                     // Append i element to aElement
                     aElement.appendChild(iElement);
