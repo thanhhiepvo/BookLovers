@@ -89,13 +89,14 @@
             var mail = "<%= user.email %>";
             var fullname = "<%= user.fullname %>";
             var phone = "<%= user.phonenumber %>";
-            var birth = "<%= user.birth %>";
+            let birth = "<%= user.birth.toISOString().substring(0, 10) %>";
+
 
             document.getElementById("uname_edit").textContent = "User: " + name;
             document.getElementById("email_edit").placeholder = "Email: " + mail;
             document.getElementById("fullname_edit").placeholder = "Fullname: " + fullname;
             document.getElementById("phone_edit").placeholder = "Phone number: " + phone;
-            document.getElementById("birth_edit"). value="<%= user.birth.toISOString().split('T')[0] %>";
+            document.getElementById("birth_edit").value = birth;
         </script>
     </div>
     <%- include('footer.ejs') %>

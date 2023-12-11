@@ -4,7 +4,7 @@ import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editProfileController.js';
 import myBooksController from '../controllers/myBooksController.js'
 import bookController from '../controllers/bookController.js';
-import emailmodule from '../controllers/emailController.js';
+import emailmodule from '../controllers/emailController.cjs';
 
 const router = express.Router()
 
@@ -26,7 +26,7 @@ router.get('/otp', (req, res) => {
     res.render('otp.ejs', { message: req.flash('msg') });
 })
 
-//router.post('/otp-check', emailmodule.emailMethod.checkOTP);
+router.post('/otp-check', emailmodule.emailMethod.checkOTP);
 
 router.get('/about', async (req, res) => {
     if (req.session.username) {
@@ -35,10 +35,6 @@ router.get('/about', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-})
-
-router.get('/editProfile', (req, res) => {
-    res.render('editProfile.ejs')
 })
 
 router.get('/book', (req, res) => {

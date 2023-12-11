@@ -45,6 +45,14 @@ export async function getUserInvoice(username) {
     return rows.map(row => row.ID_Invoice);
 }
 
+export async function getUserBirth(username) {
+    const { rows } = await pool.query('SELECT Birth FROM useraccount WHERE Email = $1', [username]);
+    console.log(rows);
+    if (rows.length == 0)
+        return null;
+    return rows[0].birth;
+}
+
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table

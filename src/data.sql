@@ -44,3 +44,18 @@ insert into CATEGORY (ID_Category, NameCategory) values ('C14', 'Self-help');
 insert into CATEGORY (ID_Category, NameCategory) values ('C15', 'Comic');
 
 
+--OWNEDBOOK data--
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C1', 'Fiction');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C2', 'Non-fiction');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C3', 'Horror');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C4', 'Thriller');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C5', 'Fantasy');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C6', 'Drama');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C7', 'Action');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C8', 'Adventure');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C9', 'Technology');
+-- insert into OWNEDBOOK (OUsername, OBook) values ('C10', 'Reference');
+
+--SELLINGBOOK data--
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
