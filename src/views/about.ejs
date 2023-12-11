@@ -29,7 +29,7 @@
 <body>
     <header>
         <a href="#" class="logo"><img src="/Picture/logo.png"></a>
-        
+
         <ul class="navbar">
             <li><a href="homepage">Home</a></li>
             <li><a href="myBook">My books</a></li>
@@ -37,11 +37,11 @@
             <li><a href="wallet">Wallet</a></li>
             <li><a href="about" class="active">About</a></li>
         </ul>
-        
+
         <div class="profile">
-            <i class='bx bx-user' ></i>
+            <i class='bx bx-user'></i>
             <span>Profile</span>
-            <i class='bx bx-caret-down' ></i>
+            <i class='bx bx-caret-down'></i>
         </div>
 
         <div id="profileSpan">
@@ -56,17 +56,16 @@
         <Script>
             var profileSpan = document.getElementById("profileSpan");
 
-            var name = "Tiem Ban Nuoc";
-            var mail = "abc@gmail.com";
-            var balance = "1.500.000";
+            var name = "<%= user.username %>";
+            var mail = "<%= user.email %>";
+            var balance = "<%= user.balance.toLocaleString('de-DE') %>";
 
             document.getElementById("name").textContent = "UserName: " + name;
             document.getElementById("mail").textContent = "Email: " + mail;
             document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
 
             var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-            caretDownIcon.addEventListener('click', () => 
-            {
+            caretDownIcon.addEventListener('click', () => {
                 profileSpan.classList.toggle('active');
             });
         </Script>
