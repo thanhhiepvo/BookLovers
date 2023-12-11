@@ -11,35 +11,38 @@ export async function getUsername(username) {
 
 //get user email
 export async function getUserEmail(email) {
-    const { user } = await pool.query('SELECT * FROM useraccount WHERE email = $1', [email]);
-    if (!user)
+    const { rows } = await pool.query('SELECT Email FROM useraccount WHERE Email = $1', [email]);
+    console.log(rows);
+    if (rows.length == 0)
         return null;
-    console.log(user);
-    return user[0].email;
+    return rows[0].email;
 }
 
 //get user ownedbookID
 export async function getUserOwnedBook(username) {
-    const { ownedbookID } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = $1', [username]);
-    if (!ownedbookID)
+    const { rows } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = $1', [username]);
+    console.log(rows);
+    if (rows.length == 0)
         return null;
-    return ownedbookID;
+    return rows.map(row => row.OBook);
 }
 
 //get user sellingbookID
 export async function getUserSellingBook(username) {
-    const { sellingbookID } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = $1', [username]);
-    if (!sellingbookID)
+    const { rows } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = $1', [username]);
+    console.log(rows);
+    if (rows.length == 0)
         return null;
-    return sellingbookID;
+    return rows.map(row => row.SBook);
 }
 
 //get user invoiceID
 export async function getUserInvoice(username) {
-    const { invoiceID } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = $1', [username]);
-    if (!invoiceID)
+    const { rows } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = $1', [username]);
+    console.log(rows);
+    if (rows.length == 0)
         return null;
-    return invoiceID;
+    return rows.map(row => row.ID_Invoice);
 }
 
 export const insertUserAccount = async (username, email, password) => {
