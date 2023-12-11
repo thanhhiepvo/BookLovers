@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <title>Upload Book</title> 
+        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+        <link rel="stylesheet" href="/CSS/footer.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link rel="icon" href="/Picture/favicon.png" type="image/png">
+    </head>
+    <header>
+        <a href="#" class="logo"><img src="/Picture/logo.png"></a>
+        
+        <ul class="navbar">
+            <li><a href="homepage">Home</a></li>
+            <li><a href="myBook">My books</a></li>
+            <li><a href="selling">Selling</a></li>
+            <li><a href="wallet">Wallet</a></li>
+            <li><a href="about">About</a></li>
+        </ul>
+        
+        <div class="profile">
+            <i class='bx bx-user' ></i>
+            <span>Profile</span>
+            <i class='bx bx-caret-down' ></i>
+        </div>
+
+        <div id="profileSpan">
+            <h5 id="name"></h5>
+            <h5 id="mail"></h5>
+            <h5 id="balance"></h5>
+            <li><a href="editProfile">Edit my profile</a></li>
+            <li><a href="logOut">Log out</a></li>
+        </div>
+
+        <!-- Script for Profile -->
+        <Script>
+            var profileSpan = document.getElementById("profileSpan");
+            var name = "<%= user.username %>";
+            var mail = "<%= user.email %>";
+            var balance = "<%= user.balance %>";
+
+            document.getElementById("name").textContent = "UserName: " + name;
+            document.getElementById("mail").textContent = "Email: " + mail;
+            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+            caretDownIcon.addEventListener('click', () => 
+            {
+                profileSpan.classList.toggle('active');
+            });
+        </Script>
+
+    </header>
+
+    <div class="uploadBook" id="uploadBook">
+        <div class="wrapper">
+            <form id="uploadForm">
+                <h1>Upload a Book</h1>
+
+                <div class="infoUpload">
+                    <input type="text" id="nameBook" name="nameBook" placeholder="Book Name" required>
+                </div>
+
+                <div class="infoUpload">
+                    <input type="text" id="author" name="author" placeholder="Author" required>
+                </div>
+
+                <div class="infoUpload">
+                    <input type="text" id="price" name="price" placeholder="Price" required>
+                </div>
+
+                <div class="infoUpload">
+                    <textarea id="description" name="description" placeholder="Description" required></textarea>
+                </div>
+
+                <div class="infoUpload">
+                    <input type="text" id="publishedYear" name="publishedYear" placeholder="Published Year" required>
+                </div>
+
+                <div class="infoUpload">
+                    <input type="text" id="link" name="link" placeholder="Link" required>
+                </div>
+
+                <div class="infoUpload">
+                    <input type="file" id="thumbnailInput" name="thumbnailInput" accept="image/*" onchange="handleFileSelect()">
+                </div>
+
+                <button type="button" class="uploadBut" onclick="uploadThumbnail()">Upload Thumbnail</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var selectedThumbnail = null;
+
+        function handleFileSelect() {
+            var fileInput = document.getElementById('thumbnailInput');
+            selectedThumbnail = fileInput.files[0];
+            console.log('File đã được chọn:', selectedThumbnail);
+        }
+
+        function uploadThumbnail() {
+            if (selectedThumbnail) {
+                // Ở đây, bạn có thể thực hiện bất kỳ xử lý nào với biến selectedThumbnail
+                console.log('Đã tải lên file:', selectedThumbnail);
+            } else {
+                console.error('Không có file được chọn.');
+            }
+        }
+    </script>
+
+        <script>
+            var nameBook = document.getElementById("nameBook");
+            var author = document.getElementById("author");
+            var price = document.getElementById("price");
+            var description = document.getElementById("description");
+            var publishedYear = document.getElementById("publishedYear");
+
+        </script>
+
+        
+    </div>
+
+    <%- include('footer.ejs') %>
+</html>
