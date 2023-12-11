@@ -1,8 +1,8 @@
 
 import pool from '../database.js'
-
+//TO_CHAR(Birth, 'MM/DD/YYYY')
 export async function getUsername(username) {
-    const { rows } = await pool.query('SELECT * FROM useraccount WHERE username = $1', [username]);
+    const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
     console.log(rows);
     if (rows[0] == null)
         return null;
@@ -24,7 +24,7 @@ export async function getUserOwnedBook(username) {
     console.log(rows);
     if (rows.length == 0)
         return null;
-    return rows.map(row => row.OBook);
+    return rows.map(row => row.obook);
 }
 
 //get user sellingbookID
@@ -33,7 +33,7 @@ export async function getUserSellingBook(username) {
     console.log(rows);
     if (rows.length == 0)
         return null;
-    return rows.map(row => row.SBook);
+    return rows.map(row => row.sbook);
 }
 
 //get user invoiceID
@@ -42,11 +42,11 @@ export async function getUserInvoice(username) {
     console.log(rows);
     if (rows.length == 0)
         return null;
-    return rows.map(row => row.ID_Invoice);
+    return rows.map(row => row.id_invoice);
 }
 
 export async function getUserBirth(username) {
-    const { rows } = await pool.query('SELECT Birth FROM useraccount WHERE Email = $1', [username]);
+    const { rows } = await pool.query("SELECT Birth + interval '7 hours' as Birth FROM useraccount WHERE Username = $1", [username]);
     console.log(rows);
     if (rows.length == 0)
         return null;
