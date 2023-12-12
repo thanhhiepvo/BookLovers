@@ -149,7 +149,7 @@ body
     transition: background 0.5s;
 }
 
-.navbar a:hover, .navbar .about-active
+.navbar a:hover, .navbar .active
 {
     background: white;
     color: #141A46;
@@ -631,5 +631,3 @@ body
     color: #141A46;
     font-size: 18px;
 }
-
-

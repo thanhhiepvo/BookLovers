@@ -5,6 +5,7 @@
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
         <title>Home page</title> 
         <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+        <link rel="stylesheet" href="/CSS/footer.css">  
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link rel="icon" href="/Picture/favicon.png" type="image/png">
     </head>
@@ -88,13 +89,15 @@
             var mail = "<%= user.email %>";
             var fullname = "<%= user.fullname %>";
             var phone = "<%= user.phonenumber %>";
-            var birth = "<%= user.birth %>";
+            let birth = "<%= user.birth.toISOString().substring(0, 10) %>";
+
 
             document.getElementById("uname_edit").textContent = "User: " + name;
             document.getElementById("email_edit").placeholder = "Email: " + mail;
             document.getElementById("fullname_edit").placeholder = "Fullname: " + fullname;
             document.getElementById("phone_edit").placeholder = "Phone number: " + phone;
-            document.getElementById("birth_edit"). value="<%= user.birth.toISOString().split('T')[0] %>";
+            document.getElementById("birth_edit").value = birth;
         </script>
     </div>
+    <%- include('footer.ejs') %>
 </html>

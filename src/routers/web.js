@@ -4,7 +4,7 @@ import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editProfileController.js';
 import myBooksController from '../controllers/myBooksController.js'
 import bookController from '../controllers/bookController.js';
-import emailmodule from '../controllers/emailController.cjs';
+import emailMethod from '../controllers/emailController.js';
 
 const router = express.Router()
 
@@ -21,19 +21,20 @@ router.get('/forgotPass', (req, res) => {
     res.render('forgotPass.ejs', { message: req.flash('msg') });
 })
 router.post('/forgot-pass', authenController.forgotPassword);
-  
+
 router.get('/otp', (req, res) => {
-    res.render('otp.ejs', {message: req.flash('msg') });
-})
-  
-router.post('/otp-check', emailmodule.emailMethod.checkOTP);
-
-router.get('/about', (req, res) => {
-    res.render('about.ejs', )
+    res.render('otp.ejs', { message: req.flash('msg') });
 })
 
-router.get('/editProfile', (req, res) => {
-     res.render('editProfile.ejs')
+router.post('/otp-check', emailMethod.checkOTP);
+
+router.get('/about', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('about', { user: user });
+    } else {
+        res.redirect('/login');
+    }
 })
 
 router.get('/book', (req, res) => {
@@ -48,63 +49,89 @@ router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
 router.post('/create-user', authenController.postCreateUser);
-  
-router.get('/homepage', async(req, res) => {
-      //res.send('Check out our homepage') // send text
-      var books;
+
+router.get('/homepage', async (req, res) => {
     if (req.session.username) {
-        // bookController.getInfoBook(req, res).then(book => {
-        //     //console.log(book)
-        //     books = book;
-        //     res.render('home', { username: req.session.username, email: req.session.email, ballance: req.session.ballance , books: book}); 
-        //     //console.log(">>> req.session.username = ", books);
-        // }).catch(error => {
-        //     console.error(error);
-        // });
-        // res.render() to render a template file : tạo view dynamic
         try {
             const book = await bookController.getInfoBook(req, res);
-            books = book;
-            res.render('home', { 
-                username: req.session.username, 
-                email: req.session.email, 
-                ballance: req.session.ballance, 
+            const user = await authenController.getProfileUser(req, res);
+            //books = book;
+            res.render('home', {
+                user: user,
                 books: book
-            }); 
+            });
         } catch (error) {
             console.error(error);
         }
     } else {
-      res.redirect('/login');
+        res.redirect('/login');
     }
     console.log(">>> req.session.username = ", req.session.username);
-    //console.log("REQ.BOOK = ", req.book);
 });
-// router.get('/homepage', bookController.getInfoBook);
-
-router.get('/myBook', myBooksController.getMyBooksInfo);
-/*
-router.get('/myBook', (req, res) => {
+router.get('/myBook', async (req, res) => {
     if (req.session.username) {
-        res.render('myBook', { username: req.session.username, email: req.session.email, ballance: req.session.ballance });
+        try {
+            const user = await authenController.getProfileUser(req, res);
+            const listOwnedBook = await bookController.getInfoBook(req, res);
+            res.render('myBook', {
+                user: user,
+                books: listOwnedBook
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        res.redirect('/login');
+    }
+    console.log(">>> req.session.username = ", req.session.username);
+})
+
+router.get('/selling', async (req, res) => {
+    if (req.session.username) {
+        try {
+            const user = await authenController.getProfileUser(req, res);
+            const listOwnedBook = await bookController.getInfoBook(req, res);
+            res.render('selling', {
+                user: user,
+                books: listOwnedBook
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        res.redirect('/login');
+    }
+    console.log(">>> req.session.username = ", req.session.username);
+})
+router.get('/upload', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('upload.ejs', { user: user }); // Render the view with user data
     } else {
         res.redirect('/login');
     }
 })
-*/
 
-router.get('/wallet', walletController.getWalletInfo);
-router.get('/editProfile', profileController.getInfo);
+router.get('/wallet', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('wallet', { user: user }); // Render the view with user data
+    } else {
+        res.redirect('/login');
+    }
+})
+
+router.get('/editProfile', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('editProfile', { user: user }); // Render the view with user data
+    } else {
+        res.redirect('/login');
+    }
+})
 router.post('/edit-profile', profileController.updateInfo)
 // router.get('/book', profileController.getInfo);
 
-router.get('/logOut', function(req, res){
-    req.session.destroy(function(err) {
-      if(err) {
-        console.log(err);
-      } else {
-        res.redirect('/login');
-      }
-    });
-  });
+router.get('/logout', authenController.logout);
+
 export default router;

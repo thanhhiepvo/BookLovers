@@ -1,159 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Books</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/myBook.css" />
-    <link rel="stylesheet" type="text/css" href="/CSS/navbar.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-    />
-    <link rel="icon" href="/Picture/favicon.jpg" type="image/jpg" />
-  </head>
 
-  <body>
-    <header>
-      <!-- Header content here -->
-      <a href="#" class="logo"><img src="/Picture/logo.png" /></a>
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
 
-      <ul class="navbar">
+    <ul class="navbar">
         <li><a href="homepage">Home</a></li>
-        <li><a href="myBook" class="about-active">My books</a></li>
+        <li><a href="myBook" class="active">My books</a></li>
         <li><a href="selling">Selling</a></li>
         <li><a href="wallet">Wallet</a></li>
         <li><a href="about">About</a></li>
-      </ul>
+    </ul>
 
-      <div class="profile">
-        <i class="bx bx-user"></i>
+    <div class="profile">
+        <i class='bx bx-user'></i>
         <span>Profile</span>
-        <i class="bx bx-caret-down"></i>
-      </div>
+        <i class='bx bx-caret-down'></i>
 
-      <div id="profileSpan">
+    </div>
+
+    <div id="profileSpan">
         <h5 id="name"></h5>
         <h5 id="mail"></h5>
         <h5 id="balance"></h5>
         <li><a href="editProfile">Edit my profile</a></li>
         <li><a href="logOut">Log out</a></li>
-      </div>
+    </div>
 
-      <!-- Script for Profile -->
-      <script>
+    <!-- Script for Profile -->
+    <Script>
         var profileSpan = document.getElementById("profileSpan");
 
-        var name = "<%= user.username %>";
-        var mail = "<%= user.email %>";
-        var balance = "<%= user.balance %>";
+        var name = "<%=user.username%>";
+        var mail = "<%=user.email%>";
+        var balance = "<%=user.balance.toLocaleString('de-DE')%>";
+
 
         document.getElementById("name").textContent = "UserName: " + name;
         document.getElementById("mail").textContent = "Email: " + mail;
-        document.getElementById("balance").textContent =
-          "Wallet: " + balance + " VND";
+        document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
 
-        var caretDownIcon = document.querySelector(".profile .bx-caret-down");
-        caretDownIcon.addEventListener("click", () => {
-          profileSpan.classList.toggle("active");
+        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+        caretDownIcon.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
         });
-      </script>
-    </header>
-    <div>
-      <h1>My Books</h1>
-    </div>
-    <section id="booksContainer" class="section_home">
-      <!-- Container for books -->
-    </section>
+    </Script>
 
-    <script>
-      var imagePaths = [
-        "/Picture/c++.jpg",
-        "/Picture/p1.jpg",
-        "/Picture/p2.jpg",
-        "/Picture/p3.jpg",
-        // Add more image paths as needed
-      ];
+</header>
 
-      var bookNames = [
-        "C++ for beginer",
-        "Python crash course",
-        "Python for Data Analysis",
-        "JavaScript for Beginners",
-      ];
+<body>
 
-      var authors = [
-        "Tony Gaddis",
-        "Erric Matthes",
-        "Wes McKinney",
-        "Terry McNavage",
-      ];
-
-      var price = ["240.000", "300.000", "270.000", "320.000"];
-
-      var booksContainer = document.getElementById("booksContainer");
-
-      for (var i = 0; i < imagePaths.length; i++) {
-        var bookContainer = document.createElement("div");
-        bookContainer.className = "bookContainer";
-
-        var bookDiv = document.createElement("div");
-        bookDiv.className = "book";
-
-        var imgElement = document.createElement("img");
-        imgElement.src = imagePaths[i];
-        imgElement.alt = "";
-
-        var descriptionDiv = document.createElement("div");
-        descriptionDiv.className = "description";
-
-        var spanElement = document.createElement("span");
-        spanElement.textContent = bookNames[i];
-
-        var h5Element = document.createElement("h5");
-        h5Element.textContent = authors[i];
-
-        var h4Element = document.createElement("h4");
-        h4Element.textContent = price[i] + " VND";
-
-        descriptionDiv.appendChild(spanElement);
-        descriptionDiv.appendChild(h5Element);
-
-        bookDiv.appendChild(imgElement);
-        bookDiv.appendChild(descriptionDiv);
-
-        bookContainer.appendChild(bookDiv);
-
-        booksContainer.appendChild(bookContainer);
-      }
-    </script>
-    <button id="uploadBtn">Upload Your Book</button>
-
-    <!-- Mục sách và pop-up -->
     <section id="product" class="section_home">
-      <!-- Các phần khác ở đây -->
+        <h2>This is your bookshell</h2>
+        <p></p>
 
-      <!-- Nút Upload Popup -->
-      <div id="uploadPopup" class="popup">
-        <div class="popup-content">
-          <span class="close" onclick="closePopup()">&times;</span>
-          <input type="file" id="fileInput" />
-          <button onclick="uploadFile()">Submit</button>
-        </div>
-      </div>
+        <!-- Script for product -->
+        <script>
+
+            function decodeHtml(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
+            var idBook = [];
+            var imagePaths = [];
+            var authors = [];
+            var price = [];
+            var bookNames = [];
+
+            //var b = "<%=Object.keys(books).length%>";
+            var b = "<%=books.length%>"
+            // var tmp = "<%=books[0].namebook%>";
+            // console.log(tmp);
+            var books = "<%= JSON.stringify(books) %>";
+            books = decodeHtml(books);
+            books = JSON.parse(books);
+            //console.log(books);
+            //console.log(books)
+            // var imagePaths = [];
+            for (var i = 0; i < b; i++) {
+                idBook.push(books[i].id_book);
+                imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
+                authors.push(books[i].author);
+                price.push(books[i].price.toLocaleString('de-DE'));
+                bookNames.push(books[i].namebook);
+                //console.log(imagePaths[i]);
+            }
+
+
+            // Reference to the product div
+            var product = document.getElementById("product");
+            // Create productContainer div
+            var productContainer = document.createElement("div");
+            productContainer.className = "productContainer";
+
+
+            // Loop through the image paths and create product_cont divs
+            for (var i = 0; i < imagePaths.length; i++) {
+                // Create product_cont div
+                var productContDiv = document.createElement("div");
+                productContDiv.className = "product_cont";
+
+                // Create pro div
+                var proDiv = document.createElement("div");
+                proDiv.className = "pro";
+
+                // Create img element
+                var imgElement = document.createElement("img");
+                imgElement.src = imagePaths[i];
+                imgElement.alt = "";
+
+                // Create description div
+                var descriptionDiv = document.createElement("div");
+                descriptionDiv.className = "description";
+
+                // Create span element
+                var spanElement = document.createElement("span");
+                spanElement.textContent = bookNames[i];
+
+                // Create h5 element
+                var h5Element = document.createElement("h5");
+                h5Element.textContent = authors[i];
+
+
+
+                // Create h4 element
+                var h4Element = document.createElement("h4");
+                h4Element.textContent = price[i] + " VND";
+
+                // Append span and h5 elements to descriptionDiv
+                descriptionDiv.appendChild(spanElement);
+                descriptionDiv.appendChild(h5Element);
+
+                // Append imgElement and descriptionDiv to proDiv
+                proDiv.appendChild(imgElement);
+                proDiv.appendChild(descriptionDiv);
+                proDiv.appendChild(h4Element);
+
+                // Create a element
+                var aElement = document.createElement("a");
+                aElement.href = "book?" + idBook[i];
+
+                // Create i element for cart icon
+                var iElement = document.createElement("i");
+                iElement.className = "bx bx-cart-add cart";
+
+                // Append i element to aElement
+                aElement.appendChild(iElement);
+
+                // Append a to proDiv
+                proDiv.appendChild(aElement);
+
+                // Append proDiv, h4Element, and aElement to productContDiv
+                productContDiv.appendChild(proDiv);
+                // productContDiv.appendChild(h4Element);
+                // productContDiv.appendChild(aElement);
+
+                // Append productContDiv to productContainer
+                productContainer.appendChild(productContDiv);
+                product.appendChild(productContainer);
+            }
+            document.body.appendChild(product);
+        </script>
+
+
     </section>
-    <script>
-      // Thêm JavaScript để hiển thị và ẩn popup
-      var uploadPopup = document.getElementById("uploadPopup");
-      var uploadBtn = document.getElementById("uploadBtn");
 
-      uploadBtn.onclick = function () {
-        uploadPopup.style.display = "block";
-      };
+</body>
+<%- include('footer.ejs') %>
 
-      function closePopup() {
-        uploadPopup.style.display = "none";
-      }
-    </script>
-  </body>
 </html>

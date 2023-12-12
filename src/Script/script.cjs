@@ -95,28 +95,6 @@ function inputOTP() {
     window.addEventListener("load", () => inputs[0].focus());
 }
 
-
-const emailModule = require('../controllers/emailController.cjs');
-
-function sendOTP(userEmail) {
-    //chỉnh sửa thông tin mail
-    const mailOptions = {
-        from: process.env.MAIL_USERNAME,
-        to: userEmail, //tự nhập email đi bạn
-        subject: '[BookLovers] OTP',
-        text: `Your OTP is ${emailModule.curOTP}. Use this OTP to ...`
-    };
-
-    // Gửi email
-    emailModule.emailController.sendMail(mailOptions, function (err, data) {
-        if (err) {
-            console.log("Error " + err);
-        } else {
-            console.log("Email sent successfully");
-        }
-    });
-}
-
 function startTimer() {
     let timeLeft = 60;
     let timer = setInterval(function () {
