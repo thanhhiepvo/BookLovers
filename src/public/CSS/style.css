@@ -12,7 +12,7 @@ body
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../Picture/bg4.jpg') no-repeat;
+    background: url('../Picture/bg5.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -28,7 +28,7 @@ body
     background: transparent;
     padding: 300px 50px 300px 0px;
     
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .projName .word
@@ -41,7 +41,7 @@ body
 {
     font-size: 70px;
     text-align: center;
-    /* color: #141A46; */
+    /* color: #0e0e2e; */
     
 }
 
@@ -49,13 +49,13 @@ body
 {
     font-size: 30px;
     text-align: center;
-    /* color: #141A46; */
+    /* color: #0e0e2e; */
 }
 
 .loginSite
 {
     display: flex;
-    /* justify-content: center; */
+    justify-content: left;
     align-items: center;
     min-height: 100vh;
     background: transparent;
@@ -66,7 +66,7 @@ body
 {
     width: 420px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
     border: 2px solid #141A46;
@@ -113,16 +113,16 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .inputBox input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .remember
@@ -136,13 +136,13 @@ body
 
 .remember a
 {
-    color: #141A46;
+    color: #0e0e2e;
     text-decoration: none;
 }
 
 .remember a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -151,7 +151,7 @@ body
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
+    background: #0e0e2e;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -170,14 +170,14 @@ body
 
 .register p a 
 {
-    color: #141A46;
+    color: #0e0e2e;
     font-weight: 600;
     text-decoration: none;
 }
 
 .register p a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -198,10 +198,10 @@ body
 {
     width: 420px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .forgot .wrapper h1
@@ -225,16 +225,16 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .email input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .pass
@@ -252,23 +252,23 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .pass input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .resetBut
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
+    background: #0e0e2e;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -314,10 +314,10 @@ body
     width: 420px;
     height: 550px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .reg .wrapper h1
@@ -341,23 +341,23 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .signUp input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .signUpBut
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
+    background: #0e0e2e;
     border: none;
     outline: none;
     border-radius: 40px;
@@ -369,19 +369,20 @@ body
 
 .wrapper .login
 {
-    color: #141A46;
-    padding-top: 20px;
+    color: #0e0e2e;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 .wrapper .login a
 {
-    color: #141A46;
+    color: #0e0e2e;
     text-decoration: none;
 }
 
 .wrapper .login a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -421,10 +422,10 @@ body
     width: 420px;
     height: 250px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .otp .wrapper h1

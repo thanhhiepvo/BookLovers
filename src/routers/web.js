@@ -130,7 +130,7 @@ router.get('/editProfile', async (req, res) => {
     }
 })
 router.post('/edit-profile', profileController.updateInfo)
-// router.get('/book', profileController.getInfo);
+router.get('/book', profileController.getInfo);
 
 router.get('/logout', authenController.logout);
 

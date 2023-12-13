@@ -21,8 +21,8 @@
   footer {
     /* position: fixed; */
     max-height: 300px;
-    left: 0;
-    bottom: 0;
+    /* left: 0;
+    bottom: 0; */
     background: #191069 ;
     color: white;
     width: 100vw;
