@@ -20,7 +20,7 @@ const app = express() // create an instance of the Express application
 const oneHour = 1000 * 60 * 60;
 
 //const port = 8080 // port => hard code
-const port = process.env.PORT || 8888 // port => dynamic , nếu bị lỗi thì sẽ dùng port 8888
+const port = process.env.PORT || 8888  // port => dynamic , nếu bị lỗi thì sẽ dùng port 8888
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,13 +29,13 @@ app.set('views', './views/');
 app.set('view engine', 'ejs');
 
 app.use(session({
-  secret: process.env.SESSION_SECRET, 
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: oneHour }
 }));
 
-app.use (bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());

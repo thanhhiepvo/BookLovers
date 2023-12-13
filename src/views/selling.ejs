@@ -94,11 +94,12 @@
 
             //var b = "<%=Object.keys(books).length%>";
             var b = "<%=books.length%>"
-            // var tmp = "<%=books[0].namebook%>";
-            // console.log(tmp);
-            var books = "<%= JSON.stringify(books) %>";
-            books = decodeHtml(books);
-            books = JSON.parse(books);
+            if ( b != 0 )
+            {
+                var books = "<%= JSON.stringify(books) %>";
+                books = decodeHtml(books);
+                books = JSON.parse(books);
+            }
             //console.log(books);
             //console.log(books)
             // var imagePaths = [];
@@ -184,7 +185,8 @@
                 productContainer.appendChild(productContDiv);
                 product.appendChild(productContainer);
             }
-            document.body.appendChild(product);
+            if (b != 0)
+                document.body.appendChild(product);
         </script>
 
 
