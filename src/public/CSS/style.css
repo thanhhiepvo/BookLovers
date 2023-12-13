@@ -12,7 +12,7 @@ body
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../Picture/bg4.jpg') no-repeat;
+    background: url('../Picture/bg5.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -28,7 +28,7 @@ body
     background: transparent;
     padding: 300px 50px 300px 0px;
     
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .projName .word
@@ -41,7 +41,7 @@ body
 {
     font-size: 70px;
     text-align: center;
-    /* color: #141A46; */
+    /* color: #0e0e2e; */
     
 }
 
@@ -49,13 +49,13 @@ body
 {
     font-size: 30px;
     text-align: center;
-    /* color: #141A46; */
+    /* color: #0e0e2e; */
 }
 
 .loginSite
 {
     display: flex;
-    /* justify-content: center; */
+    justify-content: left;
     align-items: center;
     min-height: 100vh;
     background: transparent;
@@ -66,7 +66,7 @@ body
 {
     width: 420px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
     border: 2px solid #141A46;
@@ -113,16 +113,16 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .inputBox input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .remember
@@ -136,13 +136,13 @@ body
 
 .remember a
 {
-    color: #141A46;
+    color: #0e0e2e;
     text-decoration: none;
 }
 
 .remember a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -151,14 +151,21 @@ body
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
+    /* background: #0e0e2e; */
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 5px black;
+    /* box-shadow: 0 0 5px black; */
     font-size: 20px;
     color: white;
+    background: #0e0e2e;
     font-weight: 600;
+}
+
+.loginSite .wrapper .loginBut:hover
+{
+    background: white;
+    color: #0e0e2e;
 }
 
 .wrapper .register
@@ -170,14 +177,14 @@ body
 
 .register p a 
 {
-    color: #141A46;
+    color: #0e0e2e;
     font-weight: 600;
     text-decoration: none;
 }
 
 .register p a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -198,10 +205,10 @@ body
 {
     width: 420px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .forgot .wrapper h1
@@ -225,16 +232,16 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .email input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .pass
@@ -252,30 +259,36 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .pass input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .resetBut
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 5px black;
+    /* box-shadow: 0 0 5px black; */
     font-size: 20px;
+    background: #0e0e2e;
     color: white;
     font-weight: 600;
+}
+
+.wrapper .resetBut:hover
+{
+    color: #0e0e2e;
+    background: white;
 }
 
 .forgot .wrapper .alert-success
@@ -314,10 +327,10 @@ body
     width: 420px;
     height: 550px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .reg .wrapper h1
@@ -341,47 +354,54 @@ body
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
     border-radius: 20px;
     font-size: 16px;
-    color: #141A46;
+    color: #0e0e2e;
     padding: 20px 45px 20px 10px;
 }
 
 .signUp input::placeholder
 {
-    color: #141A46;
+    color: #0e0e2e;
 }
 
 .wrapper .signUpBut
 {
     width: 100%;
     height: 45px;
-    background: #141A46;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 5px black;
+    /* box-shadow: 0 0 5px black; */
     font-size: 20px;
+    background: #0e0e2e;
     color: white;
     font-weight: 600;
 }
 
+.wrapper .signUpBut:hover
+{
+    color: #0e0e2e;
+    background: white;
+}
+
 .wrapper .login
 {
-    color: #141A46;
-    padding-top: 20px;
+    color: #0e0e2e;
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 .wrapper .login a
 {
-    color: #141A46;
+    color: #0e0e2e;
     text-decoration: none;
 }
 
 .wrapper .login a:hover
 {
-    background-color: #141A46;
+    background-color: #0e0e2e;
     color: white;
     border-radius: 10px;
 }
@@ -421,10 +441,10 @@ body
     width: 420px;
     height: 250px;
     background: transparent;
-    color: #141A46;
+    color: #0e0e2e;
     border-radius: 10px;
     padding: 30px 30px;
-    border: 2px solid #141A46;
+    border: 2px solid #0e0e2e;
 }
 
 .otp .wrapper h1
@@ -444,6 +464,8 @@ form .inputOTP
     flex-direction: row;
     column-gap: 10px;
     text-align: center;
+    /* height: fit-content; */
+    margin-top: 10px;
 }
 
 .inputOTP input
@@ -472,6 +494,16 @@ form .inputOTP
     display: none;
 }
 
+.otp .wrapper
+{
+    height: auto;
+}
+
+/* .otp .wrapper .inputOTP #resendButton :disabled
+{
+    display: none;
+} */
+
 .otp .wrapper form button
 {
     margin-top: 25px;
@@ -489,12 +521,19 @@ form .inputOTP
 
 .otp .wrapper form button.getOTP
 {
-    background: #4070f4;
+    background: #0e0e2e;
     pointer-events: auto;
 }
 
 .otp .wrapper form button:hover
 {
-    background: #0e4bf1;
+    color: #0e0e2e;
+    background: white;
+}
+
+.otp .wrapper form button:hover:disabled
+{
+    background: #0e0e2e;
+    color: white;
 }
 

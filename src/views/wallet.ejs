@@ -59,155 +59,148 @@
 </header>
 
 <body>
+    <section id="infoWalletPage">
 
-    <nav class="miniNavbar">
-        <li><a href="#deposit">Deposite</a></li>
-        <li><a href="#withdraw">Withdraw</a></li>
-        <li><a href="#history">History</a></li>
-    </nav>
-
-    <div class="mainWallet">
-        <div class="balance">
-            <h2>My wallet</h2>
-            <div class="infoWallet">
-                <h1 id="money_wallet"></h1>
-                <h3 id="uname_wallet"></h3>
-                <h3 id="phone_wallet"></h3>
-                <h3 id="mail_wallet"></h3>
+        <div class="miniNavbar">
+            <li><a href="#deposit">Deposite</a></li>
+            <li><a href="#withdraw">Withdraw</a></li>
+            <li><a href="#history">History</a></li>
+        </div>
+    
+        <div class="mainWallet">
+            <div class="balance">
+                <h2>My wallet</h2>
+                <div class="infoWallet">
+                    <h1 id="money_wallet"></h1>
+                    <h3 id="uname_wallet"></h3>
+                    <h3 id="phone_wallet"></h3>
+                    <h3 id="mail_wallet"></h3>
+                </div>
+                <script>
+                    var money = "<%= user.balance.toLocaleString('de-DE') %>";
+                    var uname = "<%= user.username %>";
+                    var phone = "<%= user.phonenumber %>";
+                    var mail = "<%= user.email %>";
+    
+                    document.getElementById("money_wallet").textContent = money + " VND";
+                    document.getElementById("uname_wallet").textContent = uname;
+                    document.getElementById("phone_wallet").textContent = phone;
+                    document.getElementById("mail_wallet").textContent = mail;
+                </script>
             </div>
-            <script>
-                var money = "<%= user.balance.toLocaleString('de-DE') %>";
-                var uname = "<%= user.username %>";
-                var phone = "<%= user.phonenumber %>";
-                var mail = "<%= user.email %>";
-
-                document.getElementById("money_wallet").textContent = money + " VND";
-                document.getElementById("uname_wallet").textContent = uname;
-                document.getElementById("phone_wallet").textContent = phone;
-                document.getElementById("mail_wallet").textContent = mail;
-            </script>
+    
         </div>
-
-    </div>
-
-    <div class="deposit" id="deposit">
-        <div class="infoDepo">
-            <h2>Deposit</h2>
-        </div>
-        <img src="/Picture/momo.jpg">
-        <div class="subInfoDepo">
-            <h4>Accept all e-Wallet and Mobile banking</h4>
-        </div>
-    </div>
-
-    <div class="withdraw" id="withdraw">
-        <div class="withd">
-            <h2>Withdraw</h2>
-            <div class="infoWi">
-                <h4 class="info">Withdraw amount (VNĐ)</h4>
-                <input type="text" id="amountInput" step="1000" required>
-                <h3 class="info">From:</h3>
-                <h4 id="fromWi">Tiem Ban Nuoc</h4>
-                <h3 class="info">To:</h3>
-                <h4 id="toWi">0123456789</h4>
-                <button type="submit" class="butWi">Confirm</button>
+    
+        <div class="deposit" id="deposit">
+            <div class="infoDepo">
+                <h2>Deposit</h2>
             </div>
-            <script>
-                var amountInput = document.getElementById("amountInput");
-                if (amountInput.value == "") {
-                    amountInput.value = amountInput.value + "VND";
-                }
-                amountInput.addEventListener('keyup', (event) => {
-                    // if (event.keyCode !== 8 && event.keyCode !== 46)
-                    // {
-                    //     amountInput.selectionStart = amountInput.value.length - 4;
-                    //     amountInput.selectionEnd = amountInput.value.length - 4;
-                    // }
-
-                    if (event.keyCode == 8 && amountInput.value.length > 3) {
-                        // if (amountInput.value[0] == ".")
-                        // {
-                        //     amountInput.value = amountInput.value.slice(2);
-                        // }
-                        // else
-                        // {
-                        //     amountInput.value = amountInput.value.slice(1);
-                        // }
-
-                        for (var i = 0; i < amountInput.value.length - 4; i++) {
-                            if (amountInput.value[i + 1] == '.') {
-                                var tmp = amountInput.value[i];
-                                amountInput.value[i] = amountInput.value[i + 1];
-                                amountInput.value[i + 1] = tmp;
-                            }
-                        }
-
-                        // if (amountInput.value[0] == ".")
-                        // {
-                        //     amountInput.value = amountInput.value.slice(1);
-                        // }
-
-                        // amountInput.value = amountInput.value.slice(amountInput.value.length - 4);
-                        amountInput.selectionStart = amountInput.value.length - 3;
-                        amountInput.selectionEnd = amountInput.value.length - 3;
-                    }
-
-                    else {
-                        var count = 0;
-                        for (var i = 0; i < amountInput.value.length; i++) {
-                            if (amountInput.value[i] == ".") {
-                                count++;
-                            }
-                        }
-                        if ((amountInput.value.length - count - 1) % 3 == 0 && amountInput.value.length > 5) {
-                            // amountInput.value = "." + amountInput.value;
-                            // amountInput.value = amountInput.value.splice(amountInput.value.length - 3, 0, ".");
-                            // amountInput.value = amountInput.value.replace("VND", ".VND");
-                            amountInput.value = amountInput.value.slice(0, count * 3 + 1 + count) + "." + amountInput.value.slice(count * 3 + 1 + count);
-                        }
-
-                        // var c = 0;
-                        // for (var i = amountInput.value.length - 4; i >= 0; i -= 1)
-                        // {
-                        //     if (amountInput.value[i] != ".")
-                        //     {
-                        //         c++;
-                        //     }
-                        //     if (c == 3)
-                        //     {
-                        //         amountInput.value = amountInput.value.slice(0, i) + "." + amountInput.value.slice(i);
-                        //         c = 0;
-                        //     }
-                        // }
-                        amountInput.selectionStart = amountInput.value.length - 3;
-                        amountInput.selectionEnd = amountInput.value.length - 3;
-                        // console.log(amountInput.value);
-                    }
-
-                    // const value = event.target.value;
-                });
-                // document.getElementById("amountInput").textContent = amountInput + " VND";
-            </script>
+            <img src="/Picture/momo.jpg">
+            <div class="subInfoDepo">
+                <h4>Accept all e-Wallet and Mobile banking</h4>
+            </div>
         </div>
-    </div>
-
-    <div class="history" id="history">
-        <div class="infoHis">
-            <h2>History</h2>
-
+    
+        <div class="withdraw" id="withdraw">
+            <div class="withd">
+                <h2>Withdraw</h2>
+                <div class="infoWi">
+                    <h4 class="info">Withdraw amount (VNĐ)</h4>
+                    <input type="text" id="amountInput" step="1000" required>
+                    <h3 class="info">From:</h3>
+                    <h4 id="fromWi">Tiem Ban Nuoc</h4>
+                    <h3 class="info">To:</h3>
+                    <h4 id="toWi">0123456789</h4>
+                    <button type="submit" class="butWi">Confirm</button>
+                </div>
+                <script>
+                    var amountInput = document.getElementById("amountInput");
+                    if (amountInput.value == "") {
+                        amountInput.value = amountInput.value + "VND";
+                    }
+                    amountInput.addEventListener('keyup', (event) => {
+                        // if (event.keyCode !== 8 && event.keyCode !== 46)
+                        // {
+                        //     amountInput.selectionStart = amountInput.value.length - 4;
+                        //     amountInput.selectionEnd = amountInput.value.length - 4;
+                        // }
+    
+                        if (event.keyCode == 8 && amountInput.value.length > 3) {
+                            // if (amountInput.value[0] == ".")
+                            // {
+                            //     amountInput.value = amountInput.value.slice(2);
+                            // }
+                            // else
+                            // {
+                            //     amountInput.value = amountInput.value.slice(1);
+                            // }
+    
+                            for (var i = 0; i < amountInput.value.length - 4; i++) {
+                                if (amountInput.value[i + 1] == '.') {
+                                    var tmp = amountInput.value[i];
+                                    amountInput.value[i] = amountInput.value[i + 1];
+                                    amountInput.value[i + 1] = tmp;
+                                }
+                            }
+    
+                            // if (amountInput.value[0] == ".")
+                            // {
+                            //     amountInput.value = amountInput.value.slice(1);
+                            // }
+    
+                            // amountInput.value = amountInput.value.slice(amountInput.value.length - 4);
+                            amountInput.selectionStart = amountInput.value.length - 3;
+                            amountInput.selectionEnd = amountInput.value.length - 3;
+                        }
+    
+                        else {
+                            var count = 0;
+                            for (var i = 0; i < amountInput.value.length; i++) {
+                                if (amountInput.value[i] == ".") {
+                                    count++;
+                                }
+                            }
+                            if ((amountInput.value.length - count - 1) % 3 == 0 && amountInput.value.length > 5) {
+                                // amountInput.value = "." + amountInput.value;
+                                // amountInput.value = amountInput.value.splice(amountInput.value.length - 3, 0, ".");
+                                // amountInput.value = amountInput.value.replace("VND", ".VND");
+                                amountInput.value = amountInput.value.slice(0, count * 3 + 1 + count) + "." + amountInput.value.slice(count * 3 + 1 + count);
+                            }
+    
+                            // var c = 0;
+                            // for (var i = amountInput.value.length - 4; i >= 0; i -= 1)
+                            // {
+                            //     if (amountInput.value[i] != ".")
+                            //     {
+                            //         c++;
+                            //     }
+                            //     if (c == 3)
+                            //     {
+                            //         amountInput.value = amountInput.value.slice(0, i) + "." + amountInput.value.slice(i);
+                            //         c = 0;
+                            //     }
+                            // }
+                            amountInput.selectionStart = amountInput.value.length - 3;
+                            amountInput.selectionEnd = amountInput.value.length - 3;
+                            // console.log(amountInput.value);
+                        }
+    
+                        // const value = event.target.value;
+                    });
+                    // document.getElementById("amountInput").textContent = amountInput + " VND";
+                </script>
+            </div>
         </div>
-    </div>
-
-</body>
-
-<body>
-
-
-
-
+    
+        <div class="history" id="history">
+            <div class="infoHis">
+                <h2>History</h2>
+    
+            </div>
+        </div>
+    </section>
 
 
 </body>
-<%- include('footer.ejs') %>
-
+<!-- <%- include('footer.ejs') %> -->
 </html>
