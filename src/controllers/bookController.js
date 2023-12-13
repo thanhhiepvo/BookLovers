@@ -1,4 +1,4 @@
-import { getInfoAllBook } from "../models/books.js";
+import { getInfoAllBook } from "../models/bookstore.js";
 
 const bookController = {};
 
