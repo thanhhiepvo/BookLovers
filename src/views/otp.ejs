@@ -17,19 +17,19 @@
                 <i class="bx bxs-check-shield"></i>
                 <h1>Enter OTP code</h1>
                 <h3>An OTP code will be sent to your registered email</h3>
-                <div class="timer">
-                    <span id="timerText"></span>
-                    <button id="resendButton" onclick="resendOTP()" disabled>Resend OTP</button>
-                </div>
                 <div class="inputOTP" oninput="inputOTP()">
                     <input type="number" id="num1">
                     <input type="number" id="num2" disabled>
                     <input type="number" id="num3" disabled>
                     <input type="number" id="num4" disabled>
                 </div>
+                <div class="inputOTP">
+                    <span id="timerText"></span>
+                    <button id="resendButton" class="getOTP" onclick="resendOTP()" disabled>Resend OTP</button>
+                </div>
                 <button type="submit" class="getOTP">Verify my account</button>
                 <script>
-                    let timeLeft = 60;
+                    let timeLeft = 10;
                     let timer = setInterval(function () {
                         if (timeLeft <= 0) {
                             clearInterval(timer);
