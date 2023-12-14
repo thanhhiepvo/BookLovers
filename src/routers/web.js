@@ -22,6 +22,10 @@ router.get('/forgotPass', (req, res) => {
 })
 router.post('/forgot-pass', authenController.forgotPassword);
 
+router.get('/recoverPass', (req, res) => {
+    res.render('recoverPass.ejs', { message: req.flash('msg') });
+})
+
 router.get('/otp', (req, res) => {
     res.render('otp.ejs', { message: req.flash('msg') });
 })
