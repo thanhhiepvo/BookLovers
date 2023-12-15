@@ -20,17 +20,19 @@ router.post('/login-user', authenController.loginUser);
 router.get('/forgotPass', (req, res) => {
     res.render('forgotPass.ejs', { message: req.flash('msg') });
 })
-router.post('/forgot-pass', authenController.forgotPassword);
-
-router.get('/recoverPass', (req, res) => {
-    res.render('recoverPass.ejs', { message: req.flash('msg') });
-})
+router.post('/forgot-pass', emailMethod.sendOTP);
 
 router.get('/otp', (req, res) => {
     res.render('otp.ejs', { message: req.flash('msg') });
 })
 
 router.post('/otp-check', emailMethod.checkOTP);
+
+router.get('/recoverPass', (req, res) => {
+    res.render('recoverPass.ejs', { message: req.flash('msg') });
+})
+
+router.post('/recover-pass', authenController.forgotPassword)
 
 router.get('/about', async (req, res) => {
     if (req.session.username) {

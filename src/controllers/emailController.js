@@ -38,7 +38,9 @@ emailMethod.checkOTP = async (req, res) => {
             res.redirect('/otp');
         }
         else {
-            res.redirect('/forgotPass');
+            req.session.OTPcheck = true;
+            console.log('OTP valid');
+            res.redirect('/recoverPass');
         }
     }
     catch (error) {
@@ -47,37 +49,39 @@ emailMethod.checkOTP = async (req, res) => {
     }
 }
 
-// emailMethod.sendOTP = async (req, res) => {
-// 	console.log(">>> req.body = ", req.body);
-// 	let { useremail } = req.body;
-// 	try {
-// 		if (await getUserEmail(useremail) == null) {
-// 			req.flash('msg', 'Email is invalid');
-// 			//res.redirect('/trangnhapemail');
-// 		}
-// 		else {
-// 			const mailOptions = {
-// 				from: process.env.MAIL_USERNAME,
-// 				to: `${useremail}`, //tự nhập email đi bạn
-// 				subject: '[BookLovers] OTP',
-// 				text: `Your OTP is ${curOTP}. Use this OTP to reset your password`
-// 			};
+emailMethod.sendOTP = async (req, res) => {
+	console.log(">>> req.body = ", req.body);
+	let { useremail } = req.body;
+	try {
+		if (await getUserEmail(useremail) == null) {
+			req.flash('msg', 'Email is invalid');
+			res.redirect('/forgotPass');
+		}
+		else {
+            req.session.email = useremail;
+            req.session.OTPcheck = false;
+			const mailOptions = {
+				from: process.env.MAIL_USERNAME,
+				to: `${useremail}`, //tự nhập email đi bạn
+				subject: '[BookLovers] OTP',
+				text: `Your OTP is ${curOTP}. Use this OTP to reset your password`
+			};
 
-// 			emailController.sendMail(mailOptions, function (err, data) {
-// 				if (err) {
-// 					console.log("Error " + err);
-// 				} else {
-// 					console.log("Email sent successfully");
-// 				}
-// 			});
+			emailController.sendMail(mailOptions, function (err, data) {
+				if (err) {
+					console.log("Error " + err);
+				} else {
+					console.log("Email sent successfully");
+				}
+			});
 
-// 			//res.redirect('/trangnhapotp');
-// 		}
-// 	}
-// 	catch (error) {
-// 		console.error('Error while sending OTP to email', error);
-// 		res.status(500).send("OTP email sending error");
-// 	}
-// }
+			res.redirect('/otp');
+		}
+	}
+	catch (error) {
+		console.error('Error while sending OTP to email', error);
+		res.status(500).send("OTP email sending error");
+	}
+}
 
 export default emailMethod

@@ -86,10 +86,10 @@ export const updateProfile = async (username, email, fullname, phone, birth) => 
     }
 }
 
-export const updateNewPassword = async (username, new_password) => {
+export const updateNewPassword = async (useremail, new_password) => {
     try {
-        const text = 'UPDATE useraccount SET Pass = $1 WHERE username = $2';
-        const values = [new_password, username]
+        const text = 'UPDATE USERACCOUNT SET Pass = $1 WHERE Email = $2';
+        const values = [new_password, useremail]
         await pool.query(text, values);
         console.log('New password was changed in database');
     } catch (error) {
