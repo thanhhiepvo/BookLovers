@@ -34,6 +34,7 @@ emailMethod.checkOTP = async (req, res) => {
     let stringotp = num1 + num2 + num3 + num4;
     try {
         if (stringotp != curOTP) {
+            console.log('Wrong OTP entered');
             req.flash('msg', 'OTP is not correct');
             res.redirect('/otp');
         }
@@ -50,8 +51,9 @@ emailMethod.checkOTP = async (req, res) => {
 }
 
 emailMethod.sendOTP = async (req, res) => {
-	console.log(">>> req.body = ", req.body);
+    console.log(">>> req.body = ", req.body);
 	let { useremail } = req.body;
+    req.session.destroy();
 	try {
 		if (await getUserEmail(useremail) == null) {
 			req.flash('msg', 'Email is invalid');
