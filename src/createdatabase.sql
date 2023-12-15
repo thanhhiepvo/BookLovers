@@ -139,4 +139,5 @@ BEFORE INSERT OR UPDATE ON SHOPPING_CART
 FOR EACH ROW
 EXECUTE PROCEDURE shopping_cart_trigger();
 
+-- Enable trigger
 alter table SHOPPING_CART enable trigger shopping_cart_trigger;
