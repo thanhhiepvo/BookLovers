@@ -688,3 +688,24 @@ body
     color: #141A46;
     padding: 20px 45px 20px 10px;
 }
+
+/* Book page  */
+
+.bookPic
+{
+    margin-left: 30px;
+    margin-right: 50px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+.bookPic img
+{
+    margin: 50px 30px;
+    height: 400px;
+    width: auto;
+    border: 1px solid grey;
+    border-radius: 5%;
+}
+
+/* .bookPic */

@@ -465,7 +465,8 @@ form .inputOTP
     column-gap: 10px;
     text-align: center;
     /* height: fit-content; */
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
 }
 
 .inputOTP input
@@ -479,10 +480,7 @@ form .inputOTP
     border: 1px solid #ddd;
 }
 
-.inputOTP input [disabled = true]
-{
-    background-color: lightblue;
-}
+
 
 .inputOTP input:focus
 {
@@ -499,14 +497,10 @@ form .inputOTP
     height: auto;
 }
 
-/* .otp .wrapper .inputOTP #resendButton :disabled
-{
-    display: none;
-} */
 
-.otp .wrapper form button
+.otp .wrapper form button 
 {
-    margin-top: 25px;
+    margin-top: 5px;
     width: 100%;
     color: #fff;
     font-size: 1rem;
@@ -517,6 +511,7 @@ form .inputOTP
     pointer-events: none;
     background: #6e93f7;
     transition: all 0.2s ease;
+    /* margin-bottom: 0%; */
 }
 
 .otp .wrapper form button.getOTP
@@ -531,9 +526,15 @@ form .inputOTP
     background: white;
 }
 
-.otp .wrapper form button:hover:disabled
+
+.otp .wrapper form button:disabled
 {
-    background: #0e0e2e;
-    color: white;
+    display: none;
+    pointer-events: none;
 }
 
+.otp .wrapper #timerText
+{
+    padding-top: 35px;
+    size: 30px;
+}
