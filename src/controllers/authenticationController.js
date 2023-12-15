@@ -77,7 +77,7 @@ authenController.forgotPassword = async (req, res) => {
         } else {
             await updateNewPassword(req.session.email, new_password);
             req.flash('msg', 'Your password was changed!');
-            req.session.destroy();
+            //req.session.destroy();
             res.redirect('/login')
         }
     } catch (error) {

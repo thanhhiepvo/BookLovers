@@ -53,6 +53,8 @@ export async function getUserBirth(username) {
     return rows[0].birth;
 }
 
+
+
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table

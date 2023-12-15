@@ -43,8 +43,13 @@ router.get('/about', async (req, res) => {
     }
 })
 
-router.get('/book', (req, res) => {
-    res.render('book.ejs')
+router.get('/book', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        res.render('book', { user: user });
+    } else {
+        res.redirect('/login');
+    }
 })
 
 // router.get('/editProfile', (req, res) => {

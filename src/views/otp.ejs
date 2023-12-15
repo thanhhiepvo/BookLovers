@@ -6,7 +6,7 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Verify account</title>
     <link rel="stylesheet" type="text/css" href="/CSS/style.css">
-    
+
     <!-- <script src="../Script/script.js" defer></script> -->
 </head>
 
@@ -18,10 +18,10 @@
                 <h1>Enter OTP code</h1>
                 <h3>An OTP code will be sent to your registered email</h3>
                 <div class="inputOTP" oninput="inputOTP()">
-                    <input type="number" id="num1" name = 'num1'>
-                    <input type="number" id="num2" name = 'num2' disabled>
-                    <input type="number" id="num3" name = 'num3' disabled>
-                    <input type="number" id="num4" name = 'num4' disabled>
+                    <input type="number" id="num1" name='num1'>
+                    <input type="number" id="num2" name='num2' disabled>
+                    <input type="number" id="num3" name='num3' disabled>
+                    <input type="number" id="num4" name='num4' disabled>
                 </div>
                 <div class="inputOTP">
                     <span id="timerText"></span>
@@ -83,6 +83,15 @@
                     window.addEventListener("load", () => inputs[0].focus());       
                 </script>
             </form>
+            <% if(message.length> 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <p id="mess"> </p>
+                    <script>
+                        var mess = document.getElementById("mess");
+                        mess.textContent = "<%= message %>";
+                    </script>
+                </div>
+                <% } %>
         </div>
     </div>
 </body>
