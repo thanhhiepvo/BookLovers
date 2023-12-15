@@ -13,20 +13,26 @@ const router = express.Router()
 
 router.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('msg') })
-    console.log(">>> req.session.username = ", req.session.username);
+    // console.log(">>> req.session.username = ", req.session.username);
 })
 router.post('/login-user', authenController.loginUser);
 
 router.get('/forgotPass', (req, res) => {
     res.render('forgotPass.ejs', { message: req.flash('msg') });
 })
-router.post('/forgot-pass', authenController.forgotPassword);
+router.post('/forgot-pass', emailMethod.sendOTP);
 
 router.get('/otp', (req, res) => {
     res.render('otp.ejs', { message: req.flash('msg') });
 })
 
 router.post('/otp-check', emailMethod.checkOTP);
+
+router.get('/recoverPass', (req, res) => {
+    res.render('recoverPass.ejs', { message: req.flash('msg') });
+})
+
+router.post('/recover-pass', authenController.forgotPassword)
 
 router.get('/about', async (req, res) => {
     if (req.session.username) {
@@ -37,9 +43,14 @@ router.get('/about', async (req, res) => {
     }
 })
 
-router.get('/book', (req, res) => {
-    res.render('book.ejs')
-})
+// router.get('/book', async (req, res) => {
+//     if (req.session.username) {
+//         const user = await authenController.getProfileUser(req, res);
+//         res.render('book', { user: user });
+//     } else {
+//         res.redirect('/login');
+//     }
+// })
 
 // router.get('/editProfile', (req, res) => {
 //     res.render('editProfile.ejs')
@@ -83,7 +94,7 @@ router.get('/myBook', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-    console.log(">>> req.session.username = ", req.session.username);
+    // console.log(">>> req.session.username = ", req.session.username);
 })
 
 router.get('/selling', async (req, res) => {
@@ -101,7 +112,7 @@ router.get('/selling', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-    console.log(">>> req.session.username = ", req.session.username);
+    // console.log(">>> req.session.username = ", req.session.username);
 })
 router.get('/upload', async (req, res) => {
     if (req.session.username) {
@@ -130,7 +141,27 @@ router.get('/editProfile', async (req, res) => {
     }
 })
 router.post('/edit-profile', profileController.updateInfo)
-router.get('/book', profileController.getInfo);
+// router.get('/book', profileController.getInfo);
+
+router.get('/book', async (req, res) => {
+    if (req.session.username) {
+        try {
+            const book = await bookController.getInfoOneBook(req, res);
+            const user = await authenController.getProfileUser(req, res);
+            //books = book;
+            res.render('book', {
+                user: user,
+                books: book
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    } 
+    else {
+        res.redirect('/login');
+    }
+    // console.log(">>> req.session.username = ", req.session.username);
+});
 
 router.get('/logout', authenController.logout);
 

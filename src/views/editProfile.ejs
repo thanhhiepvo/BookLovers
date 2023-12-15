@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Home page</title> 
+        <title>Edit profile</title> 
         <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
         <link rel="stylesheet" href="/CSS/footer.css">  
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -89,7 +89,16 @@
             var mail = "<%= user.email %>";
             var fullname = "<%= user.fullname %>";
             var phone = "<%= user.phonenumber %>";
-            let birth = "<%= user.birth.toISOString().substring(0, 10) %>";
+            var birth;
+            try
+            {
+                birth = "<%= user.birth.toISOString().substring(0, 10)%>";
+            }
+            catch
+            {
+                birth = "";
+            }
+            
 
 
             document.getElementById("uname_edit").textContent = "User: " + name;

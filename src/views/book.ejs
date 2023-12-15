@@ -1,71 +1,91 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Book</title> 
-        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
-        <link rel="stylesheet" type="text/css" href="/CSS/footer.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-        <link rel="icon" href="/Picture/favicon.png" type="image/png">
-    </head>
-    <header>
-        <a href="#" class="logo"><img src="/Picture/logo.png"></a>
-        
-        <ul class="navbar">
-            <li><a href="homepage">Home</a></li>
-            <li><a href="myBook">My books</a></li>
-            <li><a href="selling">Selling</a></li>
-            <li><a href="wallet">Wallet</a></li>
-            <li><a href="about">About</a></li>
-        </ul>
-        
-        <div class="profile">
-            <i class='bx bx-user' ></i>
-            <span>Profile</span>
-            <i class='bx bx-caret-down' ></i>
-            
+<html lang="en">
+
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
+
+    <ul class="navbar">
+        <li><a href="homepage">Home</a></li>
+        <li><a href="myBook">My books</a></li>
+        <li><a href="selling">Selling</a></li>
+        <li><a href="wallet">Wallet</a></li>
+        <li><a href="about">About</a></li>
+    </ul>
+
+    <div class="profile">
+        <i class='bx bx-user'></i>
+        <span>Profile</span>
+        <i class='bx bx-caret-down'></i>
+
+    </div>
+
+    <div id="profileSpan">
+        <h5 id="name"></h5>
+        <h5 id="mail"></h5>
+        <h5 id="balance"></h5>
+        <li><a href="editProfile">Edit my profile</a></li>
+        <li><a href="login">Log out</a></li>
+    </div>
+
+    <!-- Script for Profile -->
+    <Script>
+        var profileSpan = document.getElementById("profileSpan");
+
+        var name = "<%=user.username%>";
+        var mail = "<%=user.email%>";
+        var balance = "<%=user.balance.toLocaleString('de-DE')%>";
+
+
+        document.getElementById("name").textContent = "UserName: " + name;
+        document.getElementById("mail").textContent = "Email: " + mail;
+        document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+        caretDownIcon.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
+        });
+    </Script>
+
+</header>
+
+<body>
+    <div class="bookPic">
+        <img id="imgBook">
+        <div class="bookInfo">
+            <h1 id="nameBook"></h1>
+            <h3 id="author"></h3>
+            <h3 id="year"></h3>
+            <h4 id="des"></h4>
+            <h2 id="price"></h2>
         </div>
+        <script>
+            var imgBook = "/Picture/book/" + "<%=books.id_book%>" + ".jpg";
+            var name = "<%=books.namebook%>";
+            var author = "<%=books.author%>";
+            var year = "<%=books.publishedyear%>";
+            year = year.substring(10, 15);
+            var des = "<%=books.description%>";
+            var price = "<%=books.price.toLocaleString('de-DE')%>";
 
-        <div id="profileSpan">
-            <h5 id="name"></h5>
-            <h5 id="mail"></h5>
-            <h5 id="balance"></h5>
-            <li><a href="editProfile">Edit my profile</a></li>
-            <li><a href="login">Log out</a></li>
-        </div>
-
-        <!-- Script for Profile -->
-        <Script>
-            var profileSpan = document.getElementById("profileSpan");
-
-            var name = "<%=user.username%>";
-            var mail = "<%=user.email%>";
-            var balance = "<%=user.ballance.toLocaleString('de-DE')%>";
+            document.getElementById("imgBook").src = imgBook;
+            document.getElementById("nameBook").textContent = name;
+            document.getElementById("author").textContent = "Author: " + author;
+            document.getElementById("year").textContent = "Published: " + year;
+            document.getElementById("des").textContent = "Description: " + des;
+            document.getElementById("price").textContent = price + " VND";
+        </script>
+    </div>
+    
+</body>
 
 
-            document.getElementById("name").textContent = "UserName: " + name;
-            document.getElementById("mail").textContent = "Email: " + mail;
-            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
-
-            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-            caretDownIcon.addEventListener('click', () => 
-            {
-                profileSpan.classList.toggle('active');
-            });
-        </Script>
-
-    </header>
-
-    <section>
-        <img src="/Picture/book/1.jpg">
-        <h1 id="nameBook">Name book nè</h1>
-        <h3 id="author">Tác giả nè</h3>
-        <h3 id="year">Ngày đăng</h3>
-        <h4 id="des">Descript nè</h4>
-        <h2 id="price">100.000 VND</h2>
-
-    </section>
-
-    <%- include('footer.ejs') %>
-   
+<%- include('footer.ejs') %>

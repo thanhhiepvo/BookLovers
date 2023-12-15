@@ -643,12 +643,12 @@ body {
 
 #thumbnailInput {
     border: none;
-    width: 0.1px;
+    /* width: 0.1px;
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    z-index: -1;
+    z-index: -1; */
 }
 
 #thumbnailInput+label {
@@ -682,4 +682,65 @@ body {
     font-size: 20px;
     color: #141A46;
     padding: 20px 45px 20px 10px;
+}
+
+/* Book page  */
+
+.bookPic
+{
+    margin-left: 100px;
+    margin-right: 50px;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+}
+.bookPic img
+{
+    margin: 50px 30px;
+    height: 500px;
+    width: auto;
+    border: 1px solid white;
+    border-radius: 5%;
+}
+
+.bookPic .bookInfo h1
+{
+    font-size: 25px;
+    /* font-weight: lighter; */
+}
+
+.bookPic .bookInfo h2
+{
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h3
+{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h4
+{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo
+{
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    /* line-height: 2; */
+    /* margin-bottom: 50px; */
+    padding: 10px 20px;
+    /* font-weight: lighter; */
+    width: 600px;
+}
+
+.bookPic .bookInfo > *
+{
+    margin-bottom: 30px;
+    color: #080a52;
 }

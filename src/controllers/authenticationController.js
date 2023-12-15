@@ -63,21 +63,21 @@ authenController.loginUser = async (req, res) => {
 
 // Forgot Password
 authenController.forgotPassword = async (req, res) => {
-    let { username, new_password, confirm_password } = req.body;
-    console.log(">>> username = ", username, 'new password = ', new_password, 'confirm password = ', confirm_password);
+    let { new_password, confirm_password } = req.body;
+    console.log(">>> new password = ", new_password, "confirm password = ", confirm_password);
 
-    const user = await getUsername(username);
     try {
-        if (await user == null) {
-            req.flash('msg', 'Username does not exist');
-            res.redirect('/forgotPass');
-            //res.send('username is not exist'); 
+        if (!req.session.OTPcheck) {
+            console.log('Skipped OTP input step');
+            req.flash('msg', 'Nice try smartass!');
+            res.redirect('/recoverPass');
         } else if (new_password != confirm_password) {
             req.flash('msg', 'New Password and Confirm Password are not the same');
-            res.redirect('/forgotPass');
+            res.redirect('/recoverPass');
         } else {
-            await updateNewPassword(username, new_password);
+            await updateNewPassword(req.session.email, new_password);
             req.flash('msg', 'Your password was changed!');
+            //req.session.destroy();
             res.redirect('/login')
         }
     } catch (error) {

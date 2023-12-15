@@ -6,7 +6,7 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <title>Verify account</title>
     <link rel="stylesheet" type="text/css" href="/CSS/style.css">
-    
+
     <!-- <script src="../Script/script.js" defer></script> -->
 </head>
 
@@ -18,71 +18,88 @@
                 <h1>Enter OTP code</h1>
                 <h3>An OTP code will be sent to your registered email</h3>
                 <div class="inputOTP" oninput="inputOTP()">
-                    <input type="number" id="num1">
-                    <input type="number" id="num2" disabled>
-                    <input type="number" id="num3" disabled>
-                    <input type="number" id="num4" disabled>
+                    <input type="number" id="num1" name='num1'>
+                    <input type="number" id="num2" name='num2' disabled>
+                    <input type="number" id="num3" name='num3' disabled>
+                    <input type="number" id="num4" name='num4' disabled>
                 </div>
+                
+                <button type="submit" class="getOTP">Verify my account</button>
+                
+            </form>
+
+            <form action="/OTP-resend" method="post">
                 <div class="inputOTP">
                     <span id="timerText"></span>
                     <button id="resendButton" class="getOTP" onclick="resendOTP()" disabled>Resend OTP</button>
                 </div>
-                <button type="submit" class="getOTP">Verify my account</button>
-                <script>
-                    let timeLeft = 10;
-                    let timer = setInterval(function () {
-                        if (timeLeft <= 0) {
-                            clearInterval(timer);
-                            document.getElementById("timerText").innerHTML = "0 seconds remaining";
-                            document.getElementById("resendButton").disabled = false;
-                        } else {
-                            document.getElementById("timerText").innerHTML = timeLeft + " seconds remaining";
-                            timeLeft--;
-                        }
-                    }, 1000);
-
-                    const inputs = document.querySelectorAll(".otp .wrapper .inputOTP input"),
-                        button = document.querySelector(".otp .wrapper button");
-
-                    inputs.forEach((input, index1) => {
-                        input.addEventListener("keyup", (e) => {
-                            const currentInput = input,
-                                nextInput = input.nextElementSibling,
-                                prevInput = input.previousElementSibling;
-
-                            if (currentInput.value.length > 1) {
-                                currentInput.value = "";
-                                return;
-                            }
-
-                            if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-                                nextInput.removeAttribute("disabled");
-                                nextInput.focus();
-                            }
-
-
-                            if (e.key === "Backspace") {
-                                inputs.forEach((input, index2) => {
-                                    if (index1 <= index2 && prevInput) {
-                                        input.setAttribute("disabled", true);
-                                        input.value = "";
-                                        prevInput.focus();
-                                    }
-                                });
-                            }
-
-                            if (!inputs[3].disabled && inputs[3].value !== "") {
-                                button.classList.add("active");
-                                return;
-                            }
-                            button.classList.remove("active");
-
-                        });
-                    });
-
-                    window.addEventListener("load", () => inputs[0].focus());       
-                </script>
             </form>
+
+            <script>
+                let timeLeft = 10;
+                let timer = setInterval(function () {
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        document.getElementById("timerText").innerHTML = "0 seconds remaining";
+                        document.getElementById("resendButton").disabled = false;
+                        document.getElementById("timerText").style.display = 'none';
+                    } else {
+                        document.getElementById("timerText").textContent = timeLeft + " seconds remaining";
+                        timeLeft--;
+                    }
+                }, 1000);
+
+                const inputs = document.querySelectorAll(".otp .wrapper .inputOTP input"),
+                    button = document.querySelector(".otp .wrapper button");
+
+                inputs.forEach((input, index1) => {
+                    input.addEventListener("keyup", (e) => {
+                        const currentInput = input,
+                            nextInput = input.nextElementSibling,
+                            prevInput = input.previousElementSibling;
+
+                        if (currentInput.value.length > 1) {
+                            currentInput.value = "";
+                            return;
+                        }
+
+                        if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                            nextInput.removeAttribute("disabled");
+                            nextInput.focus();
+                        }
+
+
+                        if (e.key === "Backspace") {
+                            inputs.forEach((input, index2) => {
+                                if (index1 <= index2 && prevInput) {
+                                    input.setAttribute("disabled", true);
+                                    input.value = "";
+                                    prevInput.focus();
+                                }
+                            });
+                        }
+
+                        if (!inputs[3].disabled && inputs[3].value !== "") {
+                            button.classList.add("active");
+                            return;
+                        }
+                        button.classList.remove("active");
+
+                    });
+                });
+
+                window.addEventListener("load", () => inputs[0].focus());       
+            </script>
+
+            <% if(message.length> 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <p id="mess"> </p>
+                    <script>
+                        var mess = document.getElementById("mess");
+                        mess.textContent = "<%= message %>";
+                    </script>
+                </div>
+                <% } %>
         </div>
     </div>
 </body>

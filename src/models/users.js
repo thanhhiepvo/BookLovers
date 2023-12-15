@@ -3,6 +3,7 @@ import pool from '../database.js'
 //TO_CHAR(Birth, 'MM/DD/YYYY')
 export async function getUsername(username) {
     const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
+    console.log("dmm");
     console.log(rows);
     if (rows[0] == null)
         return null;
@@ -53,6 +54,8 @@ export async function getUserBirth(username) {
     return rows[0].birth;
 }
 
+
+
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
@@ -86,10 +89,10 @@ export const updateProfile = async (username, email, fullname, phone, birth) => 
     }
 }
 
-export const updateNewPassword = async (username, new_password) => {
+export const updateNewPassword = async (useremail, new_password) => {
     try {
-        const text = 'UPDATE useraccount SET Pass = $1 WHERE username = $2';
-        const values = [new_password, username]
+        const text = 'UPDATE USERACCOUNT SET Pass = $1 WHERE Email = $2';
+        const values = [new_password, useremail]
         await pool.query(text, values);
         console.log('New password was changed in database');
     } catch (error) {
