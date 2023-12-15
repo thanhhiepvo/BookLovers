@@ -59,14 +59,30 @@
 
 <body>
     <div class="bookPic">
-        <img src="/Picture/book/1.jpg">
+        <img id="imgBook">
         <div class="bookInfo">
-            <h1 id="nameBook">Name book nè</h1>
-            <h3 id="author">Tác giả nè</h3>
-            <h3 id="year">Ngày đăng</h3>
-            <h4 id="des">Descript nè</h4>
-            <h2 id="price">100.000 VND</h2>
+            <h1 id="nameBook"></h1>
+            <h3 id="author"></h3>
+            <h3 id="year"></h3>
+            <h4 id="des"></h4>
+            <h2 id="price"></h2>
         </div>
+        <script>
+            var imgBook = "/Picture/book/" + "<%=books.id_book%>" + ".jpg";
+            var name = "<%=books.namebook%>";
+            var author = "<%=books.author%>";
+            var year = "<%=books.publishedyear%>";
+            year = year.substring(10, 15);
+            var des = "<%=books.description%>";
+            var price = "<%=books.price.toLocaleString('de-DE')%>";
+
+            document.getElementById("imgBook").src = imgBook;
+            document.getElementById("nameBook").textContent = name;
+            document.getElementById("author").textContent = "Author: " + author;
+            document.getElementById("year").textContent = "Published: " + year;
+            document.getElementById("des").textContent = "Description: " + des;
+            document.getElementById("price").textContent = price + " VND";
+        </script>
     </div>
     
 </body>

@@ -693,19 +693,59 @@ body
 
 .bookPic
 {
-    margin-left: 30px;
+    margin-left: 100px;
     margin-right: 50px;
-    justify-content: space-between;
+    justify-content: flex-start;
     display: flex;
     align-items: center;
 }
 .bookPic img
 {
     margin: 50px 30px;
-    height: 400px;
+    height: 500px;
     width: auto;
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 5%;
 }
 
-/* .bookPic */
+.bookPic .bookInfo h1
+{
+    font-size: 25px;
+    /* font-weight: lighter; */
+}
+
+.bookPic .bookInfo h2
+{
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h3
+{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h4
+{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo
+{
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    /* line-height: 2; */
+    /* margin-bottom: 50px; */
+    padding: 10px 20px;
+    /* font-weight: lighter; */
+    width: 600px;
+}
+
+.bookPic .bookInfo > *
+{
+    margin-bottom: 30px;
+    color: #080a52;
+}
