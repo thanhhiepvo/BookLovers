@@ -70,12 +70,12 @@ create table BOOKCATEGORY (
 	constraint PK_BOOKCATEGORY primary key (BCBook, BCCategory)
 );
 
-create table shopping_cart (
+create table SHOPPING_CART (
 	ShopUser varchar(50),
 	ShopBook int,
 	Quantity int,
 	Item_Total float,
-	constraint PK_shopping_cart primary key (ShopUser, ShopBook)
+	constraint PK_SHOPPING_CART primary key (ShopUser, ShopBook)
 );
 
 set TIMEZONE = 'Asia/Saigon';
@@ -97,3 +97,45 @@ alter table INVOICE add constraint FK_INVOICE_USERACCOUNT foreign key (IUsername
 
 alter table TRANSAC add constraint FK_TRANSAC_INVOICE foreign key (ID_Transac) references INVOICE(ID_Invoice);
 alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook);
+
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_USERACCOUNT foreign key (ShopUser) references USERACCOUNT(Username);
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_BOOK foreign key (ShopBook) references BOOK(ID_Book);
+
+-- Create a trigger function
+CREATE OR REPLACE FUNCTION shopping_cart_trigger()
+RETURNS TRIGGER AS $$
+DECLARE
+  book_price FLOAT;
+BEGIN
+  -- Get the price of the related book from the BOOK table
+  SELECT Price INTO book_price FROM BOOK WHERE ID_Book = NEW.ShopBook;
+  -- If the trigger is fired by an insert operation
+  IF TG_OP = 'INSERT' THEN
+    -- Set the Quantity to 1 and the Item_Total to the book price
+    NEW.Quantity := 1;
+    NEW.Item_Total := book_price;
+    -- Return the new row to the trigger
+    RETURN NEW;
+  -- If the trigger is fired by an update operation
+  ELSIF TG_OP = 'UPDATE' THEN
+    -- Check if the new Quantity is greater than or equal to 1
+    IF NEW.Quantity >= 1 THEN
+      -- Update the Item_Total to the product of the Quantity and the book price
+      NEW.Item_Total := NEW.Quantity * book_price;
+      -- Return the new row to the trigger
+      RETURN NEW;
+    ELSE
+      -- Raise an exception and abort the update
+      RAISE EXCEPTION 'Quantity must be greater than or equal to 1';
+    END IF;
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create a trigger
+CREATE TRIGGER shopping_cart_trigger
+AFTER INSERT OR UPDATE ON SHOPPING_CART
+FOR EACH ROW
+EXECUTE PROCEDURE shopping_cart_trigger();
+
+alter table SHOPPING_CART enable trigger shopping_cart_trigger;
