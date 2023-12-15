@@ -89,11 +89,16 @@
             var mail = "<%= user.email %>";
             var fullname = "<%= user.fullname %>";
             var phone = "<%= user.phonenumber %>";
-            let birth = "<%= user.birth%>";
-            if (birth != null)
+            var birth;
+            try
             {
-                birth = birth.toISOString().substring(0, 10);
+                birth = "<%= user.birth.toISOString().substring(0, 10)%>";
             }
+            catch
+            {
+                birth = "";
+            }
+            
 
 
             document.getElementById("uname_edit").textContent = "User: " + name;
