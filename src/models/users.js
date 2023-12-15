@@ -3,6 +3,7 @@ import pool from '../database.js'
 //TO_CHAR(Birth, 'MM/DD/YYYY')
 export async function getUsername(username) {
     const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
+    console.log("dmm");
     console.log(rows);
     if (rows[0] == null)
         return null;

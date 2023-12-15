@@ -16,7 +16,6 @@ create table BOOK (
 	ID_Book serial,
 	NameBook varchar(100),
 	Author varchar(100),
-	Price float,
 	Description varchar(2000),
 	PublishedYear timestamp (0) with time zone,
 	constraint PK_BOOK primary key (ID_Book)
@@ -47,6 +46,7 @@ create table OWNEDBOOK (
 create table SELLINGBOOK (
 	SUsername varchar(50),
 	SBook int,
+	SPrice float,
 	constraint PK_SELLINGBOOK primary key (SUsername, SBook)
 );
 
@@ -72,10 +72,10 @@ create table BOOKCATEGORY (
 
 create table SHOPPING_CART (
 	ShopUser varchar(50),
+	ShopSeller varchar(50),
 	ShopBook int,
-	Quantity int,
-	Item_Total float,
-	constraint PK_SHOPPING_CART primary key (ShopUser, ShopBook)
+	Selling_Price float,
+	constraint PK_SHOPPING_CART primary key (ShopUser, ShopSeller, ShopBook)
 );
 
 set TIMEZONE = 'Asia/Saigon';
@@ -99,4 +99,57 @@ alter table TRANSAC add constraint FK_TRANSAC_INVOICE foreign key (ID_Transac) r
 alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook);
 
 alter table SHOPPING_CART add constraint FK_SHOPPING_CART_USERACCOUNT foreign key (ShopUser) references USERACCOUNT(Username);
-alter table SHOPPING_CART add constraint FK_SHOPPING_CART_BOOK foreign key (ShopBook) references BOOK(ID_Book);
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_SELLINGBOOK foreign key (ShopSeller, ShopBook) references SELLINGBOOK(SUser, SBook);
+
+-- Create a trigger function
+CREATE OR REPLACE FUNCTION update_item_price_trigger()
+RETURNS TRIGGER AS $$
+BEGIN
+  -- Check if the trigger is fired by an update operation on the book table
+  IF TG_OP = 'UPDATE' AND TG_TABLE_NAME = 'SELLINGBOOK' THEN
+    -- Check if the price in the book table has changed
+    IF NEW.SPrice <> OLD.SPrice THEN
+      -- Update the item price in the shopping cart table for all the rows that match the updated book id
+      UPDATE SHOPPING_CART SET Selling_Price = NEW.SPrice WHERE ShopBook = NEW.SBook AND ShopSeller = NEW.SUser;
+    END IF;
+    -- Return the new row to the trigger
+    RETURN NEW;
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create a trigger
+CREATE TRIGGER update_item_price_trigger
+AFTER UPDATE ON BOOK
+FOR EACH ROW
+EXECUTE PROCEDURE update_item_price_trigger();
+
+
+-- Create a trigger function
+CREATE OR REPLACE FUNCTION shopping_cart_trigger()
+RETURNS TRIGGER AS $$
+DECLARE
+  book_price FLOAT;
+BEGIN
+  -- Get the price of the related book from the BOOK table
+  SELECT Price INTO book_price FROM SELLINGBOOK WHERE SBook = NEW.ShopBook AND SUser = NEW.ShopSeller;
+  -- If the trigger is fired by an insert operation
+  IF TG_OP = 'INSERT' THEN
+    -- Item_Total to the book price
+    NEW.Selling_Price := book_price;
+    -- Return the new row to the trigger
+    RETURN NEW;
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create a trigger
+CREATE TRIGGER shopping_cart_trigger
+BEFORE INSERT ON SHOPPING_CART
+FOR EACH ROW
+EXECUTE PROCEDURE shopping_cart_trigger();
+
+
+-- Enable trigger
+alter table SHOPPING_CART enable trigger shopping_cart_trigger;
+alter table SELLINGBOOK enable trigger update_item_price_trigger;
