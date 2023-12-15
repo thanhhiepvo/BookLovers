@@ -1,4 +1,4 @@
-drop table if exists book, bookcategory, category, invoice, ownedbook, report, sellingbook, transac, useraccount cascade;
+drop table if exists book, bookcategory, category, invoice, ownedbook, report, sellingbook, transac, useraccount, shopping_cart cascade;
 
 create table USERACCOUNT (
 	Username varchar(50),
@@ -68,6 +68,14 @@ create table BOOKCATEGORY (
 	BCBook int,
 	BCCategory varchar(50),
 	constraint PK_BOOKCATEGORY primary key (BCBook, BCCategory)
+);
+
+create table shopping_cart (
+	ShopUser varchar(50),
+	ShopBook int,
+	Quantity int,
+	Item_Total float,
+	constraint PK_shopping_cart primary key (ShopUser, ShopBook)
 );
 
 set TIMEZONE = 'Asia/Saigon';
