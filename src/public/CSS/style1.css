@@ -531,12 +531,27 @@ body {
     font-size: 40px;
 }
 
+/* --- About page ---  */
+.about {
+    background: url('../Picture/bg5.jpg');
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 /* --- editFile page --- */
 .edit {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     background: transparent;
 }
 
@@ -686,16 +701,15 @@ body {
 
 /* Book page  */
 
-.bookPic
-{
+.bookPic {
     margin-left: 100px;
     margin-right: 50px;
     justify-content: flex-start;
     display: flex;
     align-items: center;
 }
-.bookPic img
-{
+
+.bookPic img {
     margin: 50px 30px;
     height: 500px;
     width: auto;
@@ -703,32 +717,27 @@ body {
     border-radius: 5%;
 }
 
-.bookPic .bookInfo h1
-{
+.bookPic .bookInfo h1 {
     font-size: 25px;
     /* font-weight: lighter; */
 }
 
-.bookPic .bookInfo h2
-{
+.bookPic .bookInfo h2 {
     font-size: 40px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo h3
-{
+.bookPic .bookInfo h3 {
     font-size: 25px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo h4
-{
+.bookPic .bookInfo h4 {
     font-size: 25px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo
-{
+.bookPic .bookInfo {
     border: 1px solid white;
     border-radius: 10px;
     background-color: white;
@@ -739,8 +748,7 @@ body {
     width: 600px;
 }
 
-.bookPic .bookInfo > *
-{
+.bookPic .bookInfo>* {
     margin-bottom: 30px;
     color: #080a52;
 }
