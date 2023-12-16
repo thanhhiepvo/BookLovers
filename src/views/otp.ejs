@@ -10,7 +10,7 @@
     <!-- <script src="../Script/script.js" defer></script> -->
 </head>
 
-<body onload="startTimer();sendOTP();">
+<body onload="startTimer();">
     <div class="otp">
         <div class="wrapper">
             <form action="/otp-check" method="post">
@@ -23,15 +23,15 @@
                     <input type="number" id="num3" name='num3' disabled>
                     <input type="number" id="num4" name='num4' disabled>
                 </div>
-                
+
                 <button type="submit" class="getOTP">Verify my account</button>
-                
+
             </form>
 
-            <form action="/OTP-resend" method="post">
+            <form action="/otp-resend" method="get">
                 <div class="inputOTP">
                     <span id="timerText"></span>
-                    <button id="resendButton" class="getOTP" onclick="resendOTP()" disabled>Resend OTP</button>
+                    <button id="resendButton" class="getOTP" disabled>Resend OTP</button>
                 </div>
             </form>
 
@@ -40,7 +40,6 @@
                 let timer = setInterval(function () {
                     if (timeLeft <= 0) {
                         clearInterval(timer);
-                        document.getElementById("timerText").innerHTML = "0 seconds remaining";
                         document.getElementById("resendButton").disabled = false;
                         document.getElementById("timerText").style.display = 'none';
                     } else {

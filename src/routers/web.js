@@ -28,6 +28,8 @@ router.get('/otp', (req, res) => {
 
 router.post('/otp-check', emailMethod.checkOTP);
 
+router.get('/otp-resend', emailMethod.resendOTP);
+
 router.get('/recoverPass', (req, res) => {
     res.render('recoverPass.ejs', { message: req.flash('msg') });
 })
@@ -59,6 +61,7 @@ router.get('/about', async (req, res) => {
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
+
 router.post('/create-user', authenController.postCreateUser);
 
 router.get('/homepage', async (req, res) => {

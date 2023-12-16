@@ -85,4 +85,25 @@ emailMethod.sendOTP = async (req, res) => {
 	}
 }
 
+emailMethod.resendOTP = async (req, res) => {
+    if (req.session.email){
+        curOTP = generateOTP();
+        const mailOptions = {
+            from: process.env.MAIL_USERNAME,
+            to: `${req.session.email}`, //tự nhập email đi bạn
+            subject: '[BookLovers] OTP',
+            text: `Your OTP is ${curOTP}. Use this OTP to reset your password`
+        };
+        emailController.sendMail(mailOptions, function (err, data) {
+            if (err) {
+                console.log("Error " + err);
+            } else {
+                console.log("Email sent successfully");
+            }
+        });
+        res.redirect('/otp');
+    }
+    else res.redirect('/login');
+}
+
 export default emailMethod

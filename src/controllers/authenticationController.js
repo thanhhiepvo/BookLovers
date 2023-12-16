@@ -69,7 +69,7 @@ authenController.forgotPassword = async (req, res) => {
     try {
         if (!req.session.OTPcheck) {
             console.log('Skipped OTP input step');
-            req.flash('msg', 'Nice try smartass!');
+            req.flash('msg', 'You can\'t skip OTP input');
             res.redirect('/recoverPass');
         } else if (new_password != confirm_password) {
             req.flash('msg', 'New Password and Confirm Password are not the same');
