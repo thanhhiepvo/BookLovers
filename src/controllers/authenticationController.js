@@ -35,9 +35,13 @@ authenController.loginUser = async (req, res) => {
 
     const user = await getUsername(username);
     try {
-        if (await user == null) {
+        if (user == null) {
             //res.send('Username does not exist')
             req.flash('msg', 'Username does not exist');
+            res.redirect('/login');
+        }
+        else if (!user.states){
+            req.flash('msg', 'Username is banned from the website');
             res.redirect('/login');
         }
         else {
