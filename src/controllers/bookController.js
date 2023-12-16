@@ -17,7 +17,6 @@ bookController.getInfoBook = async (req, res) => {
 }
 
 bookController.getInfoOneBook = async (req, res) => {
-    // console.log("ashdsahd", req.param('id'));
     return new Promise(async (resolve, reject) => {
         try {
             const book = await getBookInfo( req.param('id'));

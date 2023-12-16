@@ -2,7 +2,6 @@ import express from 'express' // es module
 import authenController from '../controllers/authenticationController.js';
 import walletController from '../controllers/walletController.js';
 import profileController from '../controllers/editProfileController.js';
-import myBooksController from '../controllers/myBooksController.js'
 import bookController from '../controllers/bookController.js';
 import emailMethod from '../controllers/emailController.js';
 
