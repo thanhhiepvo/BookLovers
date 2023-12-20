@@ -71,6 +71,23 @@
         <h2>Find your favourite books here</h2>
         <p>All your favorite books are in one place</p>
 
+        <!-- ------------------------------------- -->
+        <!-- <div id="productContainer">
+                <div class="product_cont">
+                    <div class="pro">
+                        <img src="../Picture/c++.jpg" alt="">
+                        <div class="description">
+                            <span>C++</span>
+                            <h5>Tony Gaddis</h5>    
+                        </div>
+                        <h4>200.000 VND</h4>
+                        <a href="#"><i class='bx bx-cart-add cart'></i></a>
+                    </div>
+                </div>
+            </div> -->
+
+        <!-- ------------------------------------- -->
+
         <!-- Script for product -->
         <script>
             function decodeHtml(html) {
@@ -140,8 +157,8 @@
 
 
                 // Create h4 element
-                var h4Element = document.createElement("h4");
-                h4Element.textContent = price[i] + " VND";
+                // var h4Element = document.createElement("h4");
+                // h4Element.textContent = price[i] + " VND";
 
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
@@ -150,7 +167,7 @@
                 // Append imgElement and descriptionDiv to proDiv
                 proDiv.appendChild(imgElement);
                 proDiv.appendChild(descriptionDiv);
-                proDiv.appendChild(h4Element);
+                // proDiv.appendChild(h4Element);
 
                 // Create a element
                 var aElement = document.createElement("a");

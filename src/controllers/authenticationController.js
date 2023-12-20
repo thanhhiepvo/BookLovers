@@ -1,4 +1,4 @@
-import { insertUserAccount, getUsername, updateNewPassword } from "../models/users.js"
+import { insertUserAccount, getUsername, updateNewPassword, getUserEmail } from "../models/users.js"
 //import session from 'express-session';
 
 const authenController = {};
@@ -11,6 +11,10 @@ authenController.postCreateUser = async (req, res) => {
     try {
         if (await getUsername(username) != null) {
             req.flash('msg', 'Username already exists');
+            res.redirect('/signUp');
+        }
+        else if (await getUserEmail(email) != null) {
+            req.flash('msg', 'Email already exists');
             res.redirect('/signUp');
         }
         else if (password != repassword) {
