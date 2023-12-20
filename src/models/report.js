@@ -9,3 +9,10 @@ export async function getReportInfo(ID_Report) {
         return null;
     return rows[0];
 }
+
+export async function createReport(RUsername, ReportedUser, RBook) {
+    const text = "INSERT INTO REPORT (RUsername, ReportedUser, RBook) values ($1, $2, $3)";
+    const value = [RUsername, ReportedUser, RBook];
+    await pool.query(text, value);
+    console.log('Reported successfully');
+}

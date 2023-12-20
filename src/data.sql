@@ -47,16 +47,16 @@ insert into CATEGORY (ID_Category, NameCategory) values ('C15', 'Comic');
 
 --OWNEDBOOK data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- insert into OWNEDBOOK (OUsername, OBook) values ('C1', 'Fiction');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C2', 'Non-fiction');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C3', 'Horror');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C4', 'Thriller');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C5', 'Fantasy');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C6', 'Drama');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C7', 'Action');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C8', 'Adventure');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C9', 'Technology');
--- insert into OWNEDBOOK (OUsername, OBook) values ('C10', 'Reference');
+insert into OWNEDBOOK (OUsername, OBook) values ('blanker321', 1);
+insert into OWNEDBOOK (OUsername, OBook) values ('blanker321', 2);
+insert into OWNEDBOOK (OUsername, OBook) values ('blanker321', 3);
+insert into OWNEDBOOK (OUsername, OBook) values ('blanker321', 4);
+insert into OWNEDBOOK (OUsername, OBook) values ('user1', 2);
+insert into OWNEDBOOK (OUsername, OBook) values ('user2', 3);
+insert into OWNEDBOOK (OUsername, OBook) values ('user3', 4);
+insert into OWNEDBOOK (OUsername, OBook) values ('user4', 5);
+insert into OWNEDBOOK (OUsername, OBook) values ('user5', 6);
+insert into OWNEDBOOK (OUsername, OBook) values ('user6', 7);
 
 --SELLINGBOOK data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

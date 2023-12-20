@@ -49,7 +49,7 @@ BEFORE INSERT ON SHOPPING_CART
 FOR EACH ROW
 EXECUTE PROCEDURE shopping_cart_trigger();
 
--- Khi tài khoản bị ban thì chỉ xóa hết mọi thao tác bán 
+-- Khi tài khoản bị ban thì chỉ xóa hết mọi thao tác bán và các report đến tài khoản bị ban
 CREATE OR REPLACE FUNCTION del_banneduser_sell_trigger()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -59,6 +59,7 @@ BEGIN
     IF NEW.States <> OLD.States AND NEW.States = false THEN
       -- Delete all the selling actions of the banned user from the selling book table
       DELETE FROM SELLINGBOOK WHERE SUsername = OLD.Username;
+      DELETE FROM REPORT WHERE ReportedUser = OLD.Username;
     END IF;
     -- Return the new row to the trigger
     RETURN NEW;
@@ -72,9 +73,25 @@ AFTER UPDATE ON USERACCOUNT
 FOR EACH ROW
 EXECUTE PROCEDURE del_banneduser_sell_trigger();
 
-
 -- Kích hoạt / áp dụng trigger
 -- Enable trigger
 alter table SHOPPING_CART enable trigger shopping_cart_trigger;
 alter table SELLINGBOOK enable trigger update_item_price_trigger;
 alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
+
+
+-----------------------------------------------------------------------------
+-- procedure tính tổng tiền giỏ hàng
+CREATE OR REPLACE PROCEDURE total_selling_price (
+  IN username varchar(50),
+  OUT total_amount float
+)
+LANGUAGE plpgsql AS $$
+BEGIN
+  -- calculate the total amount of selling price for the given user
+  SELECT SUM(Selling_Price) INTO total_amount
+  FROM SHOPPING_CART
+  WHERE ShopUser = user_name;
+END;
+$$
+
