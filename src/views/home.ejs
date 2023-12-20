@@ -60,31 +60,16 @@
 
 <body>
     <section id="intro">
-        <h3>Tiệm Bán Nước</h3>
-        <h4>Chuyên bán sách</h4>
-        <h5>-Võ Thanh Hiệp-</h5>
+        <div class="introInfo">
+            <h3>Tiệm Bán Nước</h3>
+            <h4>Chuyên bán sách</h4>
+            <h5>-Võ Thanh Hiệp-</h5>
+        </div>
     </section>
 
     <section id="product" class="section_home">
         <h2>Find your favourite books here</h2>
         <p>All your favorite books are in one place</p>
-
-        <!-- ------------------------------------- -->
-        <!-- <div id="productContainer">
-                <div class="product_cont">
-                    <div class="pro">
-                        <img src="../Picture/c++.jpg" alt="">
-                        <div class="description">
-                            <span>C++</span>
-                            <h5>Tony Gaddis</h5>
-                        </div>
-                        <h4>200.000 VND</h4>
-                        <a href="#"><i class='bx bx-cart-add cart'></i></a>
-                    </div>
-                </div>
-            </div> -->
-
-        <!-- ------------------------------------- -->
 
         <!-- Script for product -->
         <script>
@@ -112,6 +97,7 @@
                 imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                 authors.push(books[i].author);
                 price.push(books[i].price.toLocaleString('de-DE'));
+                // price.push(books[i].price);
                 bookNames.push(books[i].namebook);
                 //console.log(imagePaths[i]);
             }
