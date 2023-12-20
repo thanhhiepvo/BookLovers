@@ -75,14 +75,13 @@
             var year = "<%=books.publishedyear%>";
             year = year.substring(10, 15);
             var des = "<%=books.description%>";
-            var price = "<%=books.price.toLocaleString('de-DE')%>";
 
             document.getElementById("imgBook").src = imgBook;
             document.getElementById("nameBook").textContent = name;
             document.getElementById("author").textContent = "Author: " + author;
             document.getElementById("year").textContent = "Published: " + year;
             document.getElementById("des").textContent = "Description: " + des;
-            document.getElementById("price").textContent = price + " VND";
+            //document.getElementById("price").textContent = price + " VND";
         </script>
     </div>
     <footer class="footer-distributed">

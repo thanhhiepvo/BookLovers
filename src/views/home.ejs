@@ -113,7 +113,7 @@
                 idBook.push(books[i].id_book);
                 imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                 authors.push(books[i].author);
-                //price.push(books[i].price.toLocaleString('de-DE'));
+                price.push(books[i].price.toLocaleString('de-DE'));
                 // price.push(books[i].price);
                 bookNames.push(books[i].namebook);
                 //console.log(imagePaths[i]);
@@ -157,8 +157,8 @@
 
 
                 // Create h4 element
-                // var h4Element = document.createElement("h4");
-                // h4Element.textContent = price[i] + " VND";
+                var h4Element = document.createElement("h4");
+                h4Element.textContent = price[i] + " VND";
 
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
@@ -167,7 +167,7 @@
                 // Append imgElement and descriptionDiv to proDiv
                 proDiv.appendChild(imgElement);
                 proDiv.appendChild(descriptionDiv);
-                // proDiv.appendChild(h4Element);
+                proDiv.appendChild(h4Element);
 
                 // Create a element
                 var aElement = document.createElement("a");
