@@ -40,6 +40,6 @@ export async function getBookInfo(ID_Book) {
     return rows[0];
 } 
 
-export async function uploadNewBook(){
-    const text
-}
+// export async function uploadNewBook(){
+//     const text
+// }
