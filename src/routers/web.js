@@ -106,10 +106,10 @@ router.get('/selling', async (req, res) => {
     if (req.session.username) {
         try {
             const user = await authenController.getProfileUser(req, res);
-            const listOwnedBook = await bookController.getInfoBook(req, res);
+            const listSellBook = await bookController.getBookSell(req, res);
             res.render('selling', {
                 user: user,
-                books: listOwnedBook
+                books: listSellBook
             });
         } catch (error) {
             console.error(error);
