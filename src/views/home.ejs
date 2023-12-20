@@ -60,9 +60,11 @@
 
 <body>
     <section id="intro">
-        <h3>Tiệm Bán Nước</h3>
-        <h4>Chuyên bán sách</h4>
-        <h5>-Võ Thanh Hiệp-</h5>
+        <div class="introInfo">
+            <h3>Tiệm Bán Nước</h3>
+            <h4>Chuyên bán sách</h4>
+            <h5>-Võ Thanh Hiệp-</h5>
+        </div>
     </section>
 
     <section id="product" class="section_home">
@@ -76,7 +78,7 @@
                         <img src="../Picture/c++.jpg" alt="">
                         <div class="description">
                             <span>C++</span>
-                            <h5>Tony Gaddis</h5>
+                            <h5>Tony Gaddis</h5>    
                         </div>
                         <h4>200.000 VND</h4>
                         <a href="#"><i class='bx bx-cart-add cart'></i></a>
@@ -112,6 +114,7 @@
                 imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                 authors.push(books[i].author);
                 price.push(books[i].price.toLocaleString('de-DE'));
+                // price.push(books[i].price);
                 bookNames.push(books[i].namebook);
                 //console.log(imagePaths[i]);
             }
@@ -154,8 +157,8 @@
 
 
                 // Create h4 element
-                var h4Element = document.createElement("h4");
-                h4Element.textContent = price[i] + " VND";
+                // var h4Element = document.createElement("h4");
+                // h4Element.textContent = price[i] + " VND";
 
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
@@ -164,7 +167,7 @@
                 // Append imgElement and descriptionDiv to proDiv
                 proDiv.appendChild(imgElement);
                 proDiv.appendChild(descriptionDiv);
-                proDiv.appendChild(h4Element);
+                // proDiv.appendChild(h4Element);
 
                 // Create a element
                 var aElement = document.createElement("a");

@@ -48,4 +48,4 @@ export async function getBookInfo(ID_Book) {
     if (rows.length == 0)
         return null;
     return rows[0];
-} 
+}
