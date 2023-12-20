@@ -32,7 +32,7 @@ header {
 }
 
 body {
-    background-color: #efefef;
+    background-color: #f9f9ff;
 }
 
 .logo img {
@@ -169,7 +169,7 @@ body {
 
 #intro h3 {
     padding-bottom: 20px;
-    font-size: 80px;
+    font-size: 60px;
 }
 
 #intro h5 {
@@ -265,7 +265,15 @@ body {
     border: 1px solid grey;
 }
 
-#product .pro .cart {
+#product a
+{
+    color: #0e0e2e;
+    text-decoration: none;
+}
+
+
+
+/* #product .pro .cart {
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -277,7 +285,7 @@ body {
     position: absolute;
     bottom: 8px;
     right: 10px;
-}
+} */
 
 /* --- Wallet page ---  */
 
