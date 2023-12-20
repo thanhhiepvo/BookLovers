@@ -1,4 +1,4 @@
-drop table if exists book, bookcategory, category, invoice, ownedbook, report, sellingbook, transac, useraccount cascade;
+drop table if exists book, bookcategory, category, invoice, ownedbook, report, sellingbook, transac, useraccount, shopping_cart cascade;
 
 create table USERACCOUNT (
 	Username varchar(50),
@@ -16,7 +16,6 @@ create table BOOK (
 	ID_Book serial,
 	NameBook varchar(100),
 	Author varchar(100),
-	Price float,
 	Description varchar(2000),
 	PublishedYear timestamp (0) with time zone,
 	constraint PK_BOOK primary key (ID_Book)
@@ -47,6 +46,7 @@ create table OWNEDBOOK (
 create table SELLINGBOOK (
 	SUsername varchar(50),
 	SBook int,
+	SPrice float,
 	constraint PK_SELLINGBOOK primary key (SUsername, SBook)
 );
 
@@ -70,6 +70,14 @@ create table BOOKCATEGORY (
 	constraint PK_BOOKCATEGORY primary key (BCBook, BCCategory)
 );
 
+create table SHOPPING_CART (
+	ShopUser varchar(50),
+	ShopSeller varchar(50),
+	ShopBook int,
+	Selling_Price float,
+	constraint PK_SHOPPING_CART primary key (ShopUser, ShopSeller, ShopBook)
+);
+
 set TIMEZONE = 'Asia/Saigon';
 set DateStyle = 'DMY';
 
@@ -89,3 +97,6 @@ alter table INVOICE add constraint FK_INVOICE_USERACCOUNT foreign key (IUsername
 
 alter table TRANSAC add constraint FK_TRANSAC_INVOICE foreign key (ID_Transac) references INVOICE(ID_Invoice);
 alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook);
+
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_USERACCOUNT foreign key (ShopUser) references USERACCOUNT(Username);
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_SELLINGBOOK foreign key (ShopSeller, ShopBook) references SELLINGBOOK(SUsername, SBook);

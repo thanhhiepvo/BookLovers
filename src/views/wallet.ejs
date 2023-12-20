@@ -66,7 +66,7 @@
             <li><a href="#withdraw">Withdraw</a></li>
             <li><a href="#history">History</a></li>
         </div>
-    
+
         <div class="mainWallet">
             <div class="balance">
                 <h2>My wallet</h2>
@@ -81,16 +81,16 @@
                     var uname = "<%= user.username %>";
                     var phone = "<%= user.phonenumber %>";
                     var mail = "<%= user.email %>";
-    
+
                     document.getElementById("money_wallet").textContent = money + " VND";
                     document.getElementById("uname_wallet").textContent = uname;
                     document.getElementById("phone_wallet").textContent = phone;
                     document.getElementById("mail_wallet").textContent = mail;
                 </script>
             </div>
-    
+
         </div>
-    
+
         <div class="deposit" id="deposit">
             <div class="infoDepo">
                 <h2>Deposit</h2>
@@ -100,7 +100,7 @@
                 <h4>Accept all e-Wallet and Mobile banking</h4>
             </div>
         </div>
-    
+
         <div class="withdraw" id="withdraw">
             <div class="withd">
                 <h2>Withdraw</h2>
@@ -124,7 +124,7 @@
                         //     amountInput.selectionStart = amountInput.value.length - 4;
                         //     amountInput.selectionEnd = amountInput.value.length - 4;
                         // }
-    
+
                         if (event.keyCode == 8 && amountInput.value.length > 3) {
                             // if (amountInput.value[0] == ".")
                             // {
@@ -134,7 +134,7 @@
                             // {
                             //     amountInput.value = amountInput.value.slice(1);
                             // }
-    
+
                             for (var i = 0; i < amountInput.value.length - 4; i++) {
                                 if (amountInput.value[i + 1] == '.') {
                                     var tmp = amountInput.value[i];
@@ -142,17 +142,17 @@
                                     amountInput.value[i + 1] = tmp;
                                 }
                             }
-    
+
                             // if (amountInput.value[0] == ".")
                             // {
                             //     amountInput.value = amountInput.value.slice(1);
                             // }
-    
+
                             // amountInput.value = amountInput.value.slice(amountInput.value.length - 4);
                             amountInput.selectionStart = amountInput.value.length - 3;
                             amountInput.selectionEnd = amountInput.value.length - 3;
                         }
-    
+
                         else {
                             var count = 0;
                             for (var i = 0; i < amountInput.value.length; i++) {
@@ -166,7 +166,7 @@
                                 // amountInput.value = amountInput.value.replace("VND", ".VND");
                                 amountInput.value = amountInput.value.slice(0, count * 3 + 1 + count) + "." + amountInput.value.slice(count * 3 + 1 + count);
                             }
-    
+
                             // var c = 0;
                             // for (var i = amountInput.value.length - 4; i >= 0; i -= 1)
                             // {
@@ -184,23 +184,21 @@
                             amountInput.selectionEnd = amountInput.value.length - 3;
                             // console.log(amountInput.value);
                         }
-    
+
                         // const value = event.target.value;
                     });
                     // document.getElementById("amountInput").textContent = amountInput + " VND";
                 </script>
             </div>
         </div>
-    
+
         <div class="history" id="history">
             <div class="infoHis">
                 <h2>History</h2>
-    
+
             </div>
         </div>
     </section>
-
-
 </body>
-<!-- <%- include('footer.ejs') %> -->
+
 </html>

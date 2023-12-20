@@ -1,103 +1,174 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Home page</title> 
-        <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
-        <link rel="stylesheet" href="/CSS/footer.css">  
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-        <link rel="icon" href="/Picture/favicon.png" type="image/png">
-    </head>
-    <header>
-        <a href="#" class="logo"><img src="/Picture/logo.png"></a>
-        
-        <ul class="navbar">
-            <li><a href="homepage">Home</a></li>
-            <li><a href="myBook">My books</a></li>
-            <li><a href="selling">Selling</a></li>
-            <li><a href="wallet">Wallet</a></li>
-            <li><a href="about">About</a></li>
-        </ul>
-        
-        <div class="profile">
-            <i class='bx bx-user' ></i>
-            <span>Profile</span>
-            <i class='bx bx-caret-down' ></i>
-        </div>
+<html lang="en">
 
-        <div id="profileSpan">
-            <h5 id="name"></h5>
-            <h5 id="mail"></h5>
-            <h5 id="balance"></h5>
-            <li><a href="editProfile">Edit my profile</a></li>
-            <li><a href="logOut">Log out</a></li>
-        </div>
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
 
-        <!-- Script for Profile -->
-        <Script>
-            var profileSpan = document.getElementById("profileSpan");
-            var name = "<%= user.username %>";
-            var mail = "<%= user.email %>";
-            var balance = "<%= user.balance %>";
+    <ul class="navbar">
+        <li><a href="homepage">Home</a></li>
+        <li><a href="myBook">My books</a></li>
+        <li><a href="selling">Selling</a></li>
+        <li><a href="wallet">Wallet</a></li>
+        <li><a href="about">About</a></li>
+    </ul>
 
-            document.getElementById("name").textContent = "UserName: " + name;
-            document.getElementById("mail").textContent = "Email: " + mail;
-            document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
-
-            var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-            caretDownIcon.addEventListener('click', () => 
-            {
-                profileSpan.classList.toggle('active');
-            });
-        </Script>
-
-    </header>
-
-    <div class="edit" id="edit">
-        <div class="wrapper">
-            <form action="/edit-profile" method="post">
-                <h1>Edit profile</h1>
-
-                <div class="infoEdit">
-                    <h3 id="uname_edit"></h3>
-                </div>
-
-                <div class="infoEdit">
-                    <input type="email" id="email_edit" name = "email_edit">
-                </div>
-
-                <div class="infoEdit">
-                    <input type="text" id="fullname_edit" name = "fullname_edit">
-                </div>  
-
-                <div class="infoEdit">
-                    <input type="text" id="phone_edit" name = "phone_edit">
-                </div>
-
-                <div class="infoEdit">
-                    <input type="date" id="birth_edit" name = "birth_edit">
-                </div>
-                <button type="submit" class="editBut">
-                    Verify
-                </button>
-            </form>
-        </div>
-        <script>
-            // var edit = document.getElementById("edit");
-            var name = "<%= user.username %>";
-            var mail = "<%= user.email %>";
-            var fullname = "<%= user.fullname %>";
-            var phone = "<%= user.phonenumber %>";
-            let birth = "<%= user.birth.toISOString().substring(0, 10) %>";
-
-
-            document.getElementById("uname_edit").textContent = "User: " + name;
-            document.getElementById("email_edit").placeholder = "Email: " + mail;
-            document.getElementById("fullname_edit").placeholder = "Fullname: " + fullname;
-            document.getElementById("phone_edit").placeholder = "Phone number: " + phone;
-            document.getElementById("birth_edit").value = birth;
-        </script>
+    <div class="profile">
+        <i class='bx bx-user'></i>
+        <span>Profile</span>
+        <i class='bx bx-caret-down'></i>
     </div>
-    <%- include('footer.ejs') %>
+
+    <div id="profileSpan">
+        <h5 id="name"></h5>
+        <h5 id="mail"></h5>
+        <h5 id="balance"></h5>
+        <li><a href="editProfile">Edit my profile</a></li>
+        <li><a href="logOut">Log out</a></li>
+    </div>
+
+    <!-- Script for Profile -->
+    <Script>
+        var profileSpan = document.getElementById("profileSpan");
+        var name = "<%= user.username %>";
+        var mail = "<%= user.email %>";
+        var balance = "<%= user.balance %>";
+
+        document.getElementById("name").textContent = "UserName: " + name;
+        document.getElementById("mail").textContent = "Email: " + mail;
+        document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
+        caretDownIcon.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
+        });
+    </Script>
+
+</header>
+
+<div class="edit" id="edit">
+    <div class="wrapper">
+        <form action="/edit-profile" method="post">
+            <h1>Edit profile</h1>
+
+            <div class="infoEdit">
+                <h3 id="uname_edit"></h3>
+            </div>
+
+            <div class="infoEdit">
+                <input type="email" id="email_edit" name="email_edit">
+            </div>
+
+            <div class="infoEdit">
+                <input type="text" id="fullname_edit" name="fullname_edit">
+            </div>
+
+            <div class="infoEdit">
+                <input type="text" id="phone_edit" name="phone_edit">
+            </div>
+
+            <div class="infoEdit">
+                <input type="date" id="birth_edit" name="birth_edit">
+            </div>
+            <button type="submit" class="editBut">
+                Verify
+            </button>
+        </form>
+    </div>
+    <script>
+        // var edit = document.getElementById("edit");
+        var name = "<%= user.username %>";
+        var mail = "<%= user.email %>";
+        var fullname = "<%= user.fullname %>";
+        var phone = "<%= user.phonenumber %>";
+        var birth;
+
+
+        var birth;
+
+        if ("<%= user.birth %>" !== '') {
+            birth = new Date("<%= user.birth %>").toISOString().substring(0, 10);
+        } 
+        else {
+            var currentDate = new Date();
+            var day = String(currentDate.getDate()).padStart(2, '0');
+            var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+            var year = currentDate.getFullYear();
+            birth = day + '/' + month + '/' + year;
+        }
+
+        document.getElementById("uname_edit").textContent = "User: " + name;
+        document.getElementById("email_edit").placeholder = "Email: " + mail;
+        document.getElementById("fullname_edit").placeholder = "Fullname: " + fullname;
+        document.getElementById("phone_edit").placeholder = "Phone number: " + phone;
+        document.getElementById("birth_edit").value = birth;
+    </script>
+</div>
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+        <h3>Book<span>Lovers</span></h3>
+
+        <p class="footer-links">
+            <a href="#">Home</a>
+            |
+            <a href="#">My books</a>
+            |
+            <a href="#">Selling</a>
+            |
+            <a href="#">Wallet</a>
+            |
+            <a href="#">About</a>
+        </p>
+
+        <p class="footer-company-name">Copyright © 2023 <strong>BOOKLOVERS</strong> All rights reserved</p>
+    </div>
+
+    <div class="footer-center">
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span> 227 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh </span>
+                Việt Nam</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>0901321679</p>
+        </div>
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:sagar00001.co@gmail.com">booklovers@gmail.com</a></p>
+        </div>
+    </div>
+    <div class="footer-right">
+        <p class="footer-company-about">
+            <span>About the company</span>
+            <strong>Book Lovers</strong> is a website where you can find and buy books easily and quickly.
+            It creates a user-friendly and secure web platform dedicated to book-related
+            activities.
+            Users will have the ability to share their books with others, buy new or used books, sell their own
+            books, and even rent titles.
+            The platform's purpose is to foster a vibrant community of readers while providing a convenient and
+            efficient marketplace for book transactions.
+        </p>
+        <div class="footer-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
+
+
 </html>

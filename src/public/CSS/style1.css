@@ -12,9 +12,8 @@ img {
     width: 100%;
 }
 
-body
-{
-    color:black;
+body {
+    color: #141A46;
 }
 
 header {
@@ -32,10 +31,10 @@ header {
     box-shadow: 0px 8px 11px rgb(14 55 54 / 15%);
 }
 
-body
-{
+body {
     background-color: #efefef;
 }
+
 .logo img {
     width: 100px;
     height: auto;
@@ -145,13 +144,13 @@ body
 
 /* --- Home page ---  */
 #intro {
-    background-image: url("../Picture/homepage.jpg");
+    background-image: url("../Picture/bg6.jpg");
     position: relative;
     height: 90vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;
-    padding: 0 80px;
+    padding: 0 450px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -159,18 +158,18 @@ body
 }
 
 #intro h4 {
-    padding-bottom: 15px;
-    font-size: 50px;
+    padding-bottom: 40px;
+    font-size: 60px;
 }
 
 #intro h3 {
     padding-bottom: 20px;
-    font-size: 70px;
+    font-size: 80px;
 }
 
 #intro h5 {
-    padding-bottom: 20px;
-    font-size: 20px;
+    padding-bottom: 500px;
+    font-size: 30px;
 }
 
 #product {
@@ -277,8 +276,7 @@ body
 
 /* --- Wallet page ---  */
 
-#infoWalletPage
-{
+#infoWalletPage {
     /* position: relative; */
     height: 100vh;
     width: 100%;
@@ -289,11 +287,10 @@ body
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-} 
+}
 
-.miniNavbar
-{
-    position:absolute;
+.miniNavbar {
+    position: absolute;
     /* width: 100%; */
     top: 170px;
     /* right: 0; */
@@ -534,12 +531,27 @@ body
     font-size: 40px;
 }
 
+/* --- About page ---  */
+.about {
+    background: url('../Picture/bg5.jpg');
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 /* --- editFile page --- */
 .edit {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     background: transparent;
 }
 
@@ -582,6 +594,26 @@ body
     color: #141A46;
     font-size: 18px;
 }
+
+.edit .wrapper .editBut {
+    width: 100%;
+    height: 45px;
+    /* background: #0e0e2e; */
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    /* box-shadow: 0 0 5px black; */
+    font-size: 20px;
+    color: white;
+    background: #0e0e2e;
+    font-weight: 600;
+}
+
+.edit .wrapper .editBut:hover {
+    background: white;
+    color: #0e0e2e;
+}
+
 
 /* uploadBook page */
 .uploadBook {
@@ -626,12 +658,12 @@ body
 
 #thumbnailInput {
     border: none;
-    width: 0.1px;
+    /* width: 0.1px;
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
     position: absolute;
-    z-index: -1;
+    z-index: -1; */
 }
 
 #thumbnailInput+label {
@@ -665,4 +697,58 @@ body
     font-size: 20px;
     color: #141A46;
     padding: 20px 45px 20px 10px;
+}
+
+/* Book page  */
+
+.bookPic {
+    margin-left: 100px;
+    margin-right: 50px;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+}
+
+.bookPic img {
+    margin: 50px 30px;
+    height: 500px;
+    width: auto;
+    border: 1px solid white;
+    border-radius: 5%;
+}
+
+.bookPic .bookInfo h1 {
+    font-size: 25px;
+    /* font-weight: lighter; */
+}
+
+.bookPic .bookInfo h2 {
+    font-size: 40px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h3 {
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo h4 {
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.bookPic .bookInfo {
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: white;
+    /* line-height: 2; */
+    /* margin-bottom: 50px; */
+    padding: 10px 20px;
+    /* font-weight: lighter; */
+    width: 600px;
+}
+
+.bookPic .bookInfo>* {
+    margin-bottom: 30px;
+    color: #080a52;
 }
