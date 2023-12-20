@@ -117,3 +117,10 @@ export async function addOwnedBook(OUsername, OBook) {
     await pool.query(text, value);
     console.log('Added user owned book successfully');
 }
+
+export async function addToCart(ShopUser, ShopSeller, ShopBook, Selling_Price){
+    const text = "INSERT INTO REPORT (ShopUser, ShopSeller, ShopBook, Selling_Price) values ($1, $2, $3, $4)";
+    const value = [ShopUser, ShopSeller, ShopBook, Selling_Price];
+    await pool.query(text, value);
+    console.log('Added book to cart successfully');
+}
