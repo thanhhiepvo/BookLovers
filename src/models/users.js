@@ -97,30 +97,16 @@ export const updateNewPassword = async (useremail, new_password) => {
     }
 }
 
-export async function addBook(NameBook, Author, Description, PublishedYear){
-    const text = "INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) values ($1, $2, $3, $4)";
-    const value = [NameBook, Author, Description, PublishedYear];
-    await pool.query(text, value);
-    console.log('Added book successfully');
-}
-
-export async function addSellBook(SUsername, SBook, SPrice) {
-    const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
-    const value = [SUsername, SBook, SPrice];
-    await pool.query(text, value);
-    console.log('Added user sell book successfully');
-}
-
-export async function addOwnedBook(OUsername, OBook) {
-    const text = "INSERT INTO REPORT (OUsername, OBook) values ($1, $2)";
-    const value = [OUsername, OBook];
-    await pool.query(text, value);
-    console.log('Added user owned book successfully');
-}
-
-export async function addToCart(ShopUser, ShopSeller, ShopBook, Selling_Price){
-    const text = "INSERT INTO REPORT (ShopUser, ShopSeller, ShopBook, Selling_Price) values ($1, $2, $3, $4)";
+export async function addToCart(ShopUser, ShopSeller, ShopBook, Selling_Price) {
+    const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook, Selling_Price) values ($1, $2, $3, $4)";
     const value = [ShopUser, ShopSeller, ShopBook, Selling_Price];
     await pool.query(text, value);
     console.log('Added book to cart successfully');
+}
+
+export async function removeFromCart(ShopUser, ShopSeller, ShopBook){
+    const text = "DELETE FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
+    const value = [ShopUser, ShopSeller, ShopBook];
+    await pool.query(text, value);
+    console.log('Book removed from cart successfully');
 }

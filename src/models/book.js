@@ -74,3 +74,45 @@ export async function getBookInfo(ID_Book) {
     rows[0].category = result;
     return rows[0];
 }
+
+export async function addBook(NameBook, Author, Description, PublishedYear) {
+    const text = "INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) values ($1, $2, $3, $4)";
+    const value = [NameBook, Author, Description, PublishedYear];
+    await pool.query(text, value);
+    console.log('Added book successfully');
+}
+
+export async function delBook(ID_Book) {
+    const text = "DELETE FROM BOOK WHERE ID_Book = $1";
+    const value = [ID_Book];
+    await pool.query(text, value);
+    console.log('Book deleted successfully');
+}
+
+export async function addSellBook(SUsername, SBook, SPrice) {
+    const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
+    const value = [SUsername, SBook, SPrice];
+    await pool.query(text, value);
+    console.log('Added user sell book successfully');
+}
+
+export async function delSellBook(SUsername, SBook) {
+    const text = "DELETE FROM SELLINGBOOK WHERE SUsername = $1 AND SBook = $2";
+    const value = [SUsername, SBook];
+    await pool.query(text, value);
+    console.log('User sell book deleted successfully');
+}
+
+export async function addOwnedBook(OUsername, OBook) {
+    const text = "INSERT INTO OWNEDBOOK (OUsername, OBook) values ($1, $2)";
+    const value = [OUsername, OBook];
+    await pool.query(text, value);
+    console.log('Added user owned book successfully');
+}
+
+export async function delOwnedBook(OUsername, OBook) {
+    const text = "DELETE FROM OWNED WHERE OUsername = $1 AND OBook = $2";
+    const value = [OUsername, OBook];
+    await pool.query(text, value);
+    console.log('User owned book deleted successfully');
+}
