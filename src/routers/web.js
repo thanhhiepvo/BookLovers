@@ -155,7 +155,7 @@ router.post('/edit-profile', profileController.updateInfo)
 router.get('/book', async (req, res) => {
     if (req.session.username) {
         try {
-            const book = await bookController.getInfoOneBook(req, res);
+            const book = await bookController.getBookInfo(req, res);
             const user = await authenController.getProfileUser(req, res);
             //books = book;
             res.render('book', {

@@ -1,4 +1,5 @@
 import pool from '../database.js'
+import { getCategoryInfo } from '../models/category.js'
 
 // Lay danh sach cac user so huu sach (ID_Book)
 export async function getUserOwned(ID_Book) {
@@ -55,11 +56,21 @@ export async function checkBook(relativebookname, author, publishedyear) {
 }
 
 export async function getBookInfo(ID_Book) {
-    const text = "SELECT * FROM BOOK WHERE ID_Book = $1";
+    const textbook = "SELECT * FROM BOOK WHERE ID_Book = $1";
     const value = [ID_Book];
-    const { rows } = await pool.query(text, value);
+    const { rows } = await pool.query(textbook, value);
     // console.log(rows);
     if (rows.length == 0)
         return null;
+    const textcategory = "SELECT BCCategory FROM BOOKCATEGORY WHERE BCBook = $1";
+    const { rows: bookcategorylist } = await pool.query(textcategory, value);
+    const bookcategory = bookcategorylist.map(category => category.bccategory);
+    let categoryname = [];
+    for (let categoryid of bookcategory) {
+        let name = await getCategoryInfo(categoryid);
+        categoryname.push(name.namecategory);
+    }
+    let result = categoryname.join(", ");
+    rows[0].category = result;
     return rows[0];
 }

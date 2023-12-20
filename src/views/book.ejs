@@ -65,6 +65,7 @@
             <h1 id="nameBook"></h1>
             <h3 id="author"></h3>
             <h3 id="year"></h3>
+            <h3 id="category"></h3>
             <h4 id="des"></h4>
             <h2 id="price"></h2>
         </div>
@@ -75,11 +76,13 @@
             var year = "<%=books.publishedyear%>";
             year = year.substring(10, 15);
             var des = "<%=books.description%>";
+            var category = "<%=books.category%>"
 
             document.getElementById("imgBook").src = imgBook;
             document.getElementById("nameBook").textContent = name;
             document.getElementById("author").textContent = "Author: " + author;
             document.getElementById("year").textContent = "Published: " + year;
+            document.getElementById("category").textContent = "Category: " + category;
             document.getElementById("des").textContent = "Description: " + des;
             //document.getElementById("price").textContent = price + " VND";
         </script>
