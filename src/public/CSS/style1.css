@@ -153,13 +153,12 @@ body {
     padding: 0 450px;
     display: flex;
     flex-direction: column;
-    
+
 }
 
-#intro .introInfo
-{
+#intro .introInfo {
     margin-top: 60px;
-    align-items:center;
+    align-items: center;
     justify-content: center;
 }
 
@@ -362,6 +361,10 @@ body {
 
 .mainWallet .balance h1 {
     font-size: 70px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .mainWallet .balance h3 {
