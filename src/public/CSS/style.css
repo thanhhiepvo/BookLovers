@@ -406,7 +406,7 @@ body
     border-radius: 10px;
 }
 
-.signUp .wrapper .alert-success
+.reg .wrapper .alert-success
 {
     
     background-color: #d4edda;
@@ -418,7 +418,7 @@ body
 
 }
 
-.signUp .wrapper .alert-success p
+.reg .wrapper .alert-success p
 {
     font-style: italic;
     font-weight:900;

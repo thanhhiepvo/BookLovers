@@ -29,6 +29,7 @@ router.post('/otp-check', emailMethod.checkOTP);
 
 router.get('/otp-resend', emailMethod.resendOTP);
 
+
 router.get('/recoverPass', (req, res) => {
     res.render('recoverPass.ejs', { message: req.flash('msg') });
 })

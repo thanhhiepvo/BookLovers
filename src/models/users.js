@@ -1,6 +1,6 @@
 
 import pool from '../database.js'
-//TO_CHAR(Birth, 'MM/DD/YYYY')
+
 export async function getUsername(username) {
     const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
     console.log(rows);
@@ -53,13 +53,11 @@ export async function getUserBirth(username) {
     return rows[0].birth;
 }
 
-
-
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
-        const text = 'INSERT INTO useraccount(username, email, pass, balance) VALUES($1, $2, $3, $4)';
-        const values = [username, email, password, 0];
+        const text = 'INSERT INTO useraccount(username, email, pass, balance, states) VALUES($1, $2, $3, $4, $5)';
+        const values = [username, email, password, 0, 'true'];
         await pool.query(text, values);
         console.log('Data inserted successfully');
     } catch (error) {
