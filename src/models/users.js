@@ -113,7 +113,7 @@ export async function addSellBook(SUsername, SBook, SPrice) {
 
 export async function addOwnedBook(OUsername, OBook) {
     const text = "INSERT INTO REPORT (OUsername, OBook) values ($1, $2)";
-    const value = [ROUsername, OBook];
+    const value = [OUsername, OBook];
     await pool.query(text, value);
     console.log('Added user owned book successfully');
 }
