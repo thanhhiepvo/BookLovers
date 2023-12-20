@@ -67,7 +67,8 @@ router.post('/create-user', authenController.postCreateUser);
 router.get('/homepage', async (req, res) => {
     if (req.session.username) {
         try {
-            const book = await bookController.getInfoBook(req, res);
+            const book = await bookController.getAllSellingBook(req, res);
+            // console.log(book);
             const user = await authenController.getProfileUser(req, res);
             //books = book;
             res.render('home', {
@@ -87,7 +88,7 @@ router.get('/myBook', async (req, res) => {
     if (req.session.username) {
         try {
             const user = await authenController.getProfileUser(req, res);
-            const listOwnedBook = await bookController.getInfoBook(req, res);
+            const listOwnedBook = await bookController.getBookOwned(req, res);
             res.render('myBook', {
                 user: user,
                 books: listOwnedBook

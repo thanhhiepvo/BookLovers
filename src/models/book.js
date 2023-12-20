@@ -1,13 +1,23 @@
 import pool from '../database.js'
 
 export async function getUserOwned(ID_Book) {
-    const text = "SELECT OUser FROM OWNEDBOOK WHERE OBook = $1"
+    const text = "SELECT OUsername FROM OWNEDBOOK WHERE OBook = $1"
     const value = [ID_Book];
     const { rows } = await pool.query(text, value);
     console.log(rows);
     if (rows.length == 0)
         return null;
-    return rows.map(row => row.ouser);
+    return rows.map(row => row.ousername);
+}
+
+export async function getBookOwned(OUser) {
+    const text = "SELECT OBook FROM OWNEDBOOK WHERE OUsername = $1"
+    const value = [OUser];
+    const { rows } = await pool.query(text, value);
+    console.log(rows);
+    if (rows.length == 0)
+        return null;
+    return rows.map(row => row.obook);
 }
 
 export async function getUserSellingBook(ID_Book) {
@@ -26,7 +36,7 @@ export async function checkBook(relativebookname, author, publishedyear) {
     const { rows } = await pool.query(text, value);
     // console.log(rows);
     if (rows.length == 0)
-        return null; 
+        return null;
     return rows[0].id_book;
 }
 
@@ -36,10 +46,6 @@ export async function getBookInfo(ID_Book) {
     const { rows } = await pool.query(text, value);
     // console.log(rows);
     if (rows.length == 0)
-        return null; 
+        return null;
     return rows[0];
 } 
-
-export async function uploadNewBook(){
-    const text
-}
