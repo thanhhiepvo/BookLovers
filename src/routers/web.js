@@ -82,6 +82,7 @@ router.get('/homepage', async (req, res) => {
     }
     console.log(">>> req.session.username = ", req.session.username);
 });
+
 router.get('/myBook', async (req, res) => {
     if (req.session.username) {
         try {
@@ -117,14 +118,17 @@ router.get('/selling', async (req, res) => {
     }
     // console.log(">>> req.session.username = ", req.session.username);
 })
+
 router.get('/upload', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         res.render('upload.ejs', { user: user }); // Render the view with user data
+
     } else {
         res.redirect('/login');
     }
 })
+router.post('/uploadSelling', )
 
 router.get('/wallet', async (req, res) => {
     if (req.session.username) {
