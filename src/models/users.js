@@ -93,6 +93,27 @@ export const updateNewPassword = async (useremail, new_password) => {
         await pool.query(text, values);
         console.log('New password was changed in database');
     } catch (error) {
-
+        console.error('Error executing query', error);
     }
+}
+
+export async function addBook(NameBook, Author, Description, PublishedYear){
+    const text = "INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) values ($1, $2, $3, $4)";
+    const value = [NameBook, Author, Description, PublishedYear];
+    await pool.query(text, value);
+    console.log('Added book successfully');
+}
+
+export async function addSellBook(SUsername, SBook, SPrice) {
+    const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
+    const value = [SUsername, SBook, SPrice];
+    await pool.query(text, value);
+    console.log('Added user sell book successfully');
+}
+
+export async function addOwnedBook(OUsername, OBook) {
+    const text = "INSERT INTO REPORT (OUsername, OBook) values ($1, $2)";
+    const value = [ROUsername, OBook];
+    await pool.query(text, value);
+    console.log('Added user owned book successfully');
 }
