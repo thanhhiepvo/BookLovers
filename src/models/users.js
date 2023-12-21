@@ -98,10 +98,15 @@ export const updateNewPassword = async (useremail, new_password) => {
 }
 
 export async function addToCart(ShopUser, ShopSeller, ShopBook) {
-    const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
+    const check = "SELECT * FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
     const value = [ShopUser, ShopSeller, ShopBook];
-    await pool.query(text, value);
-    console.log('Added book to cart successfully');
+    const { rows } = await pool.query(check, value);
+    if (rows.length == 0) {
+        const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
+        await pool.query(text, value);
+        console.log('Added book to cart successfully');
+    }
+    console.log('Already added to cart');
 }
 
 export async function removeFromCart(ShopUser, ShopSeller, ShopBook){

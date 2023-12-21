@@ -106,11 +106,26 @@
         </div> -->
         <!-- Script for Book Sellers -->
         <script>
+            function decodeHtml(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
             var bookPage = document.getElementById("bookPage");
+            const n = "<%=selluser.length%>";
+            var nameSellers = [];
+            var price = [];
+            if (n != 0) {
+                var selluser = "<%= JSON.stringify(selluser) %>";
+                selluser = decodeHtml(selluser);
+                selluser = JSON.parse(selluser);
+            }
+            for (var i = 0; i < n; i++) {
+                nameSellers.push(selluser[i].susername);
+                console.log(selluser[i].susername);
+                price.push(selluser[i].sprice.toLocaleString('de-DE'));
+            }
 
-            var nameSellers = ["Nguyen Van A", "Nguyen Van B", "Nguyen Van C", "Nguyen Van D", "Nguyen Van E", "Nguyen Van A", "Nguyen Van B", "Nguyen Van C", "Nguyen Van D", "Nguyen Van E"];
-            var price = ["100.000", "110.000", "105.000", "100.000", "120.000", "100.000", "110.000", "105.000", "100.000", "120.000"];
-            const n = 10;
             var bookSellers = document.createElement("div");
             bookSellers.className = "bookSellers";
 
@@ -132,7 +147,7 @@
                 buttonBook.className = "buttonBook";
                 
                 var link1 = document.createElement("a");
-                link1.href = "atc?ShopBook=" + "<%=books.id_book%>" + "&ShopSeller=" + i + "&ShopUser=" + "<%=user.username%>";
+                link1.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
 
                 var button1 = document.createElement("button");
                 button1.type = "submit";
@@ -142,7 +157,7 @@
                 link1.appendChild(button1);
 
                 var link2 = document.createElement("a");
-                link2.href = "buy?ShopBook=" + "<%=books.id_book%>" + "&ShopSeller=" + i + "&ShopUser=" + "<%=user.username%>";
+                link2.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
 
                 var button2 = document.createElement("button");
                 button2.type = "submit";
@@ -152,7 +167,7 @@
                 link2.appendChild(button2);
 
                 var reportLink = document.createElement("a");
-                reportLink.href = "report?report_seller=" + i;
+                reportLink.href = "report?RUsername=" + "<%=user.username%>" + "&ReportedUser=" + nameSellers[i] + "&RBook=" + "<%=books.id_book%>";
 
                 var report = document.createElement("i");
                 report.className = 'bx bx-comment-error';
