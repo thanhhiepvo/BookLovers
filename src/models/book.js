@@ -73,10 +73,7 @@ export async function getBookInfo(ID_Book) {
     let result = categoryname.join(", ");
     rows[0].category = result;
     return rows[0];
-<<<<<<< HEAD
 } 
-=======
-}
 
 export async function addBook(NameBook, Author, Description, PublishedYear) {
     const text = "INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) values ($1, $2, $3, $4)";
@@ -119,4 +116,3 @@ export async function delOwnedBook(OUsername, OBook) {
     await pool.query(text, value);
     console.log('User owned book deleted successfully');
 }
->>>>>>> ccb56856511aa387f62ba6ec4a8aa4b56578d823
