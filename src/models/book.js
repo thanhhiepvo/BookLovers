@@ -39,7 +39,3 @@ export async function getBookInfo(ID_Book) {
         return null; 
     return rows[0];
 } 
-
-export async function uploadNewBook(){
-    const text
-}
