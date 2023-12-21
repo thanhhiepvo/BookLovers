@@ -72,26 +72,6 @@ body
     border: 2px solid #141A46;
 }
 
-.loginSite .wrapper .alert-success
-{
-    
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #ff1515;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-
-}
-
-.loginSite .wrapper .alert-success p
-{
-    font-style: italic;
-    font-weight:900;
-    text-align: center;
-    /* color:#0e4bf1; */
-}
-
 .wrapper h1
 {
     font-size: 36px;
@@ -291,7 +271,7 @@ body
     background: white;
 }
 
-.forgot .wrapper .alert-success
+.alert-success
 {
     
     background-color: #d4edda;
@@ -300,10 +280,10 @@ body
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-
+    margin-top: 5px;
 }
 
-.forgot .wrapper .alert-success p
+.alert-success p
 {
     font-style: italic;
     font-weight:900;
@@ -406,25 +386,8 @@ body
     border-radius: 10px;
 }
 
-.signUp .wrapper .alert-success
-{
-    
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-    color: #ff1515;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
 
-}
 
-.signUp .wrapper .alert-success p
-{
-    font-style: italic;
-    font-weight:900;
-    text-align: center;
-    /* color:#0e4bf1; */
-}
 /* OTP page */
 
 .otp
@@ -535,6 +498,5 @@ form .inputOTP
 
 .otp .wrapper #timerText
 {
-    padding-top: 35px;
     size: 30px;
 }

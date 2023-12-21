@@ -1,6 +1,6 @@
 
 import pool from '../database.js'
-//TO_CHAR(Birth, 'MM/DD/YYYY')
+
 export async function getUsername(username) {
     const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
     console.log(rows);
@@ -53,13 +53,11 @@ export async function getUserBirth(username) {
     return rows[0].birth;
 }
 
-
-
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
-        const text = 'INSERT INTO useraccount(username, email, pass, balance) VALUES($1, $2, $3, $4)';
-        const values = [username, email, password, 0];
+        const text = 'INSERT INTO useraccount(username, email, pass, balance, states) VALUES($1, $2, $3, $4, $5)';
+        const values = [username, email, password, 0, 'true'];
         await pool.query(text, values);
         console.log('Data inserted successfully');
     } catch (error) {
@@ -95,6 +93,20 @@ export const updateNewPassword = async (useremail, new_password) => {
         await pool.query(text, values);
         console.log('New password was changed in database');
     } catch (error) {
-
+        console.error('Error executing query', error);
     }
+}
+
+export async function addToCart(ShopUser, ShopSeller, ShopBook) {
+    const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
+    const value = [ShopUser, ShopSeller, ShopBook];
+    await pool.query(text, value);
+    console.log('Added book to cart successfully');
+}
+
+export async function removeFromCart(ShopUser, ShopSeller, ShopBook){
+    const text = "DELETE FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
+    const value = [ShopUser, ShopSeller, ShopBook];
+    await pool.query(text, value);
+    console.log('Book removed from cart successfully');
 }

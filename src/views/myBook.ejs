@@ -66,7 +66,6 @@
 
         <!-- Script for product -->
         <script>
-
             function decodeHtml(html) {
                 var txt = document.createElement("textarea");
                 txt.innerHTML = html;
@@ -77,11 +76,8 @@
             var authors = [];
             var price = [];
             var bookNames = [];
-
-            //var b = "<%=Object.keys(books).length%>";
             var b = "<%=books.length%>"
-            if ( b != 0 )
-            {
+            if (b != 0) {
                 var books = "<%= JSON.stringify(books) %>";
                 books = decodeHtml(books);
                 books = JSON.parse(books);
@@ -93,7 +89,8 @@
                 idBook.push(books[i].id_book);
                 imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                 authors.push(books[i].author);
-                price.push(books[i].price.toLocaleString('de-DE'));
+                //price.push(books[i].price.toLocaleString('de-DE'));
+                // price.push(books[i].price);
                 bookNames.push(books[i].namebook);
                 //console.log(imagePaths[i]);
             }
@@ -136,8 +133,8 @@
 
 
                 // Create h4 element
-                var h4Element = document.createElement("h4");
-                h4Element.textContent = price[i] + " VND";
+                // var h4Element = document.createElement("h4");
+                // h4Element.textContent = price[i] + " VND";
 
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
@@ -146,11 +143,12 @@
                 // Append imgElement and descriptionDiv to proDiv
                 proDiv.appendChild(imgElement);
                 proDiv.appendChild(descriptionDiv);
-                proDiv.appendChild(h4Element);
+                // proDiv.appendChild(h4Element);
 
                 // Create a element
                 var aElement = document.createElement("a");
-                aElement.href = "book?" + idBook[i];
+                aElement.href = "book?id=" + idBook[i];
+                // aElement.href = "book";
 
                 // Create i element for cart icon
                 var iElement = document.createElement("i");
