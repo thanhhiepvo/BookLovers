@@ -97,9 +97,9 @@ export const updateNewPassword = async (useremail, new_password) => {
     }
 }
 
-export async function addToCart(ShopUser, ShopSeller, ShopBook, Selling_Price) {
-    const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook, Selling_Price) values ($1, $2, $3, $4)";
-    const value = [ShopUser, ShopSeller, ShopBook, Selling_Price];
+export async function addToCart(ShopUser, ShopSeller, ShopBook) {
+    const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
+    const value = [ShopUser, ShopSeller, ShopBook];
     await pool.query(text, value);
     console.log('Added book to cart successfully');
 }
