@@ -1,6 +1,6 @@
 import { getBookInfo, getBookOwned, getBookSell } from "../models/book.js";
 import { getInfoAllBook, getAllSellingBook } from "../models/bookstore.js";
-
+import multer from "multer";
 const bookController = {};
 
 bookController.getBookInfo = async (req, res) => {
@@ -70,5 +70,14 @@ bookController.getAllSellingBook = async (req, res) => {
         }
     });
 }
+
+bookController.upLoadBook = async (req, res) => {
+    if (req.fileValidationError) {
+        return res.send(req.fileValidationError);
+    }
+    else if (!req.files) {
+        return res.send('Please select an image to upload');
+    }
+};
 
 export default bookController;
