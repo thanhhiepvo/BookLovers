@@ -7,7 +7,6 @@ import { dirname } from 'path';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import flash from 'express-flash';
-
 import cookieParser from 'cookie-parser';
 
 import webRouter from './routers/web.js' // import router from routers/web.js

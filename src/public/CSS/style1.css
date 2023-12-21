@@ -642,7 +642,8 @@ body {
 }
 
 .uploadBook .wrapper {
-    width: 420px;
+    width: 100%;
+    max-width: 600px; /* Đặt giá trị tối đa cho chiều rộng */
     background: transparent;
     color: #141A46;
     border-radius: 10px;
@@ -653,15 +654,25 @@ body {
 .uploadBook .wrapper h1 {
     font-size: 30px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .uploadBook .wrapper .infoUpload {
-    width: 100%;
-    background: transparent;
-    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.uploadBook .wrapper .infoUpload label {
+    display: inline-block;
+    width: 300px; /* Điều chỉnh độ rộng của nhãn nếu cần thiết */
+    vertical-align: middle;
+    margin-right: 10px;
+    font-size: 20px; /* Điều chỉnh kích thước chữ nếu cần thiết */
+    font-weight: bold; 
 }
 
 .uploadBook .wrapper input {
+    
     width: 100%;
     height: 50px;
     background: transparent;
@@ -675,28 +686,30 @@ body {
 
 #thumbnailInput {
     border: none;
-    /* width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1; */
+    outline: none;
 }
 
-#thumbnailInput+label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: #141A46;
-    background-color: white;
-    display: inline-block;
-    cursor: pointer;
-}
-
-#thumbnailInput:focus+label,
-#thumbnailInput+label:hover {
-    background-color: #141A46;
+.uploadBook .wrapper .uploadBut {
+    width: 100%;
+    height: 45px;
+    /* background: #0e0e2e; */
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    /* box-shadow: 0 0 5px black; */
+    font-size: 20px;
     color: white;
+    background: #0e0e2e;
+    font-weight: 600;
 }
+
+.uploadBook .wrapper .uploadBut:hover {
+    background: white;
+    color: #0e0e2e;
+}
+
+
+
 
 .uploadBook .wrapper input::placeholder {
     color: #141A46;
