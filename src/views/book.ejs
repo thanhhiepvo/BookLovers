@@ -15,11 +15,11 @@
     <a href="#" class="logo"><img src="/Picture/logo.png"></a>
 
     <ul class="navbar">
-        <li><a href="homepage">Home</a></li>
-        <li><a href="myBook">My books</a></li>
-        <li><a href="selling">Selling</a></li>
-        <li><a href="wallet">Wallet</a></li>
-        <li><a href="about">About</a></li>
+        <li><a href="/homepage">Home</a></li>
+        <li><a href="/myBook">My books</a></li>
+        <li><a href="/selling">Selling</a></li>
+        <li><a href="/wallet">Wallet</a></li>
+        <li><a href="/about">About</a></li>
     </ul>
 
     <div class="profile">
@@ -33,8 +33,8 @@
         <h5 id="name"></h5>
         <h5 id="mail"></h5>
         <h5 id="balance"></h5>
-        <li><a href="editProfile">Edit my profile</a></li>
-        <li><a href="login">Log out</a></li>
+        <li><a href="/editProfile">Edit my profile</a></li>
+        <li><a href="/login">Log out</a></li>
     </div>
 
     <!-- Script for Profile -->
@@ -132,8 +132,7 @@
             var bookSellers2 = document.createElement("div");
             // bookSellers2.className = "bookSellers2";
 
-            for (var i = 0; i < n; i++)
-            {
+            for (var i = 0; i < n; i++) {
                 var oneBookSeller = document.createElement("div");
                 oneBookSeller.className = "oneBookSeller";
 
@@ -145,7 +144,7 @@
 
                 var buttonBook = document.createElement("div");
                 buttonBook.className = "buttonBook";
-                
+
                 var link1 = document.createElement("a");
                 link1.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
 
@@ -184,8 +183,7 @@
 
                 bookSellers2.appendChild(oneBookSeller);
             }
-            if (n != 0)
-            {
+            if (n != 0) {
                 bookSellers.appendChild(bookSellers2);
                 bookPage.appendChild(bookSellers);
                 document.body.appendChild(bookPage);
@@ -250,4 +248,3 @@
     </footer>
 
 </body>
-
