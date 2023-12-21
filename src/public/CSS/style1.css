@@ -32,7 +32,7 @@ header {
 }
 
 body {
-    background-color: #f9f9ff;
+    background-color: #fdfdfe;
 }
 
 .logo img {
@@ -185,14 +185,14 @@ body {
     width: 23%;
     min-width: 250px;
     padding: 10px 12px 0 12px;
-    border: 1px solid grey;
+    border: 3px solid rgb(200, 198, 198);
     border-radius: 7%;
     cursor: pointer;
     /* box-shadow: 20px 20px 30px darkgray; */
     margin: 20px 50px 0 50px;
     transition: 0.2s ease;
     position: relative;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 #product .productContainer {
@@ -262,7 +262,7 @@ body {
     border-radius: 5%;
     margin-bottom: 10px;
     align-items: center;
-    border: 1px solid grey;
+    border: 1.5px solid rgb(200, 198, 198);
 }
 
 #product a
@@ -731,44 +731,53 @@ body {
 
 /* Book page  */
 
-.bookPic {
-    margin-left: 100px;
+.bookPage 
+{
+    margin-left: 80px;
     margin-right: 50px;
     justify-content: flex-start;
     display: flex;
-    align-items: center;
+    align-items:center;
 }
 
-.bookPic img {
+.bookPage img 
+{
     margin: 50px 30px;
     height: 500px;
     width: auto;
-    border: 1px solid white;
+    border: 1px solid rgb(98, 98, 98);
     border-radius: 5%;
+    /* position: sticky; */
+    /* padding-top: 0%; */
 }
 
-.bookPic .bookInfo h1 {
+.bookPage .bookInfo h1 
+{
     font-size: 25px;
     /* font-weight: lighter; */
 }
 
-.bookPic .bookInfo h2 {
+.bookPage .bookInfo h2 
+{
     font-size: 40px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo h3 {
+.bookPage .bookInfo h3 
+{
     font-size: 25px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo h4 {
+.bookPage .bookInfo h4 
+{
     font-size: 25px;
     font-weight: lighter;
 }
 
-.bookPic .bookInfo {
-    border: 1px solid white;
+.bookPage .bookInfo 
+{
+    border: 1px solid rgb(98, 98, 98);
     border-radius: 10px;
     background-color: white;
     /* line-height: 2; */
@@ -776,9 +785,114 @@ body {
     padding: 10px 20px;
     /* font-weight: lighter; */
     width: 600px;
+    margin: 150px 30px;
+    /* position: sticky; */
 }
 
-.bookPic .bookInfo>* {
+.bookPage .bookInfo>* 
+{
     margin-bottom: 30px;
     color: #080a52;
+}
+
+.bookPage .bookSellers
+{
+    max-height: 500px;
+    width: 350px;
+    overflow: scroll;
+    border: 1px solid rgb(98, 98, 98);
+    border-radius: 10px;
+    background-color: white;
+    /* line-height: 2; */
+    /* margin-bottom: 50px; */
+    padding: 10px 20px;
+    /* font-weight: lighter; */
+    justify-content:start;
+}
+
+.bookPage .bookSellers::-webkit-scrollbar 
+{
+    display: none;
+}
+
+.bookSellers .oneBookSeller
+{
+    border-bottom: 1px solid rgb(98, 98, 98);
+    padding: 5px 0;
+}
+
+.bookSellers .oneBookSeller .buttonBook
+{
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 10px; */
+}
+
+.bookSellers .oneBookSeller .buttonBook a
+{
+    width: 100px;
+    height: 45px;
+    /* background: #0e0e2e; */
+    /* border: none; */
+    outline: none;
+    /* border-radius: 40px; */
+    /* box-shadow: 0 0 5px black; */
+    margin: 5px 5px;
+}
+
+.bookSellers .oneBookSeller .buttonBook button
+{
+    font-size: 18px;
+    height: 100%;
+    width: 100px;
+}
+
+.bookSellers .oneBookSeller .buttonBook .button1
+{
+    color: #0e0e2e;
+    background: white;
+    border-color: #0e0e2e;
+}
+
+.bookSellers .oneBookSeller .buttonBook .button1:hover
+{
+    color: white;
+    background: #0e0e2e;
+}
+
+.bookSellers .oneBookSeller .buttonBook .button2
+{
+    color: white;
+    background: #0e0e2e;
+}
+
+.bookSellers .oneBookSeller .buttonBook .button2:hover
+{
+    color: #0e0e2e;
+    background: white;
+    border-color: #0e0e2e;
+}
+
+.bookSellers .oneBookSeller .buttonBook .bx-comment-error
+{
+    /* margin: 5px 5px; */
+    width: 45px;
+    height: 45px;
+    line-height: 50px;
+    /* border-radius: 50%; */
+    background-color: transparent;
+    font-weight: 1000;
+    color: #0e0e2e;
+    border: 1px solid #0e0e2e;
+    margin-left: 5px;
+    /* bottom: 8px;
+    right: 0px; */
+}
+
+.bookSellers .oneBookSeller .buttonBook .bx-comment-error::before
+{
+    /* position: absolute; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    margin-left: 14px;
 }

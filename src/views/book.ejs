@@ -59,7 +59,7 @@
 </header>
 
 <body>
-    <div class="bookPic">
+    <div class="bookPage" id="bookPage">
         <img id="imgBook">
         <div class="bookInfo">
             <h1 id="nameBook"></h1>
@@ -67,7 +67,7 @@
             <h3 id="year"></h3>
             <h3 id="category"></h3>
             <h4 id="des"></h4>
-            <h2 id="price"></h2>
+            <!-- <h2 id="price"></h2> -->
         </div>
         <script>
             var imgBook = "/Picture/book/" + "<%=books.id_book%>" + ".jpg";
@@ -85,6 +85,96 @@
             document.getElementById("category").textContent = "Category: " + category;
             document.getElementById("des").textContent = "Description: " + des;
             //document.getElementById("price").textContent = price + " VND";
+        </script>
+        <!-- <div class="bookSellers">
+            <div class="oneBookSeller">
+                <h3>Seller: Nguyen Van A</h3>
+                <h2>100.000 VND</h2>
+                <div class="buttonBook">
+                    <button type="submit" class="button1">Add to cart</button>
+                    <button type="submit" class="button2">Buy now</button>
+                </div>
+            </div>
+            <div class="oneBookSeller">
+                <h3>Seller: Nguyen Thi B</h3>
+                <h2>120.000 VND</h2>
+                <div class="buttonBook">
+                    <button type="submit" class="button1">Add to cart</button>
+                    <button type="submit" class="button2">Buy now</button>
+                </div>
+            </div>
+        </div> -->
+        <!-- Script for Book Sellers -->
+        <script>
+            var bookPage = document.getElementById("bookPage");
+
+            var nameSellers = ["Nguyen Van A", "Nguyen Van B", "Nguyen Van C", "Nguyen Van D", "Nguyen Van E", "Nguyen Van A", "Nguyen Van B", "Nguyen Van C", "Nguyen Van D", "Nguyen Van E"];
+            var price = ["100.000", "110.000", "105.000", "100.000", "120.000", "100.000", "110.000", "105.000", "100.000", "120.000"];
+            const n = 10;
+            var bookSellers = document.createElement("div");
+            bookSellers.className = "bookSellers";
+
+            var bookSellers2 = document.createElement("div");
+            // bookSellers2.className = "bookSellers2";
+
+            for (var i = 0; i < n; i++)
+            {
+                var oneBookSeller = document.createElement("div");
+                oneBookSeller.className = "oneBookSeller";
+
+                var h3 = document.createElement("h3");
+                h3.textContent = "Seller: " + nameSellers[i];
+
+                var h2 = document.createElement("h2");
+                h2.textContent = price[i] + " VND";
+
+                var buttonBook = document.createElement("div");
+                buttonBook.className = "buttonBook";
+                
+                var link1 = document.createElement("a");
+                link1.href = "atc?ShopBook=" + "<%=books.id_book%>" + "&ShopSeller=" + i + "&ShopUser=" + "<%=user.username%>";
+
+                var button1 = document.createElement("button");
+                button1.type = "submit";
+                button1.className = "button1";
+                button1.textContent = "Add to cart";
+
+                link1.appendChild(button1);
+
+                var link2 = document.createElement("a");
+                link2.href = "buy?ShopBook=" + "<%=books.id_book%>" + "&ShopSeller=" + i + "&ShopUser=" + "<%=user.username%>";
+
+                var button2 = document.createElement("button");
+                button2.type = "submit";
+                button2.className = "button2";
+                button2.textContent = "Buy now";
+
+                link2.appendChild(button2);
+
+                var reportLink = document.createElement("a");
+                reportLink.href = "report?report_seller=" + i;
+
+                var report = document.createElement("i");
+                report.className = 'bx bx-comment-error';
+
+                reportLink.appendChild(report)
+
+                buttonBook.appendChild(link1);
+                buttonBook.appendChild(link2);
+                buttonBook.appendChild(reportLink);
+
+                oneBookSeller.appendChild(h3);
+                oneBookSeller.appendChild(h2);
+                oneBookSeller.appendChild(buttonBook);
+
+                bookSellers2.appendChild(oneBookSeller);
+            }
+            if (n != 0)
+            {
+                bookSellers.appendChild(bookSellers2);
+                bookPage.appendChild(bookSellers);
+                document.body.appendChild(bookPage);
+            }
         </script>
     </div>
     <footer class="footer-distributed">
