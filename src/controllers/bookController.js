@@ -7,7 +7,7 @@ const bookController = {};
 bookController.getBookInfo = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const book = await getBookInfo(req.params['id']);
+            const book = await getBookInfo(req.params['idbook']);
             console.log(book);
             resolve(book);
         } catch (error) {
@@ -84,7 +84,7 @@ bookController.upLoadBook = async (req, res) => {
 bookController.getUserSellingBook = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const usersellingbook = await getUserSellingBook(req.params['id']) ?? [];
+            const usersellingbook = await getUserSellingBook(req.params['idbook']) ?? [];
             resolve(usersellingbook);
         } catch (error) {
             console.error('Error', error);
