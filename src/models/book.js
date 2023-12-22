@@ -25,13 +25,13 @@ export async function getBookOwned(OUsername) {
 
 // Lay danh sach cac user dang ban cuon sach (ID_Book)
 export async function getUserSellingBook(ID_Book) {
-    const text = "SELECT SUsername FROM SELLINGBOOK WHERE SBook = $1"
+    const text = "SELECT SUsername, SPrice FROM SELLINGBOOK WHERE SBook = $1"
     const value = [ID_Book];
     const { rows } = await pool.query(text, value);
     console.log(rows);
     if (rows.length == 0)
         return null;
-    return rows.map(row => row.susername);
+    return rows;
 }
 
 // Lay danh sach cac sach ma user dang ban

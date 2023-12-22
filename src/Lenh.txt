@@ -24,4 +24,4 @@ npm i cookie-parser // cookie
 
 npm i multer // dùng để xử lý file tải lên
 
-npm i app-root-path // goi đường link thhangr đến thư mục
+npm i app-root-path // đường link thẳng đến thư mục
