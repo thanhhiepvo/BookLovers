@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+            font-size: 16px;
+        }
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 150px;
+            height: 6rem;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .container{
+            display: flex;
+            margin: 3rem 150px;
+        }
+
+        .cart{
+            width: 65%;
+            background-color: #f2f2f2;
+        }
+
+        .top{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 30px 0;
+        }
+
+        table{
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table-head{
+            color: white;
+            background-color: #18bdfe;
+        }
+
+        .head-img{
+            text-align: left;
+            padding-left: 7px;
+        }
+
+        .summary{
+            background-color: #f2f2f2;
+            width: 35%;
+            margin-left: 20px;
+        }
+
+        .detail{
+            margin: 10px 0;
+            padding: 0 10px;
+            align-items: center;
+            background-color: #18bdfe;
+            color: white;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input{
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 40px;
+            margin: 15px 0;
+            padding: 7px;
+        }
+
+        button{
+            border: none;
+            background-color: red;
+            padding: 8px 30px;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .checkout{
+            width: 100%;
+            background-color: #18bdfe;
+        }
+
+        button:hover, .checkout:hover{
+            background-color: #333;
+        }
+
+        .img-box{
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            border:  1px solid #18bdfe;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img{
+            max-width: 43px;
+            max-height: 43px;
+            border-radius: 50%;
+        }
+
+        .fa-trash{
+            color: #18bdfe;
+        }
+
+        .fa-trash:hover{
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+    </div>
+    <div class="container">
+        <div class="cart">
+            <div class="top">
+                <h2>Book Cart</h2>
+                <h2 id="itemA">4 Items</h2>
+            </div>
+            <table cellspacing="0" class="table-head">
+                <tr>
+                    <th width="150" class="head-img">Image</th>
+                    <th width="220">Name</th>
+                    <th width="220">Author</th>
+                    <th width="220">Seller</th>
+                    <th width="150">Price</th>
+                    <th width="70">Delete</th>
+                </tr>
+            </table>
+
+            <table id="root" cellspacing="0"></table>
+            <hr>
+        </div>
+
+        <div class="summary">
+            <div class="top">
+                <h2>Order Summary</h2>
+            </div>
+            <div class="detail">
+                <h2 id="itemB">4 Items</h2>
+                <h2 id="totalA">$ 600.00</h2>
+            </div>
+            <div style="margin-top: 30px; padding: 0 30px;">
+                <h2>Shipping</h2>
+                <input type="text" placeholder="Standard deilivery">
+                <h2>Promo Code</h2>
+                <input type="text" placeholder="Enter your code" id="promocode">
+                <button class="first-btn" id="promo" onclick="promo()">Apply</button>
+            </div>
+            <hr>
+            <div class="top">
+                <h2>Total</h2>
+                <h2 id="totalB">$ 600.00</h2>
+            </div>
+            <div style="padding: 0 10px; margin-bottom: 20px;">
+                <button class="checkout">Check out</button>
+            </div>
+        </div>
+    </div>
+
+<!-- JS ở đây -->
+    <script>
+        const product =[
+            {
+                image: 'sach1.png',
+                title: 'Book 1',
+                author: 'Author 1',
+                seller: 'Seller 1',
+                price: 120
+            },
+            {
+                image: 'sach1.png',
+                title: 'Book 2',
+                author: 'Author 2',
+                seller: 'Seller 2',
+                price: 150
+            },
+            {
+                image: 'sach1.png',
+                title: 'Book 3',
+                author: 'Author 3',
+                seller: 'Seller 3',
+                price: 230
+            },
+            {
+                image: 'sach1.png',
+                title: 'Book 4',
+                author: 'Author 4',
+                seller: 'Seller 4',
+                price: 100
+            },
+        ]
+
+        const categories = [...new Set(product.map((item)=>
+            {return item}))];
+
+        function delElement(a){
+            categories.splice(a, 1);
+            displaycart();
+        }
+
+        function promo(){
+            let promocode=document.getElementById('promocode').value;
+            if(promocode==1234){
+                displaycart(50);
+            }
+            else(
+                prompt("Enter correct promo code")
+            )
+        }
+
+        function displaycart(c){
+            let j=0, total=0;
+            document.getElementById("itemA").innerHTML = categories.length + " Items";
+            document.getElementById("itemB").innerHTML = categories.length + " Items";
+            if(categories.length==0){
+                document.getElementById("root").innerHTML="Your cart is empty";
+
+                document.getElementById("totalA").innerHTML = "$ 00.00";
+                document.getElementById("totalB").innerHTML = "$ 00.00";
+            }
+            else{
+                document.getElementById("root").innerHTML = categories.map((items)=>{
+                    let {image, title, author, seller, price} = items;
+                    total = total+price;
+                    document.getElementById("totalA").innerHTML = "$ "+ total +".00";
+
+                    if(c==50){
+                        document.getElementById("totalB").innerHTML="$ "+(total-c)+".00";
+                    }else{
+                        document.getElementById("totalB").innerHTML="$ "+total+ ".00";
+                    }
+
+                    return(
+                        `<tr>
+                            <td width="150"><div class="img-box"><img class="img" src=${image}></div></td>
+                            <td width="220"><p style='font-size:15px;'>${title}</p></td>
+                            <td width="220"><p style='font-size:15px;'>${author}</p></td>
+                            <td width="220"><p style='font-size:15px;'>${seller}</p></td>
+                            <td width="150"><h2 style='font-size:15px; color:red; '>$ ${price}.00</h2></td>
+                            <td width="70">`+"<button class='delete-btn' onclick='delElement("+ (j++) +")'>Delete</button></td>"+
+                        `</tr>`
+                    );
+                }).join('');
+            }
+        }
+        displaycart();  
+    </script>
+</body>
+</html>
