@@ -194,7 +194,7 @@ router.get('/editProfile', async (req, res) => {
 router.post('/edit-profile', profileController.updateInfo)
 // router.get('/book', profileController.getInfo);
 
-router.get('/book/:id', async (req, res) => {
+router.get('/book/:idbook', async (req, res) => {
     let check = Object.keys(req.query);
     let isEmpty = check.every(key => !req.query[key]);
     if (req.session.username && isEmpty) {
@@ -220,6 +220,8 @@ router.get('/book/:id', async (req, res) => {
     }
     // console.log(">>> req.session.username = ", req.session.username);
 });
+
+router.get('/report/:idreport');
 
 router.get('/logout', authenController.logout);
 

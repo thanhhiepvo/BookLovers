@@ -50,8 +50,8 @@
         document.getElementById("mail").textContent = "Email: " + mail;
         document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
 
-        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-        caretDownIcon.addEventListener('click', () => {
+        var profileClick = document.querySelector('.profile');
+        profileClick.addEventListener('click', () => {
             profileSpan.classList.toggle('active');
         });
     </Script>
@@ -61,7 +61,8 @@
 <body>
     <section id="intro">
         <h3>Tiệm Bán Nước</h3>
-        <h4>"Chợ Sách Online: Mở Cánh Cửa Tri Thức, Kết Nối Đọc Giả!"</h4>
+        <h4>"Chợ Sách Online: </h4>
+        <h4> Mở Cánh Cửa Tri Thức, Kết Nối Đọc Giả!"</h4>
         <h5>-Võ Thanh Hiệp-</h5>
     </section>
 
