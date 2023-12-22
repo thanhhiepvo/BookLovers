@@ -62,8 +62,8 @@
         document.getElementById("mail").textContent = "Email: " + mail;
         document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
 
-        var caretDownIcon = document.querySelector('.profile .bx-caret-down');
-        caretDownIcon.addEventListener('click', () => {
+        var profileClick = document.querySelector('.profile');
+        profileClick.addEventListener('click', () => {
             profileSpan.classList.toggle('active');
         });
     </Script>
