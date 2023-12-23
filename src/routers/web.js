@@ -78,6 +78,14 @@ router.get('/about', async (req, res) => {
     }
 })
 
+router.get('/homepage/cart', (req, res) => {
+    res.render('cart.ejs', { message: req.flash('msg') });
+})
+
+router.get('/admin', (req, res) => {
+    res.render('admin.ejs', { message: req.flash('msg') });
+})
+
 // router.get('/book', async (req, res) => {
 //     if (req.session.username) {
 //         const user = await authenController.getProfileUser(req, res);
@@ -194,25 +202,34 @@ router.get('/editProfile', async (req, res) => {
 router.post('/edit-profile', profileController.updateInfo)
 // router.get('/book', profileController.getInfo);
 
-router.get('/book', async (req, res) => {
-    if (req.session.username) {
+router.get('/book/:idbook', async (req, res) => {
+    let check = Object.keys(req.query);
+    let isEmpty = check.every(key => !req.query[key]);
+    if (req.session.username && isEmpty) {
         try {
             const book = await bookController.getBookInfo(req, res);
             const user = await authenController.getProfileUser(req, res);
+            const selluser = await bookController.getUserSellingBook(req, res);
             //books = book;
             res.render('book', {
                 user: user,
-                books: book
+                books: book,
+                selluser: selluser
             });
         } catch (error) {
             console.error(error);
         }
     } 
+    else if (req.session.username && !isEmpty){
+        await bookController.addToCart(req, res);
+    }
     else {
         res.redirect('/login');
     }
     // console.log(">>> req.session.username = ", req.session.username);
 });
+
+router.get('/report/:idreport');
 
 router.get('/logout', authenController.logout);
 

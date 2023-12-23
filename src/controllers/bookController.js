@@ -1,12 +1,13 @@
-import { getBookInfo, getBookOwned, getBookSell } from "../models/book.js";
-import { getInfoAllBook, getAllSellingBook } from "../models/bookstore.js";
+import { getBookInfo, getBookOwned, getBookSell, getUserSellingBook } from "../models/book.js";
+import { getAllSellingBook } from "../models/bookstore.js";
+import { addToCart } from "../models/users.js";
 import multer from "multer";
 const bookController = {};
 
 bookController.getBookInfo = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const book = await getBookInfo(req.param('id'));
+            const book = await getBookInfo(req.params['idbook']);
             console.log(book);
             resolve(book);
         } catch (error) {
@@ -54,10 +55,10 @@ bookController.getBookSell = async (req, res) => {
 bookController.getAllSellingBook = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const sellingbookID = await getAllSellingBook() ?? [];
-            // console.log(sellingbookID);
+            const sellingbook = await getAllSellingBook() ?? [];
+            // console.log(sellingbook);
             let sellingbooklist = [];
-            for (let book of sellingbookID) {
+            for (let book of sellingbook) {
                 let bookinfo = await getBookInfo(book.sbook);
                 bookinfo.price = book.sprice;
                 sellingbooklist.push(bookinfo);
@@ -79,5 +80,24 @@ bookController.upLoadBook = async (req, res) => {
         return res.send('Please select an image to upload');
     }
 };
+
+bookController.getUserSellingBook = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const usersellingbook = await getUserSellingBook(req.params['idbook']) ?? [];
+            resolve(usersellingbook);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
+}
+
+bookController.addToCart = async (req, res) => {
+    console.log(req.query);
+    let data = req.query;
+    await addToCart(data.ShopUser, data.ShopSeller, data.ShopBook);
+    res.redirect('/homepage');
+}
 
 export default bookController;
