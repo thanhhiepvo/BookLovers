@@ -149,6 +149,8 @@
                 var h5Element = document.createElement("h5");
                 h5Element.textContent = authors[i];
 
+
+
                 // Create h4 element
                 var h4Element = document.createElement("h4");
                 h4Element.textContent = price[i] + " VND";
@@ -162,24 +164,28 @@
                 proDiv.appendChild(descriptionDiv);
                 proDiv.appendChild(h4Element);
 
-                // Create a element
-                var aElement = document.createElement("a");
-                aElement.href = "book?" + idBook[i];
+                // // Create a element
+                // var aElement = document.createElement("a");
+                // aElement.href = "book?id=" + idBook[i];
+                // // aElement.href = "book";
 
-                // Create i element for cart icon
-                var iElement = document.createElement("i");
-                iElement.className = "bx bx-cart-add cart";
+                // // Create i element for cart icon
+                // var iElement = document.createElement("i");
+                // iElement.className = "bx bx-cart-add cart";
 
-                // Append i element to aElement
-                aElement.appendChild(iElement);
+                // Create href
+                var href = document.createElement("a");
+                href.href = "book/" + idBook[i];
 
-                // Append a to proDiv
-                proDiv.appendChild(aElement);
+                // // Append i element to aElement
+                // aElement.appendChild(iElement);
+
+                // // Append a to proDiv
+                // proDiv.appendChild(aElement);
 
                 // Append proDiv, h4Element, and aElement to productContDiv
-                productContDiv.appendChild(proDiv);
-                // productContDiv.appendChild(h4Element);
-                // productContDiv.appendChild(aElement);
+                href.appendChild(proDiv)
+                productContDiv.appendChild(href);
 
                 // Append productContDiv to productContainer
                 productContainer.appendChild(productContDiv);
@@ -189,10 +195,10 @@
                 document.body.appendChild(product);
         </script>
 
+        <button id="uploadBtn" onclick="window.location.href = '/upload'">Upload Your Book</button>
 
     </section>
 
-    <button id="uploadBtn" onclick="window.location.href = '/upload'">Upload Your Book</button>
 
 
 

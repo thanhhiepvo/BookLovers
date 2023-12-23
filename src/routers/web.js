@@ -78,6 +78,14 @@ router.get('/about', async (req, res) => {
     }
 })
 
+router.get('/homepage/cart', (req, res) => {
+    res.render('cart.ejs', { message: req.flash('msg') });
+})
+
+router.get('/admin', (req, res) => {
+    res.render('admin.ejs', { message: req.flash('msg') });
+})
+
 // router.get('/book', async (req, res) => {
 //     if (req.session.username) {
 //         const user = await authenController.getProfileUser(req, res);
