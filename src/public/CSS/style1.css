@@ -1,5 +1,4 @@
-* 
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,19 +9,16 @@
     /* scrollbar-width: 2px; */
 }
 
-*::-webkit-scrollbar
-{
+*::-webkit-scrollbar {
     display: none;
     /* width: 5px; */
 }
 
-*::-webkit-scrollbar-thumb
-{
+*::-webkit-scrollbar-thumb {
     background: #141A46;
 }
 
-img 
-{
+img {
     width: 100%;
 }
 
@@ -31,8 +27,7 @@ img
     color: #141A46;
 } */
 
-header 
-{
+header {
     position: sticky;
     width: 100%;
     top: 0;
@@ -47,19 +42,16 @@ header
     box-shadow: 0px 8px 11px rgb(14 55 54 / 15%);
 }
 
-body 
-{
+body {
     background-color: #fdfdfe;
 }
 
-.logo img 
-{
+.logo img {
     width: 100px;
     height: auto;
 }
 
-.profile 
-{
+.profile {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
@@ -67,8 +59,7 @@ body
     color: white;
 }
 
-.profile img 
-{
+.profile img {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -76,19 +67,16 @@ body
     border-radius: 20%;
 }
 
-.profile span 
-{
+.profile span {
     font-size: 20px;
     font-weight: 500;
 }
 
-.profile .bx-caret-down 
-{
+.profile .bx-caret-down {
     cursor: pointer;
 }
 
-#profileSpan 
-{
+#profileSpan {
     width: 350px;
     height: fit-content;
     display: none;
@@ -108,18 +96,15 @@ body
     z-index: 1;
 }
 
-#profileSpan.active 
-{
+#profileSpan.active {
     display: block;
 }
 
-#profileSpan h5 
-{
+#profileSpan h5 {
     margin-left: 3%;
 }
 
-#profileSpan a 
-{
+#profileSpan a {
     text-decoration: none;
     color: #001933;
     font-size: 18px;
@@ -127,8 +112,7 @@ body
     margin-left: 3%;
 }
 
-#profileSpan a:hover 
-{
+#profileSpan a:hover {
     background-color: #001933;
     color: white;
     /* border-radius: 10px; */
@@ -138,14 +122,12 @@ body
 
 /* ------------------ */
 
-.navbar 
-{
+.navbar {
     display: flex;
     column-gap: 00.5rem;
 }
 
-.navbar a 
-{
+.navbar a {
     display: flex;
     column-gap: 0.5rem;
     font-size: 1.5rem;
@@ -156,8 +138,7 @@ body
 }
 
 .navbar a:hover,
-.navbar .home-active 
-{
+.navbar .home-active {
     background: white;
     color: #141A46;
     border-radius: 20px;
@@ -165,8 +146,7 @@ body
 }
 
 .navbar a:hover,
-.navbar .active 
-{
+.navbar .active {
     background: white;
     color: #141A46;
     border-radius: 20px;
@@ -174,8 +154,7 @@ body
 }
 
 /* --- Home page ---  */
-#intro 
-{
+#intro {
     background-image: url("../Picture/bg6.jpg");
     position: relative;
     height: 80vh;
@@ -194,32 +173,27 @@ body
     justify-content: center;
 } */
 
-#intro h4 
-{
+#intro h4 {
     /* padding-bottom: 40px; */
     font-size: 60px;
 }
 
-#intro h3 
-{
+#intro h3 {
     padding-top: 50px;
     padding-bottom: 20px;
     font-size: 60px;
 }
 
-#intro h5 
-{
+#intro h5 {
     padding-bottom: 500px;
     font-size: 30px;
 }
 
-#product 
-{
+#product {
     text-align: center;
 }
 
-#product .pro 
-{
+#product .pro {
     width: 23%;
     min-width: 250px;
     padding: 10px 12px 0 12px;
@@ -233,8 +207,7 @@ body
     background-color: rgb(255, 255, 255);
 }
 
-#product .productContainer 
-{
+#product .productContainer {
     display: flex;
     justify-content: flex-start;
     padding-top: 20px;
@@ -242,8 +215,7 @@ body
     /* align-items: flex-start; */
 }
 
-.productContainer .product_cont 
-{
+.productContainer .product_cont {
     padding: 12px 14px;
     margin: 20px 10px 20px 10px;
     width: 23%;
@@ -252,33 +224,28 @@ body
     flex-wrap: wrap;
 }
 
-#product h2 
-{
+#product h2 {
     color: #1a1a1a;
     font-size: 50px;
     padding-top: 30px;
 }
 
-#product p 
-{
+#product p {
     color: #1a1a1a;
     font-size: 20px;
     padding-top: 20px;
 }
 
-#product .pro:hover 
-{
+#product .pro:hover {
     box-shadow: 10px 10px 20px darkgray;
 }
 
-#product #pro .description 
-{
+#product #pro .description {
     text-align: start;
     padding: 10px 0;
 }
 
-#product .pro .description span 
-{
+#product .pro .description span {
     color: black;
     /* font-size:; */
     display: block;
@@ -287,24 +254,21 @@ body
     text-overflow: ellipsis;
 }
 
-#product .pro .description h5 
-{
+#product .pro .description h5 {
     padding-top: 7px;
     color: grey;
     font-size: 14px;
     text-align: left;
 }
 
-#product .pro h4 
-{
+#product .pro h4 {
     padding-top: 7px;
     color: #000099;
     font-size: 25px;
     text-align: left;
 }
 
-#product .pro img 
-{
+#product .pro img {
     width: 180px;
     height: 250px;
     border-radius: 5%;
@@ -1216,10 +1180,12 @@ h1 {
 
 .card h3 {
     font-weight: 500;
+    font-size: 28px;
 }
 
 .card p {
     font-weight: 300;
+    font-size: 20px;
     text-transform: uppercase;
     margin: 0.5em 0 2em 0;
     letter-spacing: 2px;
@@ -1232,9 +1198,12 @@ h1 {
     display: flex;
     justify-content: space-between;
 }
+
 .icons i {
-    font-size: 36px; /* Adjust the font size as needed */
+    font-size: 36px;
+    /* Adjust the font size as needed */
 }
+
 .card a {
     text-decoration: none;
     color: inherit;
@@ -1242,7 +1211,7 @@ h1 {
 }
 
 .card:hover {
-    background: linear-gradient(#6045ea, #8567f7);
+    background: linear-gradient(#6045ea, #a993ff);
     color: #ffffff;
 }
 
@@ -1342,9 +1311,8 @@ h1 {
 
 
 /* uploadBook page */
-#uploadBtn
-{
-    position:fixed;
+#uploadBtn {
+    position: fixed;
     width: 300px;
     height: 35px;
     background: #080a52;
@@ -1359,8 +1327,7 @@ h1 {
     right: 50px;
 }
 
-#uploadBtn:hover
-{
+#uploadBtn:hover {
     box-shadow: 0 0 10px #010108;
     cursor: pointer;
 }
@@ -1571,8 +1538,7 @@ h1 {
     width: 100px;
 }
 
-.bookSellers .oneBookSeller .buttonBook .button1
-{
+.bookSellers .oneBookSeller .buttonBook .button1 {
     color: white;
     background: #0c5776;
     /* border-color: #0e0e2e; */
@@ -1583,16 +1549,14 @@ h1 {
     background: #001c44;
 }
 
-.bookSellers .oneBookSeller .buttonBook .button1:hover
-{
+.bookSellers .oneBookSeller .buttonBook .button1:hover {
     color: white;
     background: #0f0f4b;
     cursor: pointer;
 }
 
 
-.bookSellers .oneBookSeller .buttonBook .button2:hover
-{
+.bookSellers .oneBookSeller .buttonBook .button2:hover {
     color: white;
     background: #040461;
     cursor: pointer;
@@ -1613,14 +1577,12 @@ h1 {
     right: 0px; */
 }
 
-.bookSellers .oneBookSeller .buttonBook .bx-comment-error:hover
-{
+.bookSellers .oneBookSeller .buttonBook .bx-comment-error:hover {
     background: #2d9ae2;
     color: white;
 }
 
-.bookSellers .oneBookSeller .buttonBook .bx-comment-error::before
-{
+.bookSellers .oneBookSeller .buttonBook .bx-comment-error::before {
     /* position: absolute; */
     /* justify-content: center; */
     /* text-align: center; */
