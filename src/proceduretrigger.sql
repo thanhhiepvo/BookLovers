@@ -58,8 +58,12 @@ BEGIN
     -- Check if the state in the user account table has changed
     IF NEW.States <> OLD.States AND NEW.States = false THEN
       -- Delete all the selling actions of the banned user from the selling book table
-      DELETE FROM SELLINGBOOK WHERE SUsername = OLD.Username;
       DELETE FROM REPORT WHERE ReportedUser = OLD.Username;
+      DELETE FROM SHOPPING_CART WHERE ShopSeller = OLD.Username;
+	  DELETE FROM INVOICE WHERE ID_Invoice in (
+	  	SELECT ID_Transac FROM TRANSAC WHERE ID_Sender = OLD.Username
+	  );
+	  DELETE FROM SELLINGBOOK WHERE SUsername = OLD.Username;
     END IF;
     -- Return the new row to the trigger
     RETURN NEW;

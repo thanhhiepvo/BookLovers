@@ -1,8 +1,8 @@
 import pool from '../database.js'
 
-export async function banuser(Username) {
+export async function banUser(Username) {
     const text = "UPDATE USERACCOUNT SET States = 'false' WHERE Username = $1";
     const value = [Username];
     await pool.query(text, value);
-    console.log('Banned successfully');
+    console.log('Banned user successfully');
 }

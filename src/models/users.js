@@ -106,7 +106,7 @@ export async function addToCart(ShopUser, ShopSeller, ShopBook) {
         await pool.query(text, value);
         console.log('Added book to cart successfully');
     }
-    console.log('Already added to cart');
+    else console.log('Already added to cart');
 }
 
 export async function removeFromCart(ShopUser, ShopSeller, ShopBook){

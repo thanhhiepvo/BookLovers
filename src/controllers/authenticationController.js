@@ -39,6 +39,7 @@ authenController.loginUser = async (req, res) => {
 
     if (username == "admin" && password == "admin")
     {
+        req.session.username = username;
         res.redirect('/admin');
         return;
     }

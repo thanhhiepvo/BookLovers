@@ -52,7 +52,6 @@
     justify-content: space-between;
     margin: 10px 100px;
     padding: 10px 300px;
-    /* border-bottom: 2px solid rgb(26, 26, 26); */
 }
 
 
@@ -109,4 +108,18 @@
     display: none;
 }
 
+.action button {
+    border: 1px solid rgb(26, 26, 26);
+    border-radius: 10px;
+    font-size: 18px;
+    height: 100%;
+    width: 100px;
+    color: #0e0e2e;
+    background: white;
+}
 
+.action button:hover {
+    color: white;
+    background: #001c44;
+    cursor: pointer;
+}

@@ -16,7 +16,7 @@
     <a href="#" class="logo"><img src="/Picture/logo.png"></a>
 
     <ul class="navbar">
-        <h3>Admin page</h3 >
+        <h3>Admin page</h3>
     </ul>
 
     <div class="profile">
@@ -41,13 +41,15 @@
 </header>
 
 <body>
-    <div class="reportSite" id="reportSite">
+    <!-- <div class="reportSite" id="reportSite">
         <div class="oneReport">
             <div class="reportInfo">
-                <h3 id="id_user">ID user: 1</h3>
-                <h3 id="uname">User: Ahaha</h3>
-                <a href="/book/1"><h3 id="book">Book: Nhap mon lap trinh</h3></a>
-                <h3 id="uname_reporter">Reporter: Khoi</h3>
+                <h3 id="idReport">ID_Report: </h3>
+                <h3 id="reporteduser">Reported User: </h3>
+                <a href="/book/1">
+                    <h3 id="ReportedBook">Book: </h3>
+                </a>
+                <h3 id="reporter">Reporter: </h3>
             </div>
 
             <div class="reason">
@@ -55,31 +57,45 @@
             </div>
 
             <div class="reportAction">
-                <h3 id="status">Status: Remaining</h3>
                 <div class="action">
                     <label for="actionChoices">Action: </label>
                     <select name="actionChoices" id="actionChoices">
                         <option value="ban">Ban</option>
                         <option value="dismiss">Dismiss</option>
                     </select>
+                    <button type="submit">Confirm</button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <script>
-            var id_user = 1;
-            var uname = "ahaha";
-            var book = "Nhap mon lap trinh";
-            var uname_reporter = "Khoi";
+            function decodeHtml(html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
+            var n = "<%=reportlist.length%>";
+            if (n != 0) {
+                var reportlist = "<%= JSON.stringify(reportlist) %>";
+                reportlist = decodeHtml(reportlist);
+                reportlist = JSON.parse(reportlist);
+            }
+            var ID_Report = [];
+            var ReportedUser = [];
+            var ReportedBook = [];
+            var Reporter = [];
             var reason = "Cuốn sách này đã thổi bay giấc mộng đại học của tôi";
-            var status = "Remaining";
-
-            var n = 5;
+            // var status = "Remaining";
+            for (var i = 0; i < n; i++) {
+                ID_Report.push(reportlist[i].id_report);
+                Reporter.push(reportlist[i].rusername);
+                ReportedUser.push(reportlist[i].reporteduser);
+                ReportedBook.push(reportlist[i].rbook);
+            }
 
             var reportSite = document.getElementById("reportSite");
 
-            for (var i = 0; i < n; i++)
-            {
+            for (var i = 0; i < n; i++) {
                 // Create oneReport div
                 var oneReport = document.createElement("div");
                 oneReport.className = "oneReport";
@@ -88,28 +104,28 @@
                 var reportInfo = document.createElement("div");
                 reportInfo.className = "reportInfo";
 
-                var idUser = document.createElement("h3");
-                idUser.id = "id_user";
-                idUser.textContent = "ID_user: " + id_user;
+                var idReport = document.createElement("h3");
+                idReport.id = "idReport";
+                idReport.textContent = "ID_Report: " + ID_Report[i];
 
-                var username = document.createElement("h3");
-                username.id = "uname";
-                username.textContent = "User: " + uname;
+                var reporteduser = document.createElement("h3");
+                reporteduser.id = "reporteduser";
+                reporteduser.textContent = "Reported User: " + ReportedUser[i];
 
                 var linkBook = document.createElement("a");
-                linkBook.href = "/book/1";
+                linkBook.href = "book/" + ReportedBook[i];
 
-                var bookReported = document.createElement("h3");
-                bookReported.id = "book";
-                bookReported.textContent = "Book: " + book;
-                linkBook.appendChild(bookReported);
+                var idBook = document.createElement("h3");
+                idBook.id = "idBook";
+                idBook.textContent = "ID_Book: " + ReportedBook[i];
+                linkBook.appendChild(idBook);
 
                 var reporter = document.createElement("h3");
-                reporter.id = "uname_reporter";
-                reporter.textContent = "Reporter: " + uname_reporter;
+                reporter.id = "reporter";
+                reporter.textContent = "Reporter: " + Reporter[i];
 
-                reportInfo.appendChild(idUser);
-                reportInfo.appendChild(username);
+                reportInfo.appendChild(idReport);
+                reportInfo.appendChild(reporteduser);
                 reportInfo.appendChild(linkBook);
                 reportInfo.appendChild(reporter);
 
@@ -131,10 +147,10 @@
                 var reportAction = document.createElement("div");
                 reportAction.className = "reportAction";
 
-                var statusP = document.createElement("h3");
-                statusP.id = "status";
-                statusP.textContent = "Status: " + status;
-                reportAction.appendChild(statusP);
+                // var statusP = document.createElement("h3");
+                // statusP.id = "status";
+                // statusP.textContent = "Status: " + status;
+                // reportAction.appendChild(statusP);
 
                 var action = document.createElement("div");
                 action.className = "action";
@@ -158,11 +174,20 @@
                 actionChoices.appendChild(op1);
                 actionChoices.appendChild(op2);
 
+                var link = document.createElement("a");
+                link.href = "admin?Choice=ban" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
+
+                var button = document.createElement("button");
+                button.type = "submit";
+                button.className = "button";
+                button.textContent = "Confirm";
+
+                link.append(button);
+
                 action.appendChild(label);
                 action.appendChild(actionChoices);
-
+                action.appendChild(link);
                 reportAction.appendChild(action);
-
 
                 // Add to one report
                 oneReport.appendChild(reportInfo);
