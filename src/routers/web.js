@@ -223,6 +223,10 @@ router.get('/book/:idbook', async (req, res) => {
 
 router.get('/report/:idreport');
 
+router.get('/cart', (req, res) => {
+    res.render('cart.ejs', { message: req.flash('msg') })
+})
+
 router.get('/logout', authenController.logout);
 
 export default router;
