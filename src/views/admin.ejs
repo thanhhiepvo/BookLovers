@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/style2.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
+
+    <ul class="navbar">
+        <h3>Admin page</h3 >
+    </ul>
+
+    <div class="profile">
+        <i class='bx bx-user'></i>
+        <span>Profile</span>
+        <i class='bx bx-caret-down'></i>
+
+    </div>
+
+    <div id="profileSpan">
+        <h5 id="name">Admin</h5>
+        <h5 id="mail">admin@gmail.com</h5>
+        <li><a href="logOut">Log out</a></li>
+    </div>
+
+    <script>
+        var profileClick = document.querySelector('.profile');
+        profileClick.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
+        });
+    </script>
+</header>
+
+<body>
+    <div class="reportSite" id="reportSite">
+        <div class="oneReport">
+            <div class="reportInfo">
+                <h3 id="id_user">ID user: 1</h3>
+                <h3 id="uname">User: Ahaha</h3>
+                <a href="/book/1"><h3 id="book">Book: Nhap mon lap trinh</h3></a>
+                <h3 id="uname_reporter">Reporter: Khoi</h3>
+            </div>
+
+            <div class="reason">
+                <p id="reason"><strong>Reason: </strong>Cuốn sách này đã thổi bay giấc mộng đại học của tôi</p>
+            </div>
+
+            <div class="reportAction">
+                <h3 id="status">Status: Remaining</h3>
+                <div class="action">
+                    <label for="actionChoices">Action: </label>
+                    <select name="actionChoices" id="actionChoices">
+                        <option value="ban">Ban</option>
+                        <option value="dismiss">Dismiss</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var id_user = 1;
+            var uname = "ahaha";
+            var book = "Nhap mon lap trinh";
+            var uname_reporter = "Khoi";
+            var reason = "Cuốn sách này đã thổi bay giấc mộng đại học của tôi";
+            var status = "Remaining";
+
+            var n = 5;
+
+            var reportSite = document.getElementById("reportSite");
+
+            for (var i = 0; i < n; i++)
+            {
+                // Create oneReport div
+                var oneReport = document.createElement("div");
+                oneReport.className = "oneReport";
+
+                // Report info
+                var reportInfo = document.createElement("div");
+                reportInfo.className = "reportInfo";
+
+                var idUser = document.createElement("h3");
+                idUser.id = "id_user";
+                idUser.textContent = "ID_user: " + id_user;
+
+                var username = document.createElement("h3");
+                username.id = "uname";
+                username.textContent = "User: " + uname;
+
+                var linkBook = document.createElement("a");
+                linkBook.href = "/book/1";
+
+                var bookReported = document.createElement("h3");
+                bookReported.id = "book";
+                bookReported.textContent = "Book: " + book;
+                linkBook.appendChild(bookReported);
+
+                var reporter = document.createElement("h3");
+                reporter.id = "uname_reporter";
+                reporter.textContent = "Reporter: " + uname_reporter;
+
+                reportInfo.appendChild(idUser);
+                reportInfo.appendChild(username);
+                reportInfo.appendChild(linkBook);
+                reportInfo.appendChild(reporter);
+
+                // Reason
+                var reasonDiv = document.createElement("div");
+                reasonDiv.className = "reason";
+
+                var reasonP = document.createElement("p");
+                reasonP.id = "reason";
+
+                var reasonS = document.createElement("strong");
+                reasonS.textContent = "Reason: ";
+                reasonP.appendChild(reasonS);
+
+                reasonP.textContent = reason;
+                reasonDiv.appendChild(reasonP);
+
+                // Report action
+                var reportAction = document.createElement("div");
+                reportAction.className = "reportAction";
+
+                var statusP = document.createElement("h3");
+                statusP.id = "status";
+                statusP.textContent = "Status: " + status;
+                reportAction.appendChild(statusP);
+
+                var action = document.createElement("div");
+                action.className = "action";
+
+                var label = document.createElement("label");
+                label.htmlFor = "actionChoices";
+                label.textContent = "Action: ";
+
+                var actionChoices = document.createElement("select");
+                actionChoices.name = "actionChoices";
+                actionChoices.id = "actionChoices";
+
+                var op1 = document.createElement("option");
+                op1.value = "ban";
+                op1.textContent = "Ban";
+
+                var op2 = document.createElement("option");
+                op2.value = "dismiss";
+                op2.textContent = "Dismiss";
+
+                actionChoices.appendChild(op1);
+                actionChoices.appendChild(op2);
+
+                action.appendChild(label);
+                action.appendChild(actionChoices);
+
+                reportAction.appendChild(action);
+
+
+                // Add to one report
+                oneReport.appendChild(reportInfo);
+                oneReport.appendChild(reasonDiv);
+                oneReport.appendChild(reportAction);
+
+                // Add to report site
+                reportSite.appendChild(oneReport);
+            }
+            document.body.appendChild(reportSite);
+        </script>
+
+    </div>
+</body>
+
+</html>

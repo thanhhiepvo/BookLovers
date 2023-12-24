@@ -1312,7 +1312,7 @@ h1 {
 
 /* uploadBook page */
 #uploadBtn {
-    position: fixed;
+    position:relative;
     width: 300px;
     height: 35px;
     background: #080a52;
@@ -1324,7 +1324,7 @@ h1 {
     font-size: 20px;
     font-weight: 600;
     margin-top: 10px;
-    right: 50px;
+    /* right: 50px; */
 }
 
 #uploadBtn:hover {
@@ -1539,26 +1539,26 @@ h1 {
 }
 
 .bookSellers .oneBookSeller .buttonBook .button1 {
-    color: white;
-    background: #0c5776;
+    color: #0e0e2e;
+    background: white;
     /* border-color: #0e0e2e; */
 }
 
 .bookSellers .oneBookSeller .buttonBook .button2 {
-    color: white;
-    background: #001c44;
+    color: #0e0e2e;
+    background: white;
 }
 
 .bookSellers .oneBookSeller .buttonBook .button1:hover {
     color: white;
-    background: #0f0f4b;
+    background: #001c44;
     cursor: pointer;
 }
 
 
 .bookSellers .oneBookSeller .buttonBook .button2:hover {
     color: white;
-    background: #040461;
+    background: #001c44;
     cursor: pointer;
 }
 
@@ -1570,15 +1570,15 @@ h1 {
     /* border-radius: 50%; */
     background-color: transparent;
     font-weight: 1000;
-    color: #0c5776;
-    border: 1px solid #0c5776;
+    color: #001c44;
+    border: 1px solid #001c44;
     margin-left: 5px;
     /* bottom: 8px;
     right: 0px; */
 }
 
 .bookSellers .oneBookSeller .buttonBook .bx-comment-error:hover {
-    background: #2d9ae2;
+    background: #001c44;
     color: white;
 }
 
