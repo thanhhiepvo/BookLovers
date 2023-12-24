@@ -62,7 +62,7 @@
 <body>
 
     <section id="product" class="section_home">
-        <h2>This is your bookshell</h2>
+        <h2>This is your bookshelf</h2>
         <p></p>
 
         <!-- Script for product -->
@@ -75,7 +75,7 @@
             var idBook = [];
             var imagePaths = [];
             var authors = [];
-            var price = [];
+            // var price = [];
             var bookNames = [];
             var b = "<%=books.length%>"
             if (b != 0) {
@@ -148,7 +148,7 @@
 
                 // Create a element
                 var aElement = document.createElement("a");
-                aElement.href = "book?id=" + idBook[i];
+                aElement.href = "book/" + idBook[i];
                 // aElement.href = "book";
 
                 // Create i element for cart icon

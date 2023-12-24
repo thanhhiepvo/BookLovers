@@ -45,8 +45,8 @@ const upload = multer({
   });
 router.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('msg') })
-    // console.log(">>> req.session.username = ", req.session.username);
 })
+
 router.post('/login-user', authenController.loginUser);
 
 router.get('/forgotPass', (req, res) => {
@@ -61,7 +61,6 @@ router.get('/otp', (req, res) => {
 router.post('/otp-check', emailMethod.checkOTP);
 
 router.get('/otp-resend', emailMethod.resendOTP);
-
 
 router.get('/recoverPass', (req, res) => {
     res.render('recoverPass.ejs', { message: req.flash('msg') });
@@ -86,19 +85,6 @@ router.get('/admin', (req, res) => {
     res.render('admin.ejs', { message: req.flash('msg') });
 })
 
-// router.get('/book', async (req, res) => {
-//     if (req.session.username) {
-//         const user = await authenController.getProfileUser(req, res);
-//         res.render('book', { user: user });
-//     } else {
-//         res.redirect('/login');
-//     }
-// })
-
-// router.get('/editProfile', (req, res) => {
-//     res.render('editProfile.ejs')
-// })
-
 router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
@@ -108,10 +94,8 @@ router.post('/create-user', authenController.postCreateUser);
 router.get('/homepage', async (req, res) => {
     if (req.session.username) {
         try {
-            const book = await bookController.getAllSellingBook(req, res);
-            //console.log(book);
+            const book = await bookController.getAllBookInfo(req, res);
             const user = await authenController.getProfileUser(req, res);
-            //books = book;
             res.render('home', {
                 user: user,
                 books: book
@@ -130,7 +114,6 @@ router.get('/myBook', async (req, res) => {
         try {
             const user = await authenController.getProfileUser(req, res);
             const listOwnedBook = await bookController.getBookOwned(req, res);
-            //console.log(listOwnedBook); 
             res.render('myBook', {
                 user: user,
                 books: listOwnedBook
@@ -141,7 +124,6 @@ router.get('/myBook', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-    // console.log(">>> req.session.username = ", req.session.username);
 })
 
 router.get('/selling', async (req, res) => {
@@ -159,7 +141,6 @@ router.get('/selling', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-    // console.log(">>> req.session.username = ", req.session.username);
 })
 
 router.get('/upload', async (req, res) => {

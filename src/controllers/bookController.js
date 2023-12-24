@@ -1,14 +1,25 @@
 import { getBookInfo, getBookOwned, getBookSell, getUserSellingBook } from "../models/book.js";
-import { getAllSellingBook } from "../models/bookstore.js";
+import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
 import { addToCart } from "../models/users.js";
 import multer from "multer";
 const bookController = {};
+
+bookController.getAllBookInfo = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const book = await getInfoAllBook();
+            resolve(book);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
+}
 
 bookController.getBookInfo = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
             const book = await getBookInfo(req.params['idbook']);
-            console.log(book);
             resolve(book);
         } catch (error) {
             console.error('Error', error);
@@ -56,14 +67,12 @@ bookController.getAllSellingBook = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
             const sellingbook = await getAllSellingBook() ?? [];
-            // console.log(sellingbook);
             let sellingbooklist = [];
             for (let book of sellingbook) {
                 let bookinfo = await getBookInfo(book.sbook);
                 bookinfo.price = book.sprice;
                 sellingbooklist.push(bookinfo);
             }
-            // console.log(sellingbooklist);
             resolve(sellingbooklist);
         } catch (error) {
             console.error('Error', error);
