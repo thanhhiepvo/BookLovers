@@ -183,6 +183,7 @@ router.post('/uploadSelling', upload.fields([
     // Process the files as needed
 
     // Redirect to the 'selling' page
+    console.log(req.body)
     res.redirect('/selling');
 }, (err, req, res, next) => {
     // This is the error handler middleware
@@ -190,6 +191,8 @@ router.post('/uploadSelling', upload.fields([
     if (err) {
         return res.redirect('/upload');
     }
+    // If there was no error, call the next middleware
+    next();
 });
 
 router.get('/wallet', async (req, res) => {
