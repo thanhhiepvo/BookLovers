@@ -257,8 +257,14 @@ router.get('/report', async (req, res) => {
     // console.log(">>> req.session.username = ", req.session.username);
 });
 
-router.get('/cart', (req, res) => {
-    res.render('cart', { message: req.flash('msg') })
+router.get('/cart', async (req, res) => {
+    if (req.session.username) {
+        const user = await authenController.getProfileUser(req, res);
+        const bookCart = await bookController.getBookCart(req, res);
+        res.render('shoppingCart', { user: user, bookCart : bookCart }); // Render the view with user data
+    } else {
+        res.redirect('/login');
+    }
 })
 
 router.get('/logout', authenController.logout);

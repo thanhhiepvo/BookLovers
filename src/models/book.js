@@ -116,3 +116,14 @@ export async function delOwnedBook(OUsername, OBook) {
     await pool.query(text, value);
     console.log('User owned book deleted successfully');
 }
+
+// lay danh sách cac sach trong shopping cart va gia cua sach do
+export async function getShoppingCart(username) {
+    const text = "SELECT SP.SHOPBOOK, B.NAMEBOOK, SP.SHOPUSER, SP.SHOPSELLER, SP.SELLING_PRICE FROM SHOPPING_CART SP, BOOK B WHERE SP.SHOPUSER = $1 AND SP.SHOPBOOK = B.ID_BOOK";
+    const value = [username];
+    const { rows } = await pool.query(text, value);
+    console.log(rows);
+    if (rows.length == 0)
+        return null;
+    return rows;
+}

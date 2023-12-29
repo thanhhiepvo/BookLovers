@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title>My book</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style1.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/Picture/favicon.png" type="image/png">
+</head>
+<header>
+    <a href="#" class="logo"><img src="/Picture/logo.png"></a>
+
+    <ul class="navbar">
+        <li><a href="homepage">Home</a></li>
+        <li><a href="myBook" class="active">My books</a></li>
+        <li><a href="selling">Selling</a></li>
+        <li><a href="wallet">Wallet</a></li>
+        <li><a href="about">About</a></li>
+    </ul>
+
+    <div class="profile">
+        <i class='bx bx-user'></i>
+        <span>Profile</span>
+        <i class='bx bx-caret-down'></i>
+
+    </div>
+
+    <div id="profileSpan">
+        <h5 id="name"></h5>
+        <h5 id="mail"></h5>
+        <h5 id="balance"></h5>
+        <li><a href="editProfile">Edit my profile</a></li>
+        <li><a href="logOut">Log out</a></li>
+    </div>
+
+    <!-- Script for Profile -->
+    <Script>
+        var profileSpan = document.getElementById("profileSpan");
+
+        var name = "<%=user.username%>";
+        var mail = "<%=user.email%>";
+        var balance = "<%=user.balance.toLocaleString('de-DE')%>";
+
+
+        document.getElementById("name").textContent = "UserName: " + name;
+        document.getElementById("mail").textContent = "Email: " + mail;
+        document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+        var profileClick = document.querySelector('.profile');
+        profileClick.addEventListener('click', () => {
+            profileSpan.classList.toggle('active');
+        });
+    </Script>
+
+</header>
+
+<body>
+    <title>Shopping Cart</title>
+
+    <div class="container">
+
+        <h1>Shopping Cart</h1>
+
+        <div class="cart">
+            <div class="products">
+                <script>
+                    function decodeHtml(html) {
+                        var txt = document.createElement("textarea");
+                        txt.innerHTML = html;
+                        return txt.value;
+                    }
+                    var shopseller = []
+                    var productImages = [];
+                    var productPrices = [];
+                    var productNames = [];
+                    var b = "<%=bookCart.length%>"
+                    if (b != 0) {
+                        var bookCart = "<%= JSON.stringify(bookCart) %>";
+                        bookCart = decodeHtml(bookCart);
+                        bookCart = JSON.parse(bookCart);
+                    }
+
+                    for (var i = 0; i < b; i++) {
+                        productNames.push(bookCart[i].namebook);
+                        productImages.push("/Picture/book/" + bookCart[i].shopbook + ".jpg");
+                        shopseller.push(bookCart[i].shopseller);
+                        productPrices.push(bookCart[i].selling_price.toLocaleString('de-DE'));
+                    }
+
+                    var productsDiv = document.getElementsByClassName("products")[0];
+
+                    for (var i = 0; i < productNames.length; i++) {
+                        var productDiv = document.createElement("div");
+                        productDiv.className = "product";
+
+                        var imgElement = document.createElement("img");
+                        imgElement.src = productImages[i];
+
+                        var productInfoDiv = document.createElement("div");
+                        productInfoDiv.className = "product-info";
+
+                        var h3Element = document.createElement("h3");
+                        h3Element.className = "product-name";
+                        h3Element.textContent = productNames[i];
+
+                        var h4PriceElement = document.createElement("h4");
+                        h4PriceElement.className = "product-price";
+                        h4PriceElement.textContent = productPrices[i];
+
+                        var h4OfferElement = document.createElement("h4");
+                        h4OfferElement.className = "shopseller";
+                        h4OfferElement.textContent = shopseller[i];
+
+                        var pRemoveElement = document.createElement("p");
+                        pRemoveElement.className = "product-remove";
+
+                        var iElement = document.createElement("i");
+                        iElement.className = "fa fa-trash";
+                        iElement.setAttribute("aria-hidden", "true");
+
+                        var spanElement = document.createElement("span");
+                        spanElement.className = "remove";
+                        spanElement.textContent = "Remove";
+
+                        pRemoveElement.appendChild(iElement);
+                        pRemoveElement.appendChild(spanElement);
+
+                        productInfoDiv.appendChild(h3Element);
+                        productInfoDiv.appendChild(h4PriceElement);
+                        productInfoDiv.appendChild(h4OfferElement);
+                        productInfoDiv.appendChild(pRemoveElement);
+
+                        productDiv.appendChild(imgElement);
+                        productDiv.appendChild(productInfoDiv);
+
+                        productsDiv.appendChild(productDiv);
+                    }
+                </script>
+            </div>
+            <div class="cart-total">
+                <p>
+                    <span>Total Price</span>
+                    <span>₹ 3,000</span>
+                </p>
+
+                <p>
+                    <span>Number of Items</span>
+                    <span>2</span>
+                </p>
+
+                <p>
+                    <span>You Save</span>
+                    <span>₹ 1,000</span>
+                </p>
+
+                <a href="#">Proceed to Checkout</a>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+            <h3>Book<span>Lovers</span></h3>
+
+            <p class="footer-links">
+                <a href="#">Home</a>
+                |
+                <a href="#">My books</a>
+                |
+                <a href="#">Selling</a>
+                |
+                <a href="#">Wallet</a>
+                |
+                <a href="#">About</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © 2023 <strong>BOOKLOVERS</strong> All rights reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span> 227 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh </span>
+                    Việt Nam</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>0901321679</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="booklovers.reply@gmail.com">booklovers.reply@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                <strong>Book Lovers</strong> is a website where you can find and buy books easily and quickly.
+                It creates a user-friendly and secure web platform dedicated to book-related
+                activities.
+                Users will have the ability to share their books with others, buy new or used books, sell their own
+                books, and even rent titles.
+                The platform's purpose is to foster a vibrant community of readers while providing a convenient and
+                efficient marketplace for book transactions.
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+
+</html>

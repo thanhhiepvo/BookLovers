@@ -1,4 +1,4 @@
-import { getBookInfo, getBookOwned, getBookSell, getUserSellingBook } from "../models/book.js";
+import { getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
 import { addToCart } from "../models/users.js";
 import multer from "multer";
@@ -109,4 +109,26 @@ bookController.addToCart = async (req, res) => {
     res.redirect('/homepage');
 }
 
+bookController.getUserSellingBook = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const usersellingbook = await getUserSellingBook(req.params['idbook']) ?? [];
+            resolve(usersellingbook);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
+}
+bookController.getBookCart = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const bookCart = await getShoppingCart(req.session.username);
+            resolve(bookCart);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
+}
 export default bookController;
