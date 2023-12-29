@@ -29,6 +29,7 @@
     <div id="profileSpan">
         <h5 id="name">Admin</h5>
         <h5 id="mail">admin@gmail.com</h5>
+        <li><a href="homepage">Home page</a></li>
         <li><a href="logOut">Log out</a></li>
     </div>
 
@@ -42,31 +43,7 @@
 
 <body>
     <div class="reportSite" id="reportSite">
-        <div class="oneReport">
-            <div class="reportInfo">
-                <h3 id="idReport">ID_Report: </h3>
-                <h3 id="reporteduser">Reported User: </h3>
-                <a href="/book/1">
-                    <h3 id="ReportedBook">Book: </h3>
-                </a>
-                <h3 id="reporter">Reporter: </h3>
-            </div>
-
-            <div class="reason">
-                <p id="reason"><strong>Reason: </strong>Cuốn sách này đã thổi bay giấc mộng đại học của tôi</p>
-            </div>
-
-            <div class="reportAction">
-                <div class="action">
-                    <label for="actionChoices">Action: </label>
-                    <select name="actionChoices" id="actionChoices">
-                        <option value="ban">Ban</option>
-                        <option value="dismiss">Dismiss</option>
-                    </select>
-                    <button type="submit">Confirm</button>
-                </div>
-            </div>
-        </div>
+    </div>
 
         <script>
             function decodeHtml(html) {
@@ -140,8 +117,8 @@
                 reasonS.textContent = "Reason: ";
                 reasonP.appendChild(reasonS);
 
-                reasonP.textContent = reason;
                 reasonDiv.appendChild(reasonP);
+                reasonP.textContent = reason;
 
                 // Report action
                 var reportAction = document.createElement("div");
@@ -155,20 +132,22 @@
                 var action = document.createElement("div");
                 action.className = "action";
 
-                var label = document.createElement("label");
-                label.htmlFor = "actionChoices";
+                var label = document.createElement("p");
+                // label.htmlFor = "actionChoices";
                 label.textContent = "Action: ";
 
-                var actionChoices = document.createElement("select");
-                actionChoices.name = "actionChoices";
-                actionChoices.id = "actionChoices";
+                var actionChoices = document.createElement("div");
+                actionChoices.className = "actionChoices";
+                // actionChoices.id = "actionChoices";
 
-                var op1 = document.createElement("option");
-                op1.value = "ban";
+                var op1 = document.createElement("button");
+                op1.type = "submit";
+                op1.className = "ban";
                 op1.textContent = "Ban";
 
-                var op2 = document.createElement("option");
-                op2.value = "dismiss";
+                var op2 = document.createElement("button");
+                op2.type = "submit";
+                op2.className = "dismiss";
                 op2.textContent = "Dismiss";
 
                 actionChoices.appendChild(op1);

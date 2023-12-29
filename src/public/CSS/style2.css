@@ -50,21 +50,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 100px;
-    padding: 10px 300px;
+    /* margin: 10px 100px; */
+    padding: 10px 500px;
 }
 
 
-.action label
+/* .action label
 {
     font-weight: bold;
-}
+} */
 
 .action
 {
-    position: relative;
+    position: flex;
     display: flex;
     line-height: 1.5;
+}
+
+.action p
+{
+    font-size: 20px;
 }
 
 .action::after
@@ -81,34 +86,8 @@
     color: #0e0e2e;
 }
 
-.action select
+.action button
 {
-    width: 125px;
-    height: 25px;
-    align-items: center;
-    color: #0e0e2e;
-    border: 1px solid rgb(26, 26, 26);
-    border-radius: 10px;
-    font-size: 15px;
-    flex: 1;
-    padding: 0 .5em;
-    cursor: pointer;
-}
-
-.action select option
-{
-    font-size: 14px;
-    /* align-items: center; */
-    border: 1px solid rgb(26, 26, 26);
-    border-radius: 10px;
-}
-
-.action select::-ms-expand
-{
-    display: none;
-}
-
-.action button {
     border: 1px solid rgb(26, 26, 26);
     border-radius: 10px;
     font-size: 18px;
@@ -116,6 +95,27 @@
     width: 100px;
     color: #0e0e2e;
     background: white;
+}
+
+.actionChoices
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 30px;
+    padding: 0px 30px;
+}
+
+.actionChoices button 
+{
+    border: 1px solid rgb(26, 26, 26);
+    border-radius: 10px;
+    font-size: 18px;
+    height: 30px;
+    width: 100px;
+    color: #0e0e2e;
+    background: white;
+    margin: 0 10px;
 }
 
 .action button:hover {
