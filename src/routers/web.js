@@ -12,40 +12,6 @@ import appRoot from 'app-root-path';
 
 const router = express.Router();
 
-//router.Method('/routers', handler function)
-//router.get('/', getHomePage) ;
-//let upload = multer({ storage: imageStorage, fileFilter: imageFilter });
-// let multipleUpload = upload.fields([{ name: 'bcover_pic'},{ name: 'pdf_book'}]);
-const upload = multer({
-    storage: multer.diskStorage({
-        destination: function (req, file, cb) {
-            if (file.fieldname === 'bcover_pic') {
-                cb(null, appRoot + "/public/Picture");
-            } else if (file.fieldname === 'pdf_book') {
-                cb(null, appRoot + "/public/Book_PDF");
-            } else {
-                cb(new Error('Invalid fieldname'));
-            }
-        },
-        filename: function (req, file, cb) {
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-        }
-    }),
-    fileFilter: function (req, file, cb) {
-        if (file.fieldname === 'imageFile') {
-            if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
-                req.fileValidationError = 'Only image files are allowed!';
-                return cb(new Error('Only image files are allowed!'), false);
-            }
-        } else if (file.fieldname === 'pdfFile') {
-            if (!file.originalname.match(/\.(pdf|PDF)$/)) {
-                req.fileValidationError = 'Only PDF files are allowed!';
-                return cb(new Error('Only PDF files are allowed!'), false);
-            }
-        }
-        cb(null, true);
-    }
-});
 router.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('msg') })
 })
@@ -98,7 +64,7 @@ router.get('/admin', async (req, res) => {
         catch (error) {
             console.error(error);
         }
-    } 
+    }
     else if (req.session.username && !isEmpty) {
         await adminMethod.banUser(req, res);
     }
@@ -174,18 +140,58 @@ router.get('/upload', async (req, res) => {
     } else {
         res.redirect('/login');
     }
-})
+});
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            if (file.fieldname === 'bcover_pic') {
+                cb(null, appRoot + "/public/Picture");
+            } else if (file.fieldname === 'pdf_book') {
+                cb(null, appRoot + "/public/Book_PDF");
+            } else {
+                cb(new Error('Invalid fieldname'));
+            }
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        }
+    }),
+    fileFilter: function (req, file, cb) {
+        if (file.fieldname === 'bcover_pic') {
+            if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+                return cb(new Error('Only image files are allowed!'), false);
+            }
+        } else if (file.fieldname === 'pdf_book') {
+            if (!file.originalname.match(/\.(pdf|PDF)$/)) {
+                return cb(new Error('Only PDF files are allowed!'), false);
+            }
+        }
+        cb(null, true);
+    }
+});
+
 router.post('/uploadSelling', upload.fields([
     { name: 'bcover_pic', maxCount: 1 },
     { name: 'pdf_book', maxCount: 1 }
-]), (req, res) => {
-    // Handle the uploaded files
-    const imageFile = req.files['bcover_pic'][0];
-    const pdfFile = req.files['pdf_book'][0];
+]), (req, res, next) => {
+    // If there was a validation error, pass it to the next middleware
+    if (req.fileValidationError) {
+        return next(new Error(req.fileValidationError));
+    }
+
     // Process the files as needed
 
-    res.send('Files uploaded successfully');
+    // Redirect to the 'selling' page
+    res.redirect('/selling');
+}, (err, req, res, next) => {
+    // This is the error handler middleware
+    // If there was an error in the previous middleware, redirect to the upload page
+    if (err) {
+        return res.redirect('/upload');
+    }
 });
+
 router.get('/wallet', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);

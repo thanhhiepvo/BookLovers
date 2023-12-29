@@ -35,7 +35,7 @@ authenController.postCreateUser = async (req, res) => {
 // Login
 authenController.loginUser = async (req, res) => {
     let { username, password } = req.body;
-    console.log(">>> username = ", username, 'password = ', password);
+    console.log(">>> username = ", username, ', password = ', password);
 
     if (username == "admin" && password == "admin")
     {

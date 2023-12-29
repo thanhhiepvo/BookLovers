@@ -3,7 +3,7 @@ import pool from '../database.js'
 
 export async function getUsername(username) {
     const { rows } = await pool.query("SELECT Username, Email, Pass, States, Balance, FullName, PhoneNumber, Birth + interval '7 hours' as Birth FROM useraccount WHERE username = $1", [username]);
-    console.log(rows);
+    // console.log(rows);
     if (rows[0] == null)
         return null;
     return rows[0];
@@ -12,7 +12,7 @@ export async function getUsername(username) {
 //get user email
 export async function getUserEmail(email) {
     const { rows } = await pool.query('SELECT Email FROM useraccount WHERE Email = $1', [email]);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows[0].email;
@@ -21,7 +21,7 @@ export async function getUserEmail(email) {
 //get user ownedbookID
 export async function getUserOwnedBook(username) {
     const { rows } = await pool.query('SELECT OBook FROM ownedbook WHERE OUsername = $1', [username]);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows.map(row => row.obook);
@@ -30,7 +30,7 @@ export async function getUserOwnedBook(username) {
 //get user sellingbookID
 export async function getUserSellingBook(username) {
     const { rows } = await pool.query('SELECT SBook FROM sellingbook WHERE SUsername = $1', [username]);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows.map(row => row.sbook);
@@ -39,7 +39,7 @@ export async function getUserSellingBook(username) {
 //get user invoiceID
 export async function getUserInvoice(username) {
     const { rows } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = $1', [username]);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows.map(row => row.id_invoice);
@@ -47,7 +47,7 @@ export async function getUserInvoice(username) {
 
 export async function getUserBirth(username) {
     const { rows } = await pool.query("SELECT Birth + interval '7 hours' as Birth FROM useraccount WHERE Username = $1", [username]);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows[0].birth;
