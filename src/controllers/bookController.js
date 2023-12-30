@@ -123,7 +123,7 @@ bookController.getUserSellingBook = async (req, res) => {
 bookController.getBookCart = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const bookCart = await getShoppingCart(req.session.username);
+            const bookCart = await getShoppingCart(req.session.username) ?? [];
             resolve(bookCart);
         } catch (error) {
             console.error('Error', error);

@@ -282,7 +282,11 @@ body {
     text-decoration: none;
 }
 
-
+/* shopping cart */
+.shopping_cart .bx-cart::before {
+    font-size: 30px;
+    color: white;
+}
 
 /* #product .pro .cart {
     width: 50px;
