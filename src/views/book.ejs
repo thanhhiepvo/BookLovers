@@ -116,6 +116,9 @@
             // bookSellers2.className = "bookSellers2";
 
             for (var i = 0; i < n; i++) {
+                if ("<%=user.username%>" == nameSellers[i]){
+                    continue;
+                }
                 var oneBookSeller = document.createElement("div");
                 oneBookSeller.className = "oneBookSeller";
 
