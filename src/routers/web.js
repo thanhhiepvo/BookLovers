@@ -180,8 +180,6 @@ router.post('/uploadSelling', upload.fields([
         return next(new Error(req.fileValidationError));
     }
 
-    // Process the files as needed
-
     // Redirect to the 'selling' page
     console.log(req.body)
     res.redirect('/selling');
