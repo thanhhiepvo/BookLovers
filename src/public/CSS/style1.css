@@ -1586,6 +1586,122 @@ h1 {
     margin-left: 14px;
 }
 
+.report
+{
+    display: none;
+}
+
+.report.active
+{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    z-index: 1000;
+}
+
+.report form
+{
+    display: flex;
+    border: 3px solid #00202e;
+    /* border-radius: 10px; */
+    height: 500px;
+    width: 1300px;
+    justify-content: center;
+}
+
+.report .reportForm
+{
+    margin: 30px 40px;
+}
+
+.report .reportForm h1
+{
+    text-align: left;
+    width: fit-content;
+    border-bottom: 5px solid #00202e;
+}
+
+.report .reportForm #bookName
+{
+    padding-top: 15px;
+}
+
+.report .reportForm h2
+{
+    padding-top: 10px;
+}
+
+.report .reportForm textarea
+{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    height: 200px;
+    outline: none;
+    border: 2px solid #00202e;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #00202e;
+    padding: 10px 10px;
+    resize: none;
+}
+
+.report .reportForm textarea::placeholder
+{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #00202e;
+}
+
+.report .reportForm .reportAction
+{
+    margin: 20px 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report .reportForm .reportAction button
+{
+    border: 1px solid rgb(26, 26, 26);
+    border-radius: 10px;
+    font-size: 18px;
+    height: 50px;
+    width: 200px;
+}
+
+.report .reportForm .reportAction #cancel
+{
+    background: white;
+    color: #00202e;
+}
+
+.report .reportForm .reportAction #cancel:hover
+{
+    background: #0c5776;
+    color: white;
+    cursor: pointer;
+}
+
+.report .reportForm .reportAction #reportConfirm
+{
+    color: white;
+    background: #00202e;
+}
+
+.report .reportForm .reportAction #reportConfirm:hover
+{
+    background: #0c5776;
+    color: white;
+    cursor: pointer;
+}
+
 /* --- Cart page ---  */
 .container {
     max-width: 1200px;
@@ -1650,7 +1766,7 @@ h1 {
     bottom: -210px;
     right: 20px;
     padding: 10px 25px ;
-    background-color: green;
+    background-color: #ee7248;
     color: white;
     cursor: pointer;
     border-radius: 5px;
@@ -1658,9 +1774,9 @@ h1 {
 
 .product-remove:hover {
     background-color: white;
-    color: green;
+    color: #ee7248;
     font-weight: 600;
-    border: 1px solid green;
+    border: 1px solid #ee7248;
 }
 
 .product-quantity>input {
@@ -1694,13 +1810,13 @@ h1 {
     text-align: center;
     height: 40px;
     line-height: 40px;
-    background-color: tomato;
+    background-color: #0c5776;
     color: white;
     text-decoration: none;
 }
 
 .cart-total a:hover {
-    background-color: red;
+    background-color: #00202e;
 }
 
 @media screen and (max-width: 700px) {

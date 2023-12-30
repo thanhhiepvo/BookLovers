@@ -87,24 +87,7 @@
             document.getElementById("des").textContent = "Description: " + des;
             //document.getElementById("price").textContent = price + " VND";
         </script>
-        <!-- <div class="bookSellers">
-            <div class="oneBookSeller">
-                <h3>Seller: Nguyen Van A</h3>
-                <h2>100.000 VND</h2>
-                <div class="buttonBook">
-                    <button type="submit" class="button1">Add to cart</button>
-                    <button type="submit" class="button2">Buy now</button>
-                </div>
-            </div>
-            <div class="oneBookSeller">
-                <h3>Seller: Nguyen Thi B</h3>
-                <h2>120.000 VND</h2>
-                <div class="buttonBook">
-                    <button type="submit" class="button1">Add to cart</button>
-                    <button type="submit" class="button2">Buy now</button>
-                </div>
-            </div>
-        </div> -->
+
         <!-- Script for Book Sellers -->
         <script>
             function decodeHtml(html) {
@@ -166,7 +149,9 @@
                 link2.appendChild(button2);
 
                 var reportLink = document.createElement("a");
-                reportLink.href = "report?RUsername=" + "<%=user.username%>" + "&ReportedUser=" + nameSellers[i] + "&RBook=" + "<%=books.id_book%>";
+                reportLink.className = "reportSite";
+                // reportLink.href = "report?RUsername=" + "<%=user.username%>" + "&ReportedUser=" + nameSellers[i] + "&RBook=" + "<%=books.id_book%>";
+                // reportLink.href = "#";
 
                 var report = document.createElement("i");
                 report.className = 'bx bx-comment-error';
@@ -190,6 +175,60 @@
             }
         </script>
     </div>
+
+    <div class="report" id="report">
+        <form action="submit">
+            <div class="reportForm">
+                <h1>Report form</h1>
+                <h2 id="bookName"></h2>
+                <h2 id="sellerReport"></h2>
+                <textarea type="text" id="reason" placeholder="Are there any aspects of this book that you are not happy with? Please let us know why."></textarea>
+                <div class="reportAction">
+                    <button id="cancel">Cancel</button>
+                    <button id="reportConfirm">Report</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var bookName = "<%=books.namebook%>";
+        document.getElementById("bookName").textContent = "Book: " + bookName;
+
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+        var nameSellers = [];
+        
+        var selluser = "<%= JSON.stringify(selluser) %>";
+        selluser = decodeHtml(selluser);
+        selluser = JSON.parse(selluser);
+        
+        for (var i = 0; i < selluser.length; i++) {
+            nameSellers.push(selluser[i].susername);
+        }
+        console.log(nameSellers[2]);
+        
+        var reportClick = document.querySelectorAll('.reportSite');
+        for (var i = 0; i < reportClick.length; i++)
+        {
+            (function(index) { // Tạo một closure để lưu giá trị của 'i'
+                reportClick[index].addEventListener('click', () => {
+                document.getElementById("report").classList.toggle('active');
+                document.getElementById("sellerReport").textContent = "Seller: " + nameSellers[index];
+                });
+            })(i);
+        }
+
+        var cancelReport = document.querySelector('#cancel');
+        cancelReport.addEventListener('click', () => 
+        {
+            document.getElementById("report").classList.toggle('active');
+        })
+    </script>
+
     <footer class="footer-distributed">
 
         <div class="footer-left">
