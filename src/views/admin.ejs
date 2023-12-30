@@ -132,13 +132,8 @@
                 var action = document.createElement("div");
                 action.className = "action";
 
-                var label = document.createElement("p");
-                // label.htmlFor = "actionChoices";
-                label.textContent = "Action: ";
 
-                var actionChoices = document.createElement("div");
-                actionChoices.className = "actionChoices";
-                // actionChoices.id = "actionChoices";
+                
 
                 var op1 = document.createElement("button");
                 op1.type = "submit";
@@ -150,22 +145,22 @@
                 op2.className = "dismiss";
                 op2.textContent = "Dismiss";
 
-                actionChoices.appendChild(op1);
-                actionChoices.appendChild(op2);
+                action.appendChild(op1);
+                action.appendChild(op2);
 
-                var link = document.createElement("a");
-                link.href = "admin?Choice=ban" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
+                var linkban = document.createElement("a");
+                linkban.href = "admin?Choice=ban" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
 
-                var button = document.createElement("button");
-                button.type = "submit";
-                button.className = "button";
-                button.textContent = "Confirm";
+                var linkdismiss = document.createElement("a");
+                linkdismiss.href = "admin?Choice=dismiss" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
 
-                link.append(button);
 
-                action.appendChild(label);
-                action.appendChild(actionChoices);
-                action.appendChild(link);
+                linkban.append(op1);
+                linkdismiss.append(op2);
+
+                // action.appendChild(actionChoices);
+                action.appendChild(linkban);
+                action.appendChild(linkdismiss);
                 reportAction.appendChild(action);
 
                 // Add to one report
