@@ -142,8 +142,8 @@ router.get('/upload', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         const cart = await bookController.getShoppingCart(req, res);
-        res.render('upload.ejs', { 
-            user: user, 
+        res.render('upload.ejs', {
+            user: user,
             num: cart.length
         }); // Render the view with user data
 
@@ -213,7 +213,7 @@ router.get('/wallet', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         const cart = await bookController.getShoppingCart(req, res);
-        res.render('wallet', { 
+        res.render('wallet', {
             user: user,
             num: cart.length
         }); // Render the view with user data
@@ -226,7 +226,7 @@ router.get('/editProfile', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         const cart = await bookController.getShoppingCart(req, res);
-        res.render('editProfile', { 
+        res.render('editProfile', {
             user: user,
             num: cart.length
         }); // Render the view with user data
@@ -266,27 +266,14 @@ router.get('/book/:idbook', async (req, res) => {
     // console.log(">>> req.session.username = ", req.session.username);
 });
 
-router.get('/report', async (req, res) => {
-    let check = Object.keys(req.query);
-    let isEmpty = check.every(key => !req.query[key]);
-    if (req.session.username && isEmpty) {
-        res.redirect('/homepage');
-    }
-    else if (req.session.username && !isEmpty) {
-        // res.render('report', { message: req.flash('msg') });
-    }
-    else {
-        res.redirect('/login');
-    }
-    // console.log(">>> req.session.username = ", req.session.username);
-});
+router.post('/submit-report', reportController.createReport);
 
 router.get('/cart', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
-        res.render('shoppingCart', { 
-            user: user, 
+        res.render('shoppingCart', {
+            user: user,
             bookCart: bookCart
         }); // Render the view with user data
     } else {

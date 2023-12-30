@@ -55,6 +55,7 @@ create table REPORT (
 	RUsername varchar(50),
 	ReportedUser varchar(50),
 	RBook int,
+	Reason varchar(1000),
 	constraint PK_REPORT primary key (ID_Report)
 );
 

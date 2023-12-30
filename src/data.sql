@@ -84,9 +84,9 @@ insert into TRANSAC (ID_Transac, ID_Sender, TBook) values (2, 'user1', 2);
 
 --REPORT data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-insert into REPORT (RUsername, ReportedUser, RBook) values ('blanker321', 'user1', 2);
-insert into REPORT (RUsername, ReportedUser, RBook) values ('blanker321', 'user5', 6);
-insert into REPORT (RUsername, ReportedUser, RBook) values ('blanker321', 'user9', 10);
+insert into REPORT (RUsername, ReportedUser, RBook, Reason) values ('blanker321', 'user1', 2, 'Cuốn sách này đã thổi bay giấc mộng đại học của tôi');
+insert into REPORT (RUsername, ReportedUser, RBook, Reason) values ('blanker321', 'user5', 6, 'Ghét thằng user5');
+insert into REPORT (RUsername, ReportedUser, RBook, Reason) values ('blanker321', 'user9', 10, 'Bị ép phải điền lý do');
 
 --BOOKCATEGORY data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

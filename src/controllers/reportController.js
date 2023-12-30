@@ -1,4 +1,4 @@
-import { getAllReportInfo } from "../models/report.js";
+import { createReport, getAllReportInfo } from "../models/report.js";
 
 const reportController = {};
 
@@ -12,6 +12,13 @@ reportController.getAllReportInfo = async (req, res) => {
             reject(error);
         }
     });
+}
+
+reportController.createReport = async (req, res) => {
+    console.log(req.body);
+    let { RUsername, ReportedUser, RBook, Reason } = req.body;
+    await createReport(RUsername, ReportedUser, RBook, Reason);
+    res.redirect("book/" + RBook);
 }
 
 export default reportController;
