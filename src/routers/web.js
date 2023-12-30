@@ -142,11 +142,15 @@ router.get('/upload', async (req, res) => {
     }
 });
 
+let id = null;
+let temp = null;
+let already = false;
+
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
             if (file.fieldname === 'bcover_pic') {
-                cb(null, appRoot + "/public/Picture");
+                cb(null, appRoot + "/public/Picture/book");
             } else if (file.fieldname === 'pdf_book') {
                 cb(null, appRoot + "/public/Book_PDF");
             } else {
@@ -154,44 +158,46 @@ const upload = multer({
             }
         },
         filename: function (req, file, cb) {
-            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+            cb(null, id + path.extname(file.originalname));
         }
     }),
     fileFilter: function (req, file, cb) {
-        if (file.fieldname === 'bcover_pic') {
-            if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
-                return cb(new Error('Only image files are allowed!'), false);
-            }
-        } else if (file.fieldname === 'pdf_book') {
-            if (!file.originalname.match(/\.(pdf|PDF)$/)) {
-                return cb(new Error('Only PDF files are allowed!'), false);
-            }
+        if (!already) {
+            temp = bookController.addUserSelling(req);
+            already = true;
         }
-        cb(null, true);
+        id = temp.bookid;
+        if (temp.check) {
+            if (file.fieldname === 'bcover_pic') {
+                if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+                    cb(new Error('Only image files are allowed!'), false);
+                }
+            } else if (file.fieldname === 'pdf_book') {
+                if (!file.originalname.match(/\.(pdf|PDF)$/)) {
+                    cb(new Error('Only PDF files are allowed!'), false);
+                }
+            }
+            cb(null, true);
+        }
+        else cb(null, false);
     }
 });
 
-router.post('/uploadSelling', upload.fields([
-    { name: 'bcover_pic', maxCount: 1 },
-    { name: 'pdf_book', maxCount: 1 }
-]), (req, res, next) => {
-    // If there was a validation error, pass it to the next middleware
-    if (req.fileValidationError) {
-        return next(new Error(req.fileValidationError));
-    }
-
-    // Redirect to the 'selling' page
-    console.log(req.body)
-    res.redirect('/selling');
-}, (err, req, res, next) => {
-    // This is the error handler middleware
-    // If there was an error in the previous middleware, redirect to the upload page
-    if (err) {
-        return res.redirect('/upload');
-    }
-    // If there was no error, call the next middleware
-    next();
+router.post('/uploadSelling', (req, res) => {
+    upload.fields([
+        { name: 'bcover_pic', maxCount: 1 },
+        { name: 'pdf_book', maxCount: 1 }
+    ])(req, res, function (err) {
+        if (err) {
+            req.fileValidationError = err.message;
+            console.log(req.fileValidationError);
+            res.redirect('/upload');
+        } else {
+            res.redirect('/selling');
+        }
+    });
 });
+
 
 router.get('/wallet', async (req, res) => {
     if (req.session.username) {
@@ -258,8 +264,8 @@ router.get('/report', async (req, res) => {
 router.get('/cart', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
-        const bookCart = await bookController.getBookCart(req, res);
-        res.render('shoppingCart', { user: user, bookCart : bookCart }); // Render the view with user data
+        const bookCart = await bookController.getShoppingCart(req, res);
+        res.render('shoppingCart', { user: user, bookCart: bookCart }); // Render the view with user data
     } else {
         res.redirect('/login');
     }
