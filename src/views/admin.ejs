@@ -42,139 +42,138 @@
 </header>
 
 <body>
-    <div class="reportSite" id="reportSite">
-    </div>
+    <div class="reportSite" id="reportSite"></div>
 
-        <script>
-            function decodeHtml(html) {
-                var txt = document.createElement("textarea");
-                txt.innerHTML = html;
-                return txt.value;
-            }
-            var n = "<%=reportlist.length%>";
-            if (n != 0) {
-                var reportlist = "<%= JSON.stringify(reportlist) %>";
-                reportlist = decodeHtml(reportlist);
-                reportlist = JSON.parse(reportlist);
-            }
-            var ID_Report = [];
-            var ReportedUser = [];
-            var ReportedBook = [];
-            var Reporter = [];
-            var reason = "Cuốn sách này đã thổi bay giấc mộng đại học của tôi";
-            // var status = "Remaining";
-            for (var i = 0; i < n; i++) {
-                ID_Report.push(reportlist[i].id_report);
-                Reporter.push(reportlist[i].rusername);
-                ReportedUser.push(reportlist[i].reporteduser);
-                ReportedBook.push(reportlist[i].rbook);
-            }
+    <script>
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+        var n = "<%=reportlist.length%>";
+        if (n != 0) {
+            var reportlist = "<%= JSON.stringify(reportlist) %>";
+            reportlist = decodeHtml(reportlist);
+            reportlist = JSON.parse(reportlist);
+        }
+        var ID_Report = [];
+        var ReportedUser = [];
+        var ReportedBook = [];
+        var Reporter = [];
+        var Reason = [];
+        // var status = "Remaining";
+        for (var i = 0; i < n; i++) {
+            ID_Report.push(reportlist[i].id_report);
+            Reporter.push(reportlist[i].rusername);
+            ReportedUser.push(reportlist[i].reporteduser);
+            ReportedBook.push(reportlist[i].rbook);
+            Reason.push(reportlist[i].reason);
+        }
 
-            var reportSite = document.getElementById("reportSite");
+        var reportSite = document.getElementById("reportSite");
 
-            for (var i = 0; i < n; i++) {
-                // Create oneReport div
-                var oneReport = document.createElement("div");
-                oneReport.className = "oneReport";
+        for (var i = 0; i < n; i++) {
+            // Create oneReport div
+            var oneReport = document.createElement("div");
+            oneReport.className = "oneReport";
 
-                // Report info
-                var reportInfo = document.createElement("div");
-                reportInfo.className = "reportInfo";
+            // Report info
+            var reportInfo = document.createElement("div");
+            reportInfo.className = "reportInfo";
 
-                var idReport = document.createElement("h3");
-                idReport.id = "idReport";
-                idReport.textContent = "ID_Report: " + ID_Report[i];
+            var idReport = document.createElement("h3");
+            idReport.id = "idReport";
+            idReport.textContent = "ID_Report: " + ID_Report[i];
 
-                var reporteduser = document.createElement("h3");
-                reporteduser.id = "reporteduser";
-                reporteduser.textContent = "Reported User: " + ReportedUser[i];
+            var reporteduser = document.createElement("h3");
+            reporteduser.id = "reporteduser";
+            reporteduser.textContent = "Reported User: " + ReportedUser[i];
 
-                var linkBook = document.createElement("a");
-                linkBook.href = "book/" + ReportedBook[i];
+            var linkBook = document.createElement("a");
+            linkBook.href = "book/" + ReportedBook[i];
 
-                var idBook = document.createElement("h3");
-                idBook.id = "idBook";
-                idBook.textContent = "ID_Book: " + ReportedBook[i];
-                linkBook.appendChild(idBook);
+            var idBook = document.createElement("h3");
+            idBook.id = "idBook";
+            idBook.textContent = "ID_Book: " + ReportedBook[i];
+            linkBook.appendChild(idBook);
 
-                var reporter = document.createElement("h3");
-                reporter.id = "reporter";
-                reporter.textContent = "Reporter: " + Reporter[i];
+            var reporter = document.createElement("h3");
+            reporter.id = "reporter";
+            reporter.textContent = "Reporter: " + Reporter[i];
 
-                reportInfo.appendChild(idReport);
-                reportInfo.appendChild(reporteduser);
-                reportInfo.appendChild(linkBook);
-                reportInfo.appendChild(reporter);
+            reportInfo.appendChild(idReport);
+            reportInfo.appendChild(reporteduser);
+            reportInfo.appendChild(linkBook);
+            reportInfo.appendChild(reporter);
 
-                // Reason
-                var reasonDiv = document.createElement("div");
-                reasonDiv.className = "reason";
+            // Reason
+            var reasonDiv = document.createElement("div");
+            reasonDiv.className = "reason";
+            reasonDiv.style.display = "flex";
+            reasonDiv.style.gap = "5px";
 
-                var reasonP = document.createElement("p");
-                reasonP.id = "reason";
+            var reasonS = document.createElement("strong");
+            reasonS.textContent = "Reason: ";
 
-                var reasonS = document.createElement("strong");
-                reasonS.textContent = "Reason: ";
-                reasonP.appendChild(reasonS);
+            var reasonP = document.createElement("p");
+            reasonP.id = "reason";
+            reasonP.textContent = Reason[i];
 
-                reasonDiv.appendChild(reasonP);
-                reasonP.textContent = reason;
+            // Append reasonS and reasonP directly to reasonDiv
+            reasonDiv.appendChild(reasonS);
+            reasonDiv.appendChild(reasonP);
 
-                // Report action
-                var reportAction = document.createElement("div");
-                reportAction.className = "reportAction";
+            // Report action
+            var reportAction = document.createElement("div");
+            reportAction.className = "reportAction";
 
-                // var statusP = document.createElement("h3");
-                // statusP.id = "status";
-                // statusP.textContent = "Status: " + status;
-                // reportAction.appendChild(statusP);
+            // var statusP = document.createElement("h3");
+            // statusP.id = "status";
+            // statusP.textContent = "Status: " + status;
+            // reportAction.appendChild(statusP);
 
-                var action = document.createElement("div");
-                action.className = "action";
-
-
-                
-
-                var op1 = document.createElement("button");
-                op1.type = "submit";
-                op1.className = "ban";
-                op1.textContent = "Ban";
-
-                var op2 = document.createElement("button");
-                op2.type = "submit";
-                op2.className = "dismiss";
-                op2.textContent = "Dismiss";
-
-                action.appendChild(op1);
-                action.appendChild(op2);
-
-                var linkban = document.createElement("a");
-                linkban.href = "admin?Choice=ban" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
-
-                var linkdismiss = document.createElement("a");
-                linkdismiss.href = "admin?Choice=dismiss" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
+            var action = document.createElement("div");
+            action.className = "action";
 
 
-                linkban.append(op1);
-                linkdismiss.append(op2);
+            var op1 = document.createElement("button");
+            op1.type = "submit";
+            op1.className = "ban";
+            op1.textContent = "Ban";
 
-                // action.appendChild(actionChoices);
-                action.appendChild(linkban);
-                action.appendChild(linkdismiss);
-                reportAction.appendChild(action);
+            var op2 = document.createElement("button");
+            op2.type = "submit";
+            op2.className = "dismiss";
+            op2.textContent = "Dismiss";
 
-                // Add to one report
-                oneReport.appendChild(reportInfo);
-                oneReport.appendChild(reasonDiv);
-                oneReport.appendChild(reportAction);
+            action.appendChild(op1);
+            action.appendChild(op2);
 
-                // Add to report site
-                reportSite.appendChild(oneReport);
-            }
-            document.body.appendChild(reportSite);
-        </script>
+            var linkban = document.createElement("a");
+            linkban.href = "admin?Choice=ban" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
 
-    </div>
+            var linkdismiss = document.createElement("a");
+            linkdismiss.href = "admin?Choice=dismiss" + "&RUsername=" + Reporter[i] + "&ReportedUser=" + ReportedUser[i] + "&RBook=" + ReportedBook[i];
+
+
+            linkban.append(op1);
+            linkdismiss.append(op2);
+
+            // action.appendChild(actionChoices);
+            action.appendChild(linkban);
+            action.appendChild(linkdismiss);
+            reportAction.appendChild(action);
+
+            // Add to one report
+            oneReport.appendChild(reportInfo);
+            oneReport.appendChild(reasonDiv);
+            oneReport.appendChild(reportAction);
+
+            // Add to report site
+            reportSite.appendChild(oneReport);
+        }
+        document.body.appendChild(reportSite);
+    </script>
 </body>
 
 </html>
