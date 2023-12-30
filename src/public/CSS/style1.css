@@ -282,6 +282,20 @@ body {
     text-decoration: none;
 }
 
+/* My book */
+
+.bxs-cloud-download
+{
+    font-size: 20px;
+}
+
+.bxs-cloud-download::before
+{
+    position: relative;
+    font-size: 25px;
+    top: 3px;
+}
+
 /* shopping cart */
 .shopping_cart {
     position: absolute;
