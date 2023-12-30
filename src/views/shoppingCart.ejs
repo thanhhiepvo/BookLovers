@@ -147,22 +147,52 @@
             <div class="cart-total">
                 <p>
                     <span>Total Price</span>
-                    <span>₹ 3,000</span>
+                    <span id="total-price">₹ 0</span>
                 </p>
-
+            
                 <p>
                     <span>Number of Items</span>
-                    <span>2</span>
+                    <span id="total-items">0</span>
                 </p>
-
-                <p>
-                    <span>You Save</span>
-                    <span>₹ 1,000</span>
-                </p>
-
                 <a href="#">Proceed to Checkout</a>
-
             </div>
+            
+            <script>
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
+                var shopseller = []
+                var productImages = [];
+                var productPrices = [];
+                var productNames = [];
+                var b = "<%=bookCart.length%>"
+                if (b != 0) {
+                    var bookCart = "<%= JSON.stringify(bookCart) %>";
+                    bookCart = decodeHtml(bookCart);
+                    bookCart = JSON.parse(bookCart);
+                }
+            
+                // Initialize total price and total items
+                var totalPrice = 0;
+                var totalItems = 0;
+            
+                for (var i = 0; i < b; i++) {
+                    productNames.push(bookCart[i].namebook);
+                    productImages.push("/Picture/book/" + bookCart[i].shopbook + ".jpg");
+                    shopseller.push(bookCart[i].shopseller);
+                    productPrices.push(bookCart[i].selling_price);
+                    // Add the price of each product to the total price
+                    totalPrice += bookCart[i].selling_price;
+                    // Increase the total items count
+                    totalItems++;
+                }
+            
+                // Display the total price and total items in the cart-total div
+                document.getElementById('total-price').textContent = '₹ ' + totalPrice.toLocaleString('de-DE');
+                document.getElementById('total-items').textContent = totalItems;
+            </script>
         </div>
     </div>
 
