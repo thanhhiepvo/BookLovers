@@ -1,4 +1,4 @@
-import { getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
+import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
 import { addToCart } from "../models/users.js";
 import multer from "multer";
@@ -81,15 +81,6 @@ bookController.getAllSellingBook = async (req, res) => {
     });
 }
 
-bookController.upLoadBook = async (req, res) => {
-    if (req.fileValidationError) {
-        return res.send(req.fileValidationError);
-    }
-    else if (!req.files) {
-        return res.send('Please select an image to upload');
-    }
-};
-
 bookController.getUserSellingBook = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -109,21 +100,11 @@ bookController.addToCart = async (req, res) => {
     res.redirect('/homepage');
 }
 
-bookController.getUserSellingBook = async (req, res) => {
+
+bookController.getShoppingCart = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const usersellingbook = await getUserSellingBook(req.params['idbook']) ?? [];
-            resolve(usersellingbook);
-        } catch (error) {
-            console.error('Error', error);
-            reject(error);
-        }
-    });
-}
-bookController.getBookCart = async (req, res) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const bookCart = await getShoppingCart(req.session.username);
+            const bookCart = await getShoppingCart(req.session.username) ?? [];
             resolve(bookCart);
         } catch (error) {
             console.error('Error', error);
@@ -131,4 +112,24 @@ bookController.getBookCart = async (req, res) => {
         }
     });
 }
+
+bookController.addUserSelling = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        const { nameBook, author, price, description, publishedYear } = req.body;
+        let bookid = await checkBook(nameBook, author, publishedYear);
+        let check = false;
+        try {
+            if (bookid == null) {
+                bookid = await addBook(nameBook, author, description, publishedYear);
+                check = true;
+            }
+            await addSellBook(req.session.username, bookid, price);
+            resolve({bookid, check});
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
+}
+
 export default bookController;

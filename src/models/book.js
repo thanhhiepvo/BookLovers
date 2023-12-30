@@ -46,7 +46,7 @@ export async function getBookSell(SUsername) {
 }
 
 export async function checkBook(relativebookname, author, publishedyear) {
-    const text = "SELECT ID_Book FROM BOOK B WHERE B.NameBook LIKE '%' || $1 || '%' AND B.Author = $2 AND EXTRACT(YEAR FROM B.PublishedYear) = $3";
+    const text = "SELECT ID_Book FROM BOOK B WHERE B.NameBook LIKE '%' || $1 || '%' AND B.Author = $2 AND EXTRACT(YEAR FROM B.PublishedYear) = EXTRACT(YEAR FROM $3::timestamptz)";
     const value = [relativebookname, author, publishedyear];
     const { rows } = await pool.query(text, value);
     // console.log(rows);
@@ -80,6 +80,9 @@ export async function addBook(NameBook, Author, Description, PublishedYear) {
     const value = [NameBook, Author, Description, PublishedYear];
     await pool.query(text, value);
     console.log('Added book successfully');
+    const textid = "SELECT ID_BOOK FROM BOOK ORDER BY ID_Book DESC LIMIT 1";
+    const { rows } = await pool.query(textid);
+    return rows[0].id_book;
 }
 
 export async function delBook(ID_Book) {
@@ -90,10 +93,16 @@ export async function delBook(ID_Book) {
 }
 
 export async function addSellBook(SUsername, SBook, SPrice) {
-    const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
-    const value = [SUsername, SBook, SPrice];
-    await pool.query(text, value);
-    console.log('Added user sell book successfully');
+    const check = "SELECT * FROM SELLINGBOOK WHERE SUsername = $1 AND SBook = $2";
+    const checkvalue = [SUsername, SBook];
+    const { rows } = await pool.query(check, checkvalue);
+    if (rows.length == 0){
+        const value = [SUsername, SBook, SPrice];
+        const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
+        await pool.query(text, value);
+        console.log('Added user sell book successfully');
+    }
+    else console.log('User sell book already added');
 }
 
 export async function delSellBook(SUsername, SBook) {

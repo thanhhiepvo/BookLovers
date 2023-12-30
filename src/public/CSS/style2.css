@@ -1,24 +1,20 @@
-.navbar
-{
+.navbar {
     background: transparent;
     color: white;
 }
 
-.reportSite
-{
+.reportSite {
     margin: 50px 50px;
     /* border: 2px solid rgb(26, 26, 26); */
 }
 
-.oneReport
-{
+.oneReport {
     border: 5px solid rgb(26, 26, 26);
     margin-bottom: 30px;
     /* background: white; */
 }
 
-.oneReport .reportInfo
-{
+.oneReport .reportInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,29 +23,23 @@
     border-bottom: 2px solid rgb(26, 26, 26);
 }
 
-.oneReport .reportInfo a
-{
+.oneReport .reportInfo a {
     text-decoration: none;
     color: #141A46;
 }
 
-.oneReport .reportInfo a:hover
-{
+.oneReport .reportInfo a:hover {
     text-decoration: underline;
 }
 
-.oneReport .reason
-{
+.oneReport .reason {
     margin: 10px 100px;
     padding: 10px 0;
     border-bottom: 2px solid rgb(26, 26, 26);
 }
 
-.oneReport .reportAction
-{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.oneReport .reportAction {
+    
     /* margin: 10px 100px; */
     padding: 10px 500px;
 }
@@ -60,20 +50,22 @@
     font-weight: bold;
 } */
 
-.action
-{
-    position: flex;
+/* .reportAction {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: flex;
+    /* display: flex; */
     line-height: 1.5;
 }
 
-.action p
-{
-    font-size: 20px;
-}
-
-.action::after
-{
+.action::after {
     position: absolute;
     padding: 0 1em;
     cursor: pointer;
@@ -81,13 +73,11 @@
     transition: .25s all ease;
 }
 
-.action:hover:after
-{
+.action:hover:after {
     color: #0e0e2e;
 }
 
-.action button
-{
+.action button {
     border: 1px solid rgb(26, 26, 26);
     border-radius: 10px;
     font-size: 18px;
@@ -97,26 +87,13 @@
     background: white;
 }
 
-.actionChoices
-{
+/* .actionChoices {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0px 30px;
     padding: 0px 30px;
-}
-
-.actionChoices button 
-{
-    border: 1px solid rgb(26, 26, 26);
-    border-radius: 10px;
-    font-size: 18px;
-    height: 30px;
-    width: 100px;
-    color: #0e0e2e;
-    background: white;
-    margin: 0 10px;
-}
+} */
 
 .action button:hover {
     color: white;

@@ -86,7 +86,7 @@ alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 
 -----------------------------------------------------------------------------
 -- procedure tính tổng tiền giỏ hàng
-CREATE OR REPLACE PROCEDURE total_selling_price (
+CREATE OR REPLACE PROCEDURE total_shopping_price (
   IN username varchar(50),
   OUT total_amount float
 )

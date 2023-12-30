@@ -282,7 +282,26 @@ body {
     text-decoration: none;
 }
 
+/* shopping cart */
+.shopping_cart {
+    position: absolute;
+    right: 215px;
+    height: 16%;
+}
 
+.shopping_cart .bx-cart::before {
+    font-size: 25px;
+    color: white;
+}
+
+.shopping_cart .bx-cart {
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.shopping_cart .bx-cart:hover::before {
+    color: #ffd700; /* Gold color on hover, change as desired */
+    transform: scale(1.2); /* Increase the icon size to 120% */
+}
 
 /* #product .pro .cart {
     width: 50px;
