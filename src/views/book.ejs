@@ -142,7 +142,7 @@
                 link1.appendChild(button1);
 
                 var link2 = document.createElement("a");
-                link2.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
+                link2.href = "/cart" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
 
                 var button2 = document.createElement("button");
                 button2.type = "submit";
@@ -153,7 +153,6 @@
 
                 var reportLink = document.createElement("a");
                 reportLink.className = "reportSite";
-                // reportLink.href = "report?RUsername=" + "<%=user.username%>" + "&ReportedUser=" + nameSellers[i] + "&RBook=" + "<%=books.id_book%>";
 
                 var report = document.createElement("i");
                 report.className = 'bx bx-comment-error';

@@ -1,7 +1,7 @@
 import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
-import { addToCart } from "../models/users.js";
-import multer from "multer";
+import { addToCart, removeFromCart } from "../models/users.js";
+
 const bookController = {};
 
 bookController.getAllBookInfo = async (req, res) => {
@@ -94,10 +94,16 @@ bookController.getUserSellingBook = async (req, res) => {
 }
 
 bookController.addToCart = async (req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
     let data = req.query;
     await addToCart(data.ShopUser, data.ShopSeller, data.ShopBook);
-    res.redirect('/homepage');
+}
+
+bookController.removeFromCart = async (req, res) => {
+    // console.log(req.body);
+    let { ShopUser, ShopSeller, ShopBook } = req.body;
+    await removeFromCart(ShopUser, ShopSeller, ShopBook);
+    res.redirect('/cart');
 }
 
 

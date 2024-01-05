@@ -47,10 +47,6 @@ router.get('/about', async (req, res) => {
     }
 })
 
-router.get('/homepage/cart', (req, res) => {
-    res.render('cart.ejs', { message: req.flash('msg') });
-})
-
 router.get('/admin', async (req, res) => {
     let check = Object.keys(req.query);
     let isEmpty = check.every(key => !req.query[key]);
@@ -266,11 +262,10 @@ router.get('/book/:idbook', async (req, res) => {
         } catch (error) {
             console.error(error);
         }
-    }
-    else if (req.session.username && !isEmpty) {
+    } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
-    }
-    else {
+        res.redirect('/homepage');
+    } else {
         res.redirect('/login');
     }
     // console.log(">>> req.session.username = ", req.session.username);
@@ -279,17 +274,25 @@ router.get('/book/:idbook', async (req, res) => {
 router.post('/submit-report', reportController.createReport);
 
 router.get('/cart', async (req, res) => {
-    if (req.session.username) {
+    let check = Object.keys(req.query);
+    let isEmpty = check.every(key => !req.query[key]);
+    if (req.session.username && isEmpty) {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
         res.render('shoppingCart', {
             user: user,
             bookCart: bookCart
         }); // Render the view with user data
+    } else if (req.session.username && !isEmpty) {
+        await bookController.addToCart(req, res);
+        res.redirect('/cart');
     } else {
         res.redirect('/login');
     }
 })
+
+router.post('/cart-remove', bookController.removeFromCart);
+
 router.get('/pdf/:filename', function (req, res) {
     const fileName = req.params.filename;
     const filePath = path.join(appRoot.path, 'public', 'Book_PDF', fileName);
@@ -311,6 +314,7 @@ router.get('/pdf/:filename', function (req, res) {
     const readStream = fs.createReadStream(filePath);
     readStream.pipe(res);
 });
+
 router.get('/logout', authenController.logout);
 
 export default router;
