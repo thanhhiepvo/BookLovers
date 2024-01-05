@@ -56,7 +56,7 @@ export async function getUserBirth(username) {
 export const insertUserAccount = async (username, email, password) => {
     try {
         // Insert data into the useraccount table
-        const text = 'INSERT INTO useraccount(username, email, pass, balance, states) VALUES($1, $2, $3, $4, $5)';
+        const text = 'INSERT INTO useraccount(username, email, pass, balance, states) VALUES ($1, $2, $3, $4, $5)';
         const values = [username, email, password, 0, 'true'];
         await pool.query(text, values);
         console.log('Data inserted successfully');
@@ -109,9 +109,18 @@ export async function addToCart(ShopUser, ShopSeller, ShopBook) {
     else console.log('Already added to cart');
 }
 
-export async function removeFromCart(ShopUser, ShopSeller, ShopBook){
+export async function removeFromCart(ShopUser, ShopSeller, ShopBook) {
     const text = "DELETE FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
     const value = [ShopUser, ShopSeller, ShopBook];
     await pool.query(text, value);
     console.log('Book removed from cart successfully');
+}
+
+export async function getNRowsAndTotalPrice(Username) {
+    const { rows } = await pool.query({
+        text: "CALL total_shopping_price ($1, $2, $3)",
+        values: [Username, null, null],
+        type: "procedure"
+    });
+    return rows[0];
 }

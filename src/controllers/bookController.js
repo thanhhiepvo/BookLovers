@@ -1,6 +1,6 @@
-import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook , delBookShoppingCartDB } from "../models/book.js";
+import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
-import { addToCart, removeFromCart } from "../models/users.js";
+import { addToCart, removeFromCart, getNRowsAndTotalPrice } from "../models/users.js";
 
 const bookController = {};
 
@@ -138,9 +138,16 @@ bookController.addUserSelling = async (req, res) => {
     });
 }
 
-bookController.delBookShoppingCart = async (username, productID) => {
-    await delBookShoppingCartDB(username, productID);
-    console.log('Book in shopping cart deleted successfully in controller');
+bookController.getNRowsAndTotalPrice = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const rowsandprice = await getNRowsAndTotalPrice(req.session.username);
+            resolve(rowsandprice);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
 }
 
 export default bookController;

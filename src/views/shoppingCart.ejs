@@ -85,8 +85,6 @@
                     var productImages = [];
                     var productPrices = [];
                     var productNames = [];
-                    var totalPrice = 0;
-                    var totalItems = 0;
                     var b = "<%=bookCart.length%>"
                     if (b != 0) {
                         var bookCart = "<%= JSON.stringify(bookCart) %>";
@@ -100,10 +98,6 @@
                         shopseller.push(bookCart[i].shopseller);
                         productPrices.push(bookCart[i].selling_price.toLocaleString('de-DE'));
                         shopbook.push(bookCart[i].shopbook);
-                        // Add the price of each product to the total price
-                        totalPrice += bookCart[i].selling_price;
-                        // Increase the total items count
-                        totalItems++;
                     }
 
                     var productsDiv = document.getElementsByClassName("products")[0];
@@ -177,9 +171,8 @@
                 </form>
 
                 <script>
-                    // Display the total price and total items in the cart-total div
-                    document.getElementById('total-price').textContent = totalPrice.toLocaleString('de-DE') + ' VND';
-                    document.getElementById('total-items').textContent = totalItems;
+                    document.getElementById('total-price').textContent = "<%=rowsandprice.total_amount%>" + " VND";
+                    document.getElementById('total-items').textContent = "<%=rowsandprice.num_rows%>";
                 </script>
             </div>
         </div>

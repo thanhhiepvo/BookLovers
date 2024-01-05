@@ -298,9 +298,11 @@ router.get('/cart', async (req, res) => {
     if (req.session.username && isEmpty) {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
+        const rowsandprice = await bookController.getNRowsAndTotalPrice(req, res);
         res.render('shoppingCart', {
             user: user,
-            bookCart: bookCart
+            bookCart: bookCart,
+            rowsandprice: rowsandprice
         }); // Render the view with user data
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
