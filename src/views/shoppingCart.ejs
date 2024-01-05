@@ -19,12 +19,14 @@
 
     <ul class="navbar">
         <li><a href="homepage">Home</a></li>
-        <li><a href="myBook" class="active">My books</a></li>
+        <li><a href="myBook">My books</a></li>
         <li><a href="selling">Selling</a></li>
         <li><a href="wallet">Wallet</a></li>
         <li><a href="about">About</a></li>
     </ul>
-
+    <div class="shopping_cart">
+        <a href="cart"><i class='bx bx-cart'></i></a>
+    </div>
     <div class="profile">
         <i class='bx bx-user'></i>
         <span>Profile</span>
@@ -120,11 +122,11 @@
 
                         var h4PriceElement = document.createElement("h4");
                         h4PriceElement.className = "product-price";
-                        h4PriceElement.textContent = productPrices[i] + " VND";
+                        h4PriceElement.textContent = "Price: " + productPrices[i] + " VND";
 
                         var h4OfferElement = document.createElement("h4");
                         h4OfferElement.className = "shopseller";
-                        h4OfferElement.textContent = shopseller[i];
+                        h4OfferElement.textContent = "Seller: " + shopseller[i];
 
 
                         var removeButton = document.createElement("button");
@@ -140,10 +142,21 @@
                         spanElement.className = "remove";
                         spanElement.textContent = "Remove";
 
+<<<<<<< HEAD
+                        spanElement.addEventListener('click', function () {
+                            var productDiv = this.closest('.product');
+                            if (productDiv) productDiv.remove();
+                        });
+
+
+                        pRemoveElement.appendChild(iElement);
+                        pRemoveElement.appendChild(spanElement);
+=======
 
                         // Append the icon and text to the button:
                         removeButton.appendChild(iElement);
                         removeButton.appendChild(spanElement);
+>>>>>>> 4258945384c47b51a8cb05f19ab032bc367253f8
 
                         productInfoDiv.appendChild(h3Element);
                         productInfoDiv.appendChild(h4PriceElement);
@@ -176,6 +189,46 @@
                     document.getElementById('total-items').textContent = totalItems;
                 </script>
             </div>
+<<<<<<< HEAD
+
+            <script>
+                function decodeHtml(html) {
+                    var txt = document.createElement("textarea");
+                    txt.innerHTML = html;
+                    return txt.value;
+                }
+                var shopseller = []
+                var productImages = [];
+                var productPrices = [];
+                var productNames = [];
+                var b = "<%=bookCart.length%>"
+                if (b != 0) {
+                    var bookCart = "<%= JSON.stringify(bookCart) %>";
+                    bookCart = decodeHtml(bookCart);
+                    bookCart = JSON.parse(bookCart);
+                }
+
+                // Initialize total price and total items
+                var totalPrice = 0;
+                var totalItems = 0;
+
+                for (var i = 0; i < b; i++) {
+                    productNames.push(bookCart[i].namebook);
+                    productImages.push("/Picture/book/" + bookCart[i].shopbook + ".jpg");
+                    shopseller.push(bookCart[i].shopseller);
+                    productPrices.push(bookCart[i].selling_price);
+                    // Add the price of each product to the total price
+                    totalPrice += bookCart[i].selling_price;
+                    // Increase the total items count
+                    totalItems++;
+                }
+
+                // Display the total price and total items in the cart-total div
+                document.getElementById('total-price').textContent = totalPrice.toLocaleString('de-DE') + ' VND';
+                document.getElementById('total-items').textContent = totalItems;
+            </script>
+=======
+>>>>>>> 4258945384c47b51a8cb05f19ab032bc367253f8
         </div>
     </div>
 
