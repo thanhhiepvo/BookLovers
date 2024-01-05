@@ -82,22 +82,22 @@ create table SHOPPING_CART (
 set TIMEZONE = 'Asia/Saigon';
 set DateStyle = 'DMY';
 
-alter table OWNEDBOOK add constraint FK_OWNEDBOOK_USERACCOUNT foreign key (OUsername) references USERACCOUNT(Username);
-alter table OWNEDBOOK add constraint FK_OWNEDBOOK_BOOK foreign key (OBook) references BOOK(ID_Book);
+alter table OWNEDBOOK add constraint FK_OWNEDBOOK_USERACCOUNT foreign key (OUsername) references USERACCOUNT(Username) on delete cascade;
+alter table OWNEDBOOK add constraint FK_OWNEDBOOK_BOOK foreign key (OBook) references BOOK(ID_Book) on delete cascade;
 
-alter table SELLINGBOOK add constraint FK_SELLINGBOOK_USERACCCOUNT foreign key (SUsername) references USERACCOUNT(Username);
-alter table SELLINGBOOK add constraint FK_SELLINGBOOK_BOOK foreign key (SBook) references BOOK(ID_Book);
+alter table SELLINGBOOK add constraint FK_SELLINGBOOK_USERACCCOUNT foreign key (SUsername) references USERACCOUNT(Username) on delete cascade;
+alter table SELLINGBOOK add constraint FK_SELLINGBOOK_BOOK foreign key (SBook) references BOOK(ID_Book) on delete cascade;
 
-alter table BOOKCATEGORY add constraint FK_BOOKCATEGORY_BOOK foreign key (BCBook) references BOOK(ID_Book);
-alter table BOOKCATEGORY add constraint FK_BOOKCATEGORY_CATEGORY foreign key (BCCategory) references CATEGORY(ID_Category);
+alter table BOOKCATEGORY add constraint FK_BOOKCATEGORY_BOOK foreign key (BCBook) references BOOK(ID_Book) on delete cascade;
+alter table BOOKCATEGORY add constraint FK_BOOKCATEGORY_CATEGORY foreign key (BCCategory) references CATEGORY(ID_Category) on delete cascade;
 
-alter table REPORT add constraint FK_REPORT_USERACCOUNT foreign key (RUsername) references USERACCOUNT(Username);
-alter table REPORT add constraint FK_REPORT_SELLINGBOOK foreign key (ReportedUser, RBook) references SELLINGBOOK(SUsername, SBook);
+alter table REPORT add constraint FK_REPORT_USERACCOUNT foreign key (RUsername) references USERACCOUNT(Username) on delete cascade;
+alter table REPORT add constraint FK_REPORT_SELLINGBOOK foreign key (ReportedUser, RBook) references SELLINGBOOK(SUsername, SBook) on delete cascade;
 
-alter table INVOICE add constraint FK_INVOICE_USERACCOUNT foreign key (IUsername) references USERACCOUNT(Username);
+alter table INVOICE add constraint FK_INVOICE_USERACCOUNT foreign key (IUsername) references USERACCOUNT(Username) on delete cascade;
 
 alter table TRANSAC add constraint FK_TRANSAC_INVOICE foreign key (ID_Transac) references INVOICE(ID_Invoice) on delete cascade;
-alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook);
+alter table TRANSAC add constraint FK_TRANSAC_SELLINGBOOK foreign key (ID_Sender, TBook) references SELLINGBOOK(SUsername, SBook) on delete cascade;
 
-alter table SHOPPING_CART add constraint FK_SHOPPING_CART_USERACCOUNT foreign key (ShopUser) references USERACCOUNT(Username);
-alter table SHOPPING_CART add constraint FK_SHOPPING_CART_SELLINGBOOK foreign key (ShopSeller, ShopBook) references SELLINGBOOK(SUsername, SBook);
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_USERACCOUNT foreign key (ShopUser) references USERACCOUNT(Username) on delete cascade;
+alter table SHOPPING_CART add constraint FK_SHOPPING_CART_SELLINGBOOK foreign key (ShopSeller, ShopBook) references SELLINGBOOK(SUsername, SBook) on delete cascade;
