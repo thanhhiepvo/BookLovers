@@ -290,6 +290,11 @@ router.get('/cart', async (req, res) => {
         res.redirect('/login');
     }
 })
+// router.post('/api/products/delete', async (req, res) => {
+//     // Get the product id from the request body
+//     var productId = req.body.id;
+//     await bookController.delBookShoppingCart(req.session.username, productId);
+// });
 router.get('/pdf/:filename', function (req, res) {
     const fileName = req.params.filename;
     const filePath = path.join(appRoot.path, 'public', 'Book_PDF', fileName);

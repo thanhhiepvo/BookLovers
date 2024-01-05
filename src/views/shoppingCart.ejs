@@ -19,12 +19,14 @@
 
     <ul class="navbar">
         <li><a href="homepage">Home</a></li>
-        <li><a href="myBook" class="active">My books</a></li>
+        <li><a href="myBook">My books</a></li>
         <li><a href="selling">Selling</a></li>
         <li><a href="wallet">Wallet</a></li>
         <li><a href="about">About</a></li>
     </ul>
-
+    <div class="shopping_cart">
+        <a href="cart"><i class='bx bx-cart'></i></a>
+    </div>
     <div class="profile">
         <i class='bx bx-user'></i>
         <span>Profile</span>
@@ -112,11 +114,11 @@
 
                         var h4PriceElement = document.createElement("h4");
                         h4PriceElement.className = "product-price";
-                        h4PriceElement.textContent = productPrices[i];
+                        h4PriceElement.textContent = "Price: " + productPrices[i] + " VND";
 
                         var h4OfferElement = document.createElement("h4");
                         h4OfferElement.className = "shopseller";
-                        h4OfferElement.textContent = shopseller[i];
+                        h4OfferElement.textContent = "Seller: " + shopseller[i];
 
                         var pRemoveElement = document.createElement("p");
                         pRemoveElement.className = "product-remove";
@@ -128,6 +130,12 @@
                         var spanElement = document.createElement("span");
                         spanElement.className = "remove";
                         spanElement.textContent = "Remove";
+
+                        spanElement.addEventListener('click', function () {
+                            var productDiv = this.closest('.product');
+                            if (productDiv) productDiv.remove();
+                        });
+
 
                         pRemoveElement.appendChild(iElement);
                         pRemoveElement.appendChild(spanElement);
@@ -149,14 +157,14 @@
                     <span>Total Price</span>
                     <span id="total-price">VND 0</span>
                 </p>
-            
+
                 <p>
                     <span>Number of Items</span>
                     <span id="total-items">0</span>
                 </p>
                 <a href="#">Proceed to Checkout</a>
             </div>
-            
+
             <script>
                 function decodeHtml(html) {
                     var txt = document.createElement("textarea");
@@ -173,11 +181,11 @@
                     bookCart = decodeHtml(bookCart);
                     bookCart = JSON.parse(bookCart);
                 }
-            
+
                 // Initialize total price and total items
                 var totalPrice = 0;
                 var totalItems = 0;
-            
+
                 for (var i = 0; i < b; i++) {
                     productNames.push(bookCart[i].namebook);
                     productImages.push("/Picture/book/" + bookCart[i].shopbook + ".jpg");
@@ -188,7 +196,7 @@
                     // Increase the total items count
                     totalItems++;
                 }
-            
+
                 // Display the total price and total items in the cart-total div
                 document.getElementById('total-price').textContent = totalPrice.toLocaleString('de-DE') + ' VND';
                 document.getElementById('total-items').textContent = totalItems;

@@ -136,3 +136,10 @@ export async function getShoppingCart(username) {
         return null;
     return rows;
 }
+
+export async function delBookShoppingCartDB(username,bookid) {
+    const text = "DELETE FROM SHOPPING_CART WHERE SHOPUSER = $1 AND SHOPBOOK = $2";
+    const value = [username, bookid];
+    await pool.query(text, value);
+    console.log('Book in shopping cart deleted successfully in DB');
+}

@@ -1,4 +1,4 @@
-import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
+import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook , delBookShoppingCartDB } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
 import { addToCart } from "../models/users.js";
 import multer from "multer";
@@ -132,5 +132,9 @@ bookController.addUserSelling = async (req, res) => {
     });
 }
 
+bookController.delBookShoppingCart = async (username, productID) => {
+    await delBookShoppingCartDB(username, productID);
+    console.log('Book in shopping cart deleted successfully in controller');
+}
 
 export default bookController;
