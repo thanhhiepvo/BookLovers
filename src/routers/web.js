@@ -169,23 +169,33 @@ const upload = multer({
             }
         },
         filename: function (req, file, cb) {
-            cb(null, id + path.extname(file.originalname));
+            let ext = path.extname(file.originalname).toLowerCase();
+            ext = ext.replace('.jpeg', '.jpg').replace('.png', '.jpg');
+            cb(null, id + ext);
         }
     }),
-    fileFilter: function (req, file, cb) {
+    fileFilter: async function (req, file, cb) {
         if (!already) {
-            temp = bookController.addUserSelling(req);
-            already = true;
+            try {
+                temp = await bookController.addUserSelling(req);
+                already = true;
+            } catch (error) {
+                // handle error
+                cb(new Error('Error in addUserSelling'), false);
+                return;
+            }
         }
         id = temp.bookid;
         if (temp.check) {
             if (file.fieldname === 'bcover_pic') {
                 if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
                     cb(new Error('Only image files are allowed!'), false);
+                    return;
                 }
             } else if (file.fieldname === 'pdf_book') {
                 if (!file.originalname.match(/\.(pdf|PDF)$/)) {
                     cb(new Error('Only PDF files are allowed!'), false);
+                    return;
                 }
             }
             cb(null, true);
@@ -193,7 +203,6 @@ const upload = multer({
         else cb(null, false);
     }
 });
-
 router.post('/uploadSelling', (req, res) => {
     upload.fields([
         { name: 'bcover_pic', maxCount: 1 },
