@@ -81,6 +81,7 @@ router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
 
+
 router.post('/create-user', authenController.postCreateUser);
 
 router.get('/homepage', async (req, res) => {
