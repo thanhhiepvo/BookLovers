@@ -88,14 +88,19 @@ alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 -- procedure tính tổng tiền giỏ hàng
 CREATE OR REPLACE PROCEDURE total_shopping_price (
   IN username varchar(50),
-  OUT total_amount float
+  OUT total_amount float,
+  OUT num_rows int
 )
 LANGUAGE plpgsql AS $$
 BEGIN
-  -- calculate the total amount of selling price for the given user
-  SELECT SUM(Selling_Price) INTO total_amount
+  -- Calculate the total amount
+  SELECT COALESCE(SUM(Selling_Price), 0) INTO total_amount
   FROM SHOPPING_CART
-  WHERE ShopUser = user_name;
-END;
-$$
+  WHERE ShopUser = username;
 
+  -- Count rows
+  SELECT COUNT(*) INTO num_rows
+  FROM SHOPPING_CART
+  WHERE ShopUser = username;
+END;
+$$;
