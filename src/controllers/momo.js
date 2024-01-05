@@ -5,7 +5,7 @@ import https from 'https'
 
 const momo = {}
 
-momo.createMomo = async (req, res, url) => 
+momo.createMomo = async (req, res) => 
 {
     //https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
     //parameters
@@ -60,7 +60,8 @@ momo.createMomo = async (req, res, url) =>
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(requestBody)
+            'Content-Length': Buffer.byteLength(requestBody),
+            // 'connection': 'keep-alive'
         }
     }
     
@@ -77,7 +78,6 @@ momo.createMomo = async (req, res, url) =>
             console.log('payUrl: ');
             console.log(JSON.parse(body).payUrl);
             console.log(JSON.parse(body).resultCode);
-            url = JSON.parse(body).payUrl;
 
         });
         res.on('end', () => {

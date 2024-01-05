@@ -5,11 +5,13 @@ import path from 'path';
 import appRoot from 'app-root-path';
 const router = express.Router();
 
-router.get('/test', async (req, res, url) => {
+
+
+router.get('/test', (req, res) => {
     res.render('payment.ejs', { message: req.flash('msg') });
-    await momo.createMomo(req, res);
-    // console.log("+++++++++++++", url);
-    // await momo.re(res);
+    // momo.createMomo(req, res);
 })
+
+router.post('/a', momo.createMomo);
 
 export default router;
