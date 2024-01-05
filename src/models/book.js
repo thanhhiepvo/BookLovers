@@ -73,7 +73,7 @@ export async function getBookInfo(ID_Book) {
     let result = categoryname.join(", ");
     rows[0].category = result;
     return rows[0];
-} 
+}
 
 export async function addBook(NameBook, Author, Description, PublishedYear) {
     const text = "INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) values ($1, $2, $3, $4)";
@@ -96,7 +96,7 @@ export async function addSellBook(SUsername, SBook, SPrice) {
     const check = "SELECT * FROM SELLINGBOOK WHERE SUsername = $1 AND SBook = $2";
     const checkvalue = [SUsername, SBook];
     const { rows } = await pool.query(check, checkvalue);
-    if (rows.length == 0){
+    if (rows.length == 0) {
         const value = [SUsername, SBook, SPrice];
         const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
         await pool.query(text, value);
@@ -128,7 +128,7 @@ export async function delOwnedBook(OUsername, OBook) {
 
 // lay danh sách cac sach trong shopping cart va gia cua sach do
 export async function getShoppingCart(username) {
-    const text = "SELECT SP.SHOPBOOK, B.NAMEBOOK, SP.SHOPUSER, SP.SHOPSELLER, SP.SELLING_PRICE FROM SHOPPING_CART SP, BOOK B WHERE SP.SHOPUSER = $1 AND SP.SHOPBOOK = B.ID_BOOK";
+    const text = "SELECT B.NAMEBOOK, SP.SHOPBOOK, SP.SHOPUSER, SP.SHOPSELLER, SP.SELLING_PRICE FROM SHOPPING_CART SP, BOOK B WHERE SP.SHOPUSER = $1 AND SP.SHOPBOOK = B.ID_BOOK";
     const value = [username];
     const { rows } = await pool.query(text, value);
     console.log(rows);

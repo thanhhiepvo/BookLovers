@@ -105,6 +105,9 @@
                 selluser = JSON.parse(selluser);
             }
             for (var i = 0; i < n; i++) {
+                if ("<%=user.username%>" == selluser[i].susername) {
+                    continue;
+                }
                 nameSellers.push(selluser[i].susername);
                 price.push(selluser[i].sprice.toLocaleString('de-DE'));
             }
@@ -112,13 +115,10 @@
             var bookSellers = document.createElement("div");
             bookSellers.className = "bookSellers";
 
-            var bookSellers2 = document.createElement("div");
-            // bookSellers2.className = "bookSellers2";
+            var SellerList = document.createElement("div");
+            SellerList.className = "SellerList";
 
-            for (var i = 0; i < n; i++) {
-                if ("<%=user.username%>" == nameSellers[i]){
-                    continue;
-                }
+            for (var i = 0; i < nameSellers.length; i++) {
                 var oneBookSeller = document.createElement("div");
                 oneBookSeller.className = "oneBookSeller";
 
@@ -168,10 +168,10 @@
                 oneBookSeller.appendChild(h2);
                 oneBookSeller.appendChild(buttonBook);
 
-                bookSellers2.appendChild(oneBookSeller);
+                SellerList.appendChild(oneBookSeller);
             }
             if (n != 0) {
-                bookSellers.appendChild(bookSellers2);
+                bookSellers.appendChild(SellerList);
                 bookPage.appendChild(bookSellers);
                 document.body.appendChild(bookPage);
             }
@@ -190,43 +190,24 @@
                 <textarea type="text" id="reason" name="Reason"
                     placeholder="Are there any aspects of this book or seller that you are not happy with? Please let us know why."></textarea>
                 <div class="reportAction">
-                    <button id="cancel">Cancel</button>
-                    <button id="reportConfirm">Report</button>
+                    <button type="button" id="cancel">Cancel</button>
+                    <button type="submit" id="reportConfirm">Report</button>
                 </div>
             </div>
         </form>
     </div>
 
     <script>
-        var bookName = "<%=books.namebook%>";
-        document.getElementById("bookName").textContent = "Book: " + bookName;
-
-        function decodeHtml(html) {
-            var txt = document.createElement("textarea");
-            txt.innerHTML = html;
-            return txt.value;
-        }
-        var nameSellers = [];
-
-        var selluser = "<%= JSON.stringify(selluser) %>";
-        selluser = decodeHtml(selluser);
-        selluser = JSON.parse(selluser);
-
-        for (var i = 0; i < selluser.length; i++) {
-            nameSellers.push(selluser[i].susername);
-        }
-
+        document.getElementById("bookName").textContent = "Book: " + "<%=books.namebook%>";
         var reportClick = document.querySelectorAll('.reportSite');
-        for (var i = 0; i < reportClick.length; i++) {
-            (function (index) { // Tạo một closure để lưu giá trị của 'i'
-                reportClick[index].addEventListener('click', () => {
-                    document.getElementById("report").classList.toggle('active');
-                    document.getElementById("sellerReport").textContent = "Seller: " + nameSellers[index];
-                    document.querySelector('input[name="ReportedUser"]').value = nameSellers[index];
-                });
-            })(i);
-        }
 
+        reportClick.forEach((element, index) => {
+            element.addEventListener('click', () => {
+                document.getElementById("report").classList.toggle('active');
+                document.getElementById("sellerReport").textContent = "Seller: " + nameSellers[index];
+                document.querySelector('input[name="ReportedUser"]').value = nameSellers[index];
+            });
+        });
 
         var cancelReport = document.querySelector('#cancel');
         cancelReport.addEventListener('click', (event) => {

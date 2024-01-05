@@ -284,13 +284,11 @@ body {
 
 /* My book */
 
-.bxs-cloud-download
-{
+.bxs-cloud-download {
     font-size: 20px;
 }
 
-.bxs-cloud-download::before
-{
+.bxs-cloud-download::before {
     position: relative;
     font-size: 25px;
     top: 3px;
@@ -309,12 +307,15 @@ body {
 }
 
 .shopping_cart .bx-cart {
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
 }
 
 .shopping_cart .bx-cart:hover::before {
-    color: #ffd700; /* Gold color on hover, change as desired */
-    transform: scale(1.2); /* Increase the icon size to 120% */
+    color: #ffd700;
+    /* Gold color on hover, change as desired */
+    transform: scale(1.2);
+    /* Increase the icon size to 120% */
 }
 
 /* #product .pro .cart {
@@ -1619,13 +1620,11 @@ h1 {
     margin-left: 14px;
 }
 
-.report
-{
+.report {
     display: none;
 }
 
-.report.active
-{
+.report.active {
     display: flex;
     justify-content: center;
     align-items: left;
@@ -1637,8 +1636,7 @@ h1 {
     z-index: 1000;
 }
 
-.report form
-{
+.report form {
     display: flex;
     border: 3px solid #00202e;
     /* border-radius: 10px; */
@@ -1647,30 +1645,25 @@ h1 {
     justify-content: center;
 }
 
-.report .reportForm
-{
+.report .reportForm {
     margin: 30px 40px;
 }
 
-.report .reportForm h1
-{
+.report .reportForm h1 {
     text-align: left;
     width: fit-content;
     border-bottom: 5px solid #00202e;
 }
 
-.report .reportForm #bookName
-{
+.report .reportForm #bookName {
     padding-top: 15px;
 }
 
-.report .reportForm h2
-{
+.report .reportForm h2 {
     padding-top: 10px;
 }
 
-.report .reportForm textarea
-{
+.report .reportForm textarea {
     margin-top: 20px;
     display: flex;
     width: 100%;
@@ -1684,24 +1677,22 @@ h1 {
     resize: none;
 }
 
-.report .reportForm textarea::placeholder
-{
+.report .reportForm textarea::placeholder {
     position: absolute;
     left: 10px;
     top: 10px;
     color: #00202e;
 }
 
-.report .reportForm .reportAction
-{
-    margin: 20px 300px;
+.report .reportForm .reportAction {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
+    margin: 20px 300px;
 }
 
-.report .reportForm .reportAction button
-{
+.report .reportForm .reportAction button {
     border: 1px solid rgb(26, 26, 26);
     border-radius: 10px;
     font-size: 18px;
@@ -1709,27 +1700,23 @@ h1 {
     width: 200px;
 }
 
-.report .reportForm .reportAction #cancel
-{
+.report .reportForm .reportAction #cancel {
     background: white;
     color: #00202e;
 }
 
-.report .reportForm .reportAction #cancel:hover
-{
+.report .reportForm .reportAction #cancel:hover {
     background: #0c5776;
     color: white;
     cursor: pointer;
 }
 
-.report .reportForm .reportAction #reportConfirm
-{
+.report .reportForm .reportAction #reportConfirm {
     color: white;
     background: #00202e;
 }
 
-.report .reportForm .reportAction #reportConfirm:hover
-{
+.report .reportForm .reportAction #reportConfirm:hover {
     background: #0c5776;
     color: white;
     cursor: pointer;
@@ -1798,11 +1785,12 @@ h1 {
     position: absolute;
     bottom: -210px;
     right: 20px;
-    padding: 10px 25px ;
+    padding: 10px 25px;
     background-color: #ee7248;
     color: white;
     cursor: pointer;
     border-radius: 5px;
+    border: none;
 }
 
 .product-remove:hover {
@@ -1825,7 +1813,8 @@ h1 {
 .cart-total {
     flex: 0.25;
     margin-left: 20px;
-    padding: 25px 25px 10px 25px; /* Thêm không gian 10 pixel vào phía trên, 15 pixel vào phía phải, 20 pixel vào phía dưới, và 25 pixel vào phía trái */
+    padding: 25px 25px 10px 25px;
+    /* Thêm không gian 10 pixel vào phía trên, 15 pixel vào phía phải, 20 pixel vào phía dưới, và 25 pixel vào phía trái */
     height: 200px;
     border: 1px solid silver;
     border-radius: 5px;
@@ -1850,6 +1839,58 @@ h1 {
 
 .cart-total a:hover {
     background-color: #00202e;
+}
+
+.deletebox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.deletebox.active {
+    display: block;
+}
+
+.deletebox .deleteAction {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.deletebox .deleteAction button {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.deletebox .deleteAction #cancelDelete {
+    background-color: #eaeaea;
+    border-color: #ddd;
+}
+
+.deletebox .deleteAction #cancelDelete:hover {
+    background-color: #d5d5d5;
+}
+
+.deletebox .deleteAction #confirmDelete {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+.deletebox .deleteAction #confirmDelete:hover {
+    background-color: #a8202d;
 }
 
 @media screen and (max-width: 700px) {
