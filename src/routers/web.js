@@ -8,6 +8,7 @@ import reportController from '../controllers/reportController.js';
 import adminMethod from '../controllers/adminController.js';
 import multer from "multer";
 import path from 'path';
+import fs from 'fs';
 import appRoot from 'app-root-path';
 
 const router = express.Router();
@@ -280,7 +281,27 @@ router.get('/cart', async (req, res) => {
         res.redirect('/login');
     }
 })
+router.get('/pdf/:filename', function (req, res) {
+    const fileName = req.params.filename;
+    const filePath = path.join(appRoot.path, 'public', 'Book_PDF', fileName);
 
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+        // If file does not exist, redirect to mybook.ejs
+        res.redirect('/mybook');
+        return;
+    }
+
+    const stat = fs.statSync(filePath);
+
+    res.writeHead(200, {
+        'Content-Type': 'application/pdf',
+        'Content-Length': stat.size
+    });
+
+    const readStream = fs.createReadStream(filePath);
+    readStream.pipe(res);
+});
 router.get('/logout', authenController.logout);
 
 export default router;
