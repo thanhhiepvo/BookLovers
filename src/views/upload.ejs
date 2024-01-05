@@ -89,27 +89,53 @@
 
             <div class="infoUpload">
                 <label>Upload book cover:</label>
-                <input type="file" name="bcover_pic" multiple>
+                <input type="file" name="bcover_pic" required accept=".png, .jpeg, .jpg">
             </div>
 
             <div class="infoUpload">
                 <label>Upload PDF file:</label>
-                <input type="file" name="pdf_book" multiple>
+                <input type="file" name="pdf_book" required accept=".pdf">
             </div>
 
-
-            <button type="submit" class="uploadBut">Upload Book</button>
+            <button type="submit" class="uploadBut" disabled>Upload Book</button>
         </form>
     </div>
 </div>
 
 <script>
-    var nameBook = document.getElementById("nameBook");
-    var author = document.getElementById("author");
-    var price = document.getElementById("price");
-    var description = document.getElementById("description");
-    var publishedYear = document.getElementById("publishedYear");
+    const bcoverPicInput = document.querySelector('input[name="bcover_pic"]');
+    const pdfBookInput = document.querySelector('input[name="pdf_book"]');
+    const submitButton = document.querySelector('button[type="submit"]');
+    
+    function checkImageTypes(files) {
+        const validImageMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        return validImageMimeTypes.includes(files[0].type); // Check the first (and only) file's type
+    }
 
+    function checkPdfType(files) {
+        return files[0].type === 'application/pdf'; // Check the first (and only) file's type
+    }
+
+    function validateAndEnableButton() {
+        // Check if both fields have valid files and file types
+        const hasValidCoverPic =
+            bcoverPicInput.files &&
+            bcoverPicInput.files.length > 0 &&
+            checkImageTypes(bcoverPicInput.files);
+        const hasValidPdfBook =
+            pdfBookInput.files &&
+            pdfBookInput.files.length > 0 &&
+            checkPdfType(pdfBookInput.files);
+        submitButton.disabled = !(hasValidCoverPic && hasValidPdfBook);
+    }
+
+    bcoverPicInput.addEventListener('change', (event) => {
+        validateAndEnableButton();
+    });
+
+    pdfBookInput.addEventListener('change', (event) => {
+        validateAndEnableButton();
+    });
 </script>
 
 

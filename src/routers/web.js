@@ -154,6 +154,7 @@ router.get('/upload', async (req, res) => {
 let id = null;
 let temp = null;
 let already = false;
+let count = 0;
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -173,34 +174,49 @@ const upload = multer({
         }
     }),
     fileFilter: async function (req, file, cb) {
+        // check book existence and return id
         if (!already) {
             try {
                 temp = await bookController.addUserSelling(req);
                 already = true;
+                id = temp.bookid;
             } catch (error) {
-                // handle error
                 cb(new Error('Error in addUserSelling'), false);
-                return;
             }
         }
-        id = temp.bookid;
+
+        // if new book then accept file
         if (temp.check) {
+            // check file format
             if (file.fieldname === 'bcover_pic') {
                 if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
                     cb(new Error('Only image files are allowed!'), false);
                     return;
                 }
-            } else if (file.fieldname === 'pdf_book') {
+            }
+            if (file.fieldname === 'pdf_book') {
                 if (!file.originalname.match(/\.(pdf|PDF)$/)) {
                     cb(new Error('Only PDF files are allowed!'), false);
                     return;
                 }
             }
+            count++;
             cb(null, true);
         }
-        else cb(null, false);
+        // if old book then reject file
+        else {
+            count++;
+            cb(null, false);
+        }
+
+        //reset for other new upload book
+        if (count == 2) {
+            already = false;
+            count = 0;
+        }
     }
 });
+
 router.post('/uploadSelling', (req, res) => {
     upload.fields([
         { name: 'bcover_pic', maxCount: 1 },
