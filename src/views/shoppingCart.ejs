@@ -19,12 +19,16 @@
 
     <ul class="navbar">
         <li><a href="homepage">Home</a></li>
-        <li><a href="myBook" class="active">My books</a></li>
+        <li><a href="myBook">My books</a></li>
         <li><a href="selling">Selling</a></li>
         <li><a href="wallet">Wallet</a></li>
         <li><a href="about">About</a></li>
     </ul>
 
+    <div class="shopping_cart">
+        <a href="cart"><i class='bx bx-cart'></i></a>
+    </div>
+    
     <div class="profile">
         <i class='bx bx-user'></i>
         <span>Profile</span>
@@ -120,11 +124,11 @@
 
                         var h4PriceElement = document.createElement("h4");
                         h4PriceElement.className = "product-price";
-                        h4PriceElement.textContent = productPrices[i] + " VND";
+                        h4PriceElement.textContent = "Price: " + productPrices[i] + " VND";
 
                         var h4OfferElement = document.createElement("h4");
                         h4OfferElement.className = "shopseller";
-                        h4OfferElement.textContent = shopseller[i];
+                        h4OfferElement.textContent = "Seller: " + shopseller[i];
 
 
                         var removeButton = document.createElement("button");
@@ -172,7 +176,6 @@
                     <button type="submit">test</button>
                 </form>
 
-
                 <script>
                     // Display the total price and total items in the cart-total div
                     document.getElementById('total-price').textContent = totalPrice.toLocaleString('de-DE') + ' VND';
@@ -183,7 +186,7 @@
     </div>
 
     <div class="deletebox" id="deletebox">
-        <form action="remove-cart" method="post">
+        <form action="cart-remove" method="post">
             <h3>Are you sure you want to remove this item from your cart?</h3>
             <p>This action cannot be undone.</p>
             <div class="deleteAction">

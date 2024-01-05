@@ -131,8 +131,15 @@ export async function getShoppingCart(username) {
     const text = "SELECT B.NAMEBOOK, SP.SHOPBOOK, SP.SHOPUSER, SP.SHOPSELLER, SP.SELLING_PRICE FROM SHOPPING_CART SP, BOOK B WHERE SP.SHOPUSER = $1 AND SP.SHOPBOOK = B.ID_BOOK";
     const value = [username];
     const { rows } = await pool.query(text, value);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows;
+}
+
+export async function delBookShoppingCartDB(username,bookid) {
+    const text = "DELETE FROM SHOPPING_CART WHERE SHOPUSER = $1 AND SHOPBOOK = $2";
+    const value = [username, bookid];
+    await pool.query(text, value);
+    console.log('Book in shopping cart deleted successfully in DB');
 }
