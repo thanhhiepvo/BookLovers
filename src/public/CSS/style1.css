@@ -1478,7 +1478,7 @@ h1 {
 .bookPage img {
     margin: 50px 30px;
     height: 500px;
-    width: auto;
+    width: 360px;
     border: 1px solid rgb(98, 98, 98);
     border-radius: 5%;
     /* position: sticky; */
@@ -1827,17 +1827,19 @@ h1 {
     font-size: 20px;
 }
 
-.cart-total a {
+.cart-total button {
     display: block;
     text-align: center;
     height: 40px;
+    width: 100%;
+    font-size: 1rem;
     line-height: 40px;
     background-color: #0c5776;
     color: white;
     text-decoration: none;
 }
 
-.cart-total a:hover {
+.cart-total button:hover {
     background-color: #00202e;
 }
 

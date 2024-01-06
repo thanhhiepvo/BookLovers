@@ -138,7 +138,6 @@
                         spanElement.className = "remove";
                         spanElement.textContent = "Remove";
 
-
                         // Append the icon and text to the button:
                         removeButton.appendChild(iElement);
                         removeButton.appendChild(spanElement);
@@ -156,20 +155,21 @@
                 </script>
             </div>
             <div class="cart-total">
-                <p>
-                    <span>Total Price</span>
-                    <span id="total-price">0 VND</span>
-                </p>
-
-                <p>
-                    <span>Number of Items</span>
-                    <span id="total-items">0</span>
-                </p>
-                <a href="#">Proceed to Checkout</a>
-                <form action="/a" method="post">
-                    <button type="submit">test</button>
+                <form action="checkout" method="post">
+                    <p>
+                        <span>Total Price</span>
+                        <span id="total-price">0 VND</span>
+                        <input type="hidden" name="username" value="<%user.username%>">
+                        <input type="hidden" name="total-price" value="<%=rowsandprice.total_amount%>">
+                    </p>
+    
+                    <p>
+                        <span>Number of Items</span>
+                        <span id="total-items">0</span>
+                    </p>
+    
+                    <button type="submit" id="checkoutbutton">Proceed to Checkout</button>
                 </form>
-
                 <script>
                     document.getElementById('total-price').textContent = "<%=rowsandprice.total_amount%>" + " VND";
                     document.getElementById('total-items').textContent = "<%=rowsandprice.num_rows%>";
@@ -205,7 +205,7 @@
         cancelDelete.addEventListener('click', (event) => {
             event.preventDefault();
             document.getElementById("deletebox").classList.toggle('active');
-        })
+        });
     </script>
 
     <footer class="footer-distributed">

@@ -104,3 +104,34 @@ BEGIN
   WHERE ShopUser = username;
 END;
 $$;
+-----------------------------------------------------------------------------
+-- procedure thanh toán
+CREATE OR REPLACE PROCEDURE Payment (
+    IN v_username varchar(50),
+    IN v_price float,
+	OUT v_state boolean
+)
+LANGUAGE plpgsql AS $$
+DECLARE
+    userbalance float;
+BEGIN
+    SELECT Balance INTO userbalance
+    FROM USERACCOUNT
+    WHERE Username = v_username;
+
+    IF userbalance < v_price THEN
+        RAISE NOTICE E'User doesn\'t have enough money. Please deposit money into your balance !!';
+        v_state := 'false';
+    ELSE
+        BEGIN
+            UPDATE USERACCOUNT SET Balance = Balance + v_price
+            WHERE Username = v_username;
+            RAISE NOTICE E'Payment completed successfully.';
+			v_state := 'true';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE E'Error during payment: %', SQLERRM;
+			v_state := 'false';
+        END;
+    END IF;
+END;
+$$;

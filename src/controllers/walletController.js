@@ -11,4 +11,13 @@ walletController.getWalletInfo = async (req, res) => {
         console.error('Error getWalletInfo', error);
     }
 }
+
+walletController.checkout = async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.log
+    }
+}
+
 export default walletController;
