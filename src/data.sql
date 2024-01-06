@@ -61,9 +61,12 @@ insert into OWNEDBOOK (OUsername, OBook) values ('user6', 7);
 --SELLINGBOOK data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('blanker321', 1, 848288);
-insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('blanker321', 2, 80000);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('blanker321', 2, 800000);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('blanker321', 3, 90000);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user1', 2, 774988);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user3', 2, 784988);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user5', 2, 794988);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user9', 2, 754988);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user2', 3, 955811);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user3', 4, 355674);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user4', 5, 521594);

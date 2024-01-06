@@ -76,6 +76,7 @@
                 <h2>My wallet</h2>
                 <div class="infoWallet">
                     <h1 id="money_wallet"></h1>
+                    <h3 class="vnd">-VND-</h3>
                     <h3 id="uname_wallet"></h3>
                     <h3 id="phone_wallet"></h3>
                     <h3 id="mail_wallet"></h3>
@@ -86,7 +87,7 @@
                     var phone = "<%= user.phonenumber %>";
                     var mail = "<%= user.email %>";
 
-                    document.getElementById("money_wallet").textContent = money + " VND";
+                    document.getElementById("money_wallet").textContent = money;
                     document.getElementById("uname_wallet").textContent = uname;
                     document.getElementById("phone_wallet").textContent = phone;
                     document.getElementById("mail_wallet").textContent = mail;

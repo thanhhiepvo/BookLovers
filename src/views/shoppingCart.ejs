@@ -26,7 +26,7 @@
     </ul>
 
     <div class="shopping_cart">
-        <a href="cart"><i class='bx bx-cart'></i></a>
+        <li class="home-active"><a href="cart"><i class='bx bxs-cart' style='color: red'></i></a></li>
     </div>
     
     <div class="profile">
@@ -153,6 +153,35 @@
 
                         productsDiv.appendChild(productDiv);
                     }
+
+                    if (b == 0)
+                    {
+                        var imgEmpty = document.createElement("img");
+                        imgEmpty.src = "../Picture/emptyCart.jpg";
+                        
+                        var noti = document.createElement("h1");
+                        noti.textContent = "Your cart is empty!";
+                        
+                        var comebackForm = document.createElement("form");
+                        comebackForm.action = "/homepage";
+                        comebackForm.method = "get";
+
+                        var comeback = document.createElement("button");
+                        comeback.type = "submit";
+                        comeback.textContent = "Shopping now";
+
+                        comebackForm.appendChild(comeback);
+                        
+                        var notiBox = document.createElement("div");
+                        notiBox.className = "notiBox";
+
+                        notiBox.appendChild(imgEmpty);
+                        notiBox.appendChild(noti)
+                        notiBox.appendChild(comebackForm);
+
+                        productsDiv.appendChild(notiBox);
+                    }
+
                 </script>
             </div>
             <div class="cart-total">

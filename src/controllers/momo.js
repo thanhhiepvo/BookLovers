@@ -90,7 +90,6 @@ momo.createMomo = async (req, res) =>
     });
 
     
-
     // write data to request body
     console.log("Sending....")
     req.write(requestBody);

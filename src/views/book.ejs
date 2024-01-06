@@ -108,6 +108,7 @@
                 selluser = decodeHtml(selluser);
                 selluser = JSON.parse(selluser);
             }
+
             for (var i = 0; i < n; i++) {
                 if ("<%=user.username%>" == selluser[i].susername) {
                     continue;
@@ -173,7 +174,17 @@
 
                 SellerList.appendChild(oneBookSeller);
             }
-            if (n != 0) {
+            if (nameSellers.length != 0) {
+                bookSellers.appendChild(SellerList);
+                bookPage.appendChild(bookSellers);
+                document.body.appendChild(bookPage);
+            }
+            else
+            {
+                var oneBookSeller = document.createElement("div");
+                oneBookSeller.className = "oneBookSeller";
+                oneBookSeller.textContent = "You are selling this book";
+                SellerList.appendChild(oneBookSeller);
                 bookSellers.appendChild(SellerList);
                 bookPage.appendChild(bookSellers);
                 document.body.appendChild(bookPage);
