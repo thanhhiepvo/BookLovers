@@ -98,15 +98,21 @@ export const updateNewPassword = async (useremail, new_password) => {
 }
 
 export async function addToCart(ShopUser, ShopSeller, ShopBook) {
-    const check = "SELECT * FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
-    const value = [ShopUser, ShopSeller, ShopBook];
-    const { rows } = await pool.query(check, value);
-    if (rows.length == 0) {
-        const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
-        await pool.query(text, value);
-        console.log('Added book to cart successfully');
+    const check_owned = "SELECT * FROM OWNEDBOOK WHERE OBook = $1";
+    const value_owned = [ShopBook];
+    const { rows:owned } = await pool.query(check_owned, value_owned);
+    if (owned.length == 0){
+        const check_cart = "SELECT * FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
+        const value = [ShopUser, ShopSeller, ShopBook];
+        const { rows } = await pool.query(check_cart, value);
+        if (rows.length == 0) {
+            const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
+            await pool.query(text, value);
+            console.log('Added book to cart successfully');
+        }
+        else console.log('Already added to cart');
     }
-    else console.log('Already added to cart');
+    else console.log('User already owned this book. Not adding to cart');
 }
 
 export async function removeFromCart(ShopUser, ShopSeller, ShopBook) {

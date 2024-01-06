@@ -1,4 +1,5 @@
 import { getUsername } from "../models/users.js"
+import { checkout } from "../models/admin.js"
 
 const walletController = {};
 
@@ -13,10 +14,19 @@ walletController.getWalletInfo = async (req, res) => {
 }
 
 walletController.checkout = async (req, res) => {
+    // console.log(req.body);
     try {
-
+        const state = await checkout(req.session.username, req.body.total_price);
+        if (state) {
+            console.log('Payment completed successfully');
+            res.redirect('/mybook');
+        }
+        else {
+            console.log('User doesn\'t have enough money. Please deposit into your balance !!')
+            res.redirect('/cart');
+        }
     } catch (error) {
-        console.log
+        console.error('Error checkout', error);
     }
 }
 

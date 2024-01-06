@@ -120,16 +120,22 @@ BEGIN
     WHERE Username = v_username;
 
     IF userbalance < v_price THEN
-        RAISE NOTICE E'User doesn\'t have enough money. Please deposit money into your balance !!';
         v_state := 'false';
     ELSE
         BEGIN
+			-- cộng trừ tiền
             UPDATE USERACCOUNT SET Balance = Balance + v_price
             WHERE Username = v_username;
-            RAISE NOTICE E'Payment completed successfully.';
+			-- thêm vào sách đã mua
+			INSERT INTO OWNEDBOOK
+			SELECT ShopUser, ShopBook
+			FROM SHOPPING_CART
+			WHERE ShopUser = v_username;
+			-- xóa khỏi giỏ hàng
+			DELETE FROM SHOPPING_CART
+			WHERE ShopUser = v_username;
 			v_state := 'true';
         EXCEPTION WHEN OTHERS THEN
-            RAISE NOTICE E'Error during payment: %', SQLERRM;
 			v_state := 'false';
         END;
     END IF;

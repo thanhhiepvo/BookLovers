@@ -314,6 +314,8 @@ router.get('/cart', async (req, res) => {
 
 router.post('/cart-remove', bookController.removeFromCart);
 
+router.post('/checkout', walletController.checkout);
+
 router.get('/pdf/:filename', function (req, res) {
     const fileName = req.params.filename;
     const filePath = path.join(appRoot.path, 'public', 'Book_PDF', fileName);
