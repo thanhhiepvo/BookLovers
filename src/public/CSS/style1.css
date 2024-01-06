@@ -301,9 +301,16 @@ body {
     height: 16%;
 }
 
-.shopping_cart .bx-cart::before {
+.shopping_cart .bx-cart::before
+ {
     font-size: 25px;
     color: white;
+}
+
+.shopping_cart .bxs-cart::before
+{
+    font-size: 25px;
+    color: #bcfefe;
 }
 
 .shopping_cart .bx-cart {
@@ -413,14 +420,22 @@ body {
 }
 
 .mainWallet .balance h1 {
-    font-size: 70px;
+    color: #F2F0F1;
+    font-size: 60px;
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: left;
+}
+
+.mainWallet .balance .vnd
+{
+    text-align: right;
 }
 
 .mainWallet .balance h3 {
+    font-weight: lighter;
     font-size: 25px;
 }
 
@@ -1740,6 +1755,40 @@ h1 {
     flex: 0.75;
 }
 
+.products .notiBox
+{
+    border-radius: 10px;
+    border: 1px solid #010108;
+    height: 250px;
+    text-align: center;
+}
+
+.products .notiBox img
+{
+    height: 150px;
+    width: 150px;
+    text-align: center;
+}
+
+.products .notiBox button
+{
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #ed8558;
+    color: white;
+}
+
+.products .notiBox h1
+{
+    font-size: 30px;
+    font-weight: lighter;
+}
+
 .product {
     display: flex;
     padding: 20px 20px 275px 20px;
@@ -1934,3 +1983,4 @@ h1 {
     }
 
 }
+
