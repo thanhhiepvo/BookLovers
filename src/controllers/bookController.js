@@ -1,6 +1,8 @@
 import { addBook, addSellBook, delSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
 import { addToCart, removeFromCart, getTotalPrice } from "../models/users.js";
+import authenController from "./authenticationController.js";
+import { getSearchBook } from "../models/admin.js";
 
 const bookController = {};
 
@@ -130,7 +132,7 @@ bookController.addUserSelling = async (req, res) => {
                 check = true;
             }
             await addSellBook(req.session.username, bookid, price);
-            resolve({bookid, check});
+            resolve({ bookid, check });
         } catch (error) {
             console.error('Error', error);
             reject(error);
@@ -142,7 +144,7 @@ bookController.delSellBook = async (req, res) => {
     // console.log(req.body);
     let { SBook } = req.body;
     await delSellBook(req.session.username, SBook);
-    res.redirect('/selling');    
+    res.redirect('/selling');
 }
 
 bookController.getTotalPrice = async (req, res) => {
@@ -155,6 +157,26 @@ bookController.getTotalPrice = async (req, res) => {
             reject(error);
         }
     });
+}
+
+bookController.getSearchBook = async (req, res) => {
+    try {
+        const searchbookID = await getSearchBook(req.body.searchquery) ?? [];
+        let booklist = [];
+        for (let bookid of searchbookID) {
+            let bookinfo = await getBookInfo(bookid);
+            booklist.push(bookinfo);
+        }
+        const user = await authenController.getProfileUser(req, res);
+        const cart = await bookController.getShoppingCart(req, res);
+        res.render('search', {
+            user: user,
+            books: booklist,
+            num: cart.length
+        });
+    } catch (error) {
+        console.error('Error', error);
+    }
 }
 
 export default bookController;

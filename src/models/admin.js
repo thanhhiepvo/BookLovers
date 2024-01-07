@@ -16,3 +16,15 @@ export async function checkout(Username, Price) {
     });
     return result.rows[0].v_state;
 }
+
+export async function getSearchBook(searchquery) {
+    const { rows } = await pool.query({
+        text: "SELECT ID_Book FROM BOOK WHERE NameBook ILIKE '%' || $1 || '%' OR Author ILIKE '%' || $1 || '%'",
+        values: [searchquery]
+    });
+    if (rows.length == 0)
+        return null;
+    return rows.map(row => row.id_book);
+}
+
+// console.log(await getSearchBook("python"));

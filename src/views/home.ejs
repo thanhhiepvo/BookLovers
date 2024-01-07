@@ -74,9 +74,9 @@
         <h2>Find your favourite books here</h2>
         <p>All your favorite books are in one place</p>
 
-        <form action="" method="post">
+        <form action="search-query" method="post">
             <div class="searchArea">
-                <input type="text" id="searchBox" placeholder="Search a book">
+                <input type="text" id="searchBox" name="searchquery" placeholder="Search a book">
                 <button type="submit" id="searchBut"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
             </div>
         </form>
@@ -141,7 +141,6 @@
                 // Create h5 element
                 var h5Element = document.createElement("h5");
                 h5Element.textContent = authors[i];
-
 
 
                 // Create h4 element

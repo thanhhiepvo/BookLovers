@@ -100,6 +100,8 @@ router.get('/homepage', async (req, res) => {
     console.log(">>> req.session.username = ", req.session.username);
 });
 
+router.post('/search-query', await bookController.getSearchBook);
+
 router.get('/myBook', async (req, res) => {
     if (req.session.username) {
         try {
@@ -341,23 +343,5 @@ router.get('/pdf/:filename', function (req, res) {
 });
 
 router.get('/logout', authenController.logout);
-
-router.get('/search', async (req, res) => {
-    if (req.session.username)
-    {
-        const book = await bookController.getAllBookInfo(req, res);
-        const user = await authenController.getProfileUser(req, res);
-        const cart = await bookController.getShoppingCart(req, res);
-        res.render('search', {
-            user: user,
-            books: book,
-            num: cart.length
-        });
-    }
-    else
-    {
-        res.redirect('/login');
-    }
-})
 
 export default router;
