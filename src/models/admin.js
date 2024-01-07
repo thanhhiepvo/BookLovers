@@ -5,6 +5,7 @@ export async function banUser(Username) {
     const value = [Username];
     await pool.query(text, value);
     console.log('Banned user successfully');
+    return "Banned user successfully";
 }
 
 export async function checkout(Username, Price) {

@@ -1,6 +1,6 @@
 -- Cập nhật giá của món hàng trong giỏ hàng khi giá món hàng thay đổi
-CREATE OR REPLACE FUNCTION update_item_price_trigger()
-RETURNS TRIGGER AS $$
+
+CREATE OR REPLACE FUNCTION update_item_price_trigger() RETURNS TRIGGER AS $$
 BEGIN
   -- Check if the trigger is fired by an update operation on the book table
   IF TG_OP = 'UPDATE' THEN
@@ -16,16 +16,15 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a trigger
-CREATE TRIGGER update_item_price_trigger
-AFTER UPDATE ON SELLINGBOOK
-FOR EACH ROW
-EXECUTE PROCEDURE update_item_price_trigger();
 
+CREATE TRIGGER update_item_price_trigger AFTER
+UPDATE ON SELLINGBOOK
+FOR EACH ROW EXECUTE PROCEDURE update_item_price_trigger();
 
--- Đảm bảo giá món hàng trong giỏ hàng = giá của món hàng 
+-- Đảm bảo giá món hàng trong giỏ hàng = giá của món hàng
 -- Create a trigger function
-CREATE OR REPLACE FUNCTION shopping_cart_trigger()
-RETURNS TRIGGER AS $$
+
+CREATE OR REPLACE FUNCTION shopping_cart_trigger() RETURNS TRIGGER AS $$
 DECLARE
   book_price FLOAT;
 BEGIN
@@ -44,14 +43,15 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a trigger
+
 CREATE TRIGGER shopping_cart_trigger
-BEFORE INSERT ON SHOPPING_CART
-FOR EACH ROW
-EXECUTE PROCEDURE shopping_cart_trigger();
+BEFORE
+INSERT ON SHOPPING_CART
+FOR EACH ROW EXECUTE PROCEDURE shopping_cart_trigger();
 
 -- Khi tài khoản bị ban thì chỉ xóa hết mọi thao tác bán và các report đến tài khoản bị ban
-CREATE OR REPLACE FUNCTION del_banneduser_sell_trigger()
-RETURNS TRIGGER AS $$
+
+CREATE OR REPLACE FUNCTION del_banneduser_sell_trigger() RETURNS TRIGGER AS $$
 BEGIN
   -- Check if the trigger is fired by an update operation on the user account table
   IF TG_OP = 'UPDATE' THEN
@@ -72,26 +72,26 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a trigger
-CREATE TRIGGER del_banneduser_sell_trigger
-AFTER UPDATE ON USERACCOUNT
-FOR EACH ROW
-EXECUTE PROCEDURE del_banneduser_sell_trigger();
+
+CREATE TRIGGER del_banneduser_sell_trigger AFTER
+UPDATE ON USERACCOUNT
+FOR EACH ROW EXECUTE PROCEDURE del_banneduser_sell_trigger();
 
 -- Kích hoạt / áp dụng trigger
 -- Enable trigger
-alter table SHOPPING_CART enable trigger shopping_cart_trigger;
-alter table SELLINGBOOK enable trigger update_item_price_trigger;
-alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 
+alter table SHOPPING_CART enable trigger shopping_cart_trigger;
+
+
+alter table SELLINGBOOK enable trigger update_item_price_trigger;
+
+
+alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 
 -----------------------------------------------------------------------------
 -- procedure tính tổng tiền giỏ hàng
-CREATE OR REPLACE PROCEDURE total_shopping_price (
-  IN username varchar(50),
-  OUT total_amount float,
-  OUT num_rows int
-)
-LANGUAGE plpgsql AS $$
+
+CREATE OR REPLACE PROCEDURE total_shopping_price ( IN username varchar(50), OUT total_amount float, OUT num_rows int) LANGUAGE plpgsql AS $$
 BEGIN
   -- Calculate the total amount
   SELECT COALESCE(SUM(Selling_Price), 0) INTO total_amount
@@ -104,14 +104,11 @@ BEGIN
   WHERE ShopUser = username;
 END;
 $$;
+
 -----------------------------------------------------------------------------
 -- procedure thanh toán
-CREATE OR REPLACE PROCEDURE Payment (
-    IN v_username varchar(50),
-    IN v_price float,
-	OUT v_state boolean
-)
-LANGUAGE plpgsql AS $$
+
+CREATE OR REPLACE PROCEDURE Payment ( IN v_username varchar(50), IN v_price float, OUT v_state boolean) LANGUAGE plpgsql AS $$
 DECLARE
     userbalance float;
 BEGIN
@@ -119,7 +116,7 @@ BEGIN
     FROM USERACCOUNT
     WHERE Username = v_username;
 
-    IF userbalance < v_price THEN
+    IF userbalance < -v_price THEN
         v_state := 'false';
     ELSE
         BEGIN

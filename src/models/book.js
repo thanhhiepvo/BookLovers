@@ -90,6 +90,7 @@ export async function delBook(ID_Book) {
     const value = [ID_Book];
     await pool.query(text, value);
     console.log('Book deleted successfully');
+    return "Book deleted successfully";
 }
 
 export async function addSellBook(SUsername, SBook, SPrice) {
@@ -101,8 +102,13 @@ export async function addSellBook(SUsername, SBook, SPrice) {
         const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
         await pool.query(text, value);
         console.log('Added user sell book successfully');
+        return "Added user sell book successfully";
     }
-    else console.log('User sell book already added');
+    else {
+        console.log('User sell book already added');
+        return "User sell book already added";
+    }
+
 }
 
 export async function delSellBook(SUsername, SBook) {
@@ -110,6 +116,7 @@ export async function delSellBook(SUsername, SBook) {
     const value = [SUsername, SBook];
     await pool.query(text, value);
     console.log('User sell book deleted successfully');
+    return "User sell book deleted successfully";
 }
 
 export async function addOwnedBook(OUsername, OBook) {
@@ -117,6 +124,7 @@ export async function addOwnedBook(OUsername, OBook) {
     const value = [OUsername, OBook];
     await pool.query(text, value);
     console.log('Added user owned book successfully');
+    return "Added user owned book successfully";
 }
 
 export async function delOwnedBook(OUsername, OBook) {
@@ -124,6 +132,7 @@ export async function delOwnedBook(OUsername, OBook) {
     const value = [OUsername, OBook];
     await pool.query(text, value);
     console.log('User owned book deleted successfully');
+    return "User owned book deleted successfully";
 }
 
 // lay danh sách cac sach trong shopping cart va gia cua sach do
