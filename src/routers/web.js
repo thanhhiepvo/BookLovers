@@ -340,4 +340,22 @@ router.get('/pdf/:filename', function (req, res) {
 
 router.get('/logout', authenController.logout);
 
+router.get('/search', async (req, res) => {
+    if (req.session.username)
+    {
+        const book = await bookController.getAllBookInfo(req, res);
+        const user = await authenController.getProfileUser(req, res);
+        const cart = await bookController.getShoppingCart(req, res);
+        res.render('search', {
+            user: user,
+            books: book,
+            num: cart.length
+        });
+    }
+    else
+    {
+        res.redirect('/login');
+    }
+})
+
 export default router;
