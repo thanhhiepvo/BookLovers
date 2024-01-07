@@ -79,27 +79,17 @@ FOR EACH ROW EXECUTE PROCEDURE del_banneduser_sell_trigger();
 
 -- Kích hoạt / áp dụng trigger
 -- Enable trigger
-
 alter table SHOPPING_CART enable trigger shopping_cart_trigger;
-
-
 alter table SELLINGBOOK enable trigger update_item_price_trigger;
-
-
 alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 
 -----------------------------------------------------------------------------
 -- procedure tính tổng tiền giỏ hàng
 
-CREATE OR REPLACE PROCEDURE total_shopping_price ( IN username varchar(50), OUT total_amount float, OUT num_rows int) LANGUAGE plpgsql AS $$
+CREATE OR REPLACE PROCEDURE total_shopping_price ( IN username varchar(50), OUT total_amount float) LANGUAGE plpgsql AS $$
 BEGIN
   -- Calculate the total amount
   SELECT COALESCE(SUM(Selling_Price), 0) INTO total_amount
-  FROM SHOPPING_CART
-  WHERE ShopUser = username;
-
-  -- Count rows
-  SELECT COUNT(*) INTO num_rows
   FROM SHOPPING_CART
   WHERE ShopUser = username;
 END;

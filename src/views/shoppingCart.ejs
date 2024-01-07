@@ -188,7 +188,7 @@
                     <p>
                         <span>Total Price</span>
                         <span id="total-price">0 VND</span>
-                        <input type="hidden" name="total_price" value="-<%=rowsandprice.total_amount%>">
+                        <input type="hidden" name="total_price" value="-<%=total_price.total_amount%>">
                     </p>
     
                     <p>
@@ -199,8 +199,8 @@
                     <button type="submit" id="checkoutbutton">Proceed to Checkout</button>
                 </form>
                 <script>
-                    document.getElementById('total-price').textContent = "<%=rowsandprice.total_amount%>" + " VND";
-                    document.getElementById('total-items').textContent = "<%=rowsandprice.num_rows%>";
+                    document.getElementById('total-price').textContent = "<%=total_price.total_amount%>" + " VND";
+                    document.getElementById('total-items').textContent = b;
                 </script>
             </div>
         </div>

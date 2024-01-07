@@ -138,6 +138,8 @@ router.get('/selling', async (req, res) => {
     }
 })
 
+router.post('/sellbook-remove', bookController.delSellBook);
+
 router.get('/upload', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
@@ -298,11 +300,11 @@ router.get('/cart', async (req, res) => {
     if (req.session.username && isEmpty) {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
-        const rowsandprice = await bookController.getNRowsAndTotalPrice(req, res);
+        const total_price = await bookController.getTotalPrice(req, res);
         res.render('shoppingCart', {
             user: user,
             bookCart: bookCart,
-            rowsandprice: rowsandprice
+            total_price: total_price
         }); // Render the view with user data
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);

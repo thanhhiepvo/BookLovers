@@ -66,25 +66,6 @@
 <body>
     <section id="product" class="section_home">
         <h2>Your selling books here</h2>
-        <p></p>
-
-        <!-- ------------------------------------- -->
-        <!-- <div id="productContainer">
-                <div class="product_cont">
-                    <div class="pro">
-                        <img src="../Picture/c++.jpg" alt="">
-                        <div class="description">
-                            <span>C++</span>
-                            <h5>Tony Gaddis</h5>
-                        </div>
-                        <h4>200.000 VND</h4>
-                        <a href="#"><i class='bx bx-cart-add cart'></i></a>
-                    </div>
-                </div>
-            </div> -->
-        <!-- ------------------------------------- -->
-
-        <!-- Script for product -->
         <script>
 
             function decodeHtml(html) {
@@ -106,16 +87,13 @@
                 books = decodeHtml(books);
                 books = JSON.parse(books);
             }
-            //console.log(books);
-            //console.log(books)
-            // var imagePaths = [];
+
             for (var i = 0; i < b; i++) {
                 idBook.push(books[i].id_book);
                 imagePaths.push("/Picture/book/" + books[i].id_book + ".jpg");
                 authors.push(books[i].author);
                 price.push(books[i].price.toLocaleString('de-DE'));
                 bookNames.push(books[i].namebook);
-                //console.log(imagePaths[i]);
             }
 
 
@@ -124,7 +102,6 @@
             // Create productContainer div
             var productContainer = document.createElement("div");
             productContainer.className = "productContainer";
-
 
             // Loop through the image paths and create product_cont divs
             for (var i = 0; i < imagePaths.length; i++) {
@@ -194,18 +171,8 @@
                 proDiv.appendChild(delBook); 
                 
 
-
                 // Create href
                 var href = document.createElement("a");
-                // href.href = "book/" + idBook[i];
-
-                // // Append i element to aElement
-                // aElement.appendChild(iElement);
-
-                // // Append a to proDiv
-                // proDiv.appendChild(aElement);
-
-                // Append proDiv, h4Element, and aElement to productContDiv
                 href.appendChild(proDiv);   
                 productContDiv.appendChild(href);
 
@@ -221,10 +188,33 @@
 
     </section>
 
+    <div class="deletebox" id="deletebox">
+        <form action="sellbook-remove" method="post">
+            <h3>Are you sure you want to remove this item from your cart?</h3>
+            <p>This action cannot be undone.</p>
+            <div class="deleteAction">
+                <input type="hidden" name="SBook" value=""">
+                    <button type=" button" id="cancelDelete">Cancel</button>
+                <button type="submit" id="confirmDelete">Delete</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        var removeClick = document.querySelectorAll(".delButton");
+        removeClick.forEach((element, index) => {
+            element.addEventListener('click', () => {
+                document.getElementById("deletebox").classList.toggle('active');
+                document.querySelector('input[name="SBook"]').value = idBook[index];
+            });
+        });
 
-
-
-    
+        var cancelDelete = document.querySelector('#cancelDelete');
+        cancelDelete.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.getElementById("deletebox").classList.toggle('active');
+        });
+    </script>
+ 
     <footer class="footer-distributed">
 
         <div class="footer-left">

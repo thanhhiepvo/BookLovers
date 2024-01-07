@@ -130,10 +130,10 @@ export async function removeFromCart(ShopUser, ShopSeller, ShopBook) {
     return "Book removed from cart successfully";
 }
 
-export async function getNRowsAndTotalPrice(Username) {
+export async function getTotalPrice(Username) {
     const { rows } = await pool.query({
-        text: "CALL total_shopping_price ($1, $2, $3)",
-        values: [Username, null, null],
+        text: "CALL total_shopping_price ($1, $2)",
+        values: [Username, null],
         type: "procedure"
     });
     return rows[0];
