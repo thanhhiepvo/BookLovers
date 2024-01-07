@@ -159,27 +159,45 @@
                 var h4Element = document.createElement("h4");
                 h4Element.textContent = price[i] + " VND";
 
+                
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
                 descriptionDiv.appendChild(h5Element);
+
+                // Create i for X button
+                var XButton = document.createElement("i")
+                XButton.className = "bx bx-x";
+                // Create button delete
+                var delBook = document.createElement("button");
+                delBook.type = "submit";
+                delBook.className = "delButton";
+                delBook.appendChild(XButton);
+
+                // Create a element
+                var aElement = document.createElement("a");
+                aElement.href = "book/" + idBook[i];
+                aElement.className = "viewBookSelling";
+
+                // Create i element for cart icon
+                var viewBookBut = document.createElement("button");
+                viewBookBut.type = "submit";
+                viewBookBut.className = "viewBookBut";
+                viewBookBut.textContent = "View Detail";
+
+                aElement.appendChild(viewBookBut);
 
                 // Append imgElement and descriptionDiv to proDiv
                 proDiv.appendChild(imgElement);
                 proDiv.appendChild(descriptionDiv);
                 proDiv.appendChild(h4Element);
+                proDiv.appendChild(aElement);
+                proDiv.appendChild(delBook); 
+                
 
-                // // Create a element
-                // var aElement = document.createElement("a");
-                // aElement.href = "book?id=" + idBook[i];
-                // // aElement.href = "book";
-
-                // // Create i element for cart icon
-                // var iElement = document.createElement("i");
-                // iElement.className = "bx bx-cart-add cart";
 
                 // Create href
                 var href = document.createElement("a");
-                href.href = "book/" + idBook[i];
+                // href.href = "book/" + idBook[i];
 
                 // // Append i element to aElement
                 // aElement.appendChild(iElement);
@@ -188,7 +206,7 @@
                 // proDiv.appendChild(aElement);
 
                 // Append proDiv, h4Element, and aElement to productContDiv
-                href.appendChild(proDiv)
+                href.appendChild(proDiv);   
                 productContDiv.appendChild(href);
 
                 // Append productContDiv to productContainer

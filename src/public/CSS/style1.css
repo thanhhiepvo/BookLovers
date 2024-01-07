@@ -196,15 +196,52 @@ body {
 #product .pro {
     width: 23%;
     min-width: 250px;
-    padding: 10px 12px 0 12px;
+    /* padding: 10px 12px 10px 12px; */
     border: 3px solid rgb(200, 198, 198);
-    border-radius: 7%;
+    /* border-radius: 7%; */
     cursor: pointer;
     /* box-shadow: 20px 20px 30px darkgray; */
-    margin: 20px 50px 0 50px;
+    margin: 10px 50px 10px 50px;
     transition: 0.2s ease;
     position: relative;
     background-color: rgb(255, 255, 255);
+}
+
+
+
+.pro .viewBookSelling, .pro .viewBookBut
+{
+    background-color: #4eb09b;
+    width: 80%;
+    height: 30px;
+    /* border-bottom-left-radius: 10px; */
+    color: white;
+    font-weight: bold;
+    border: none;
+    /* z-index: 100; */
+}
+
+.pro .viewBookBut:hover
+{
+    background-color: #3b8878;
+    cursor: pointer;
+    /* z-index: 100; */
+}
+
+.pro .delButton
+{
+    width: 20%;
+    height: 30px;
+    /* border-bottom-right-radius: 10px; */
+    background-color: #f28076;
+    color: white;
+    border: none;
+}
+
+.pro .delButton:hover
+{
+    background-color: #c66a62;
+    cursor: pointer;
 }
 
 #product .productContainer {
@@ -247,11 +284,13 @@ body {
 
 #product .pro .description span {
     color: black;
-    /* font-size:; */
+    font-size: 20px;
+    /* font-weight: bolder; */
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 0 12px;
 }
 
 #product .pro .description h5 {
@@ -259,22 +298,25 @@ body {
     color: grey;
     font-size: 14px;
     text-align: left;
+    padding: 0 12px;
+    margin-bottom: 5px;
 }
 
 #product .pro h4 {
-    padding-top: 7px;
     color: #000099;
     font-size: 25px;
     text-align: left;
+    padding: 0 12px;
 }
 
-#product .pro img {
+#product img {
+    margin-top: 10px;
     width: 180px;
     height: 250px;
-    border-radius: 5%;
+    border-radius: 10px;
     margin-bottom: 10px;
     align-items: center;
-    border: 1.5px solid rgb(200, 198, 198);
+    /* border: 1.5px solid rgb(200, 198, 198); */
 }
 
 #product a {
@@ -284,15 +326,19 @@ body {
 
 /* My book */
 
-.bxs-cloud-download {
+.bx-book-reader {
     font-size: 20px;
+    background-color: transparent;
 }
 
-.bxs-cloud-download::before {
+.bx-book-reader::before {
     position: relative;
     font-size: 25px;
     top: 3px;
+    background-color: transparent;
 }
+
+
 
 /* shopping cart */
 .shopping_cart {
@@ -793,6 +839,8 @@ body {
     margin: 0 40px 0 0;
 }
 
+
+
 @media (max-width: 1024px) {
     .responsive-container-block.Container {
         max-width: 850px;
@@ -1223,7 +1271,8 @@ h1 {
 }
 
 .card img {
-    width: 100%;
+    width: 230px;
+    height: 230px;
     border-radius: 50%;
 }
 
