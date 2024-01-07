@@ -43,7 +43,8 @@ router.post('/recover-pass', authenController.forgotPassword)
 router.get('/about', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
-        res.render('about', { user: user });
+        const cart = await bookController.getShoppingCart(req, res);
+        res.render('about', { user: user, nItems_in_cart: cart.length });
     } else {
         res.redirect('/login');
     }
@@ -89,7 +90,7 @@ router.get('/homepage', async (req, res) => {
             res.render('home', {
                 user: user,
                 books: book,
-                num: cart.length
+                nItems_in_cart: cart.length
             });
         } catch (error) {
             console.error(error);
@@ -109,7 +110,7 @@ router.get('/myBook', async (req, res) => {
             res.render('myBook', {
                 user: user,
                 books: listOwnedBook,
-                num: cart.length
+                nItems_in_cart: cart.length
             });
         } catch (error) {
             console.error(error);
@@ -128,7 +129,7 @@ router.get('/selling', async (req, res) => {
             res.render('selling', {
                 user: user,
                 books: listSellBook,
-                num: cart.length
+                nItems_in_cart: cart.length
             });
         } catch (error) {
             console.error(error);
@@ -146,7 +147,7 @@ router.get('/upload', async (req, res) => {
         const cart = await bookController.getShoppingCart(req, res);
         res.render('upload.ejs', {
             user: user,
-            num: cart.length
+            nItems_in_cart: cart.length
         }); // Render the view with user data
 
     } else {
@@ -242,7 +243,7 @@ router.get('/wallet', async (req, res) => {
         const cart = await bookController.getShoppingCart(req, res);
         res.render('wallet', {
             user: user,
-            num: cart.length
+            nItems_in_cart: cart.length
         }); // Render the view with user data
     } else {
         res.redirect('/login');
@@ -255,7 +256,7 @@ router.get('/editProfile', async (req, res) => {
         const cart = await bookController.getShoppingCart(req, res);
         res.render('editProfile', {
             user: user,
-            num: cart.length
+            nItems_in_cart: cart.length
         }); // Render the view with user data
     } else {
         res.redirect('/login');
@@ -278,7 +279,7 @@ router.get('/book/:idbook', async (req, res) => {
                 user: user,
                 books: book,
                 selluser: selluser,
-                num: cart.length
+                nItems_in_cart: cart.length
             });
         } catch (error) {
             console.error(error);
