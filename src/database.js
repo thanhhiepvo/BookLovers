@@ -30,6 +30,7 @@ const pool = new Pool({
     password: process.env.POS_PASSWORD,
     port: process.env.POS_PORT
 });
+
 export default pool;
 
 // Thiết lập multer để xử lý tải lên file

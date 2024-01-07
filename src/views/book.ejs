@@ -108,7 +108,6 @@
                 selluser = decodeHtml(selluser);
                 selluser = JSON.parse(selluser);
             }
-
             for (var i = 0; i < n; i++) {
                 if ("<%=user.username%>" == selluser[i].susername) {
                     continue;
@@ -179,8 +178,7 @@
                 bookPage.appendChild(bookSellers);
                 document.body.appendChild(bookPage);
             }
-            else
-            {
+            else {
                 var oneBookSeller = document.createElement("div");
                 oneBookSeller.className = "oneBookSeller";
                 oneBookSeller.textContent = "You are selling this book";
