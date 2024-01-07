@@ -172,7 +172,7 @@ bookController.getSearchBook = async (req, res) => {
         res.render('search', {
             user: user,
             books: booklist,
-            num: cart.length
+            nItems_in_cart: cart.length
         });
     } catch (error) {
         console.error('Error', error);
