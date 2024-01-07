@@ -1,6 +1,6 @@
-import { addBook, addSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
+import { addBook, addSellBook, delSellBook, checkBook, getBookInfo, getBookOwned, getBookSell, getShoppingCart, getUserSellingBook } from "../models/book.js";
 import { getAllSellingBook, getInfoAllBook } from "../models/bookstore.js";
-import { addToCart, removeFromCart, getNRowsAndTotalPrice } from "../models/users.js";
+import { addToCart, removeFromCart, getTotalPrice } from "../models/users.js";
 
 const bookController = {};
 
@@ -138,11 +138,18 @@ bookController.addUserSelling = async (req, res) => {
     });
 }
 
-bookController.getNRowsAndTotalPrice = async (req, res) => {
+bookController.delSellBook = async (req, res) => {
+    // console.log(req.body);
+    let { SBook } = req.body;
+    await delSellBook(req.session.username, SBook);
+    res.redirect('/selling');    
+}
+
+bookController.getTotalPrice = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const rowsandprice = await getNRowsAndTotalPrice(req.session.username);
-            resolve(rowsandprice);
+            const total_price = await getTotalPrice(req.session.username);
+            resolve(total_price);
         } catch (error) {
             console.error('Error', error);
             reject(error);
