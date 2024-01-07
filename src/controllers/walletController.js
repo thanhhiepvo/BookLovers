@@ -15,18 +15,24 @@ walletController.getWalletInfo = async (req, res) => {
 
 walletController.checkout = async (req, res) => {
     // console.log(req.body);
-    try {
-        const state = await checkout(req.session.username, req.body.total_price);
-        if (state) {
-            console.log('Payment completed successfully');
-            res.redirect('/mybook');
+    if (req.body.total_price == 0){
+        console.log("Cart is empty. Cannot make payment");
+        return "Cart is empty. Cannot make payment";
+    }
+    else {    
+        try {
+            const state = await checkout(req.session.username, req.body.total_price);
+            if (state) {
+                console.log('Payment completed successfully');
+                res.redirect('/mybook');
+            }
+            else {
+                console.log('User doesn\'t have enough money. Please deposit into your balance !!')
+                res.redirect('/cart');
+            }
+        } catch (error) {
+            console.error('Error checkout', error);
         }
-        else {
-            console.log('User doesn\'t have enough money. Please deposit into your balance !!')
-            res.redirect('/cart');
-        }
-    } catch (error) {
-        console.error('Error checkout', error);
     }
 }
 
