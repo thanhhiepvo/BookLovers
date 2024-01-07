@@ -18,7 +18,7 @@
     <ul class="navbar">
         <li><a href="homepage">Home</a></li>
         <li><a href="myBook">My books</a></li>
-        <li><a href="selling" class="active">Selling</a></li>
+        <li><a href="selling" class="home-active"> Selling</a></li>
         <li><a href="wallet">Wallet</a></li>
         <li><a href="about">About</a></li>
     </ul>
@@ -51,7 +51,7 @@
 
         var name = "<%=user.username%>";
         var mail = "<%=user.email%>";
-        var balance = "<%=user.balance.toLocaleString('de-DE')%>";
+        var balance = "<%= user.balance.toLocaleString('de-DE') %>";
         var nItems_in_cart = "<%=nItems_in_cart%>";
 
         document.getElementById("name").textContent = "UserName: " + name;
@@ -142,13 +142,10 @@
                 var h5Element = document.createElement("h5");
                 h5Element.textContent = authors[i];
 
-
-
                 // Create h4 element
                 var h4Element = document.createElement("h4");
                 h4Element.textContent = price[i] + " VND";
 
-                
                 // Append span and h5 elements to descriptionDiv
                 descriptionDiv.appendChild(spanElement);
                 descriptionDiv.appendChild(h5Element);
