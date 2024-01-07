@@ -79,13 +79,8 @@ FOR EACH ROW EXECUTE PROCEDURE del_banneduser_sell_trigger();
 
 -- Kích hoạt / áp dụng trigger
 -- Enable trigger
-
 alter table SHOPPING_CART enable trigger shopping_cart_trigger;
-
-
 alter table SELLINGBOOK enable trigger update_item_price_trigger;
-
-
 alter table USERACCOUNT enable trigger del_banneduser_sell_trigger;
 
 -----------------------------------------------------------------------------
