@@ -1302,7 +1302,7 @@ body {
     padding: 0.5em 0;
 }
 
-h1 {
+.container h1 {
     width: 100%;
     text-align: center;
     font-size: 3.5em;
@@ -1843,6 +1843,109 @@ h1 {
     color: white;
     cursor: pointer;
 }
+
+#buyNow
+{
+    display: none;
+}
+
+#buyNow.active
+{
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 670px;
+    font-size: 20px;
+    z-index: 1000;
+}
+
+#buyNow .infoBuyNow, 
+#buyNow .billBuyNow, 
+#buyNow .buyNowAction
+{
+    margin: 10px 0;
+}
+
+#buyNow .titleBuyNow
+{
+    text-align: center;
+    border-bottom: 2px solid #010108;
+}
+
+#buyNow h4
+{
+    font-weight: lighter;
+}
+
+#buyNow .billBuyNow .billTitle
+{
+    font-weight: bold;
+}
+
+#buyNow .billBuyNow .priceBuyNow,
+#buyNow .billBuyNow .discountBuyNow,
+#buyNow .billBuyNow .totalBuyNow
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 40px;
+}
+
+#buyNow .billBuyNow .discountBuyNow
+{
+    border-bottom: 1px solid #010108;
+
+}
+
+#buyNow .buyNowAction
+{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#buyNow .buyNowAction button
+{
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 200px;
+}
+
+#buyNow .buyNowAction #cancelBuyNow
+{
+    background-color: #eaeaea;
+    border-color: #ddd;
+}
+
+#buyNow .buyNowAction #cancelBuyNow:hover
+{
+    background-color: #d5d5d5;
+}
+
+#buyNow .buyNowAction #confirmBuyNow
+{
+    background-color: #00ae00;
+    color: whitesmoke;
+    border-color: #00ae00;
+}
+
+#buyNow .buyNowAction #confirmBuyNow:hover
+{
+    background-color: rgb(0, 156, 0);
+}
+
 
 /* --- Cart page ---  */
 .container {
