@@ -20,8 +20,6 @@ export async function getInvoiceInfo(ID_Invoice) {
     return rows[0];
 }
 
-console.log(await getUserInvoiceInfo('blanker321'));
-
 export async function getUserInvoiceInfo(IUsername) {
     const text = "SELECT * FROM INVOICE WHERE IUsername = $1";
     const value = [IUsername];

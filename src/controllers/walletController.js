@@ -1,5 +1,6 @@
 import { getUsername } from "../models/users.js"
 import { checkout } from "../models/admin.js"
+import { getUserInvoiceInfo } from "../models/invoice.js";
 
 const walletController = {};
 
@@ -37,6 +38,18 @@ walletController.checkout = async (req, res) => {
             console.error('Error checkout', error);
         }
     }
+}
+
+walletController.getUserInvoiceInfo = async (req, res) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const invoice = await getUserInvoiceInfo(req.session.username);
+            resolve(invoice);
+        } catch (error) {
+            console.error('Error', error);
+            reject(error);
+        }
+    });
 }
 
 export default walletController;

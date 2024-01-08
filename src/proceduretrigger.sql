@@ -101,6 +101,8 @@ $$;
 CREATE OR REPLACE PROCEDURE Payment ( IN v_username varchar(50), IN v_price float, OUT v_state boolean) LANGUAGE plpgsql AS $$
 DECLARE
     userbalance float;
+	tempid int;
+	temp_row record;
 BEGIN
     SELECT Balance INTO userbalance
     FROM USERACCOUNT
@@ -118,6 +120,22 @@ BEGIN
 			SELECT ShopUser, ShopBook
 			FROM SHOPPING_CART
 			WHERE ShopUser = v_username;
+			-- lưu lịch sử giao dịch mua bán
+			-- Vòng lặp từng dòng trong bảng tạm
+			FOR temp_row IN (
+				SELECT ShopSeller, Selling_Price, ShopBook
+				FROM SHOPPING_CART
+				WHERE ShopUser = v_username
+			) LOOP
+				-- INSERT vào bảng INVOICE và trả về ID_Invoice mới vừa INSERT
+				INSERT INTO INVOICE (IUsername, DateInvoice, Total, IType) 
+				VALUES (v_username, NOW(), -temp_row.Selling_Price, 'true')
+				RETURNING ID_Invoice INTO tempid;
+
+				-- IINSERT vào bảng TRANSAC
+				INSERT INTO TRANSAC (ID_Transac, ID_Sender, TBook)
+				VALUES (tempid, temp_row.ShopSeller, temp_row.ShopBook);
+			END LOOP;
 			-- xóa khỏi giỏ hàng
 			DELETE FROM SHOPPING_CART
 			WHERE ShopUser = v_username;

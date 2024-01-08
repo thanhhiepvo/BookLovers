@@ -74,17 +74,21 @@
     </Script>
 
 </header>
+
 <body>
     <section id="product" class="section_home">
-        
+
         <form action="search-query" method="post">
             <div class="searchArea">
                 <input type="text" id="searchBox" name="searchquery" placeholder="Search a book">
-                <button type="submit" id="searchBut"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
+                <button type="submit" id="searchBut"><i class='bx bx-search-alt-2 bx-rotate-90'></i></button>
             </div>
         </form>
-        
-        <h2>Search result</h2>  
+
+        <h2>Search result</h2>
+
+        <div class="noSearch"></div>
+
         <script>
             function decodeHtml(html) {
                 var txt = document.createElement("textarea");
@@ -188,8 +192,20 @@
                 productContainer.appendChild(productContDiv);
                 product.appendChild(productContainer);
             }
-            if (b != 0)
-                document.body.appendChild(product);
+            if (b == 0) {
+                var noSearch = document.getElementsByClassName("noSearch")[0];
+
+                var imgEmpty = document.createElement("img");
+                imgEmpty.src = "../Picture/search_not_found.png";
+                imgEmpty.alt = "search_not_found picture";
+
+                // var text = document.createElement("h3");
+                // text.className = "searchTitle";
+                // text.textContent = "No document found";
+
+                noSearch.appendChild(imgEmpty);
+                // noSearch.appendChild(text);
+            }
         </script>
     </section>
     <footer class="footer-distributed">
