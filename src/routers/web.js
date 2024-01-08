@@ -10,7 +10,7 @@ import multer from "multer";
 import path from 'path';
 import fs from 'fs';
 import appRoot from 'app-root-path';
-
+import toastr from 'toastr';
 
 
 const router = express.Router();
@@ -87,10 +87,12 @@ router.get('/homepage', async (req, res) => {
             const book = await bookController.getAllBookInfo(req, res);
             const user = await authenController.getProfileUser(req, res);
             const cart = await bookController.getShoppingCart(req, res);
+            req.flash('msg', { message: 'Welcome to Bookstore', status: 'success' });
             res.render('home', {
                 user: user,
                 books: book,
-                nItems_in_cart: cart.length
+                nItems_in_cart: cart.length,
+                message: req.flash('msg')
             });
         } catch (error) {
             console.error(error);
@@ -131,7 +133,8 @@ router.get('/selling', async (req, res) => {
             res.render('selling', {
                 user: user,
                 books: listSellBook,
-                nItems_in_cart: cart.length
+                nItems_in_cart: cart.length,
+                message: req.flash('msg')
             });
         } catch (error) {
             console.error(error);

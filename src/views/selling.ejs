@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="icon" href="/Picture/favicon.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <header>
     <a href="#" class="logo"><img src="/Picture/logo.png"></a>
@@ -76,6 +79,45 @@
 </header>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "5000",
+            "hideDuration": "5000",
+            "timeOut": "5000",
+            "extendedTimeOut": "5000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+        var len = "<%=message.length%>";
+        if (len != 0) {
+            var message = "<%= JSON.stringify(message) %>";
+            message = decodeHtml(message);
+            message = JSON.parse(message);
+            if (message[0].status == "success")
+                toastr.success(message[0].message, 'Success');
+            else if (message[0].status == "error") {
+                console.log(message[0].message);
+                toastr.error(message[0].message, 'Error');
+            }
+        }
+    </script>
     <section id="product" class="section_home">
         <h2>Your selling books here</h2>
         <script>
@@ -93,8 +135,7 @@
 
             //var b = "<%=Object.keys(books).length%>";
             var b = "<%=books.length%>"
-            if ( b != 0 )
-            {
+            if (b != 0) {
                 var books = "<%= JSON.stringify(books) %>";
                 books = decodeHtml(books);
                 books = JSON.parse(books);
@@ -177,12 +218,12 @@
                 proDiv.appendChild(descriptionDiv);
                 proDiv.appendChild(h4Element);
                 proDiv.appendChild(aElement);
-                proDiv.appendChild(delBook); 
-                
+                proDiv.appendChild(delBook);
+
 
                 // Create href
                 var href = document.createElement("a");
-                href.appendChild(proDiv);   
+                href.appendChild(proDiv);
                 productContDiv.appendChild(href);
 
                 // Append productContDiv to productContainer
@@ -223,7 +264,7 @@
             document.getElementById("deletebox").classList.toggle('active');
         });
     </script>
- 
+
     <footer class="footer-distributed">
 
         <div class="footer-left">

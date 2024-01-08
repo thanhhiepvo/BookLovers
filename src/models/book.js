@@ -93,7 +93,7 @@ export async function delBook(ID_Book) {
     return "Book deleted successfully";
 }
 
-export async function addSellBook(SUsername, SBook, SPrice) {
+export async function addSellBook(req,SUsername, SBook, SPrice) {
     const check = "SELECT * FROM SELLINGBOOK WHERE SUsername = $1 AND SBook = $2";
     const checkvalue = [SUsername, SBook];
     const { rows } = await pool.query(check, checkvalue);
@@ -101,21 +101,24 @@ export async function addSellBook(SUsername, SBook, SPrice) {
         const value = [SUsername, SBook, SPrice];
         const text = "INSERT INTO SELLINGBOOK (SUsername, SBook, SPrice) values ($1, $2, $3)";
         await pool.query(text, value);
-        console.log('Added user sell book successfully');
+        //console.log('Added user sell book successfully');
+        req.flash('msg', {message :'Added user sell book successfully', status: 'success'});
         return "Added user sell book successfully";
     }
     else {
         console.log('User sell book already added');
+        req.flash('msg', {message :'User sell book already added', status: 'error'});
         return "User sell book already added";
     }
 
 }
 
-export async function delSellBook(SUsername, SBook) {
+export async function delSellBook(req,SUsername, SBook) {
     const text = "DELETE FROM SELLINGBOOK WHERE SUsername = $1 AND SBook = $2";
     const value = [SUsername, SBook];
     await pool.query(text, value);
-    console.log('User sell book deleted successfully');
+    //console.log('User sell book deleted successfully');
+    req.flash('msg', {message :'User sell book deleted successfully', status: 'success'});
     return "User sell book deleted successfully";
 }
 

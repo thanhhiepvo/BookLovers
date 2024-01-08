@@ -131,7 +131,7 @@ bookController.addUserSelling = async (req, res) => {
                 bookid = await addBook(nameBook, author, description, publishedYear);
                 check = true;
             }
-            await addSellBook(req.session.username, bookid, price);
+            await addSellBook(req,req.session.username, bookid, price);
             resolve({ bookid, check });
         } catch (error) {
             console.error('Error', error);
@@ -143,7 +143,7 @@ bookController.addUserSelling = async (req, res) => {
 bookController.delSellBook = async (req, res) => {
     // console.log(req.body);
     let { SBook } = req.body;
-    await delSellBook(req.session.username, SBook);
+    await delSellBook(req,req.session.username, SBook);
     res.redirect('/selling');
 }
 
