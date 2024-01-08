@@ -169,7 +169,7 @@
                     continue;
                 }
                 nameSellers.push(selluser[i].susername);
-                price.push(selluser[i].sprice.toLocaleString('de-DE'));
+                price.push(selluser[i].sprice);
             }
 
             var bookSellers = document.createElement("div");
@@ -186,7 +186,7 @@
                 h3.textContent = "Seller: " + nameSellers[i];
 
                 var h2 = document.createElement("h2");
-                h2.textContent = price[i] + " VND";
+                h2.textContent = price[i].toLocaleString('de-DE') + " VND";
 
                 var buttonBook = document.createElement("div");
                 buttonBook.className = "buttonBook";
@@ -194,17 +194,17 @@
                 var link1 = document.createElement("a");
                 link1.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
                 var button1 = document.createElement("button");
-                button1.type = "submit";
+                button1.type = "button";
                 button1.className = "button1";
                 button1.textContent = "Add to cart";
 
                 link1.appendChild(button1);
 
                 var link2 = document.createElement("a");
-                link2.href = "/cart" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
+                // link2.href = "/cart" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
 
                 var button2 = document.createElement("button");
-                button2.type = "submit";
+                button2.type = "button";
                 button2.className = "button2";
                 button2.textContent = "Buy now";
 
@@ -280,6 +280,45 @@
         cancelReport.addEventListener('click', (event) => {
             event.preventDefault();
             document.getElementById("report").classList.toggle('active');
+        })
+    </script>
+
+    <div class="buynow" id="buynow">
+        <form action="/buy-now" method="post">
+            <div class="buynowForm">
+                <h3>Are you sure that you want to pay and buy this book?</h3>
+                <h2 id="bbookName"></h2>
+                <h2 id="bseller"></h2>
+                <h2 id="bprice"></h2>
+                <input type="hidden" name="bSeller" value="">
+                <input type="hidden" name="bBookID" value="<%= books.id_book %>">
+                <input type="hidden" name="bPrice" value="">
+                <div class="buyAction">
+                    <button type="button" id="cancelbuy">Cancel</button>
+                    <button type="submit" id="buyConfirm">Buy</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById("bbookName").textContent = "Book: " + "<%=books.namebook%>";
+        var reportClick = document.querySelectorAll('.button2');
+
+        reportClick.forEach((element, index) => {
+            element.addEventListener('click', () => {
+                document.getElementById("buynow").classList.toggle('active');
+                document.getElementById("bseller").textContent = "Seller: " + nameSellers[index];
+                document.querySelector('input[name="bSeller"]').value = nameSellers[index];
+                document.getElementById("bprice").textContent = "Price: " + price[index].toLocaleString('de-DE') + " VND";
+                document.querySelector('input[name="bPrice"]').value = price[index];
+            });
+        });
+
+        var cancelReport = document.querySelector('#cancelbuy');
+        cancelReport.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.getElementById("buynow").classList.toggle('active');
         })
     </script>
 
