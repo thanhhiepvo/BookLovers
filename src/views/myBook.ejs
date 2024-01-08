@@ -154,12 +154,13 @@
                 var aElement = document.createElement("a");
                 aElement.href = "pdf/" + idBook[i] + ".pdf";
                 aElement.target = "_blank";
+                aElement.className = "readBook";
                 // aElement.href = "book";
 
                 // Create i element for cart icon
                 var iElement = document.createElement("i");
                 iElement.textContent = "Read";
-                iElement.className = "bx bx-book-reader";
+                iElement.className = "bx bx-book-open";
 
                 // Append i element to aElement
                 aElement.appendChild(iElement);

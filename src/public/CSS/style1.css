@@ -373,19 +373,32 @@ body {
 
 /* My book */
 
-.bx-book-reader {
+.bx-book-open {
     font-size: 20px;
     background-color: transparent;
 }
 
-.bx-book-reader::before {
+.bx-book-open::before {
     position: relative;
     font-size: 25px;
     top: 3px;
     background-color: transparent;
 }
 
+#product .readBook
+{
+    display: flex;
+    height: 30px;
+    width: 100%;
+    background-color: #1f296e;
+    color: white;
+    justify-content: center;
+}
 
+#product .readBook:hover
+{
+    background-color: #141A46;
+}
 
 /* shopping cart */
 .shopping_cart {
@@ -587,7 +600,7 @@ body {
     font-size: 20px;
 }
 
-.withdraw {
+/* .withdraw {
     background: url('../Picture/depo.jpg');
     position: absolute;
     justify-content: center;
@@ -597,7 +610,6 @@ body {
     padding: 20px 20px;
     left: 50%;
     transform: translateX(-50%);
-    /* transform: translateY(150px); */
     border: 1px solid #141A46;
     border-radius: 20px;
     height: 330px;
@@ -606,8 +618,6 @@ body {
 
 .withdraw .withd {
     text-align: left;
-    /* margin-right: 20px; */
-    /* padding: 10px; */
     margin-left: 10px;
     width: 100%;
     color: #080a52;
@@ -650,7 +660,6 @@ body {
 
 .withdraw .infoWi input::placeholder {
     font-size: 30px;
-    /* text-align: center; */
     color: #080a52;
 
 }
@@ -672,7 +681,7 @@ body {
 .withdraw .butWi:hover {
     box-shadow: 0 0 7px #080a52;
     cursor: pointer;
-}
+} */
 
 .history {
     background: url('../Picture/history.jpg');
@@ -680,14 +689,14 @@ body {
     justify-content: center;
     display: flex;
     top: 180px;
-    margin-top: 1100px;
+    margin-top: 750px;
     padding: 20px 20px;
     left: 50%;
     transform: translateX(-50%);
     /* transform: translateY(150px); */
     border: 1px solid #141A46;
     border-radius: 20px;
-    height: 330px;
+    height: 700px;
     width: 510px;
 }
 
@@ -701,6 +710,39 @@ body {
 .history h2 {
     font-size: 40px;
 }
+
+.history .historyInfo
+{
+    border: 1px solid #141A46;
+    border-radius: 10px;
+    height: 600px;
+    overflow: scroll;
+    justify-content: start;
+}
+
+.history .historyInfo .oneHisInfo
+{
+    margin: 10px;
+    border-bottom: 1px solid #141A46;
+}
+
+.history .historyInfo .oneHisInfo .his1st, 
+.history .historyInfo .oneHisInfo .his2nd
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+/* .history .historyInfo .oneHisInfo .his1st h4
+{
+    padding-right: 50px;
+}
+
+.history .historyInfo .oneHisInfo .his2nd h4
+{
+    padding-right: 50px;
+} */
 
 /* --- About page ---  */
 
