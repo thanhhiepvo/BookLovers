@@ -358,12 +358,12 @@ body {
 
 #product img {
     margin-top: 10px;
-    width: 180px;
-    height: 250px;
+    width: 200px;
+    height: 260px;
     border-radius: 10px;
     margin-bottom: 10px;
     align-items: center;
-    /* border: 1.5px solid rgb(200, 198, 198); */
+    border: 1.5px solid rgb(200, 198, 198);
 }
 
 #product a {
@@ -429,6 +429,21 @@ body {
     /* Gold color on hover, change as desired */
     transform: scale(1.2);
     /* Increase the icon size to 120% */
+}
+
+/* cart notice style */
+.header_cart-notice {
+    position: absolute;
+    top: -2.5px;
+    right: -8px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 0.5rem;
+    padding: 3px 6px;
+    color: #fff; /* Text color */
+    background-color: #ee7248; /* Background color */
+    border-radius: 50%; /* Make it a circle */
 }
 
 /* #product .pro .cart {

@@ -23,8 +23,11 @@
         <li><a href="about">About</a></li>
     </ul>
 
-    <div class="shopping_cart">
-        <a href="cart"><i class='bx bx-cart'></i></a>
+    <div class="shopping_cart" id="shoppingCart">
+        <a href="cart" class="cart_link">
+            <i class='bx bx-cart'></i>
+            <span class="header_cart-notice" id="cartItemCount"></span>
+        </a>
     </div>
 
     <div class="profile">
@@ -49,10 +52,20 @@
         var name = "<%=user.username%>";
         var mail = "<%=user.email%>";
         var balance = "<%= user.balance.toLocaleString('de-DE') %>";
+        var nItems_in_cart = "<%=nItems_in_cart%>";
 
         document.getElementById("name").textContent = "UserName: " + name;
         document.getElementById("mail").textContent = "Email: " + mail;
         document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
+
+        // Update cart item count
+        var cartItemCountElement = document.getElementById("cartItemCount");
+        cartItemCountElement.textContent = nItems_in_cart;
+
+        // Hide the notice if the total number of items is 0
+        if (nItems_in_cart == 0) {
+            cartItemCountElement.style.display = "none";
+        }
 
         var profileClick = document.querySelector('.profile');
         profileClick.addEventListener('click', () => {
@@ -74,9 +87,9 @@
         <h2>Find your favourite books here</h2>
         <p>All your favorite books are in one place</p>
 
-        <form action="" method="post">
+        <form action="search-query" method="post">
             <div class="searchArea">
-                <input type="text" id="searchBox" placeholder="Search a book">
+                <input type="text" id="searchBox" name="searchquery" placeholder="Search a book">
                 <button type="submit" id="searchBut"><i class='bx bx-search-alt-2 bx-rotate-90' ></i></button>
             </div>
         </form>
@@ -141,7 +154,6 @@
                 // Create h5 element
                 var h5Element = document.createElement("h5");
                 h5Element.textContent = authors[i];
-
 
 
                 // Create h4 element
