@@ -243,9 +243,11 @@ router.get('/wallet', async (req, res) => {
     if (req.session.username) {
         const user = await authenController.getProfileUser(req, res);
         const cart = await bookController.getShoppingCart(req, res);
+        const invoice = await walletController.getUserInvoiceInfo(req, res);
         res.render('wallet', {
             user: user,
-            nItems_in_cart: cart.length
+            nItems_in_cart: cart.length,
+            invoice: invoice
         }); // Render the view with user data
     } else {
         res.redirect('/login');

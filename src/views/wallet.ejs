@@ -53,7 +53,7 @@
         var mail = "<%= user.email %>";
         var balance = "<%= user.balance.toLocaleString('de-DE') %>";
         var nItems_in_cart = "<%=nItems_in_cart%>";
-
+        
         document.getElementById("name").textContent = "UserName: " + name;
         document.getElementById("mail").textContent = "Email: " + mail;
         document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
@@ -185,6 +185,9 @@
                 <h2>History</h2>
                 <div class="historyInfo">
                     <div class="oneHisInfo">
+                        <div class="his0">
+                            <h4 id="IDInvoice">ID: 324890243</h4>
+                        </div>
                         <div class="his1st">
                             <h4 id="typeInvoice">Type: Invoice</h4>
                             <h4 id="moneyInvoice">Total: 50.000 VND</h4>
@@ -199,6 +202,9 @@
                     </div>
 
                     <div class="oneHisInfo">
+                        <div class="his0">
+                            <h4 id="IDInvoice">ID: 324890243</h4>
+                        </div>
                         <div class="his1st">
                             <h4 id="typeInvoice">Type: Transac</h4>
                             <h4 id="moneyInvoice">Total: 150.000 VND</h4>
@@ -212,6 +218,112 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    function decodeHtml(html) {
+                        var txt = document.createElement("textarea");
+                        txt.innerHTML = html;
+                        return txt.value;
+                    }
+                    var n = "<%=invoice.length%>";
+                    console.log(n);
+                    if (n != 0){
+                        var invoice = "<%= JSON.stringify(invoice) %>";
+                        invoice = decodeHtml(invoice);
+                        invoice = JSON.parse(invoice);
+                    }
+                    
+                    var invoiceid = [];
+                    var date = [];
+                    var total = [];
+                    var sender = [];
+                    var bookid = [];
+                    for (var i = 0; i < n; i++) {
+                        invoiceid.push(invoice[i].id_invoice);
+                        date.push(invoice[i].dateinvoice);
+                        total.push(invoice[i].total);
+                        if (invoice[i].itype){
+                            sender.push(invoice[i].id_sender);
+                            bookid.push(invoice[i].tbook);
+                        }
+                        else {
+                            sender.push("");
+                            bookid.push("");
+                        }
+                    }
+
+                    var historyInfo = document.getElementsByClassName("historyInfo")[0];
+                    for (var i = 0; i < n; i++) {
+                        var oneHisInfo = document.createElement("div");
+                        oneHisInfo.className = "oneHisInfo";
+                        
+                        var his0 = document.createElement("div");
+                        his0.className = "his0";
+
+                        var IDInvoice = document.createElement("h4");
+                        IDInvoice.id = "IDInvoice";
+                        IDInvoice.textContent = "ID: " + invoiceid[i];
+
+                        his0.appendChild(IDInvoice);
+                        
+                        var his1st = document.createElement("div");
+                        his1st.className = "his1st"
+                        
+                        var typeInvoice = document.createElement("h4");
+                        typeInvoice.id = "typeInvoice";
+                        if (!invoice[i].itype){
+                            typeInvoice.textContent = "Type: Invoice";
+                        }
+                        else {
+                            typeInvoice.textContent = "Type: Trasaction";
+                        }
+
+                        var moneyInvoice = document.createElement("h4");
+                        moneyInvoice.id = "moneyInvoice";
+                        moneyInvoice.textContent = "Total: " + total[i];
+
+                        his1st.appendChild(typeInvoice);
+                        his1st.appendChild(moneyInvoice);
+
+                        var his2nd = document.createElement("div");
+                        his2nd.className = "his2nd";
+
+                        var dateInvoice = document.createElement("h4");
+                        dateInvoice.id = "dateInvoice";
+                        dateInvoice.textContent = "Date: " + date[i].substring(0, 10);
+
+                        var IDSender = document.createElement("h4");
+                        IDSender.id = "IDSender";
+                        IDSender.textContent = sender[i];
+
+                        his2nd.appendChild(dateInvoice);
+                        his2nd.appendChild(IDSender);
+
+                        var his3rd = document.createElement("div");
+                        his3rd.className = "his3rd";
+
+                        var bookInvoice = document.createElement("h4");
+                        bookInvoice.id = "bookInvoice";
+                        bookInvoice.textContent = bookid[i];
+                        
+                        if (invoice[i].itype){
+                            var booklink = document.createElement("a");
+                            booklink.id = "booklink";
+                            booklink.href = "/book/" + bookid[i];
+                            booklink.appendChild(bookInvoice);
+
+                            his3rd.appendChild(booklink);
+                        }
+                        else {
+                            his3rd.appendChild(bookInvoice);
+                        }
+                        oneHisInfo.appendChild(his0);
+                        oneHisInfo.appendChild(his1st);
+                        oneHisInfo.appendChild(his2nd);
+                        oneHisInfo.appendChild(his3rd);
+                        historyInfo.appendChild(oneHisInfo);
+                    }
+
+                </script>
             </div>
         </div>
     </section>

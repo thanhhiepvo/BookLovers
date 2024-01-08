@@ -36,15 +36,6 @@ export async function getUserSellingBook(username) {
     return rows.map(row => row.sbook);
 }
 
-//get user invoiceID
-export async function getUserInvoice(username) {
-    const { rows } = await pool.query('SELECT ID_Invoice FROM invoice WHERE IUsername = $1', [username]);
-    // console.log(rows);
-    if (rows.length == 0)
-        return null;
-    return rows.map(row => row.id_invoice);
-}
-
 export async function getUserBirth(username) {
     const { rows } = await pool.query("SELECT Birth + interval '7 hours' as Birth FROM useraccount WHERE Username = $1", [username]);
     // console.log(rows);
