@@ -98,13 +98,14 @@ bookController.getUserSellingBook = async (req, res) => {
 bookController.addToCart = async (req, res) => {
     // console.log(req.query);
     let data = req.query;
-    await addToCart(data.ShopUser, data.ShopSeller, data.ShopBook);
+    await addToCart(req,data.ShopUser, data.ShopSeller, data.ShopBook);
 }
 
 bookController.removeFromCart = async (req, res) => {
     // console.log(req.body);
     let { ShopUser, ShopSeller, ShopBook } = req.body;
-    await removeFromCart(ShopUser, ShopSeller, ShopBook);
+    await removeFromCart(req,ShopUser, ShopSeller, ShopBook);
+    req.session.message = req.flash('msg');
     res.redirect('/cart');
 }
 

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="icon" href="/Picture/favicon.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <header>
     <a href="#" class="logo"><img src="/Picture/logo.png"></a>
@@ -24,7 +27,7 @@
     </ul>
 
     <div class="shopping_cart" id="shoppingCart">
-        <a href="cart" class="cart_link">
+        <a href="/cart" class="cart_link">
             <i class='bx bx-cart'></i>
             <span class="header_cart-notice" id="cartItemCount"></span>
         </a>
@@ -76,6 +79,47 @@
 </header>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "5000",
+            "hideDuration": "5000",
+            "timeOut": "5000",
+            "extendedTimeOut": "5000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+        var len = "<%=message.length%>";
+        
+        if (len != 0) {
+            var message = "<%= JSON.stringify(message) %>";
+            message = decodeHtml(message);
+            message = JSON.parse(message);
+            if (message[0].status == "success")
+                toastr.success(message[0].message, 'Success');
+            else if (message[0].status == "error") {
+                toastr.error(message[0].message, 'Error');
+            }
+            else if (message[0].status == "warning")
+                toastr.warning(message[0].message, 'Warning');
+        }
+    </script>
     <div class="bookPage" id="bookPage">
         <img id="imgBook">
         <div class="bookInfo">
@@ -149,7 +193,6 @@
 
                 var link1 = document.createElement("a");
                 link1.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
-
                 var button1 = document.createElement("button");
                 button1.type = "submit";
                 button1.className = "button1";

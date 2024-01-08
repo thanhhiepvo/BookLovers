@@ -97,7 +97,7 @@ export const updateNewPassword = async (useremail, new_password) => {
     }
 }
 
-export async function addToCart(ShopUser, ShopSeller, ShopBook) {
+export async function addToCart(req,ShopUser, ShopSeller, ShopBook) {
     const check_owned = "SELECT * FROM OWNEDBOOK WHERE OUsername = $1 AND OBook = $2";
     const value_owned = [ShopUser, ShopBook];
     const { rows:owned } = await pool.query(check_owned, value_owned);
@@ -109,25 +109,25 @@ export async function addToCart(ShopUser, ShopSeller, ShopBook) {
             const text = "INSERT INTO SHOPPING_CART (ShopUser, ShopSeller, ShopBook) values ($1, $2, $3)";
             await pool.query(text, value);
             console.log('Added book to cart successfully');
-            return "Added book to cart successfully";
+            req.flash('msg', {message :'Added book to cart successfully', status: 'success'});
         }
         else {
             console.log('Already added to cart');
-            return "Already added to cart";
+            req.flash('msg', {message :'Already added to cart', status: 'error'});
         }
     }
     else {
         console.log('User already owned this book. Not adding to cart');
-        return "User already owned this book. Not adding to cart";
+        req.flash('msg', {message :'User already owned this book. Not adding to cart', status: 'error'});
     }
 }
 
-export async function removeFromCart(ShopUser, ShopSeller, ShopBook) {
+export async function removeFromCart(req,ShopUser, ShopSeller, ShopBook) {
     const text = "DELETE FROM SHOPPING_CART WHERE ShopUser = $1 AND ShopSeller = $2 AND ShopBook = $3";
     const value = [ShopUser, ShopSeller, ShopBook];
     await pool.query(text, value);
     console.log('Book removed from cart successfully');
-    return "Book removed from cart successfully";
+    req.flash('msg', {message :'Book removed from cart successfully', status: 'success'});
 }
 
 export async function getTotalPrice(Username) {

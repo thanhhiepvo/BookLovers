@@ -87,12 +87,10 @@ router.get('/homepage', async (req, res) => {
             const book = await bookController.getAllBookInfo(req, res);
             const user = await authenController.getProfileUser(req, res);
             const cart = await bookController.getShoppingCart(req, res);
-            req.flash('msg', { message: 'Welcome to Bookstore', status: 'success' });
             res.render('home', {
                 user: user,
                 books: book,
                 nItems_in_cart: cart.length,
-                message: req.flash('msg')
             });
         } catch (error) {
             console.error(error);
@@ -280,17 +278,21 @@ router.get('/book/:idbook', async (req, res) => {
             const selluser = await bookController.getUserSellingBook(req, res);
             const cart = await bookController.getShoppingCart(req, res);
             //books = book;
+            const message = req.session.message || [];
+            req.session.message = null;
             res.render('book', {
                 user: user,
                 books: book,
                 selluser: selluser,
-                nItems_in_cart: cart.length
+                nItems_in_cart: cart.length,
+                message: message
             });
         } catch (error) {
             console.error(error);
         }
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
+        req.session.message = req.flash('msg');
         res.redirect('/book/' + req.query.ShopBook);
     } else {
         res.redirect('/login');
@@ -307,10 +309,13 @@ router.get('/cart', async (req, res) => {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
         const total_price = await bookController.getTotalPrice(req, res);
+        const message = req.session.message || [];
+        req.session.message = null;
         res.render('shoppingCart', {
             user: user,
             bookCart: bookCart,
-            total_price: total_price
+            total_price: total_price,
+            message: message
         }); // Render the view with user data
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
