@@ -291,7 +291,7 @@ router.get('/book/:idbook', async (req, res) => {
         }
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
-        res.redirect('/homepage');
+        res.redirect('/book/' + req.query.ShopBook);
     } else {
         res.redirect('/login');
     }
