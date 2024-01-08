@@ -709,9 +709,10 @@ body {
     left: 50%;
     transform: translateX(-50%);
     /* transform: translateY(150px); */
+    background-size: 100% auto;
     border: 1px solid #141A46;
     border-radius: 20px;
-    height: 500px;
+    height: 480px;
     width: 510px;
 }
 
