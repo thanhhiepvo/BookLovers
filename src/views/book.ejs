@@ -169,7 +169,7 @@
                     continue;
                 }
                 nameSellers.push(selluser[i].susername);
-                price.push(selluser[i].sprice.toLocaleString('de-DE'));
+                price.push(selluser[i].sprice);
             }
 
             var bookSellers = document.createElement("div");
@@ -186,7 +186,7 @@
                 h3.textContent = "Seller: " + nameSellers[i];
 
                 var h2 = document.createElement("h2");
-                h2.textContent = price[i] + " VND";
+                h2.textContent = price[i].toLocaleString('de-DE') + " VND";
 
                 var buttonBook = document.createElement("div");
                 buttonBook.className = "buttonBook";
@@ -194,7 +194,7 @@
                 var link1 = document.createElement("a");
                 link1.href = "<%=books.id_book%>" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
                 var button1 = document.createElement("button");
-                button1.type = "submit";
+                button1.type = "button";
                 button1.className = "button1";
                 button1.textContent = "Add to cart";
 
@@ -205,7 +205,7 @@
                 link2.className = "buyNowBut";
 
                 var button2 = document.createElement("button");
-                button2.type = "submit";
+                button2.type = "button";
                 button2.className = "button2";
                 button2.textContent = "Buy now";
 
@@ -285,7 +285,7 @@
     </script>
 
     <div id="buyNow">
-        <form action="" method="post">
+        <form action="/buy-now" method="post">
             <h2 class="titleBuyNow">Buy now confirmation form</h2>
             <div class="infoBuyNow">
                 <h3 id="nameBuyNow"></h3>
@@ -310,8 +310,11 @@
             <h4>Please note that refunds are not available after purchase confirmation. </h4>
             <div class="buyNowAction">
                 <button type="button" id="cancelBuyNow">Cancel</button>
-                <button type="button" id="confirmBuyNow">Confirm</button>
+                <button type="submit" id="confirmBuyNow">Confirm</button>
             </div>
+            <input type="hidden" name="bSeller" value="">
+            <input type="hidden" name="bBookID" value="<%= books.id_book %>">
+            <input type="hidden" name="bPrice" value="">
         </form>
     </div>
 
@@ -322,8 +325,10 @@
         buyNowClick.forEach((element, index) => {
             element.addEventListener('click', () => {
                 document.getElementById("sellerBuyNow").textContent = "From seller: " + nameSellers[index];
-                document.getElementById("priceBuyNow").textContent = price[index] + "vnd";
-                document.getElementById("totalBuyNow").textContent = price[index] + "vnd";
+                document.getElementById("priceBuyNow").textContent = price[index] + " vnd";
+                document.getElementById("totalBuyNow").textContent = price[index] + " vnd";
+                document.querySelector('input[name="bSeller"]').value = nameSellers[index];
+                document.querySelector('input[name="bPrice"]').value = price[index];
                 document.getElementById("buyNow").classList.toggle('active');
             })
         })

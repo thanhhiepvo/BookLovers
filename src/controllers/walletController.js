@@ -1,4 +1,4 @@
-import { getUsername } from "../models/users.js"
+import { getUsername, buyOneBook } from "../models/users.js"
 import { checkout } from "../models/admin.js"
 import { getUserInvoiceInfo } from "../models/invoice.js";
 
@@ -37,6 +37,30 @@ walletController.checkout = async (req, res) => {
         } catch (error) {
             console.error('Error checkout', error);
         }
+    }
+}
+
+walletController.buyOneBook = async (req, res) => {
+    let { bSeller, bBookID, bPrice } = req.body;
+    try {
+        const state = await buyOneBook(req.session.username, bSeller, bBookID, -bPrice);
+        if (state == -1){
+            console.log('User already owned this book. Can not buy')
+            req.flash('msg', { message: 'User already owned this book. Can not buy', status: 'error' });
+            res.redirect('/book/' + bBookID);
+        }
+        else if (state == 1){
+            console.log('User doesn\'t have enough money. Please deposit into your balance !!')
+            req.flash('msg', { message: 'User doesn\'t have enough money. Please deposit into your balance !!', status: 'error' });
+            res.redirect('/book/' + bBookID);
+        }
+        else if (state == 0){
+            console.log('Payment completed successfully');
+            req.flash('msg', { message: 'Payment completed successfully', status: 'success' });
+            res.redirect('/mybook');
+        }
+    } catch (error) {
+        console.error('Error buyOneBook', error);
     }
 }
 

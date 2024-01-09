@@ -10,8 +10,8 @@
 }
 
 *::-webkit-scrollbar {
-    display: none;
-    /* width: 5px; */
+    display:flex;
+    width: 5px;
 }
 
 *::-webkit-scrollbar-thumb {

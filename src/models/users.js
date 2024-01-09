@@ -129,3 +129,12 @@ export async function getTotalPrice(Username) {
     });
     return rows[0];
 }
+
+export async function buyOneBook(OUsername, Seller, BookID, Price) {
+    const result = await pool.query({
+        text: "CALL BuyOneBook ($1, $2, $3, $4, $5)",
+        values: [OUsername, Seller, BookID, Price, null],
+        type: "procedure"
+    });
+    return result.rows[0].v_state;
+}

@@ -96,7 +96,7 @@ END;
 $$;
 
 -----------------------------------------------------------------------------
--- procedure thanh toán
+-- procedure thanh toán trên giỏ hàng
 
 CREATE OR REPLACE PROCEDURE Payment ( IN v_username varchar(50), IN v_price float, OUT v_state boolean) LANGUAGE plpgsql AS $$
 DECLARE
@@ -112,7 +112,7 @@ BEGIN
         v_state := 'false';
     ELSE
         BEGIN
-			-- cộng trừ tiền
+			-- cộng trừ tiền người mua
             UPDATE USERACCOUNT SET Balance = Balance + v_price
             WHERE Username = v_username;
 			-- thêm vào sách đã mua
@@ -127,12 +127,16 @@ BEGIN
 				FROM SHOPPING_CART
 				WHERE ShopUser = v_username
 			) LOOP
+				-- cộng trừ tiền người bán
+				UPDATE USERACCOUNT SET Balance = Balance + temp_row.Selling_Price
+            	WHERE Username = temp_row.ShopSeller;
+				
 				-- INSERT vào bảng INVOICE và trả về ID_Invoice mới vừa INSERT
 				INSERT INTO INVOICE (IUsername, DateInvoice, Total, IType) 
 				VALUES (v_username, NOW(), -temp_row.Selling_Price, 'true')
 				RETURNING ID_Invoice INTO tempid;
 
-				-- IINSERT vào bảng TRANSAC
+				-- INSERT vào bảng TRANSAC
 				INSERT INTO TRANSAC (ID_Transac, ID_Sender, TBook)
 				VALUES (tempid, temp_row.ShopSeller, temp_row.ShopBook);
 			END LOOP;
@@ -144,5 +148,46 @@ BEGIN
 			v_state := 'false';
         END;
     END IF;
+END;
+$$;
+
+-----------------------------------------------------------------------------
+-- procedure thanh toán 1 sản phẩm
+
+CREATE OR REPLACE PROCEDURE BuyOneBook ( IN v_username varchar(50), IN v_seller varchar(50), IN v_bookid int, IN v_price float, OUT V_STATE int) LANGUAGE plpgsql AS $$
+DECLARE
+    userbalance float;
+	tempid int;
+BEGIN
+	IF EXISTS(SELECT 1 FROM OWNEDBOOK WHERE OUsername = v_username AND OBook = v_bookid) THEN
+		v_state := -1;
+	ELSE
+		SELECT Balance INTO userbalance
+		FROM USERACCOUNT
+		WHERE Username = v_username;
+
+		IF userbalance < -v_price THEN
+			v_state := 1;
+		ELSE
+			BEGIN
+				-- cộng trừ tiền mua người mua và người bán
+				UPDATE USERACCOUNT SET Balance = Balance + v_price
+				WHERE Username = v_username;
+				UPDATE USERACCOUNT SET Balance = Balance - v_price
+				WHERE Username = v_seller;
+				-- thêm vào sách đã mua
+				INSERT INTO OWNEDBOOK (OUsername, OBook) VALUES (v_username, v_bookid);
+
+				-- lưu lịch sử giao dịch người mua
+				INSERT INTO INVOICE (IUsername, DateInvoice, Total, IType) VALUES (v_username, NOW(), v_price, 'true')
+				RETURNING ID_Invoice INTO tempid;
+				INSERT INTO TRANSAC (ID_Transac, ID_Sender, TBook) VALUES (tempid, v_seller, v_bookid);
+
+				v_state := 0;
+			EXCEPTION WHEN OTHERS THEN
+				v_state := 1;
+			END;
+		END IF;
+	END IF;
 END;
 $$;
