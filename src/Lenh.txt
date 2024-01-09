@@ -27,5 +27,3 @@ npm i multer // dùng để xử lý file tải lên
 npm i app-root-path // đường link thẳng đến thư mục
 
 npm i @payos/node // thanh toán QR
-
-npm i cors
