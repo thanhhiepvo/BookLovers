@@ -67,7 +67,7 @@ walletController.buyOneBook = async (req, res) => {
 walletController.getUserInvoiceInfo = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const invoice = await getUserInvoiceInfo(req.session.username);
+            const invoice = await getUserInvoiceInfo(req.session.username) ?? [];
             resolve(invoice);
         } catch (error) {
             console.error('Error', error);

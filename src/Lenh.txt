@@ -26,4 +26,4 @@ npm i multer // dùng để xử lý file tải lên
 
 npm i app-root-path // đường link thẳng đến thư mục
 
-npm install --save toastr // thông báo đẩy
+npm i @payos // thanh toán QR

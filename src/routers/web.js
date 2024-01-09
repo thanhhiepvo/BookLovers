@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('msg') })
-})
+});
 
 router.post('/login-user', authenController.loginUser);
 
@@ -356,5 +356,13 @@ router.get('/pdf/:filename', function (req, res) {
 });
 
 router.get('/logout', authenController.logout);
+
+router.get('/success', (req, res) => {
+    res.render('success.ejs');
+});
+
+router.get('/cancel', (req, res) => {
+    res.render('cancel.ejs');
+});
 
 export default router;
