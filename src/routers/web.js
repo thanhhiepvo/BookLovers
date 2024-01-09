@@ -108,11 +108,18 @@ router.get('/myBook', async (req, res) => {
             const user = await authenController.getProfileUser(req, res);
             const listOwnedBook = await bookController.getBookOwned(req, res);
             const cart = await bookController.getShoppingCart(req, res);
+            const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+            if (flashMessages.length > 0) {
+                req.session.message = flashMessages;
+                //console.log(req.session.message);
+            }
+            const message = req.session.message || [];
+            req.session.message = null;
             res.render('myBook', {
                 user: user,
                 books: listOwnedBook,
                 nItems_in_cart: cart.length,
-                message: req.flash('msg')
+                message: message
             });
         } catch (error) {
             console.error(error);
@@ -279,16 +286,23 @@ router.get('/book/:idbook', async (req, res) => {
             const user = await authenController.getProfileUser(req, res);
             const selluser = await bookController.getUserSellingBook(req, res);
             const cart = await bookController.getShoppingCart(req, res);
-            // const message = req.session.message || [];
-            // req.session.message = null;
+            //console.log(req.flash('msg'));
+            const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+            if (flashMessages.length > 0) {
+                req.session.message = flashMessages;
+                //console.log(req.session.message);
+            }
+            const message = req.session.message || [];
+            req.session.message = null;
             res.render('book', {
                 user: user,
                 books: book,
                 selluser: selluser,
                 nItems_in_cart: cart.length,
-                message: req.flash('msg')
+                message: message
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
     } else if (req.session.username && !isEmpty) {
@@ -312,13 +326,17 @@ router.get('/cart', async (req, res) => {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
         const total_price = await bookController.getTotalPrice(req, res);
-        // const message = req.session.message || [];
-        // req.session.message = null;
+        const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+        if (flashMessages.length > 0) {
+            req.session.message = flashMessages;
+        }
+        const message = req.session.message || [];
+        req.session.message = null;
         res.render('shoppingCart', {
             user: user,
             bookCart: bookCart,
             total_price: total_price,
-            message: req.flash('msg')
+            message: message
         }); // Render the view with user data
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
