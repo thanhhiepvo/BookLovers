@@ -393,7 +393,7 @@ router.post('/create-payment-link', async (req, res) => {
         orderCode: Number(String(Date.now()).slice(-6)),
         buyerName: req.session.body,
         amount: +cleanStr, //chuyen sang dang so 
-        description: 'NapTien',
+        description: 'Deposit into BookLovers',
         returnUrl: `${YOUR_DOMAIN}/success`,
         cancelUrl: `${YOUR_DOMAIN}/cancel`
     };
