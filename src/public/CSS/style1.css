@@ -2406,3 +2406,29 @@ body {
     height: 400px;
     border: none;
 }
+
+
+.main-box {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-title {
+    color: #6655ff;
+    font-size: larger;
+}
+
+#return-page-btn {
+    margin-top: 10px;
+    border: 1px solid #6655ff;
+    border-radius: 5px;
+    background-color: #6655ff;
+    padding: 10px 8px;
+    color: white;
+    text-decoration: none;
+    font-size: small;
+}
