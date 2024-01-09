@@ -90,8 +90,11 @@ footer {
   margin: 0;
 }
 
-
-.footer-distributed h3 span {
+#intro .footer-left .workbook {
+  font: 90px 'Cookie', cursive;
+  color: #1c6ae0;
+}
+.footer-left h3 span {
   color: #e0ac1c;
 }
 
