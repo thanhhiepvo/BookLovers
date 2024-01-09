@@ -149,16 +149,16 @@ body {
 
 /* --- Home page ---  */
 #intro {
-    background-image: url("../Picture/bg6.jpg");
+    background-image: url("../Picture/background_SE.jfif");
     position: relative;
-    height: 80vh;
+    height: 60vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;
     padding: 0px 450px;
     display: flex;
     flex-direction: column;
-
+    box-shadow:10px 10px 10px darkgray; 
 }
 
 /* #intro .introInfo {
