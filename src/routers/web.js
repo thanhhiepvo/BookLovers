@@ -11,6 +11,7 @@ import path from 'path';
 import fs from 'fs';
 import appRoot from 'app-root-path';
 import payOS from '../models/payos.js';
+import 'dotenv/config';
 
 
 const router = express.Router();
@@ -386,12 +387,14 @@ router.post('/create-payment-link', async (req, res) => {
             cleanStr += char;
         }
     }
+    const YOUR_DOMAIN = `http://localhost:${process.env.PORT ?? 8888}`;
     const body = {
         orderCode: Number(String(Date.now()).slice(-6)),
+        buyerName: req.session.body,
         amount: +cleanStr, //chuyen sang dang so 
         description: 'NapTien',
-        returnUrl: "/success",
-        cancelUrl: "/cancel"
+        returnUrl: `${YOUR_DOMAIN}/success`,
+        cancelUrl: `${YOUR_DOMAIN}/cancel`
     };
 
     try {
@@ -403,12 +406,23 @@ router.post('/create-payment-link', async (req, res) => {
     }
 });
 
-router.get('/success', (req, res) => {
-    res.render('success.ejs');
+router.get('/success', async (req, res) => {
+    if (req.session.username){
+        const paymentinfo = await payOS.getPaymentLinkInfomation(req.query.id);
+        if (paymentinfo.status == "PAID"){
+            req.body.amount = paymentinfo.amountPaid;
+            await walletController.addMoneyToAccount(req, res);
+        }
+        res.render('success.ejs');
+    }
+    else res.redirect('/login');
 });
 
 router.get('/cancel', (req, res) => {
-    res.render('cancel.ejs');
+    if (req.session.username) {
+        res.render('cancel.ejs');
+    }
+    else res.redirect('/login');
 });
 
 export default router;

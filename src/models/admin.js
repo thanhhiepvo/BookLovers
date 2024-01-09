@@ -27,4 +27,14 @@ export async function getSearchBook(searchquery) {
     return rows.map(row => row.id_book);
 }
 
-// console.log(await getSearchBook("python"));
+export async function addMoneyToAccount(Username, amount) {
+    await pool.query({
+        text: "UPDATE USERACCOUNT SET Balance = Balance + $2 WHERE Username = $1",
+        values: [Username, amount]
+    });
+    await pool.query({
+        text: "INSERT INTO INVOICE (IUsername, DateInvoice, Total, IType) VALUES ($1, NOW(), $2, 'false')",
+        values: [Username, amount]
+    }); 
+    console.log("Deposit money into account successfully!");
+}

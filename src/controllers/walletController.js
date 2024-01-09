@@ -1,5 +1,5 @@
 import { getUsername, buyOneBook } from "../models/users.js"
-import { checkout } from "../models/admin.js"
+import { checkout, addMoneyToAccount } from "../models/admin.js"
 import { getUserInvoiceInfo } from "../models/invoice.js";
 
 const walletController = {};
@@ -74,6 +74,10 @@ walletController.getUserInvoiceInfo = async (req, res) => {
             reject(error);
         }
     });
+}
+
+walletController.addMoneyToAccount = async (req, res) => {
+    await addMoneyToAccount(req.session.username, req.body.amount);
 }
 
 export default walletController;
