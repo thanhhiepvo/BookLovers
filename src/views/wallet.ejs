@@ -53,7 +53,7 @@
         var mail = "<%= user.email %>";
         var balance = "<%= user.balance.toLocaleString('de-DE') %>";
         var nItems_in_cart = "<%=nItems_in_cart%>";
-        
+
         document.getElementById("name").textContent = "UserName: " + name;
         document.getElementById("mail").textContent = "Email: " + mail;
         document.getElementById("balance").textContent = "Wallet: " + balance + " VND";
@@ -114,13 +114,15 @@
                 <h2>Deposit</h2>
             </div>
             <div class="infoDe">
-                <h4 class="info">Deposit amount (VNĐ)</h4>
-                <input type="text" id="amountInput" inputmode="decimal" step="1000" required>   
-                <h3 class="info">To account:</h3>
-                <h4 id="userDe"></h4>
-                <h3 class="info">Accept:</h3>
-                <h4 id="acceptDe">E-wallet and mobile banking</h4>
-                <button type="submit" class="butDe">Confirm</button>
+                <form action="/create-payment-link" method="post">
+                    <h4 class="info">Deposit amount (VNĐ)</h4>
+                    <input type="text" id="amountInput" name="amount" inputmode="decimal" step="1000" required>
+                    <h3 class="info">To account:</h3>
+                    <h4 id="userDe"></h4>
+                    <h3 class="info">Accept:</h3>
+                    <h4 id="acceptDe">E-wallet and mobile banking</h4>
+                    <button type="submit" class="butDe">Confirm</button>
+                </form>
             </div>
             <script>
                 document.getElementById("userDe").textContent = "<%= user.username %>";
@@ -167,7 +169,6 @@
                         input.value = withoutSymbol;
                     }
                 });
-
             </script>
         </div>
 
@@ -244,12 +245,12 @@
                     }
                     var n = "<%=invoice.length%>";
                     console.log(n);
-                    if (n != 0){
+                    if (n != 0) {
                         var invoice = "<%= JSON.stringify(invoice) %>";
                         invoice = decodeHtml(invoice);
                         invoice = JSON.parse(invoice);
                     }
-                    
+
                     var invoiceid = [];
                     var date = [];
                     var total = [];
@@ -259,7 +260,7 @@
                         invoiceid.push(invoice[i].id_invoice);
                         date.push(invoice[i].dateinvoice);
                         total.push(invoice[i].total);
-                        if (invoice[i].itype){
+                        if (invoice[i].itype) {
                             sender.push(invoice[i].id_sender);
                             bookid.push(invoice[i].tbook);
                         }
@@ -273,7 +274,7 @@
                     for (var i = 0; i < n; i++) {
                         var oneHisInfo = document.createElement("div");
                         oneHisInfo.className = "oneHisInfo";
-                        
+
                         var his0 = document.createElement("div");
                         his0.className = "his0";
 
@@ -282,13 +283,13 @@
                         IDInvoice.textContent = " Transaction ID: " + invoiceid[i];
 
                         his0.appendChild(IDInvoice);
-                        
+
                         var his1st = document.createElement("div");
                         his1st.className = "his1st"
-                        
+
                         var typeInvoice = document.createElement("h4");
                         typeInvoice.id = "typeInvoice";
-                        if (!invoice[i].itype){
+                        if (!invoice[i].itype) {
                             typeInvoice.textContent = "Type: Invoice";
                         }
                         else {
@@ -321,8 +322,8 @@
 
                         var bookInvoice = document.createElement("h4");
                         bookInvoice.id = "bookInvoice";
-                        
-                        if (invoice[i].itype){
+
+                        if (invoice[i].itype) {
                             bookInvoice.textContent = "- View the books you have traded here -";
                             var booklink = document.createElement("a");
                             booklink.id = "booklink";

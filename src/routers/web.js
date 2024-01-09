@@ -10,6 +10,7 @@ import multer from "multer";
 import path from 'path';
 import fs from 'fs';
 import appRoot from 'app-root-path';
+import payOS from '../models/payos.js';
 
 
 const router = express.Router();
@@ -356,6 +357,34 @@ router.get('/pdf/:filename', function (req, res) {
 });
 
 router.get('/logout', authenController.logout);
+
+
+router.post('/create-payment-link', async (req, res) => {
+    const str = (req.body.amount).slice(0, -2);
+    let cleanStr = "";
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i];
+
+        if (char !== ".") {
+            cleanStr += char;
+        }
+    }
+    const body = {
+        orderCode: Number(String(Date.now()).slice(-6)),
+        amount: +cleanStr, //chuyen sang dang so 
+        description: 'NapTien',
+        returnUrl: "/success",
+        cancelUrl: "/cancel"
+    };
+
+    try {
+        const paymentLinkResponse = await payOS.createPaymentLink(body);
+        res.redirect(paymentLinkResponse.checkoutUrl);
+    } catch (error) {
+        console.error(error);
+        res.send('Something went error');
+    }
+});
 
 router.get('/success', (req, res) => {
     res.render('success.ejs');

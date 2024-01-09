@@ -8,6 +8,8 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import flash from 'express-flash';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import order from './controllers/order-controller.js';
 
 import webRouter from './routers/web.js' // import router from routers/web.js
 import api from './routers/api.js'
@@ -23,6 +25,9 @@ const oneHour = 1000 * 60 * 60;
 const port = process.env.PORT || 8888  // port => dynamic , nếu bị lỗi thì sẽ dùng port 8888
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
+app.use('/order', order);
 
 // config template engine
 app.set('views', './views/');
