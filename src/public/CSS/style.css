@@ -108,7 +108,7 @@ body
 .wrapper .remember
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 15px;
     margin: -20 0 20;
     padding-bottom: 20px;

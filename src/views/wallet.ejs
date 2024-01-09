@@ -113,10 +113,62 @@
             <div class="infoDepo">
                 <h2>Deposit</h2>
             </div>
-            <img src="/Picture/momo.jpg">
-            <div class="subInfoDepo">
-                <h4>Accept all e-Wallet and Mobile banking</h4>
+            <div class="infoDe">
+                <h4 class="info">Deposit amount (VNĐ)</h4>
+                <input type="text" id="amountInput" inputmode="decimal" step="1000" required>   
+                <h3 class="info">To account:</h3>
+                <h4 id="userDe"></h4>
+                <h3 class="info">Accept:</h3>
+                <h4 id="acceptDe">E-wallet and mobile banking</h4>
+                <button type="submit" class="butDe">Confirm</button>
             </div>
+            <script>
+                document.getElementById("userDe").textContent = "<%= user.username %>";
+                // Get the input element
+                const input = document.getElementById("amountInput");
+                // Create a formatter object with currency options
+                const formatter = new Intl.NumberFormat("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                });
+
+                // Add an input event listener to the input element
+                input.addEventListener("input", (e) => {
+                    // Get the input value as a string
+                    const value = input.value;
+
+                    // Remove any non-digit characters from the value
+                    const digits = value.replace(/\D/g, "");
+
+                    // Parse the digits as a number
+                    const number = Number(digits);
+
+                    // Check if the number is a valid number
+                    if (!isNaN(number)) {
+                        // Format the number as a currency string
+                        const formatted = formatter.format(number);
+
+                        // Set the input value to the formatted string
+                        input.value = formatted;
+                    }
+                });
+
+                // Add a keydown event listener to the input element
+                input.addEventListener("keydown", (e) => {
+                    // Check if the key pressed is backspace
+                    if (e.key === "Backspace") {
+                        // Get the input value as a string
+                        const value = input.value;
+
+                        // Remove the currency symbol from the value
+                        const withoutSymbol = value.replace(/\D/g, "");
+
+                        // Set the input value to the value without the currency symbol
+                        input.value = withoutSymbol;
+                    }
+                });
+
+            </script>
         </div>
 
         <!-- <div class="withdraw" id="withdraw">
@@ -227,7 +279,7 @@
 
                         var IDInvoice = document.createElement("h4");
                         IDInvoice.id = "IDInvoice";
-                        IDInvoice.textContent = "ID: " + invoiceid[i];
+                        IDInvoice.textContent = " Transaction ID: " + invoiceid[i];
 
                         his0.appendChild(IDInvoice);
                         
@@ -245,7 +297,7 @@
 
                         var moneyInvoice = document.createElement("h4");
                         moneyInvoice.id = "moneyInvoice";
-                        moneyInvoice.textContent = "Total: " + total[i];
+                        moneyInvoice.textContent = "Total: " + total[i] + " vnd";
 
                         his1st.appendChild(typeInvoice);
                         his1st.appendChild(moneyInvoice);
@@ -255,7 +307,7 @@
 
                         var dateInvoice = document.createElement("h4");
                         dateInvoice.id = "dateInvoice";
-                        dateInvoice.textContent = "Date: " + date[i].substring(0, 10);
+                        dateInvoice.textContent = "Created date: " + date[i].substring(0, 10);
 
                         var IDSender = document.createElement("h4");
                         IDSender.id = "IDSender";
@@ -269,9 +321,9 @@
 
                         var bookInvoice = document.createElement("h4");
                         bookInvoice.id = "bookInvoice";
-                        bookInvoice.textContent = bookid[i];
                         
                         if (invoice[i].itype){
+                            bookInvoice.textContent = "- View the books you have traded here -";
                             var booklink = document.createElement("a");
                             booklink.id = "booklink";
                             booklink.href = "/book/" + bookid[i];

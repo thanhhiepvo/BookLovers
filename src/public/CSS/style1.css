@@ -10,14 +10,8 @@
 }
 
 *::-webkit-scrollbar {
-    display:flex;
-    width: 5px;
+    display:none;
 }
-
-*::-webkit-scrollbar-thumb {
-    background: #141A46;
-}
-
 img {
     width: 100%;
 }
@@ -543,12 +537,70 @@ body {
     font-size: 40px;
 }
 
-.deposit img {
+.deposit .infoDe {
+    text-align: center;
+    margin-top: 20px;
+    color: #080a52;
+}
+
+.deposit h2 {
+    font-size: 40px;
+}
+
+.deposit .infoDe h3 {
+    font-size: 20px;
+}
+
+.deposit .infoDe h4 {
+    font-size: 15px;
+}
+
+.deposit .infoDe input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid #080a52;
+    border-radius: 20px;
+    font-size: 30px;
+    color: #080a52;
+    padding: 20px 45px 20px 10px;
+}
+
+.deposit .infoDe .info {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.deposit .infoDe input::placeholder {
+    font-size: 30px;
+    color: #080a52;
+
+}
+
+.deposit .butDe {
+    width: 50%;
+    height: 35px;
+    background: #080a52;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 0 5px black;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.deposit .butDe:hover {
+    box-shadow: 0 0 7px #080a52;
+    cursor: pointer;
+}
+
+/* .deposit img {
     width: 200px;
     height: auto;
-    /* align-items: center; */
-    /* padding-left: 50px; */
-    /* margin-left: px; */
     margin-top: 10px;
     left: 50%;
     transform: translateX(70%);
@@ -556,8 +608,6 @@ body {
 
 .deposit .subInfoDepo {
     text-align: center;
-    /* margin-right: 20px; */
-    /* padding: 10px; */
     margin-top: 10px;
     width: 100%;
     color: #080a52;
@@ -566,7 +616,7 @@ body {
 
 .deposit .subInfoDepo h4 {
     font-size: 20px;
-}
+} */
 
 /* .withdraw {
     background: url('../Picture/depo.jpg');
@@ -673,7 +723,7 @@ body {
     text-align: left;
     margin-left: 10px;
     width: 100%;
-    color: #1425ac;
+    color: #080a52;
 }
 
 .history h2 {
@@ -687,6 +737,10 @@ body {
     height: 90%;
     overflow: scroll;
     justify-content: start;
+}
+
+.history .historyInfo::-webkit-scrollbar {
+    display:none;
 }
 
 .history .historyInfo .oneHisInfo
@@ -703,15 +757,17 @@ body {
     margin-top: 5px;
 }
 
-/* .history .historyInfo .oneHisInfo .his1st h4
+.history .historyInfo .oneHisInfo .his3rd a
 {
-    padding-right: 50px;
+    /* padding-right: 50px; */
+    text-decoration: none;
+    color: #080a52;
 }
 
-.history .historyInfo .oneHisInfo .his2nd h4
+.history .historyInfo .oneHisInfo .his3rd a:hover
 {
-    padding-right: 50px;
-} */
+    text-decoration: underline;
+}
 
 /* --- About page ---  */
 
