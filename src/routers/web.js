@@ -10,13 +10,15 @@ import multer from "multer";
 import path from 'path';
 import fs from 'fs';
 import appRoot from 'app-root-path';
+import payOS from '../models/payos.js';
+import 'dotenv/config';
 
 
 const router = express.Router();
 
 router.get('/login', (req, res) => {
     res.render('login.ejs', { message: req.flash('msg') })
-})
+});
 
 router.post('/login-user', authenController.loginUser);
 
@@ -108,11 +110,18 @@ router.get('/myBook', async (req, res) => {
             const user = await authenController.getProfileUser(req, res);
             const listOwnedBook = await bookController.getBookOwned(req, res);
             const cart = await bookController.getShoppingCart(req, res);
+            const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+            if (flashMessages.length > 0) {
+                req.session.message = flashMessages;
+                //console.log(req.session.message);
+            }
+            const message = req.session.message || [];
+            req.session.message = null;
             res.render('myBook', {
                 user: user,
                 books: listOwnedBook,
                 nItems_in_cart: cart.length,
-                message: req.flash('msg')
+                message: message
             });
         } catch (error) {
             console.error(error);
@@ -279,6 +288,12 @@ router.get('/book/:idbook', async (req, res) => {
             const user = await authenController.getProfileUser(req, res);
             const selluser = await bookController.getUserSellingBook(req, res);
             const cart = await bookController.getShoppingCart(req, res);
+            //console.log(req.flash('msg'));
+            const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+            if (flashMessages.length > 0) {
+                req.session.message = flashMessages;
+                //console.log(req.session.message);
+            }
             const message = req.session.message || [];
             req.session.message = null;
             res.render('book', {
@@ -286,10 +301,10 @@ router.get('/book/:idbook', async (req, res) => {
                 books: book,
                 selluser: selluser,
                 nItems_in_cart: cart.length,
-                // message: req.flash('msg')
-                message:  message
+                message: message
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
         }
     } else if (req.session.username && !isEmpty) {
@@ -313,13 +328,17 @@ router.get('/cart', async (req, res) => {
         const user = await authenController.getProfileUser(req, res);
         const bookCart = await bookController.getShoppingCart(req, res);
         const total_price = await bookController.getTotalPrice(req, res);
-        // const message = req.session.message || [];
-        // req.session.message = null;
+        const flashMessages = req.flash('msg'); // get flash message from req.flash controller
+        if (flashMessages.length > 0) {
+            req.session.message = flashMessages;
+        }
+        const message = req.session.message || [];
+        req.session.message = null;
         res.render('shoppingCart', {
             user: user,
             bookCart: bookCart,
             total_price: total_price,
-            message: req.flash('msg')
+            message: message
         }); // Render the view with user data
     } else if (req.session.username && !isEmpty) {
         await bookController.addToCart(req, res);
@@ -356,5 +375,54 @@ router.get('/pdf/:filename', function (req, res) {
 });
 
 router.get('/logout', authenController.logout);
+
+
+router.post('/create-payment-link', async (req, res) => {
+    const str = (req.body.amount).slice(0, -2);
+    let cleanStr = "";
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i];
+
+        if (char !== ".") {
+            cleanStr += char;
+        }
+    }
+    const YOUR_DOMAIN = `http://localhost:${process.env.PORT ?? 8888}`;
+    const body = {
+        orderCode: Number(String(Date.now()).slice(-6)),
+        buyerName: req.session.body,
+        amount: +cleanStr, //chuyen sang dang so 
+        description: 'Deposit into BookLovers',
+        returnUrl: `${YOUR_DOMAIN}/success`,
+        cancelUrl: `${YOUR_DOMAIN}/cancel`
+    };
+
+    try {
+        const paymentLinkResponse = await payOS.createPaymentLink(body);
+        res.redirect(paymentLinkResponse.checkoutUrl);
+    } catch (error) {
+        console.error(error);
+        res.send('Something went error');
+    }
+});
+
+router.get('/success', async (req, res) => {
+    if (req.session.username){
+        const paymentinfo = await payOS.getPaymentLinkInfomation(req.query.id);
+        if (paymentinfo.status == "PAID"){
+            req.body.amount = paymentinfo.amountPaid;
+            await walletController.addMoneyToAccount(req, res);
+        }
+        res.render('success.ejs');
+    }
+    else res.redirect('/login');
+});
+
+router.get('/cancel', (req, res) => {
+    if (req.session.username) {
+        res.render('cancel.ejs');
+    }
+    else res.redirect('/login');
+});
 
 export default router;

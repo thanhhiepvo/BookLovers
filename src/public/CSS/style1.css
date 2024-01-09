@@ -149,16 +149,18 @@ body {
 
 /* --- Home page ---  */
 #intro {
-    background-image: url("../Picture/bg6.jpg");
+    background-image: url("../Picture/background_SE.jpg");
     position: relative;
-    height: 80vh;
+    height: 60vh;
     width: 100%;
     background-size: cover;
     background-position: top 25% right 0;
-    padding: 0px 450px;
+    padding: 120px 450px 0px 100px;
     display: flex;
     flex-direction: column;
-
+    justify-content: start; /* Căn giữa nội dung theo trục ngang */
+    color: #1c6ae0;
+    box-shadow:10px 10px 10px darkgray; 
 }
 
 /* #intro .introInfo {
@@ -168,8 +170,9 @@ body {
 } */
 
 #intro h4 {
-    /* padding-bottom: 40px; */
+    padding-bottom: 20px; 
     font-size: 60px;
+    font-weight: bold;
 }
 
 #intro h3 {
@@ -179,10 +182,101 @@ body {
 }
 
 #intro h5 {
-    /* padding-bottom: 500px; */
-    font-size: 30px;
+    padding-bottom: 20px; 
+    font-size: 40px;
+    font-weight: bold;
 }
-
+.custom-btn {
+    justify-content: start; 
+    width: 300px;
+    height: 60px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px r  gba(0,0,0,.1);
+    outline: none;
+  }
+.btn-4 {
+    background-color: #036cc8;
+  background-image: linear-gradient(315deg, #036cc8 0%, #96cae4 74%);
+    line-height: 42px;
+    justify-content: center;
+    text-align: center;
+    border: none;
+  }
+  .btn-4:hover{
+    background-color: #89c0d8;
+  background-image: linear-gradient(315deg, #89c0d8 0%, #036cc8 74%);
+  }
+  .btn-4 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .btn-4:before,
+  .btn-4:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+     box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.9),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    transition: all 0.3s ease;
+  }
+  .btn-4:before {
+    height: 0%;
+    width: .1px;
+  }
+  .btn-4:after {
+    width: 0%;
+    height: .1px;
+  }
+  .btn-4:hover:before {
+    height: 100%;
+  }
+  .btn-4:hover:after {
+    width: 100%;
+  }
+  .btn-4 span:before,
+  .btn-4 span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.9),
+      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+    transition: all 0.3s ease;
+  }
+  .btn-4 span:before {
+    width: .1px;
+    height: 0%;
+  }
+  .btn-4 span:after {
+    width: 0%;
+    height: .1px;
+  }
+  .btn-4 span:hover:before {
+    height: 100%;
+  }
+  .btn-4 span:hover:after {
+    width: 100%;
+  }
 #product {
     text-align: center;
 }
@@ -2311,4 +2405,30 @@ body {
     width: 480px;
     height: 400px;
     border: none;
+}
+
+
+.main-box {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-title {
+    color: #6655ff;
+    font-size: larger;
+}
+
+#return-page-btn {
+    margin-top: 10px;
+    border: 1px solid #6655ff;
+    border-radius: 5px;
+    background-color: #6655ff;
+    padding: 10px 8px;
+    color: white;
+    text-decoration: none;
+    font-size: small;
 }

@@ -1,5 +1,5 @@
 import { getUsername, buyOneBook } from "../models/users.js"
-import { checkout } from "../models/admin.js"
+import { checkout, addMoneyToAccount } from "../models/admin.js"
 import { getUserInvoiceInfo } from "../models/invoice.js";
 
 const walletController = {};
@@ -67,13 +67,17 @@ walletController.buyOneBook = async (req, res) => {
 walletController.getUserInvoiceInfo = async (req, res) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const invoice = await getUserInvoiceInfo(req.session.username);
+            const invoice = await getUserInvoiceInfo(req.session.username) ?? [];
             resolve(invoice);
         } catch (error) {
             console.error('Error', error);
             reject(error);
         }
     });
+}
+
+walletController.addMoneyToAccount = async (req, res) => {
+    await addMoneyToAccount(req.session.username, req.body.amount);
 }
 
 export default walletController;
