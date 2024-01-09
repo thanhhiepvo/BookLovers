@@ -25,6 +25,21 @@ insert into BOOK (NameBook, Author, Description, PublishedYear) values ('Guinnes
 insert into BOOK (NameBook, Author, Description, PublishedYear) values ('Harry Potter and the Goblet of Fire, Book 4', 'J. K. Rowling', NULL, '2002-09-01');
 insert into BOOK (NameBook, Author, Description, PublishedYear) values ('The Ballad of Songbirds and Snakes (A Hunger Games Novel) (The Hunger Games)', 'Suzanne Collins', NULL, '2020-05-19');
 insert into BOOK (NameBook, Author, Description, PublishedYear) values ('The Silence of the Lambs (Hannibal Lecter), 25th Anniversary', 'Thomas Harris', NULL, '2013-10-01');
+INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) VALUES ('The Echo of Old Books: A Novel', 'Barbara Davis', NULL, '2024-03-15');
+INSERT INTO BOOK (NameBook, Author, Description, PublishedYear) VALUES ('Fourth Wing (The Empyrean Book 1)', 'Rebecca Yarros', NULL, '2023-07-22');
+-- Update the Description for each book
+UPDATE BOOK SET Description = 'A comprehensive guide for data analysis using Python.' WHERE NameBook = 'Python for Data Analysis, 1st Edition';
+UPDATE BOOK SET Description = 'Learn Python through hands-on projects and programming exercises.' WHERE NameBook = 'Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming';
+UPDATE BOOK SET Description = 'A beginner-friendly guide to JavaScript programming.' WHERE NameBook = 'JavaScript for Absolute Beginners, 1st Edition';
+UPDATE BOOK SET Description = 'Introduction to C++ programming with a focus on control structures and objects.' WHERE NameBook = 'Starting Out with C++ from Control Structures to Objects, 9th Edition';
+UPDATE BOOK SET Description = 'Explores the history of humankind from prehistoric times to the present.' WHERE NameBook = 'Sapiens: A Brief History of Humankind';
+UPDATE BOOK SET Description = 'Comprehensive coverage of computer networking principles.' WHERE NameBook = 'Computer Networking: A Top-Down Approach, 7th Edition';
+UPDATE BOOK SET Description = 'The latest edition featuring a collection of extraordinary records.' WHERE NameBook = 'Guinness World Records 2024';
+UPDATE BOOK SET Description = 'The fourth book in the Harry Potter series by J.K. Rowling.' WHERE NameBook = 'Harry Potter and the Goblet of Fire, Book 4';
+UPDATE BOOK SET Description = 'A prequel to The Hunger Games, exploring the early life of President Snow.' WHERE NameBook = 'The Ballad of Songbirds and Snakes (A Hunger Games Novel) (The Hunger Games)';
+UPDATE BOOK SET Description = 'A psychological thriller featuring Hannibal Lecter.' WHERE NameBook = 'The Silence of the Lambs (Hannibal Lecter), 25th Anniversary';
+UPDATE BOOK SET Description = 'A novel about the magical lure of books and summoning the courage to rewrite our stories by the Amazon Charts bestselling author of The Keeper of Happy Endings and The Last of the Moon Girls.'  WHERE NameBook = 'The Echo of Old Books: A Novel';
+UPDATE BOOK SET Description = 'Twenty-year-old Violet Sorrengail was supposed to enter the Scribe Quadrant, living a quiet life among books and history. Now, the commanding general—also known as her tough-as-talons mother—has ordered Violet to join the hundreds of candidates striving to become the elite of Navarre: dragon riders.' WHERE NameBook = 'Fourth Wing (The Empyrean Book 1)';
 
 --CATEGORY data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,6 +58,17 @@ insert into CATEGORY (ID_Category, NameCategory) values ('C12', 'Computer');
 insert into CATEGORY (ID_Category, NameCategory) values ('C13', 'History');
 insert into CATEGORY (ID_Category, NameCategory) values ('C14', 'Self-help');
 insert into CATEGORY (ID_Category, NameCategory) values ('C15', 'Comic');
+insert into CATEGORY (ID_Category, NameCategory) values ('C16', 'Mystery');
+insert into CATEGORY (ID_Category, NameCategory) values ('C17', 'Romance');
+insert into CATEGORY (ID_Category, NameCategory) values ('C18', 'Science Fiction');
+insert into CATEGORY (ID_Category, NameCategory) values ('C19', 'Biography');
+insert into CATEGORY (ID_Category, NameCategory) values ('C20', 'Travel');
+insert into CATEGORY (ID_Category, NameCategory) values ('C21', 'Cooking');
+insert into CATEGORY (ID_Category, NameCategory) values ('C22', 'Poetry');
+insert into CATEGORY (ID_Category, NameCategory) values ('C23', 'Music');
+insert into CATEGORY (ID_Category, NameCategory) values ('C24', 'Philosophy');
+insert into CATEGORY (ID_Category, NameCategory) values ('C25', 'Art');
+
 
 
 --OWNEDBOOK data--
@@ -106,3 +132,30 @@ insert into BOOKCATEGORY (BCBook, BCCategory) values (10, 'C4');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C6');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C7');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C8');
+
+-- Additional Book Categories
+insert into BOOKCATEGORY (BCBook, BCCategory) values (1, 'C15');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (1, 'C14');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (2, 'C2');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (2, 'C9');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (3, 'C12');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (3, 'C13');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (4, 'C5');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (4, 'C7');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (5, 'C8');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (5, 'C1');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (6, 'C11');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (6, 'C6');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (7, 'C3');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (7, 'C4');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (8, 'C15');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (8, 'C14');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C2');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C9');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (10, 'C12');
+insert into BOOKCATEGORY (BCBook, BCCategory) values (10, 'C13');
+INSERT INTO BOOKCATEGORY (BCBook, BCCategory) VALUES (11, 'C12');
+INSERT INTO BOOKCATEGORY (BCBook, BCCategory) VALUES (11, 'C9');
+INSERT INTO BOOKCATEGORY (BCBook, BCCategory) VALUES (12, 'C10');
+INSERT INTO BOOKCATEGORY (BCBook, BCCategory) VALUES (12, 'C9');
+
