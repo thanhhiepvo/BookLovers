@@ -202,6 +202,7 @@
 
                 var link2 = document.createElement("a");
                 // link2.href = "/cart" + "?ShopUser=" + "<%=user.username%>" + "&ShopSeller=" + nameSellers[i] + "&ShopBook=" + "<%=books.id_book%>";
+                link2.className = "buyNowBut";
 
                 var button2 = document.createElement("button");
                 button2.type = "button";
@@ -283,42 +284,59 @@
         })
     </script>
 
-    <div class="buynow" id="buynow">
+    <div id="buyNow">
         <form action="/buy-now" method="post">
-            <div class="buynowForm">
-                <h3>Are you sure that you want to pay and buy this book?</h3>
-                <h2 id="bbookName"></h2>
-                <h2 id="bseller"></h2>
-                <h2 id="bprice"></h2>
-                <input type="hidden" name="bSeller" value="">
-                <input type="hidden" name="bBookID" value="<%= books.id_book %>">
-                <input type="hidden" name="bPrice" value="">
-                <div class="buyAction">
-                    <button type="button" id="cancelbuy">Cancel</button>
-                    <button type="submit" id="buyConfirm">Buy</button>
+            <h2 class="titleBuyNow">Buy now confirmation form</h2>
+            <div class="infoBuyNow">
+                <h3 id="nameBuyNow"></h3>
+                <!-- <h2 id="costBuyNow">Cost: 70.000 VND</h2> -->
+                <h4 id="sellerBuyNow"></h4>
+            </div>
+            <div class="billBuyNow">
+                <h4 class="billTitle">Shopping bill</h4>
+                <div class="priceBuyNow">
+                    <h4>Price</h4>
+                    <h4 id="priceBuyNow"></h4>
+                </div>
+                <div class="discountBuyNow">
+                    <h4>Discount</h4>
+                    <h4 id="discountBuyNow">- 0 vnd</h4>
+                </div>
+                <div class="totalBuyNow">
+                    <h4><strong>Total</strong></h4>
+                    <h4 id="totalBuyNow"></h4>
                 </div>
             </div>
+            <h4>Please note that refunds are not available after purchase confirmation. </h4>
+            <div class="buyNowAction">
+                <button type="button" id="cancelBuyNow">Cancel</button>
+                <button type="submit" id="confirmBuyNow">Confirm</button>
+            </div>
+            <input type="hidden" name="bSeller" value="">
+            <input type="hidden" name="bBookID" value="<%= books.id_book %>">
+            <input type="hidden" name="bPrice" value="">
         </form>
     </div>
-    
+
     <script>
-        document.getElementById("bbookName").textContent = "Book: " + "<%=books.namebook%>";
-        var reportClick = document.querySelectorAll('.button2');
+        document.getElementById("nameBuyNow").textContent = "Book: " + "<%=books.namebook%>";
 
-        reportClick.forEach((element, index) => {
+        var buyNowClick = document.querySelectorAll(".buyNowBut");
+        buyNowClick.forEach((element, index) => {
             element.addEventListener('click', () => {
-                document.getElementById("buynow").classList.toggle('active');
-                document.getElementById("bseller").textContent = "Seller: " + nameSellers[index];
+                document.getElementById("sellerBuyNow").textContent = "From seller: " + nameSellers[index];
+                document.getElementById("priceBuyNow").textContent = price[index] + " vnd";
+                document.getElementById("totalBuyNow").textContent = price[index] + " vnd";
                 document.querySelector('input[name="bSeller"]').value = nameSellers[index];
-                document.getElementById("bprice").textContent = "Price: " + price[index].toLocaleString('de-DE') + " VND";
                 document.querySelector('input[name="bPrice"]').value = price[index];
-            });
-        });
+                document.getElementById("buyNow").classList.toggle('active');
+            })
+        })
 
-        var cancelReport = document.querySelector('#cancelbuy');
-        cancelReport.addEventListener('click', (event) => {
+        var cancelBuyClick = document.querySelector("#cancelBuyNow");
+        cancelBuyClick.addEventListener('click', (event) => {
             event.preventDefault();
-            document.getElementById("buynow").classList.toggle('active');
+            document.getElementById("buyNow").classList.toggle('active');
         })
     </script>
 
