@@ -237,7 +237,10 @@
             else {
                 var oneBookSeller = document.createElement("div");
                 oneBookSeller.className = "oneBookSeller";
-                oneBookSeller.textContent = "You are selling this book";
+                if (n != nameSellers.length)
+                    oneBookSeller.textContent = "You are selling this book";
+                else 
+                    oneBookSeller.textContent = "No one is selling this book";
                 SellerList.appendChild(oneBookSeller);
                 bookSellers.appendChild(SellerList);
                 bookPage.appendChild(bookSellers);
