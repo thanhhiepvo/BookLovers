@@ -86,6 +86,7 @@ router.get('/homepage', async (req, res) => {
     if (req.session.username) {
         try {
             const book = await bookController.getAllBookInfo(req, res);
+            console.log(book);
             const user = await authenController.getProfileUser(req, res);
             const cart = await bookController.getShoppingCart(req, res);
             res.render('home', {
