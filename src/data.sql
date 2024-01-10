@@ -79,7 +79,7 @@ insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user9', 10, 266743);
 --INVOICE data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 insert into INVOICE (IUsername, DateInvoice, Total, IType) values ('blanker321', '2023-12-16', 1000000, 'false');
-insert into INVOICE (IUsername, DateInvoice, Total, IType) values ('blanker321', '2023-12-16', 1000000, 'true');
+insert into INVOICE (IUsername, DateInvoice, Total, IType) values ('blanker321', '2023-12-16', -200000, 'true');
 
 --TRANSAC data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
