@@ -99,6 +99,20 @@ insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user6', 7, 381790);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user7', 8, 268200);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user8', 9, 533730);
 insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user9', 10, 266743);
+-- Insert Additional Entries in SELLINGBOOK
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user1', 3, 123456);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user2', 4, 234567);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user3', 5, 345678);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user4', 6, 456789);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user5', 7, 567890);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user6', 8, 678901);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user7', 9, 789012);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user8', 10, 890123);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user9', 1, 901234);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user10', 11, 787654);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user2', 11, 1901234);
+insert into SELLINGBOOK (SUsername, Sbook, SPrice) values ('user1', 12, 587654);
+
 
 --INVOICE data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
