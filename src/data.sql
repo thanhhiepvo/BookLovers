@@ -69,8 +69,6 @@ insert into CATEGORY (ID_Category, NameCategory) values ('C23', 'Music');
 insert into CATEGORY (ID_Category, NameCategory) values ('C24', 'Philosophy');
 insert into CATEGORY (ID_Category, NameCategory) values ('C25', 'Art');
 
-
-
 --OWNEDBOOK data--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 insert into OWNEDBOOK (OUsername, OBook) values ('blanker321', 1);
@@ -132,8 +130,6 @@ insert into BOOKCATEGORY (BCBook, BCCategory) values (10, 'C4');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C6');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C7');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (9, 'C8');
-
--- Additional Book Categories
 insert into BOOKCATEGORY (BCBook, BCCategory) values (1, 'C15');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (1, 'C14');
 insert into BOOKCATEGORY (BCBook, BCCategory) values (2, 'C2');

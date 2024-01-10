@@ -177,7 +177,8 @@ BEGIN
 				WHERE Username = v_seller;
 				-- thêm vào sách đã mua
 				INSERT INTO OWNEDBOOK (OUsername, OBook) VALUES (v_username, v_bookid);
-
+				-- xóa khỏi giỏ hàng
+				DELETE FROM SHOPPING_CART WHERE ShopUser = v_username AND ShopSeller = v_seller AND ShopBook = v_bookid;
 				-- lưu lịch sử giao dịch người mua
 				INSERT INTO INVOICE (IUsername, DateInvoice, Total, IType) VALUES (v_username, NOW(), v_price, 'true')
 				RETURNING ID_Invoice INTO tempid;
