@@ -13,7 +13,6 @@ import appRoot from 'app-root-path';
 import payOS from '../models/payos.js';
 import 'dotenv/config';
 
-
 const router = express.Router();
 
 router.get('/login', (req, res) => {
@@ -79,14 +78,12 @@ router.get('/signUp', (req, res) => {
     res.render('signUp.ejs', { message: req.flash('msg') })
 })
 
-
 router.post('/create-user', authenController.postCreateUser);
 
 router.get('/homepage', async (req, res) => {
     if (req.session.username) {
         try {
             const book = await bookController.getAllBookInfo(req, res);
-            console.log(book);
             const user = await authenController.getProfileUser(req, res);
             const cart = await bookController.getShoppingCart(req, res);
             res.render('home', {

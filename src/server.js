@@ -10,7 +10,6 @@ import flash from 'express-flash';
 import cookieParser from 'cookie-parser';
 
 import webRouter from './routers/web.js' // import router from routers/web.js
-import api from './routers/api.js'
 
 ///Render file .ejs with css applied
 const __filename = fileURLToPath(import.meta.url);
@@ -41,7 +40,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(flash());
 app.use('/', webRouter); // use router
-app.use('/', api); // use router
 
 //config static file
 app.use(express.static(path.join(__dirname, 'public')));
