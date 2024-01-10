@@ -10,8 +10,8 @@ export async function getUsername(username) {
 }
 
 //get user email
-export async function getUserEmail(email) {
-    const { rows } = await pool.query('SELECT Email FROM useraccount WHERE Email = $1', [email]);
+export async function getUserEmail(username) {
+    const { rows } = await pool.query('SELECT Email FROM useraccount WHERE Username = $1', [username]);
     // console.log(rows);
     if (rows.length == 0)
         return null;
