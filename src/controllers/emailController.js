@@ -29,7 +29,7 @@ let curOTP = generateOTP();
 const emailMethod = {};
 
 emailMethod.checkOTP = async (req, res) => {
-    console.log(">>> req.body = ", req.body);
+    // console.log(">>> req.body = ", req.body);
     let { num1, num2, num3, num4 } = req.body;
     let stringotp = num1 + num2 + num3 + num4;
     try {
@@ -51,7 +51,7 @@ emailMethod.checkOTP = async (req, res) => {
 }
 
 emailMethod.sendOTP = async (req, res) => {
-    console.log(">>> req.body = ", req.body);
+    // console.log(">>> req.body = ", req.body);
 	let { useremail } = req.body;
 	try {
 		if (await getUserEmail(useremail) == null) {

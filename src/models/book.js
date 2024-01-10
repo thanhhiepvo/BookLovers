@@ -17,7 +17,7 @@ export async function getBookOwned(OUsername) {
     const text = "SELECT OBook FROM OWNEDBOOK WHERE OUsername = $1"
     const value = [OUsername];
     const { rows } = await pool.query(text, value);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows.map(row => row.obook);
@@ -28,7 +28,7 @@ export async function getUserSellingBook(ID_Book) {
     const text = "SELECT SUsername, SPrice FROM SELLINGBOOK WHERE SBook = $1"
     const value = [ID_Book];
     const { rows } = await pool.query(text, value);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows;
@@ -39,7 +39,7 @@ export async function getBookSell(SUsername) {
     const text = "SELECT SBook, SPrice FROM SELLINGBOOK WHERE SUsername = $1"
     const value = [SUsername];
     const { rows } = await pool.query(text, value);
-    console.log(rows);
+    // console.log(rows);
     if (rows.length == 0)
         return null;
     return rows;
